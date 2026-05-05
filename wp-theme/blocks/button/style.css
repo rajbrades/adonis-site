@@ -1,0 +1,46 @@
+/* Adonis pill button — Inter Tight 14px, sentence case, 999px radius. */
+
+.adonis-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background .25s, color .25s, border-color .25s;
+}
+.adonis-btn:hover { text-decoration: none; }
+
+.adonis-btn em {
+  color: var(--acc2);
+  font-style: italic;
+}
+
+.adonis-btn--accent {
+  background: var(--fg);
+  color: var(--bg);
+  border: 1px solid var(--fg);
+}
+.adonis-btn--accent:hover {
+  background: transparent;
+  color: var(--fg);
+}
+.adonis-btn--accent em {
+  color: var(--acc-deep);
+}
+
+.adonis-btn--ghost {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--line2);
+}
+.adonis-btn--ghost:hover {
+  border-color: var(--fg);
+}

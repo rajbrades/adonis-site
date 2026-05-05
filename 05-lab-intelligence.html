@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Adonis · Lab Intelligence</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   ADONIS · LAB INTELLIGENCE — landing
+   v4.5 dark-luxury identity · graphite + ivory + bronze
+   secondary deep-green/slate · educational-only positioning
+   ============================================================ */
+:root {
+  --display: "Fraunces", "Times New Roman", Georgia, serif;
+  --sans:    "Inter Tight", "Inter", system-ui, sans-serif;
+  --mono:    "JetBrains Mono", ui-monospace, monospace;
+
+  --bg:      #0F1116;
+  --bg2:     #181B22;
+  --bg3:     #1F232C;
+  --bg4:     #0A0C10;
+  --fg:      #ECE6D8;
+  --fg-soft: rgba(236, 230, 216, 0.72);
+  --mute:    #898577;
+  --mute2:   #5E5B52;
+  --line:    rgba(236, 230, 216, 0.10);
+  --line2:   rgba(236, 230, 216, 0.18);
+  --line3:   rgba(236, 230, 216, 0.32);
+
+  --acc:     #C9A35E;
+  --acc-d:   #8E7038;
+  --acc-soft:rgba(201, 163, 94, 0.12);
+  --acc-line:rgba(201, 163, 94, 0.32);
+
+  --sec:     #2E4338;
+  --sec2:    #3D5847;
+  --sec-soft:rgba(46, 67, 56, 0.32);
+
+  --good:    #6F8A6A;
+  --warn:    #B58A4D;
+  --info:    #6F8AA0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #060709; color: var(--fg); }
+body { font-family: var(--sans); font-size: 16px; line-height: 1.55;
+       -webkit-font-smoothing: antialiased; min-height: 100vh; }
+
+img, svg { display: block; max-width: 100%; }
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+a { color: inherit; text-decoration: none; }
+em { font-style: italic; }
+
+/* ----- type system ----- */
+.h-display { font-family: var(--display); font-weight: 400; line-height: 1.02;
+             letter-spacing: -.022em; text-wrap: balance; }
+.h-display em { font-style: italic; color: var(--acc); font-weight: 300; }
+.h1 { font-size: clamp(48px, 5.6vw, 92px); }
+.h2 { font-size: clamp(36px, 3.6vw, 60px); }
+.h3 { font-size: clamp(24px, 2.0vw, 32px); }
+
+.eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .28em;
+           text-transform: uppercase; color: var(--acc);
+           display: inline-flex; align-items: center; gap: 12px; }
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--acc); flex-shrink: 0; }
+.eyebrow.alt { color: var(--mute); }
+.eyebrow.alt::before { background: var(--mute); }
+
+.mono { font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+        text-transform: uppercase; color: var(--mute); }
+
+/* ----- buttons ----- */
+.btn { display: inline-flex; align-items: center; justify-content: space-between;
+       gap: 14px; padding: 19px 28px; font-family: var(--sans); font-size: 15px;
+       font-weight: 500; border: 1px solid var(--line2); border-radius: 999px;
+       transition: all .22s; color: var(--fg); background: transparent; cursor: pointer; }
+.btn em { font-family: var(--display); font-style: italic; font-weight: 400; color: var(--acc); }
+.btn .arr { font-family: var(--mono); font-size: 14px; opacity: .72; }
+.btn:hover { border-color: var(--acc); }
+.btn.primary { background: var(--acc); color: #0F1014; border-color: var(--acc); }
+.btn.primary em { color: #0F1014; }
+.btn.primary:hover { background: #D6B26A; border-color: #D6B26A; }
+.btn.lg { padding: 22px 32px; font-size: 16px; }
+.btn.full { width: 100%; }
+
+/* ============================================================
+   CANVAS
+   ============================================================ */
+.canvas { display: flex; flex-direction: column; gap: 80px;
+          padding: 64px 48px; background: #060709; }
+.label-bar { max-width: 1440px; margin: 0 auto; width: 100%;
+             display: flex; align-items: center; gap: 18px;
+             font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+             text-transform: uppercase; color: var(--mute); }
+.label-bar::before, .label-bar::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+.label-bar b { color: var(--fg); font-weight: 500; }
+.label-bar code { color: var(--acc); font-family: var(--mono); font-size: 11px; }
+
+.page { max-width: 1440px; margin: 0 auto; width: 100%;
+        background: var(--bg); color: var(--fg);
+        border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.page-mobile { max-width: 420px; margin: 0 auto; }
+
+/* ============================================================
+   GLOBAL CHROME
+   ============================================================ */
+.notice { background: #08090C; border-bottom: 1px solid var(--line);
+          font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+          text-transform: uppercase; color: var(--mute);
+          display: flex; justify-content: center; gap: 32px;
+          padding: 12px 24px; flex-wrap: wrap; }
+.notice b { color: var(--fg); font-weight: 500; }
+
+.nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+       padding: 22px 48px; border-bottom: 1px solid var(--line); }
+.nav .l { font-family: var(--display); font-size: 26px; letter-spacing: .04em; }
+.nav .l em { font-style: italic; color: var(--acc); font-weight: 400; }
+.nav .c { display: flex; gap: 28px; font-family: var(--sans); font-size: 13.5px; color: var(--fg-soft); }
+.nav .c a { display: inline-flex; align-items: center; gap: 6px; }
+.nav .c a.on { color: var(--acc); }
+.nav .c a.on::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--acc); }
+.nav .r { display: flex; gap: 12px; justify-content: flex-end; align-items: center; }
+.nav .r a.ghost { font-family: var(--sans); font-size: 13.5px; color: var(--fg-soft); padding: 10px 16px; }
+.nav .r a.ghost:hover { color: var(--acc); }
+.nav .r .btn { padding: 11px 20px; font-size: 13px; white-space: nowrap; }
+
+.crumb { display: flex; align-items: center; justify-content: space-between;
+         padding: 16px 48px; border-bottom: 1px solid var(--line);
+         font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+         text-transform: uppercase; color: var(--mute); }
+.crumb .l { display: flex; gap: 12px; align-items: center; }
+.crumb .l span { color: var(--mute2); }
+.crumb .l b { color: var(--acc); font-weight: 500; }
+.crumb .r { display: flex; gap: 16px; align-items: center; }
+.crumb .r .pill { padding: 5px 12px; border: 1px solid var(--acc-line); border-radius: 999px; color: var(--acc); }
+.crumb .r .pill.edu { color: var(--mute); border-color: var(--line2); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero { position: relative; padding: 96px 48px 80px; overflow: hidden;
+        border-bottom: 1px solid var(--line); }
+.hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 72px;
+             max-width: 1280px; margin: 0 auto; align-items: center; }
+.hero .l { display: flex; flex-direction: column; gap: 32px; }
+.hero .l .meta { display: flex; gap: 28px; flex-wrap: wrap;
+                  font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+                  text-transform: uppercase; color: var(--mute); }
+.hero .l .meta b { color: var(--fg); font-weight: 500; }
+.hero h1 { max-width: 17ch; }
+.hero .lead { color: var(--fg-soft); max-width: 52ch; line-height: 1.5; font-size: 19px; }
+.hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 4px; }
+
+.eduline { display: flex; align-items: flex-start; gap: 14px;
+            padding: 16px 18px; border: 1px solid var(--line2);
+            border-left: 2px solid var(--acc); border-radius: 3px;
+            background: rgba(201,163,94,0.04); max-width: 56ch; }
+.eduline .icon { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px;
+                  border: 1px solid var(--acc); border-radius: 50%;
+                  display: grid; place-items: center;
+                  font-family: var(--mono); font-size: 10px; color: var(--acc); }
+.eduline .t { font-size: 13.5px; line-height: 1.55; color: var(--fg-soft); }
+.eduline .t b { color: var(--fg); font-weight: 500; }
+
+/* ----- hero visual: insights mockup ----- */
+.hero .r { position: relative; }
+.example-tag { position: absolute; top: 16px; right: 16px; z-index: 3;
+                font-family: var(--mono); font-size: 9.5px; letter-spacing: .22em;
+                text-transform: uppercase; color: var(--bg);
+                background: var(--acc); padding: 5px 12px; border-radius: 999px; }
+
+.insights-mock { position: relative; aspect-ratio: 0.92;
+                  background: linear-gradient(165deg, #0F1116 0%, #161A22 60%, #0A0C10 100%);
+                  border: 1px solid var(--line2); border-radius: 6px;
+                  overflow: hidden; padding: 26px;
+                  display: flex; flex-direction: column; gap: 18px; }
+.insights-mock::before { content: ""; position: absolute; inset: 0;
+                          background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='.85' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+                          opacity: .04; pointer-events: none; }
+.insights-mock > * { position: relative; z-index: 1; }
+
+.im-head { display: flex; justify-content: space-between; align-items: flex-start;
+            padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.im-head .l .t { font-family: var(--mono); font-size: 10px; letter-spacing: .26em;
+                  text-transform: uppercase; color: var(--acc); }
+.im-head .l .nm { font-family: var(--display); font-size: 19px; line-height: 1.1;
+                   margin-top: 4px; font-weight: 400; }
+.im-head .l .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.im-head .r { font-family: var(--mono); font-size: 9.5px; letter-spacing: .18em;
+               color: var(--mute); text-align: right; line-height: 1.6; }
+.im-head .r b { color: var(--fg); display: block; }
+
+.im-cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+            background: var(--line); border: 1px solid var(--line); border-radius: 3px;
+            overflow: hidden; }
+.im-cat { background: rgba(15,17,22,0.7); padding: 12px 14px; min-height: 78px;
+           display: flex; flex-direction: column; gap: 6px; }
+.im-cat .nm { font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em;
+               text-transform: uppercase; color: var(--mute); }
+.im-cat .ct { font-family: var(--display); font-size: 22px; line-height: 1;
+               font-weight: 400; }
+.im-cat .ct em { font-family: var(--mono); font-style: normal; color: var(--acc);
+                  font-size: 11px; letter-spacing: .14em; margin-left: 2px; }
+.im-cat .st { font-size: 11px; color: var(--fg-soft); line-height: 1.3; margin-top: auto; }
+.im-cat.alert .ct em { color: var(--warn); }
+
+.im-trend { padding: 14px; border: 1px solid var(--line); border-radius: 3px;
+             background: rgba(15,17,22,0.5); }
+.im-trend .top { display: flex; justify-content: space-between; align-items: baseline;
+                  margin-bottom: 10px; }
+.im-trend .top .nm { font-family: var(--mono); font-size: 10px; letter-spacing: .18em;
+                      text-transform: uppercase; color: var(--mute); }
+.im-trend .top .nm b { color: var(--fg); }
+.im-trend .top .v { font-family: var(--display); font-size: 18px; font-weight: 400; }
+.im-trend .top .v em { font-family: var(--mono); font-style: normal; font-size: 10px;
+                        letter-spacing: .14em; color: var(--mute); margin-left: 4px; }
+.im-trend svg { width: 100%; height: 70px; }
+
+.im-foot { display: flex; justify-content: space-between; align-items: center;
+            padding-top: 12px; border-top: 1px solid var(--line);
+            font-family: var(--mono); font-size: 9.5px; letter-spacing: .18em;
+            text-transform: uppercase; color: var(--mute); }
+.im-foot .reading { display: flex; align-items: center; gap: 6px; color: var(--acc); }
+.im-foot .reading::before { content: ""; width: 6px; height: 6px; border-radius: 50%;
+                             background: var(--acc); }
+.im-foot .label { color: var(--mute); }
+.im-foot b { color: var(--fg); }
+
+/* ============================================================
+   SECTION SHELL
+   ============================================================ */
+.section { padding: 120px 48px; border-bottom: 1px solid var(--line); position: relative; }
+.section .wrap { max-width: 1280px; margin: 0 auto; }
+.section .head { display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+                  margin-bottom: 64px; align-items: end; }
+.section .head .l { display: flex; flex-direction: column; gap: 22px; }
+.section .head h2 { max-width: 18ch; }
+.section .head .r { color: var(--fg-soft); max-width: 50ch; font-size: 17px; line-height: 1.55; }
+.section .head .r p + p { margin-top: 14px; }
+.section.alt { background: var(--bg2); }
+.section.deep { background: var(--bg4); }
+
+/* ============================================================
+   2 · PATHWAY SELECTION (3 cards)
+   ============================================================ */
+.paths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+          background: var(--line); border: 1px solid var(--line);
+          border-radius: 4px; overflow: hidden; }
+.path-card { background: var(--bg); padding: 36px 32px; min-height: 360px;
+              display: flex; flex-direction: column; gap: 18px; position: relative;
+              transition: background .22s; }
+.path-card:hover { background: var(--bg3); }
+.path-card.upgrade { background: linear-gradient(180deg, rgba(201,163,94,0.06) 0%, var(--bg) 60%); }
+.path-card.upgrade:hover { background: linear-gradient(180deg, rgba(201,163,94,0.12) 0%, var(--bg3) 60%); }
+.path-card .head { display: flex; justify-content: space-between; align-items: baseline; }
+.path-card .head .num { font-family: var(--mono); font-size: 11px; letter-spacing: .26em; color: var(--acc); }
+.path-card .head .pr  { font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+                         text-transform: uppercase; color: var(--mute); }
+.path-card .head .pr b { color: var(--fg); font-family: var(--display); font-size: 16px;
+                          letter-spacing: 0; text-transform: none; font-weight: 400; margin-left: 4px; }
+.path-card .glyph { width: 56px; height: 56px; border: 1px solid var(--line2);
+                     border-radius: 4px; display: grid; place-items: center;
+                     background: rgba(201,163,94,0.04); }
+.path-card .glyph svg { width: 26px; color: var(--acc); }
+.path-card.upgrade .glyph { border-color: var(--acc-line); background: rgba(201,163,94,0.10); }
+.path-card h3 { font-family: var(--display); font-weight: 400; font-size: 26px;
+                 line-height: 1.15; }
+.path-card h3 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.path-card p { color: var(--fg-soft); font-size: 14.5px; line-height: 1.55; flex: 1; }
+.path-card ul { list-style: none; display: flex; flex-direction: column; gap: 7px;
+                 padding-top: 14px; border-top: 1px dashed var(--line); }
+.path-card ul li { font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
+                    text-transform: uppercase; color: var(--mute);
+                    display: flex; align-items: baseline; gap: 8px; }
+.path-card ul li::before { content: "›"; color: var(--acc); }
+.path-card ul li b { color: var(--fg); }
+.path-card .cta { display: flex; align-items: center; justify-content: space-between;
+                   padding: 14px 0; margin-top: 8px;
+                   border-top: 1px solid var(--line);
+                   font-family: var(--display); font-size: 16px;
+                   color: var(--fg); transition: color .22s; }
+.path-card .cta em { font-style: italic; color: var(--acc); font-weight: 300; }
+.path-card .cta .arr { font-family: var(--mono); font-size: 14px; color: var(--acc); }
+.path-card.upgrade .cta { color: var(--acc); }
+
+/* ============================================================
+   3 · LAB INSIGHTS PREVIEW (educational preview)
+   ============================================================ */
+.preview { background: linear-gradient(165deg, #0F1116 0%, #14171E 100%);
+            border: 1px solid var(--line2); border-radius: 6px;
+            position: relative; overflow: hidden; }
+.preview::before { content: ""; position: absolute; inset: 0;
+                    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='.85' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+                    opacity: .04; pointer-events: none; }
+.preview > * { position: relative; z-index: 1; }
+.preview .pv-tag { position: absolute; top: 18px; right: 18px; z-index: 3;
+                    font-family: var(--mono); font-size: 9.5px; letter-spacing: .22em;
+                    text-transform: uppercase; color: var(--bg);
+                    background: var(--acc); padding: 5px 12px; border-radius: 999px; }
+
+.preview .pv-head { display: flex; justify-content: space-between; align-items: flex-start;
+                     padding: 32px 36px; border-bottom: 1px solid var(--line); gap: 32px; }
+.preview .pv-head .l .ey { font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+                            text-transform: uppercase; color: var(--acc); }
+.preview .pv-head .l h3 { font-family: var(--display); font-size: 30px; font-weight: 400;
+                           line-height: 1.05; margin-top: 6px; max-width: 16ch; }
+.preview .pv-head .l h3 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.preview .pv-head .r { display: flex; gap: 28px; font-family: var(--mono); font-size: 11px;
+                        letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+.preview .pv-head .r b { color: var(--fg); display: block; font-size: 13px;
+                          letter-spacing: 0; text-transform: none; margin-top: 2px; }
+
+/* category grid */
+.pv-cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+            background: var(--line); }
+.pv-cat { background: rgba(15,17,22,0.6); padding: 24px 24px;
+           display: flex; flex-direction: column; gap: 14px; }
+.pv-cat .top { display: flex; justify-content: space-between; align-items: baseline; }
+.pv-cat .nm { font-family: var(--display); font-size: 18px; font-weight: 400;
+               line-height: 1.1; }
+.pv-cat .nm em { font-style: italic; color: var(--acc); font-weight: 300; font-size: 13px; }
+.pv-cat .badge { font-family: var(--mono); font-size: 10px; letter-spacing: .16em;
+                  text-transform: uppercase; padding: 3px 9px; border-radius: 999px;
+                  border: 1px solid var(--line2); color: var(--mute); }
+.pv-cat .badge.opt { color: var(--good); border-color: var(--good); }
+.pv-cat .badge.rev { color: var(--warn); border-color: var(--warn); }
+.pv-cat .badge.now { color: var(--acc); border-color: var(--acc); }
+
+.pv-cat .ring { display: flex; align-items: center; gap: 14px; }
+.pv-cat .ring svg { width: 64px; height: 64px; flex-shrink: 0; }
+.pv-cat .ring .info { display: flex; flex-direction: column; gap: 2px; }
+.pv-cat .ring .info .pct { font-family: var(--display); font-size: 22px; font-weight: 400;
+                            line-height: 1; }
+.pv-cat .ring .info .pct em { font-family: var(--mono); font-style: normal; font-size: 11px;
+                               color: var(--mute); letter-spacing: .14em; margin-left: 3px; }
+.pv-cat .ring .info .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+                            text-transform: uppercase; color: var(--mute); }
+.pv-cat .markers { display: flex; flex-direction: column; gap: 6px;
+                    padding-top: 12px; border-top: 1px dashed var(--line); }
+.pv-cat .markers .row { display: grid; grid-template-columns: 1fr auto;
+                         gap: 12px; font-size: 12.5px; line-height: 1.4; }
+.pv-cat .markers .row .nm { font-family: var(--sans); font-size: 12.5px; color: var(--fg-soft); font-weight: 400; }
+.pv-cat .markers .row .v { font-family: var(--mono); font-size: 11px; color: var(--fg);
+                            letter-spacing: .04em; }
+
+/* trend strip */
+.pv-trend { padding: 32px 36px; border-top: 1px solid var(--line);
+             display: grid; grid-template-columns: 1fr 1.2fr; gap: 32px;
+             align-items: center; }
+.pv-trend .l h4 { font-family: var(--display); font-size: 22px; font-weight: 400;
+                   line-height: 1.1; max-width: 18ch; }
+.pv-trend .l h4 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.pv-trend .l p { color: var(--fg-soft); font-size: 14px; line-height: 1.55; margin-top: 12px;
+                  max-width: 38ch; }
+.pv-trend .l .legend { display: flex; gap: 18px; margin-top: 18px;
+                        font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+                        text-transform: uppercase; color: var(--mute); }
+.pv-trend .l .legend .dot { display: inline-block; width: 8px; height: 8px;
+                             border-radius: 50%; background: var(--acc); margin-right: 6px;
+                             vertical-align: middle; }
+.pv-trend .l .legend .dot.b { background: var(--info); }
+.pv-trend .r { padding: 18px; border: 1px solid var(--line2); border-radius: 4px;
+                background: rgba(15,17,22,0.5); }
+.pv-trend .r .head { display: flex; justify-content: space-between; align-items: baseline;
+                      margin-bottom: 12px; font-family: var(--mono); font-size: 10.5px;
+                      letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+.pv-trend .r .head b { color: var(--fg); }
+.pv-trend .r svg { width: 100%; height: 130px; display: block; }
+
+.pv-foot { padding: 18px 36px; border-top: 1px solid var(--line);
+            display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+            font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em;
+            text-transform: uppercase; color: var(--mute); align-items: center; }
+.pv-foot b { color: var(--fg); }
+.pv-foot .right { color: var(--warn); }
+
+/* ============================================================
+   4 · HOW IT WORKS
+   ============================================================ */
+.hiw-list { display: flex; flex-direction: column; gap: 1px; background: var(--line);
+             border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.hiw-row { display: grid; grid-template-columns: 120px 1.1fr 1.4fr 200px;
+            padding: 32px 36px; gap: 32px; align-items: center; background: var(--bg); }
+.hiw-row.alt { background: var(--bg2); }
+.hiw-row.bridge { background: linear-gradient(90deg, rgba(201,163,94,0.06) 0%, var(--bg) 60%); }
+.hiw-row .num { font-family: var(--display); font-size: 56px; font-weight: 300;
+                 color: var(--acc); line-height: 1; letter-spacing: -.02em; }
+.hiw-row .nm  { font-family: var(--display); font-size: 22px; font-weight: 400; line-height: 1.2; }
+.hiw-row .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.hiw-row .desc { color: var(--fg-soft); font-size: 14.5px; line-height: 1.55; }
+.hiw-row .stamp { display: flex; flex-direction: column; gap: 4px;
+                   font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+                   text-transform: uppercase; color: var(--mute); text-align: right; }
+.hiw-row .stamp b { color: var(--fg); font-weight: 500; font-size: 12px; }
+.hiw-row .stamp em { font-family: var(--mono); font-style: normal; color: var(--acc);
+                      letter-spacing: .04em; text-transform: none; font-size: 11px; }
+
+/* ============================================================
+   5 · AI POSITIONING (does/doesn't)
+   ============================================================ */
+.ai { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 800px) { .ai { grid-template-columns: 1fr; } }
+.ai-card { padding: 36px 32px; border: 1px solid var(--line2); border-radius: 6px;
+            display: flex; flex-direction: column; gap: 22px; background: var(--bg);
+            position: relative; overflow: hidden; }
+.ai-card.does { border-color: var(--acc-line); background: linear-gradient(180deg, rgba(201,163,94,0.05) 0%, var(--bg) 80%); }
+.ai-card.doesnt { border-color: rgba(181,138,77,0.32); background: linear-gradient(180deg, rgba(181,138,77,0.04) 0%, var(--bg) 80%); }
+.ai-card .top { display: flex; justify-content: space-between; align-items: baseline; }
+.ai-card .top .lbl { font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+                      text-transform: uppercase; }
+.ai-card.does .top .lbl { color: var(--acc); }
+.ai-card.doesnt .top .lbl { color: var(--warn); }
+.ai-card .top h3 { font-family: var(--display); font-weight: 400; font-size: 28px;
+                    line-height: 1.05; max-width: 14ch; margin-top: 6px;
+                    grid-column: 1 / -1; }
+.ai-card .top h3 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.ai-card.doesnt .top h3 em { color: var(--warn); }
+.ai-card .top { flex-direction: column; align-items: flex-start; gap: 4px; }
+.ai-card ul { list-style: none; display: flex; flex-direction: column; gap: 14px;
+               padding-top: 18px; border-top: 1px solid var(--line); }
+.ai-card li { display: grid; grid-template-columns: 24px 1fr; gap: 14px;
+               align-items: baseline; font-size: 15px; line-height: 1.5; }
+.ai-card.does li::before { content: ""; width: 18px; height: 18px;
+                            border: 1px solid var(--acc); border-radius: 50%;
+                            background: var(--acc-soft) radial-gradient(circle at center, var(--acc) 28%, transparent 29%);
+                            margin-top: 2px; }
+.ai-card.doesnt li::before { content: ""; width: 18px; height: 18px;
+                              border: 1px solid var(--warn); border-radius: 50%;
+                              position: relative; margin-top: 2px;
+                              background: linear-gradient(45deg, transparent calc(50% - 0.5px), var(--warn) calc(50% - 0.5px), var(--warn) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+                                          linear-gradient(135deg, transparent calc(50% - 0.5px), var(--warn) calc(50% - 0.5px), var(--warn) calc(50% + 0.5px), transparent calc(50% + 0.5px)); }
+.ai-card li b { color: var(--fg); font-weight: 500; }
+.ai-card li em { font-style: italic; color: var(--acc); font-weight: 400; }
+.ai-card.doesnt li em { color: var(--warn); }
+.ai-card .ftnote { padding-top: 18px; border-top: 1px dashed var(--line);
+                    font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+                    line-height: 1.7; color: var(--mute); }
+.ai-card .ftnote b { color: var(--fg); }
+
+/* ============================================================
+   6 · UPGRADE BRIDGE (callout block)
+   ============================================================ */
+.upgrade { padding: 64px 56px; border: 1px solid var(--acc); border-radius: 6px;
+            background: linear-gradient(165deg, #14171E 0%, #0B0D11 100%);
+            display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px;
+            align-items: center; position: relative; overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4),
+                         inset 0 1px 0 rgba(201,163,94,0.18); }
+.upgrade::before { content: ""; position: absolute; top: -30%; right: -15%;
+                    width: 380px; height: 380px;
+                    background: radial-gradient(circle, var(--acc-soft) 0%, transparent 70%);
+                    pointer-events: none; }
+.upgrade > * { position: relative; z-index: 1; }
+@media (max-width: 900px) { .upgrade { grid-template-columns: 1fr; gap: 32px; padding: 40px 30px; } }
+.upgrade .l .ey { font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+                   text-transform: uppercase; color: var(--acc); }
+.upgrade h3 { font-family: var(--display); font-weight: 400;
+               font-size: clamp(34px, 3.5vw, 56px); line-height: 1.05;
+               max-width: 22ch; margin-top: 14px; letter-spacing: -.02em; }
+.upgrade h3 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.upgrade p { color: var(--fg-soft); font-size: 17px; line-height: 1.5;
+              margin-top: 22px; max-width: 50ch; }
+.upgrade .actions { display: flex; flex-direction: column; gap: 12px; align-items: stretch; }
+.upgrade .actions .price { font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+                            text-transform: uppercase; color: var(--mute); text-align: right;
+                            margin-bottom: 6px; line-height: 1.6; }
+.upgrade .actions .price b { color: var(--fg); display: block;
+                              font-family: var(--display); font-size: 38px; font-weight: 400;
+                              letter-spacing: -.02em; line-height: 1; margin-bottom: 6px; }
+.upgrade .actions .price b em { font-family: var(--mono); font-style: normal; font-size: 11px;
+                                 letter-spacing: .18em; text-transform: uppercase; color: var(--mute); margin-left: 4px; }
+
+/* ============================================================
+   7 · COMPARE
+   ============================================================ */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 900px) { .compare { grid-template-columns: 1fr; } }
+.cmp-card { padding: 40px 36px; border: 1px solid var(--line2); border-radius: 6px;
+             display: flex; flex-direction: column; gap: 22px; background: var(--bg); position: relative; }
+.cmp-card.pri { border-color: var(--acc); background: linear-gradient(180deg, rgba(201,163,94,0.05) 0%, var(--bg) 60%); }
+.cmp-card .tag { display: flex; justify-content: space-between; align-items: baseline; }
+.cmp-card .tag .lbl { font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+                       text-transform: uppercase; color: var(--mute); }
+.cmp-card.pri .tag .lbl { color: var(--acc); }
+.cmp-card .tag .nm { font-family: var(--display); font-size: 28px; font-weight: 400;
+                      line-height: 1.05; color: var(--fg); letter-spacing: -.01em;
+                      grid-column: 1 / -1; }
+.cmp-card .tag .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.cmp-card .tag { flex-direction: column; align-items: flex-start; gap: 4px; }
+.cmp-card .blurb { color: var(--fg-soft); font-size: 14.5px; line-height: 1.55; }
+.cmp-card .price-row { display: flex; align-items: baseline; gap: 14px;
+                        padding: 14px 0; border-top: 1px solid var(--line);
+                        border-bottom: 1px solid var(--line); }
+.cmp-card .price-row .pr { font-family: var(--display); font-size: 32px; font-weight: 400;
+                            line-height: 1; }
+.cmp-card .price-row .pr em { font-family: var(--mono); font-style: normal; font-size: 11px;
+                               letter-spacing: .14em; text-transform: uppercase; color: var(--mute);
+                               margin-left: 6px; }
+.cmp-card .price-row .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em;
+                             text-transform: uppercase; color: var(--mute); margin-left: auto;
+                             line-height: 1.5; text-align: right; }
+.cmp-card .price-row .lbl b { color: var(--fg); }
+.cmp-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.cmp-card li { display: grid; grid-template-columns: 18px 1fr; gap: 12px;
+                font-size: 14.5px; line-height: 1.5; align-items: baseline; }
+.cmp-card li::before { content: ""; width: 16px; height: 16px;
+                        background: rgba(201,163,94,0.12); border-radius: 50%;
+                        margin-top: 2px;
+                        background-image: radial-gradient(circle at center, var(--acc) 30%, transparent 31%); }
+.cmp-card.lab li::before { background-image: radial-gradient(circle at center, var(--mute) 30%, transparent 31%); }
+.cmp-card .actions { display: flex; gap: 10px; margin-top: auto; padding-top: 8px; }
+.cmp-card .actions .btn { flex: 1; }
+
+/* ============================================================
+   8 · TRUST & COMPLIANCE
+   ============================================================ */
+.trust { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+          background: var(--line); border: 1px solid var(--line);
+          border-radius: 4px; overflow: hidden; }
+@media (max-width: 800px) { .trust { grid-template-columns: 1fr; } }
+.trust-card { background: var(--bg); padding: 32px;
+               display: grid; grid-template-columns: 56px 1fr; gap: 22px;
+               align-items: start; }
+.trust-card .glyph { width: 56px; height: 56px; border: 1px solid var(--line2);
+                      border-radius: 4px; display: grid; place-items: center;
+                      background: rgba(201,163,94,0.04); }
+.trust-card .glyph svg { width: 24px; color: var(--acc); }
+.trust-card .nm { font-family: var(--display); font-size: 21px; font-weight: 400; line-height: 1.15; }
+.trust-card .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.trust-card .desc { color: var(--fg-soft); font-size: 14px; line-height: 1.55; margin-top: 8px; }
+.trust-card .desc b { color: var(--fg); font-weight: 500; }
+.trust-card .stamp { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+                      text-transform: uppercase; color: var(--mute); margin-top: 12px;
+                      padding-top: 10px; border-top: 1px dashed var(--line); }
+.trust-card .stamp b { color: var(--acc); }
+
+/* ============================================================
+   9 · FAQ
+   ============================================================ */
+.faq-grid { display: grid; grid-template-columns: 1fr; gap: 0;
+             border-top: 1px solid var(--line); }
+.faq-grid details { border-bottom: 1px solid var(--line); }
+.faq-grid summary { list-style: none; cursor: pointer; padding: 28px 0;
+                     display: grid; grid-template-columns: 60px 1fr 28px;
+                     gap: 24px; align-items: center;
+                     font-family: var(--display); font-weight: 400;
+                     font-size: 22px; line-height: 1.25; }
+.faq-grid summary::-webkit-details-marker { display: none; }
+.faq-grid summary em { font-style: italic; color: var(--acc); font-weight: 300; }
+.faq-grid summary .num { font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+                          color: var(--mute); }
+.faq-grid summary .plus { width: 22px; height: 22px; position: relative; }
+.faq-grid summary .plus::before, .faq-grid summary .plus::after {
+  content: ""; position: absolute; background: var(--fg); transition: transform .3s; }
+.faq-grid summary .plus::before { left: 0; right: 0; top: 50%; height: 1px; transform: translateY(-50%); }
+.faq-grid summary .plus::after  { top: 0; bottom: 0; left: 50%; width: 1px; transform: translateX(-50%); }
+.faq-grid details[open] summary .plus::after { transform: translateX(-50%) rotate(90deg); }
+.faq-grid details[open] summary .num { color: var(--acc); }
+.faq-grid .a { padding: 0 0 28px 84px;
+                color: var(--fg-soft); font-size: 15.5px; line-height: 1.6; }
+.faq-grid .a strong { color: var(--fg); font-weight: 500; }
+.faq-grid .a p { max-width: 78ch; }
+.faq-grid .a p + p { margin-top: 12px; }
+@media (max-width: 700px) {
+  .faq-grid summary { grid-template-columns: 1fr 22px; padding: 22px 0; font-size: 18px; }
+  .faq-grid summary .num { display: none; }
+  .faq-grid .a { padding: 0 0 22px 0; font-size: 15px; }
+}
+
+/* ============================================================
+   10 · DISCLAIMER
+   ============================================================ */
+.disclaimer { padding: 56px 64px; background: var(--bg2); border: 1px solid var(--line);
+               border-radius: 4px; display: grid; grid-template-columns: 1fr 1.6fr;
+               gap: 56px; align-items: start; }
+@media (max-width: 800px) { .disclaimer { grid-template-columns: 1fr; gap: 28px; padding: 36px 28px; } }
+.disclaimer h3 { font-family: var(--display); font-size: 24px; font-weight: 400;
+                  line-height: 1.15; max-width: 16ch; }
+.disclaimer h3 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.disclaimer .body p { color: var(--fg-soft); font-size: 14.5px; line-height: 1.65; }
+.disclaimer .body p + p { margin-top: 14px; }
+.disclaimer .body b { color: var(--fg); font-weight: 500; }
+.disclaimer .body .legal { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em;
+                            color: var(--mute); margin-top: 22px; padding-top: 18px;
+                            border-top: 1px dashed var(--line); line-height: 1.7; }
+
+/* ============================================================
+   FINAL CTA
+   ============================================================ */
+.final { padding: 140px 48px 160px; text-align: center; border-bottom: 1px solid var(--line);
+          background: linear-gradient(180deg, var(--bg) 0%, #0A0C10 100%); position: relative; }
+.final h2 { max-width: 22ch; margin: 0 auto 28px; }
+.final p { color: var(--fg-soft); max-width: 50ch; margin: 0 auto 36px; font-size: 17px; line-height: 1.55; }
+.final .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.final .reassure { font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+                    text-transform: uppercase; color: var(--mute); margin-top: 36px; }
+.final .reassure b { color: var(--fg); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer { padding: 48px; background: #07080B; }
+.footer .inner { max-width: 1280px; margin: 0 auto;
+                  display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr;
+                  gap: 56px; }
+@media (max-width: 800px) { .footer .inner { grid-template-columns: 1fr 1fr; gap: 36px; } }
+.footer .brand .l { font-family: var(--display); font-size: 30px; letter-spacing: .04em; }
+.footer .brand .l em { font-style: italic; color: var(--acc); font-weight: 400; }
+.footer .brand p { color: var(--mute); font-size: 13px; line-height: 1.55; margin-top: 14px; max-width: 32ch; }
+.footer .col h5 { font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+                   text-transform: uppercase; color: var(--mute); margin-bottom: 14px; }
+.footer .col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.footer .col a { font-size: 13.5px; color: var(--fg-soft); }
+.footer .col a:hover { color: var(--acc); }
+.footer .legal { max-width: 1280px; margin: 48px auto 0; padding-top: 24px;
+                  border-top: 1px solid var(--line);
+                  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+                  font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+                  text-transform: uppercase; color: var(--mute); }
+
+/* ============================================================
+   MOBILE OVERRIDES (.m-page)
+   ============================================================ */
+.m-page .notice { font-size: 9.5px; padding: 10px 16px; gap: 14px; }
+.m-page .nav { padding: 14px 16px; grid-template-columns: 1fr auto; }
+.m-page .nav .l { font-size: 18px; }
+.m-page .nav .c { display: none; }
+.m-page .nav .r .ghost { display: none; }
+.m-page .nav .r .btn { padding: 9px 14px; font-size: 12px; }
+.m-page .crumb { padding: 10px 16px; font-size: 9.5px; flex-wrap: wrap; gap: 8px; }
+.m-page .crumb .r .pill { padding: 4px 10px; }
+
+.m-page .hero { padding: 32px 18px 40px; }
+.m-page .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+.m-page .h1 { font-size: 36px; }
+.m-page .hero .lead { font-size: 16px; line-height: 1.5; }
+.m-page .hero .ctas { flex-direction: column; align-items: stretch; gap: 8px; }
+.m-page .hero .ctas .btn { justify-content: center; }
+.m-page .insights-mock { padding: 18px; }
+.m-page .im-cats { grid-template-columns: 1fr 1fr 1fr; }
+.m-page .im-cat { padding: 10px; min-height: 70px; }
+.m-page .im-cat .ct { font-size: 17px; }
+.m-page .im-cat .st { font-size: 10px; }
+.m-page .im-trend .top .v { font-size: 16px; }
+
+.m-page .section { padding: 56px 18px; }
+.m-page .section .head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 28px; }
+.m-page .h2 { font-size: 28px; }
+.m-page .section .head .r { font-size: 15px; }
+
+.m-page .paths { grid-template-columns: 1fr; }
+.m-page .path-card { min-height: 0; padding: 28px 22px; }
+
+.m-page .preview .pv-head { padding: 22px; flex-direction: column; gap: 16px; }
+.m-page .preview .pv-head .r { gap: 18px; }
+.m-page .pv-cats { grid-template-columns: 1fr; }
+.m-page .pv-cat { padding: 18px; }
+.m-page .pv-trend { grid-template-columns: 1fr; padding: 22px; gap: 18px; }
+.m-page .pv-foot { padding: 14px 22px; }
+
+.m-page .hiw-row { grid-template-columns: 56px 1fr; gap: 16px; padding: 22px 18px; }
+.m-page .hiw-row .num { font-size: 32px; }
+.m-page .hiw-row .desc { grid-column: 2 / -1; }
+.m-page .hiw-row .stamp { grid-column: 2 / -1; text-align: left; flex-direction: row;
+                           gap: 12px; flex-wrap: wrap; }
+
+.m-page .ai { grid-template-columns: 1fr; }
+.m-page .ai-card { padding: 28px 22px; }
+.m-page .ai-card .top h3 { font-size: 24px; }
+
+.m-page .upgrade { grid-template-columns: 1fr; padding: 32px 22px; gap: 22px; }
+.m-page .upgrade .actions .btn { justify-content: center; }
+
+.m-page .compare { grid-template-columns: 1fr; }
+.m-page .cmp-card { padding: 28px 22px; }
+.m-page .cmp-card .actions { flex-direction: column; }
+
+.m-page .trust { grid-template-columns: 1fr; }
+.m-page .trust-card { padding: 22px; gap: 16px; }
+
+.m-page .final { padding: 56px 22px 64px; }
+.m-page .final .actions { flex-direction: column; align-items: stretch; }
+.m-page .final .actions .btn { justify-content: center; }
+.m-page .footer { padding: 32px 22px; }
+.m-page .footer .inner { grid-template-columns: 1fr 1fr; gap: 24px; }
+
+/* ============================================================
+   IMPLEMENTATION NOTES PANEL
+   ============================================================ */
+.impl { max-width: 1280px; margin: 0 auto; width: 100%;
+         background: #0B0D11; color: var(--fg);
+         border: 1px solid var(--line); border-radius: 4px; padding: 56px 64px; }
+@media (max-width: 700px) { .impl { padding: 32px 24px; } }
+.impl h2 { font-family: var(--display); font-weight: 400; font-size: 36px; line-height: 1.05;
+            max-width: 26ch; margin-bottom: 8px; }
+.impl h2 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.impl .lead { color: var(--mute); margin-bottom: 40px; max-width: 60ch; }
+.impl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 980px) { .impl-grid { grid-template-columns: 1fr; } }
+.impl-card { padding: 28px; border: 1px solid var(--line); border-radius: 4px;
+              background: rgba(236,230,216,0.02); }
+.impl-card h4 { font-family: var(--display); font-weight: 400; font-size: 18px;
+                 margin-bottom: 14px; display: flex; align-items: baseline; gap: 12px;
+                 flex-wrap: wrap; }
+.impl-card h4 em { font-family: var(--mono); font-style: normal; font-size: 11px;
+                    letter-spacing: .18em; text-transform: uppercase; color: var(--acc); }
+.impl-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.impl-card li { display: flex; align-items: flex-start; gap: 10px;
+                 font-size: 13.5px; line-height: 1.55; color: var(--fg); opacity: .85; }
+.impl-card li::before { content: "›"; color: var(--acc); font-family: var(--mono);
+                         flex: 0 0 8px; line-height: 1.55; }
+.impl-card code { font-family: var(--mono); font-size: 12px; color: var(--acc);
+                   background: rgba(201,163,94,0.08); padding: 2px 6px; border-radius: 3px; }
+.impl-card .ban { color: var(--warn); font-style: italic; }
+
+/* ============================================================
+   TWEAKS
+   ============================================================ */
+.tw-trigger { position: fixed; top: 16px; right: 16px; z-index: 100;
+               background: var(--bg2); border: 1px solid var(--line2);
+               color: var(--fg); padding: 10px 14px; border-radius: 999px;
+               font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+               text-transform: uppercase; cursor: pointer; }
+.tw-trigger:hover { border-color: var(--acc); }
+#tweaks { position: fixed; top: 56px; right: 16px; z-index: 99;
+           background: var(--bg); border: 1px solid var(--acc);
+           color: var(--fg); padding: 22px; border-radius: 4px; min-width: 280px;
+           display: none; flex-direction: column; gap: 14px;
+           box-shadow: 0 30px 60px rgba(0,0,0,.55); }
+#tweaks.on { display: flex; }
+#tweaks h4 { font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+              text-transform: uppercase; color: var(--acc);
+              padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+#tweaks label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+                 text-transform: uppercase; color: var(--mute); display: block; margin-bottom: 6px; }
+#tweaks select { width: 100%; padding: 10px 12px;
+                  background: var(--bg2); border: 1px solid var(--line2);
+                  color: var(--fg); border-radius: 3px;
+                  font-family: var(--mono); font-size: 12px;
+                  letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+#tweaks select:focus { border-color: var(--acc); outline: none; }
+</style>
+</head>
+<body>
+
+<button class="tw-trigger" id="tw-trigger">Tweaks</button>
+<div id="tweaks">
+  <h4>Tweaks</h4>
+  <div>
+    <label>View</label>
+    <select id="tw-view">
+      <option value="all">All views</option>
+      <option value="desktop">Desktop only</option>
+      <option value="mobile">Mobile only</option>
+      <option value="impl">Notes only</option>
+    </select>
+  </div>
+</div>
+
+<div class="canvas">
+
+<!-- ============================================================
+     1 · DESKTOP
+     ============================================================ -->
+<div class="label-bar" data-view="desktop">
+  <span><b>Lab Intelligence</b> · landing · desktop · 1440</span>
+  <span>WP page · <code>/lab-intelligence</code></span>
+  <span>Educational on-ramp · upgrade bridge to Precision Care</span>
+</div>
+
+<article class="page" data-view="desktop">
+
+  <div class="notice">
+    <span><b>Educational</b> — not a diagnosis</span>
+    <span><b>HIPAA</b> compliant document handling</span>
+    <span>Provider review <b>required</b> for diagnosis &amp; Rx</span>
+    <span>Upgrade to <b>Precision Care</b> for clinical interpretation</span>
+  </div>
+
+  <nav class="nav">
+    <div class="l">A D O N I S</div>
+    <div class="c">
+      <a>Express Care</a>
+      <a>Precision Care</a>
+      <a class="on">Lab Intelligence</a>
+      <a>Hair</a>
+      <a>Sexual wellness</a>
+      <a>Standards</a>
+    </div>
+    <div class="r">
+      <a class="ghost">Log in</a>
+      <a class="btn primary"><span>Get <em>started</em></span><span class="arr">→</span></a>
+    </div>
+  </nav>
+
+  <div class="crumb">
+    <div class="l"><span>Care pathways</span> · <b>Lab Intelligence</b></div>
+    <div class="r">
+      <span class="pill edu">Educational · self-directed</span>
+      <span class="pill">Upgrade-ready</span>
+    </div>
+  </div>
+
+  <!-- ============= HERO ============= -->
+  <section class="hero" data-screen-label="01 Hero">
+    <div class="hero-grid">
+      <div class="l">
+        <div class="meta">
+          <span><b>Care pathway 03</b></span>
+          <span>Self-directed</span>
+          <span>Educational</span>
+          <span>Upgrade bridge</span>
+        </div>
+
+        <h1 class="h-display h1">Understand your <em>labs</em><br>before you optimize.</h1>
+
+        <p class="lead">Upload existing labs or order testing to better
+        understand your health data, then upgrade to provider-guided
+        care when you are ready for clinical interpretation and
+        treatment planning.</p>
+
+        <div class="ctas">
+          <a class="btn primary lg"><span>Upload <em>my labs</em></span><span class="arr">→</span></a>
+          <a class="btn lg"><span>Explore <em>Precision Care</em></span><span class="arr">→</span></a>
+        </div>
+
+        <div class="eduline">
+          <span class="icon">i</span>
+          <span class="t"><b>Educational insights only.</b> Provider review is required for diagnosis, treatment, or prescriptions. Upgrade to Precision Care to meet a Florida-licensed physician.</span>
+        </div>
+      </div>
+
+      <div class="r">
+        <span class="example-tag">Example preview</span>
+        <div class="insights-mock">
+          <div class="im-head">
+            <div class="l">
+              <div class="t">Insights · v0</div>
+              <div class="nm">Your labs, <em>organized</em>.</div>
+            </div>
+            <div class="r">REF · ADX-LI<br><b>Demo file</b></div>
+          </div>
+
+          <div class="im-cats">
+            <div class="im-cat">
+              <div class="nm">Hormones</div>
+              <div class="ct">9 <em>markers</em></div>
+              <div class="st">Within range</div>
+            </div>
+            <div class="im-cat alert">
+              <div class="nm">Thyroid</div>
+              <div class="ct">5 <em>markers</em></div>
+              <div class="st">2 to review</div>
+            </div>
+            <div class="im-cat">
+              <div class="nm">Metabolic</div>
+              <div class="ct">8 <em>markers</em></div>
+              <div class="st">Within range</div>
+            </div>
+            <div class="im-cat">
+              <div class="nm">Inflammation</div>
+              <div class="ct">4 <em>markers</em></div>
+              <div class="st">Within range</div>
+            </div>
+            <div class="im-cat">
+              <div class="nm">Nutrients</div>
+              <div class="ct">9 <em>markers</em></div>
+              <div class="st">Within range</div>
+            </div>
+            <div class="im-cat alert">
+              <div class="nm">Cardiometab.</div>
+              <div class="ct">7 <em>markers</em></div>
+              <div class="st">1 to review</div>
+            </div>
+          </div>
+
+          <div class="im-trend">
+            <div class="top">
+              <span class="nm">Free T3 · <b>last 4 draws</b></span>
+              <span class="v">2.6<em>pg/mL</em></span>
+            </div>
+            <svg viewBox="0 0 320 70" preserveAspectRatio="none">
+              <!-- baseline grid -->
+              <line x1="0" y1="35" x2="320" y2="35" stroke="rgba(236,230,216,0.10)" stroke-dasharray="2 4"/>
+              <!-- ref band -->
+              <rect x="0" y="22" width="320" height="22" fill="rgba(46,67,56,0.14)"/>
+              <!-- trend curve -->
+              <path d="M 0 56 Q 50 40 90 38 T 170 30 T 250 24 T 320 18"
+                    fill="none" stroke="#C9A35E" stroke-width="1.5"/>
+              <!-- points -->
+              <circle cx="40" cy="48" r="3" fill="#C9A35E"/>
+              <circle cx="120" cy="34" r="3" fill="#C9A35E"/>
+              <circle cx="210" cy="26" r="3" fill="#C9A35E"/>
+              <circle cx="300" cy="20" r="3" fill="#C9A35E"/>
+            </svg>
+          </div>
+
+          <div class="im-foot">
+            <span class="reading">Educational view</span>
+            <span class="label">Not a diagnosis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 2 · PATHWAY SELECTION ============= -->
+  <section class="section" data-screen-label="02 Pathway Selection">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">02 · Three ways in</span>
+          <h2 class="h-display h2">Bring your data, or <em>start fresh</em>.</h2>
+        </div>
+        <div class="r">
+          <p>Lab Intelligence works whether you've already had bloodwork
+          done, want a fresh panel ordered, or are ready to skip ahead
+          to a physician visit. Pick the door that matches where you are.</p>
+        </div>
+      </div>
+
+      <div class="paths">
+        <div class="path-card">
+          <div class="head">
+            <span class="num">01</span>
+            <span class="pr">From <b>$0</b></span>
+          </div>
+          <div class="glyph">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+              <path d="M 16 5 V 21"/>
+              <path d="M 11 11 L 16 5 L 21 11"/>
+              <rect x="5" y="22" width="22" height="6" rx="1"/>
+            </svg>
+          </div>
+          <h3>Upload existing <em>labs</em></h3>
+          <p>Have recent bloodwork? Drag a PDF or photo from your last physical, Quest portal, or LabCorp result. We'll organize it across the same six categories your physician would.</p>
+          <ul>
+            <li>PDF · CSV · <b>image OK</b></li>
+            <li>HIPAA-secure <b>document upload</b></li>
+            <li>Educational organization <b>only</b></li>
+          </ul>
+          <a class="cta">Upload <em>my labs</em><span class="arr">→</span></a>
+        </div>
+
+        <div class="path-card">
+          <div class="head">
+            <span class="num">02</span>
+            <span class="pr">From <b>$199</b></span>
+          </div>
+          <div class="glyph">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+              <circle cx="16" cy="20" r="6"/>
+              <path d="M 16 6 V 14"/>
+              <path d="M 12 14 H 20"/>
+              <path d="M 13 19 L 19 21" stroke-width=".7"/>
+            </svg>
+          </div>
+          <h3>Order a <em>lab panel</em></h3>
+          <p>No labs on hand? Order a panel through Adonis. We send a phlebotomy kit or set up a LabCorp / Quest draw — same partner network your physician would use later.</p>
+          <ul>
+            <li>At-home or <b>LabCorp/Quest</b></li>
+            <li>From <b>$199</b> · panel-dependent</li>
+            <li>Credit applies if you <b>upgrade</b></li>
+          </ul>
+          <a class="cta">Browse <em>panels</em><span class="arr">→</span></a>
+        </div>
+
+        <div class="path-card upgrade">
+          <div class="head">
+            <span class="num">03</span>
+            <span class="pr">Package <b>$499</b></span>
+          </div>
+          <div class="glyph">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+              <rect x="3" y="8" width="22" height="16" rx="1"/>
+              <path d="M 25 12 L 30 9 V 23 L 25 20 Z"/>
+              <circle cx="14" cy="16" r="3"/>
+            </svg>
+          </div>
+          <h3>Upgrade to <em>Precision Care</em></h3>
+          <p>Skip the self-directed step. A Florida-licensed physician reads your labs and intake, meets you on a 30-min video visit, and delivers a written optimization plan.</p>
+          <ul>
+            <li>Lab + intake + <b>MD video visit</b></li>
+            <li>Personalized <b>written plan</b></li>
+            <li>Clinical <b>Rx if appropriate</b></li>
+          </ul>
+          <a class="cta">Upgrade <em>now</em><span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 3 · LAB INSIGHTS PREVIEW ============= -->
+  <section class="section alt" data-screen-label="03 Lab Insights Preview">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">03 · Inside the preview</span>
+          <h2 class="h-display h2">A clearer view of your <em>biology</em>.</h2>
+        </div>
+        <div class="r">
+          <p>An illustrative preview of how Lab Intelligence organizes
+          your data: six categories, marker-level summaries, and a
+          trend strip when you have multiple draws.</p>
+          <p style="font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); margin-top: 22px;">Example only · educational · not diagnostic</p>
+        </div>
+      </div>
+
+      <div class="preview">
+        <span class="pv-tag">Example preview</span>
+        <div class="pv-head">
+          <div class="l">
+            <div class="ey">Insights · v0</div>
+            <h3>Six <em>categories</em>. Read at a glance.</h3>
+          </div>
+          <div class="r">
+            <span>Markers tracked<b>~50</b></span>
+            <span>Categories<b>6</b></span>
+            <span>Trends<b>up to 4 draws</b></span>
+          </div>
+        </div>
+
+        <div class="pv-cats">
+          <!-- Hormones -->
+          <div class="pv-cat">
+            <div class="top">
+              <div class="nm">Hormones <em>endocrine</em></div>
+              <div class="badge opt">In range</div>
+            </div>
+            <div class="ring">
+              <svg viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="26" stroke="rgba(236,230,216,0.10)" stroke-width="3" fill="none"/>
+                <circle cx="32" cy="32" r="26" stroke="#C9A35E" stroke-width="3" fill="none"
+                        stroke-dasharray="163.36" stroke-dashoffset="22"
+                        transform="rotate(-90 32 32)" stroke-linecap="round"/>
+              </svg>
+              <div class="info">
+                <div class="pct">86<em>%</em></div>
+                <div class="lbl">9 of 9 read</div>
+              </div>
+            </div>
+            <div class="markers">
+              <div class="row"><span class="nm">Total testosterone</span><span class="v">612 ng/dL</span></div>
+              <div class="row"><span class="nm">Free T · SHBG</span><span class="v">14.1 · 28.4</span></div>
+              <div class="row"><span class="nm">Estradiol · DHT</span><span class="v">22 · 41</span></div>
+            </div>
+          </div>
+
+          <!-- Thyroid -->
+          <div class="pv-cat">
+            <div class="top">
+              <div class="nm">Thyroid <em>full panel</em></div>
+              <div class="badge rev">Review</div>
+            </div>
+            <div class="ring">
+              <svg viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="26" stroke="rgba(236,230,216,0.10)" stroke-width="3" fill="none"/>
+                <circle cx="32" cy="32" r="26" stroke="#B58A4D" stroke-width="3" fill="none"
+                        stroke-dasharray="163.36" stroke-dashoffset="65"
+                        transform="rotate(-90 32 32)" stroke-linecap="round"/>
+              </svg>
+              <div class="info">
+                <div class="pct">60<em>%</em></div>
+                <div class="lbl">3 of 5 in range</div>
+              </div>
+            </div>
+            <div class="markers">
+              <div class="row"><span class="nm">TSH</span><span class="v">2.4 µIU/mL</span></div>
+              <div class="row"><span class="nm">Free T3 · low</span><span class="v">2.6 pg/mL</span></div>
+              <div class="row"><span class="nm">Reverse T3 · high</span><span class="v">22 ng/dL</span></div>
+            </div>
+          </div>
+
+          <!-- Metabolic -->
+          <div class="pv-cat">
+            <div class="top">
+              <div class="nm">Metabolic <em>insulin axis</em></div>
+              <div class="badge opt">In range</div>
+            </div>
+            <div class="ring">
+              <svg viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="26" stroke="rgba(236,230,216,0.10)" stroke-width="3" fill="none"/>
+                <circle cx="32" cy="32" r="26" stroke="#C9A35E" stroke-width="3" fill="none"
+                        stroke-dasharray="163.36" stroke-dashoffset="33"
+                        transform="rotate(-90 32 32)" stroke-linecap="round"/>
+              </svg>
+              <div class="info">
+                <div class="pct">80<em>%</em></div>
+                <div class="lbl">6 of 8 read</div>
+              </div>
+            </div>
+            <div class="markers">
+              <div class="row"><span class="nm">Fasting glucose</span><span class="v">88 mg/dL</span></div>
+              <div class="row"><span class="nm">HbA1c</span><span class="v">5.2 %</span></div>
+              <div class="row"><span class="nm">HOMA-IR</span><span class="v">1.8</span></div>
+            </div>
+          </div>
+
+          <!-- Cardiometabolic -->
+          <div class="pv-cat">
+            <div class="top">
+              <div class="nm">Cardiometab. <em>risk</em></div>
+              <div class="badge rev">Review</div>
+            </div>
+            <div class="ring">
+              <svg viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="26" stroke="rgba(236,230,216,0.10)" stroke-width="3" fill="none"/>
+                <circle cx="32" cy="32" r="26" stroke="#B58A4D" stroke-width="3" fill="none"
+                        stroke-dasharray="163.36" stroke-dashoffset="49"
+                        transform="rotate(-90 32 32)" stroke-linecap="round"/>
+              </svg>
+              <div class="info">
+                <div class="pct">70<em>%</em></div>
+                <div class="lbl">5 of 7 in range</div>
+              </div>
+            </div>
+            <div class="markers">
+              <div class="row"><span class="nm">ApoB · high</span><span class="v">112 mg/dL</span></div>
+              <div class="row"><span class="nm">Lp(a)</span><span class="v">38 nmol/L</span></div>
+              <div class="row"><span class="nm">LDL · HDL</span><span class="v">128 · 52</span></div>
+            </div>
+          </div>
+
+          <!-- Nutrients -->
+          <div class="pv-cat">
+            <div class="top">
+              <div class="nm">Nutrients <em>essential</em></div>
+              <div class="badge opt">In range</div>
+            </div>
+            <div class="ring">
+              <svg viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="26" stroke="rgba(236,230,216,0.10)" stroke-width="3" fill="none"/>
+                <circle cx="32" cy="32" r="26" stroke="#C9A35E" stroke-width="3" fill="none"
+                        stroke-dasharray="163.36" stroke-dashoffset="18"
+                        transform="rotate(-90 32 32)" stroke-linecap="round"/>
+              </svg>
+              <div class="info">
+                <div class="pct">89<em>%</em></div>
+                <div class="lbl">8 of 9 read</div>
+              </div>
+            </div>
+            <div class="markers">
+              <div class="row"><span class="nm">Vit D · 25(OH)</span><span class="v">36 ng/mL</span></div>
+              <div class="row"><span class="nm">Vit B12 · folate</span><span class="v">512 · 12</span></div>
+              <div class="row"><span class="nm">Magnesium</span><span class="v">2.1 mg/dL</span></div>
+            </div>
+          </div>
+
+          <!-- Inflammation -->
+          <div class="pv-cat">
+            <div class="top">
+              <div class="nm">Inflammation <em>systemic</em></div>
+              <div class="badge opt">In range</div>
+            </div>
+            <div class="ring">
+              <svg viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="26" stroke="rgba(236,230,216,0.10)" stroke-width="3" fill="none"/>
+                <circle cx="32" cy="32" r="26" stroke="#C9A35E" stroke-width="3" fill="none"
+                        stroke-dasharray="163.36" stroke-dashoffset="14"
+                        transform="rotate(-90 32 32)" stroke-linecap="round"/>
+              </svg>
+              <div class="info">
+                <div class="pct">91<em>%</em></div>
+                <div class="lbl">4 of 4 read</div>
+              </div>
+            </div>
+            <div class="markers">
+              <div class="row"><span class="nm">hs-CRP</span><span class="v">0.8 mg/L</span></div>
+              <div class="row"><span class="nm">Homocysteine</span><span class="v">9.2 µmol/L</span></div>
+              <div class="row"><span class="nm">Ferritin</span><span class="v">142 ng/mL</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TREND -->
+        <div class="pv-trend">
+          <div class="l">
+            <h4>Trends across <em>up to four draws</em>.</h4>
+            <p>Compare values over time when you have multiple panels. Useful for tracking response to lifestyle changes — and for the conversation with a physician later.</p>
+            <div class="legend">
+              <span><span class="dot"></span> Your value</span>
+              <span><span class="dot b"></span> Reference band</span>
+            </div>
+          </div>
+          <div class="r">
+            <div class="head"><span><b>Free T3</b> · last 4 draws</span><span>2.4 → 2.6 → 2.7 → 2.6</span></div>
+            <svg viewBox="0 0 400 130" preserveAspectRatio="none">
+              <!-- ref band -->
+              <rect x="0" y="40" width="400" height="50" fill="rgba(111,138,160,0.14)"/>
+              <line x1="0" y1="65" x2="400" y2="65" stroke="rgba(236,230,216,0.10)" stroke-dasharray="2 4"/>
+              <!-- gridlines -->
+              <line x1="100" y1="0" x2="100" y2="130" stroke="rgba(236,230,216,0.06)"/>
+              <line x1="200" y1="0" x2="200" y2="130" stroke="rgba(236,230,216,0.06)"/>
+              <line x1="300" y1="0" x2="300" y2="130" stroke="rgba(236,230,216,0.06)"/>
+              <!-- trend -->
+              <path d="M 50 80 L 150 65 L 250 55 L 350 60" fill="none" stroke="#C9A35E" stroke-width="1.6"/>
+              <circle cx="50" cy="80" r="4" fill="#C9A35E"/>
+              <circle cx="150" cy="65" r="4" fill="#C9A35E"/>
+              <circle cx="250" cy="55" r="4" fill="#C9A35E"/>
+              <circle cx="350" cy="60" r="4" fill="#C9A35E"/>
+              <!-- x labels -->
+              <g font-family="JetBrains Mono" font-size="9" fill="#5E5B52" letter-spacing=".06em">
+                <text x="50" y="124" text-anchor="middle">JUL '24</text>
+                <text x="150" y="124" text-anchor="middle">OCT '24</text>
+                <text x="250" y="124" text-anchor="middle">JAN '25</text>
+                <text x="350" y="124" text-anchor="middle">APR '25</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="pv-foot">
+          <span>View · <b>Educational</b></span>
+          <span>Source · <b>Quest / LabCorp / your upload</b></span>
+          <span class="right">Not a diagnosis · for discussion with a provider</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 4 · HOW IT WORKS ============= -->
+  <section class="section" data-screen-label="04 How It Works">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">04 · How it works</span>
+          <h2 class="h-display h2">Self-directed up front. <em>Provider-led</em> when it matters.</h2>
+        </div>
+        <div class="r">
+          <p>Lab Intelligence is a structured on-ramp. The first three
+          steps are self-directed and educational; the last two are the
+          handoff to provider-guided Precision Care, where any
+          interpretation, diagnosis, or prescription happens.</p>
+        </div>
+      </div>
+
+      <div class="hiw-list">
+        <div class="hiw-row">
+          <div class="num">01</div>
+          <div class="nm">Upload labs <em>or</em> order testing</div>
+          <div class="desc">Drop a PDF / photo from a recent draw, or order a panel through Adonis (at-home phlebotomy or LabCorp / Quest). Stored encrypted at rest.</div>
+          <div class="stamp"><b>Self-directed</b><em>~5 min</em></div>
+        </div>
+        <div class="hiw-row alt">
+          <div class="num">02</div>
+          <div class="nm">Review <em>educational insights</em></div>
+          <div class="desc">Your data, organized across six categories with marker-level context, reference ranges, and trend lines if you have multiple draws. Educational only — not a diagnosis.</div>
+          <div class="stamp"><b>Educational</b><em>at your pace</em></div>
+        </div>
+        <div class="hiw-row">
+          <div class="num">03</div>
+          <div class="nm">Identify areas to <em>discuss with a provider</em></div>
+          <div class="desc">Save flagged markers and questions to a shareable summary. Bring it to your existing PCP, or carry it forward into a Precision Care visit.</div>
+          <div class="stamp"><b>Self-directed</b><em>shareable PDF</em></div>
+        </div>
+        <div class="hiw-row bridge">
+          <div class="num">04</div>
+          <div class="nm">Upgrade to <em>Precision Care</em> if desired</div>
+          <div class="desc">Move from review to plan. A Florida-licensed physician reads your data, conducts a 30-min video visit, and writes a personalized optimization plan. Lab credit applies.</div>
+          <div class="stamp"><b>Provider-led</b><em>+$300 with credit</em></div>
+        </div>
+        <div class="hiw-row alt">
+          <div class="num">05</div>
+          <div class="nm">Receive <em>clinical interpretation</em> through provider-guided care</div>
+          <div class="desc">Diagnosis, treatment, and prescriptions are issued only by a licensed provider, only when clinically appropriate. Lab Intelligence by itself does none of these.</div>
+          <div class="stamp"><b>Licensed Rx</b><em>via Precision Care</em></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 5 · AI POSITIONING ============= -->
+  <section class="section deep" data-screen-label="05 AI Positioning">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">05 · About the AI</span>
+          <h2 class="h-display h2">Pattern recognition, <em>not a diagnosis</em>.</h2>
+        </div>
+        <div class="r">
+          <p>The intelligence in Lab Intelligence is in how the data is
+          organized, summarized, and made legible — not in any
+          attempt to replace your physician. We're explicit about both
+          sides.</p>
+        </div>
+      </div>
+
+      <div class="ai">
+        <div class="ai-card does">
+          <div class="top">
+            <span class="lbl">What it does</span>
+            <h3>Organize. <em>Summarize.</em><br>Help you ask better questions.</h3>
+          </div>
+          <ul>
+            <li><b>AI-powered organization</b> of your lab data — sorting markers across hormones, thyroid, metabolic, inflammation, nutrients, and cardiometabolic categories.</li>
+            <li><b>Pattern recognition</b> across panels — flags markers that have moved meaningfully between draws, or that sit outside reference ranges.</li>
+            <li><b>Educational summaries</b> in plain English — what each marker generally indicates, where reference ranges come from, and why a physician might want to look closer.</li>
+            <li>Helps you <b>prepare better questions</b> for your provider. Saves a one-page <em>discussion summary</em> you can share with any physician — yours, ours, or another.</li>
+          </ul>
+          <div class="ftnote"><b>Educational use.</b> Reviewed against published reference ranges. Not personalized medical advice.</div>
+        </div>
+
+        <div class="ai-card doesnt">
+          <div class="top">
+            <span class="lbl">What it does not do</span>
+            <h3>Doesn't <em>diagnose</em>. Doesn't<br><em>prescribe</em>. Doesn't replace.</h3>
+          </div>
+          <ul>
+            <li><span class="ban">Does not diagnose</span> — no condition labels, no "you have X." Reference comparisons only, with the explicit framing that diagnosis requires a licensed provider.</li>
+            <li><span class="ban">Does not prescribe</span> — no medication recommendations, no dosing, no protocols. Prescriptions are issued only by a licensed provider via Precision Care.</li>
+            <li><span class="ban">Does not deliver a treatment plan</span> — pattern flags are educational. A clinical plan requires intake, history, and physician judgment.</li>
+            <li><span class="ban">Does not replace your physician</span> — and we don't market it as one. No "AI doctor", no "AI treatment plan", no guarantees of optimization. Your provider is your provider.</li>
+          </ul>
+          <div class="ftnote"><b>Banned framings.</b> AI doctor · AI diagnosis · AI prescription · AI treatment plan · guaranteed optimization. Not used here, not used in marketing.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 6 · UPGRADE BRIDGE ============= -->
+  <section class="section" data-screen-label="06 Upgrade Bridge">
+    <div class="wrap">
+      <div class="upgrade">
+        <div class="l">
+          <div class="ey">06 · The bridge</div>
+          <h3>Ready for <em>clinical interpretation</em>?</h3>
+          <p>Upgrade to Precision Care for a lab-guided physician
+          visit and personalized optimization plan. Any lab spend on
+          Lab Intelligence credits toward the $499 package.</p>
+        </div>
+        <div class="actions">
+          <div class="price">From <b>$499<em>USD · package</em></b>Lab + intake + visit + plan</div>
+          <a class="btn primary lg full"><span>Upgrade to <em>Precision Care</em></span><span class="arr">→</span></a>
+          <a class="btn full"><span>Compare <em>both pathways</em></span><span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 7 · COMPARE ============= -->
+  <section class="section alt" data-screen-label="07 Compare">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">07 · Compare pathways</span>
+          <h2 class="h-display h2">Self-directed, or <em>physician-led</em>.</h2>
+        </div>
+        <div class="r">
+          <p>Lab Intelligence is the educational on-ramp. Precision
+          Care is where labs become a plan. Most members move from
+          one to the other when they're ready.</p>
+        </div>
+      </div>
+
+      <div class="compare">
+        <div class="cmp-card lab">
+          <div class="tag">
+            <span class="lbl">Pathway 03 · this page</span>
+            <span class="nm">Lab <em>Intelligence</em></span>
+          </div>
+          <div class="price-row">
+            <div class="pr">$0–199<em>start</em></div>
+            <div class="lbl">Free upload<br><b>+ optional panel</b></div>
+          </div>
+          <p class="blurb">A self-directed, educational pathway: upload labs or order a panel, review insights, prepare for a future provider visit.</p>
+          <ul>
+            <li><b>Self-directed</b> · review at your pace</li>
+            <li><b>Educational</b> · organization &amp; summaries</li>
+            <li>Lab organization across 6 categories + trends</li>
+            <li><span style="color: var(--warn)">No diagnosis or prescriptions</span></li>
+            <li>Lab credit applies if you upgrade later</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" style="flex:1;"><span>Start <em>Lab Intelligence</em></span><span class="arr">→</span></a>
+          </div>
+        </div>
+
+        <div class="cmp-card pri">
+          <div class="tag">
+            <span class="lbl">Pathway 02</span>
+            <span class="nm">Precision <em>Care</em></span>
+          </div>
+          <div class="price-row">
+            <div class="pr">$499<em>package</em></div>
+            <div class="lbl"><b>Lab + intake + visit + plan</b><br>Treatment quoted separately</div>
+          </div>
+          <p class="blurb">Physician-led: a Florida-licensed MD reads your data, meets you on a 30-minute video visit, and writes a personalized plan.</p>
+          <ul>
+            <li><b>Physician-guided</b> · MD video visit</li>
+            <li><b>Clinical interpretation</b> · 5-page plan</li>
+            <li>Personalized medical plan</li>
+            <li><b>Prescriptions or therapies</b> when clinically appropriate</li>
+            <li>3-month follow-up included</li>
+          </ul>
+          <div class="actions">
+            <a class="btn primary" style="flex:1;"><span>Start <em>Precision Care</em></span><span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 8 · TRUST & COMPLIANCE ============= -->
+  <section class="section" data-screen-label="08 Trust Compliance">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">08 · Trust &amp; compliance</span>
+          <h2 class="h-display h2">Plain rules, <em>plainly stated</em>.</h2>
+        </div>
+        <div class="r">
+          <p>The same standards we apply to Express and Precision Care.
+          Self-directed doesn't mean unsupervised — it means we're
+          explicit about where licensed-provider review begins.</p>
+        </div>
+      </div>
+
+      <div class="trust">
+        <div class="trust-card">
+          <div class="glyph">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+              <rect x="6" y="11" width="20" height="16" rx="1.5"/>
+              <path d="M 10 11 V 8 a 6 6 0 0 1 12 0 V 11"/>
+              <circle cx="16" cy="18" r="1.5"/>
+              <line x1="16" y1="20" x2="16" y2="22"/>
+            </svg>
+          </div>
+          <div>
+            <div class="nm">Secure document <em>upload</em></div>
+            <div class="desc">Lab uploads are encrypted in transit (TLS 1.3) and at rest (AES-256). Documents are stored in a HIPAA-compliant store with access controls, retention policies, and member-initiated deletion.</div>
+            <div class="stamp"><b>HIPAA</b> · BAA covered · TLS 1.3 · AES-256 at rest</div>
+          </div>
+        </div>
+
+        <div class="trust-card">
+          <div class="glyph">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+              <path d="M 6 14 L 14 22 L 26 8"/>
+              <circle cx="16" cy="16" r="13" stroke-dasharray="3 3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="nm">Provider-guided <em>upgrade</em> available</div>
+            <div class="desc">Any time you want clinical interpretation, you upgrade to Precision Care. The handoff is explicit — your data carries forward, the physician reads it before your visit, and any lab spend credits toward the package.</div>
+            <div class="stamp"><b>Upgrade-ready</b> · lab credit applies · same data carries forward</div>
+          </div>
+        </div>
+
+        <div class="trust-card">
+          <div class="glyph">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+              <path d="M 6 8 H 26 V 24 H 6 Z"/>
+              <line x1="10" y1="13" x2="22" y2="13"/>
+              <line x1="10" y1="17" x2="22" y2="17"/>
+              <line x1="10" y1="21" x2="18" y2="21"/>
+            </svg>
+          </div>
+          <div>
+            <div class="nm">Lab data used for <em>educational review</em> unless upgraded</div>
+            <div class="desc">Until you upgrade to Precision Care, your data is reviewed only by you, only for educational organization. We don't auto-share with providers, we don't sell or use your labs for advertising, and we don't generate diagnostic outputs.</div>
+            <div class="stamp"><b>No auto-share</b> · no third-party use · member-controlled deletion</div>
+          </div>
+        </div>
+
+        <div class="trust-card">
+          <div class="glyph">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+              <rect x="6" y="6" width="20" height="20" rx="1.5"/>
+              <path d="M 11 16 L 14 19 L 21 12"/>
+            </svg>
+          </div>
+          <div>
+            <div class="nm">Prescriptions only through <em>licensed provider review</em></div>
+            <div class="desc">No prescription is issued — and none is implied — by Lab Intelligence. Diagnosis, treatment, and prescriptions are provided only by a Florida-licensed provider after review of your full clinical picture, when medically appropriate.</div>
+            <div class="stamp"><b>FL ME 142008</b> · medical-director reviewed · no Rx via Lab Intelligence</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 9 · FAQ ============= -->
+  <section class="section deep" data-screen-label="09 FAQ">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">09 · Common questions</span>
+          <h2 class="h-display h2">Things <em>worth asking</em>.</h2>
+        </div>
+        <div class="r">
+          <p>If you don't see your question here, member services
+          replies the same business day during launch. We answer in
+          plain language.</p>
+        </div>
+      </div>
+
+      <div class="faq-grid">
+        <details>
+          <summary><span class="num">Q · 01</span><span>Can I upload <em>outside labs</em>?</span><span class="plus"></span></summary>
+          <div class="a"><p><strong>Yes.</strong> PDFs, photos, and CSV exports from Quest, LabCorp, your last physical, or other CLIA-certified labs are all supported. We organize the data; the original file remains yours and is downloadable from your member portal at any time.</p></div>
+        </details>
+        <details>
+          <summary><span class="num">Q · 02</span><span>Can I order labs <em>through Adonis</em>?</span><span class="plus"></span></summary>
+          <div class="a"><p>Yes — single-category panels start at $199, full panels at $349. We use the same Quest / LabCorp partner network as Precision Care, with at-home phlebotomy as an option. Lab spend credits toward the $499 Precision Care package if you upgrade within 90 days.</p></div>
+        </details>
+        <details>
+          <summary><span class="num">Q · 03</span><span>Is this <em>medical advice</em>?</span><span class="plus"></span></summary>
+          <div class="a"><p><strong>No.</strong> Lab Intelligence is for educational review and organization of health data. It does not diagnose, treat, or prescribe. For clinical interpretation and personalized medical guidance, upgrade to Precision Care or share your insights summary with your existing provider.</p></div>
+        </details>
+        <details>
+          <summary><span class="num">Q · 04</span><span>Can <em>AI prescribe</em> treatment?</span><span class="plus"></span></summary>
+          <div class="a"><p><strong>No.</strong> No AI on this platform — or any other reputable platform — can prescribe medications. Prescriptions are issued only by a licensed physician, only after reviewing your intake, history, and current presentation, only when medically appropriate. We're explicit about this throughout the product.</p></div>
+        </details>
+        <details>
+          <summary><span class="num">Q · 05</span><span>When should I upgrade to <em>Precision Care</em>?</span><span class="plus"></span></summary>
+          <div class="a">
+            <p>Upgrade when you want a physician's interpretation of your data — whether because something on your panel concerns you, because you have symptoms you'd like correlated to your bloodwork, or because you want a written plan. Lab Intelligence is the on-ramp; Precision Care is where labs become a plan.</p>
+            <p>Members commonly upgrade after seeing 1–2 flagged markers, or after a follow-up draw shows movement they'd like to discuss with a clinician.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="num">Q · 06</span><span>Are my labs <em>secure</em>?</span><span class="plus"></span></summary>
+          <div class="a"><p>Documents are encrypted in transit (TLS 1.3) and at rest (AES-256), stored in a HIPAA-compliant environment, accessible only to you. We don't sell, share, or use your data for advertising. You can request deletion of any uploaded document at any time from the member portal.</p></div>
+        </details>
+        <details>
+          <summary><span class="num">Q · 07</span><span>Can I use this for <em>hormones, thyroid, nutrients, and longevity</em>?</span><span class="plus"></span></summary>
+          <div class="a"><p>Yes — those are exactly the categories Lab Intelligence is built around. The six default categories are hormones, thyroid, metabolic, inflammation, nutrients, and cardiometabolic risk. If your panel includes markers in these areas, they'll be organized and summarized educationally. Clinical interpretation still requires Precision Care.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 10 · DISCLAIMER ============= -->
+  <section class="section" data-screen-label="10 Medical Disclaimer">
+    <div class="wrap">
+      <div class="disclaimer">
+        <h3>Medical <em>disclaimer</em></h3>
+        <div class="body">
+          <p><b>Lab Intelligence is designed for educational review and
+          organization of health data. It does not diagnose, treat,
+          prescribe, or replace medical care. Clinical interpretation,
+          diagnosis, treatment, and prescriptions require review by a
+          licensed provider.</b></p>
+          <p>Adonis is not a substitute for emergency care. If you are
+          experiencing a medical emergency, call 911 or your local
+          emergency number. The information on this page is for general
+          educational purposes; it is not personalized medical advice.</p>
+          <div class="legal">
+            Adonis Health LLC · FL Telehealth Provider · Florida Med Board ME 142008 (Medical Director) · CLIA-certified lab partners · HIPAA-compliant document handling · Lab Intelligence is an educational service and does not constitute the practice of medicine
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= FINAL CTA ============= -->
+  <section class="final" data-screen-label="11 Final CTA">
+    <span class="eyebrow alt">Ready when you are</span>
+    <h2 class="h-display h2" style="margin-top: 18px;">Bring your <em>data</em>.<br>Or order it. Or skip ahead.</h2>
+    <p>Educational on-ramp into Adonis performance medicine. Upgrade to physician-guided care any time — your lab spend credits toward Precision Care.</p>
+    <div class="actions">
+      <a class="btn primary lg"><span>Upload <em>my labs</em></span><span class="arr">→</span></a>
+      <a class="btn lg"><span>Browse <em>panels</em> · from $199</span><span class="arr">→</span></a>
+      <a class="btn lg"><span>Skip to <em>Precision Care</em> · $499</span><span class="arr">→</span></a>
+    </div>
+    <div class="reassure">Educational only · <b>provider review required</b> for diagnosis &amp; Rx</div>
+  </section>
+
+  <!-- footer -->
+  <footer class="footer">
+    <div class="inner">
+      <div class="brand">
+        <div class="l"><em>Adonis</em></div>
+        <p>Performance medicine for men. Florida-licensed physicians. HIPAA-compliant. Generic-first when clinically appropriate.</p>
+      </div>
+      <div class="col">
+        <h5>Pathways</h5>
+        <ul>
+          <li><a>Express Care</a></li>
+          <li><a>Precision Care</a></li>
+          <li><a>Lab Intelligence</a></li>
+          <li><a>Member portal</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h5>Care</h5>
+        <ul>
+          <li><a>Hair restoration</a></li>
+          <li><a>Sexual wellness</a></li>
+          <li><a>Hormone &amp; thyroid</a></li>
+          <li><a>Metabolic &amp; longevity</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h5>Standards</h5>
+        <ul>
+          <li><a>Physicians</a></li>
+          <li><a>Labs &amp; methods</a></li>
+          <li><a>Privacy &amp; HIPAA</a></li>
+          <li><a>AI use policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Adonis Health LLC</span>
+      <span>FL Telehealth Provider · ME 142008</span>
+      <span>Member services · Mon–Fri · 9–6 ET</span>
+    </div>
+  </footer>
+</article>
+
+<!-- ============================================================
+     2 · MOBILE
+     ============================================================ -->
+<div class="label-bar" data-view="mobile">
+  <span><b>Lab Intelligence</b> · landing · mobile · 390</span>
+  <span>Single column · CTA stack</span>
+</div>
+
+<article class="page page-mobile m-page" data-view="mobile">
+  <div class="notice"><span><b>Educational</b> · provider review for Rx</span></div>
+  <nav class="nav">
+    <div class="l">A D O N I S</div>
+    <div class="r">
+      <a class="ghost">Log in</a>
+      <a class="btn primary" style="padding:9px 14px;font-size:12px;">Start →</a>
+    </div>
+  </nav>
+  <div class="crumb">
+    <div class="l">Care · <b>Lab Intel.</b></div>
+    <div class="r"><span class="pill edu">Self-directed</span></div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="l">
+        <div class="meta"><span><b>Care 03</b></span><span>Educational</span><span>Upgrade-ready</span></div>
+        <h1 class="h-display h1">Understand your <em>labs</em> before you optimize.</h1>
+        <p class="lead">Upload existing labs or order testing — review, then upgrade to provider-guided care when you're ready for clinical interpretation.</p>
+        <div class="ctas">
+          <a class="btn primary"><span>Upload <em>my labs</em></span><span class="arr">→</span></a>
+          <a class="btn"><span>Explore <em>Precision Care</em></span><span class="arr">→</span></a>
+        </div>
+        <div class="eduline"><span class="icon">i</span><span class="t"><b>Educational only.</b> Provider review required for diagnosis &amp; Rx.</span></div>
+      </div>
+      <div class="r">
+        <div class="insights-mock">
+          <div class="im-head">
+            <div class="l"><div class="t">Insights · v0</div><div class="nm">Your labs, <em>organized</em>.</div></div>
+            <div class="r">REF · ADX-LI<br><b>Demo</b></div>
+          </div>
+          <div class="im-cats">
+            <div class="im-cat"><div class="nm">Hormones</div><div class="ct">9</div><div class="st">In range</div></div>
+            <div class="im-cat alert"><div class="nm">Thyroid</div><div class="ct">5</div><div class="st">2 review</div></div>
+            <div class="im-cat"><div class="nm">Metab.</div><div class="ct">8</div><div class="st">In range</div></div>
+            <div class="im-cat"><div class="nm">Inflam.</div><div class="ct">4</div><div class="st">In range</div></div>
+            <div class="im-cat"><div class="nm">Nutrients</div><div class="ct">9</div><div class="st">In range</div></div>
+            <div class="im-cat alert"><div class="nm">Cardio.</div><div class="ct">7</div><div class="st">1 review</div></div>
+          </div>
+          <div class="im-trend">
+            <div class="top"><span class="nm">Free T3 · <b>4 draws</b></span><span class="v">2.6<em>pg/mL</em></span></div>
+            <svg viewBox="0 0 320 70" preserveAspectRatio="none">
+              <line x1="0" y1="35" x2="320" y2="35" stroke="rgba(236,230,216,0.10)" stroke-dasharray="2 4"/>
+              <rect x="0" y="22" width="320" height="22" fill="rgba(46,67,56,0.14)"/>
+              <path d="M 0 56 Q 50 40 90 38 T 170 30 T 250 24 T 320 18" fill="none" stroke="#C9A35E" stroke-width="1.5"/>
+              <circle cx="40" cy="48" r="3" fill="#C9A35E"/><circle cx="120" cy="34" r="3" fill="#C9A35E"/>
+              <circle cx="210" cy="26" r="3" fill="#C9A35E"/><circle cx="300" cy="20" r="3" fill="#C9A35E"/>
+            </svg>
+          </div>
+          <div class="im-foot"><span class="reading">Educational</span><span class="label">Not diagnostic</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pathways -->
+  <section class="section">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">02 · Three ways in</span>
+          <h2 class="h-display h2">Bring your data, or <em>start fresh</em>.</h2>
+        </div>
+        <div class="r"><p>Whether you've had bloodwork or want a fresh panel, pick the door that matches you.</p></div>
+      </div>
+      <div class="paths">
+        <div class="path-card">
+          <div class="head"><span class="num">01</span><span class="pr">From <b>$0</b></span></div>
+          <h3>Upload existing <em>labs</em></h3>
+          <p>Drag a PDF or photo from your last physical. Organized across six categories.</p>
+          <ul><li>PDF · CSV · <b>image</b></li><li>HIPAA-secure</li><li>Educational only</li></ul>
+          <a class="cta">Upload <em>my labs</em><span class="arr">→</span></a>
+        </div>
+        <div class="path-card">
+          <div class="head"><span class="num">02</span><span class="pr">From <b>$199</b></span></div>
+          <h3>Order a <em>lab panel</em></h3>
+          <p>Phlebotomy kit or LabCorp/Quest draw — same partner network as Precision Care.</p>
+          <ul><li>At-home or <b>LabCorp</b></li><li>From <b>$199</b></li><li><b>Credit applies</b> on upgrade</li></ul>
+          <a class="cta">Browse <em>panels</em><span class="arr">→</span></a>
+        </div>
+        <div class="path-card upgrade">
+          <div class="head"><span class="num">03</span><span class="pr">Package <b>$499</b></span></div>
+          <h3>Upgrade to <em>Precision Care</em></h3>
+          <p>Lab + intake + 30-min MD video visit + written optimization plan.</p>
+          <ul><li>MD <b>video visit</b></li><li><b>Written plan</b></li><li>Rx if appropriate</li></ul>
+          <a class="cta">Upgrade <em>now</em><span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preview (compact) -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">03 · Inside the preview</span>
+          <h2 class="h-display h2">A clearer view of your <em>biology</em>.</h2>
+        </div>
+        <div class="r"><p>Six categories, marker-level summaries, and a trend strip when you have multiple draws.</p></div>
+      </div>
+      <div class="preview">
+        <span class="pv-tag">Example</span>
+        <div class="pv-head">
+          <div class="l"><div class="ey">Insights · v0</div><h3>Six <em>categories</em>. Read at a glance.</h3></div>
+          <div class="r"><span>Markers<b>~50</b></span><span>Cats<b>6</b></span></div>
+        </div>
+        <div class="pv-cats">
+          <div class="pv-cat">
+            <div class="top"><div class="nm">Hormones</div><div class="badge opt">In range</div></div>
+            <div class="ring"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" stroke="rgba(236,230,216,0.10)" stroke-width="3" fill="none"/><circle cx="32" cy="32" r="26" stroke="#C9A35E" stroke-width="3" fill="none" stroke-dasharray="163.36" stroke-dashoffset="22" transform="rotate(-90 32 32)" stroke-linecap="round"/></svg><div class="info"><div class="pct">86<em>%</em></div><div class="lbl">9 of 9 read</div></div></div>
+            <div class="markers"><div class="row"><span class="nm">Total testosterone</span><span class="v">612</span></div><div class="row"><span class="nm">SHBG</span><span class="v">28.4</span></div></div>
+          </div>
+          <div class="pv-cat">
+            <div class="top"><div class="nm">Thyroid</div><div class="badge rev">Review</div></div>
+            <div class="ring"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" stroke="rgba(236,230,216,0.10)" stroke-width="3" fill="none"/><circle cx="32" cy="32" r="26" stroke="#B58A4D" stroke-width="3" fill="none" stroke-dasharray="163.36" stroke-dashoffset="65" transform="rotate(-90 32 32)" stroke-linecap="round"/></svg><div class="info"><div class="pct">60<em>%</em></div><div class="lbl">3 of 5</div></div></div>
+            <div class="markers"><div class="row"><span class="nm">TSH</span><span class="v">2.4</span></div><div class="row"><span class="nm">Free T3 · low</span><span class="v">2.6</span></div></div>
+          </div>
+          <div class="pv-cat">
+            <div class="top"><div class="nm">Metabolic</div><div class="badge opt">In range</div></div>
+            <div class="ring"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" stroke="rgba(236,230,216,0.10)" stroke-width="3" fill="none"/><circle cx="32" cy="32" r="26" stroke="#C9A35E" stroke-width="3" fill="none" stroke-dasharray="163.36" stroke-dashoffset="33" transform="rotate(-90 32 32)" stroke-linecap="round"/></svg><div class="info"><div class="pct">80<em>%</em></div><div class="lbl">6 of 8</div></div></div>
+            <div class="markers"><div class="row"><span class="nm">Glucose</span><span class="v">88</span></div><div class="row"><span class="nm">HbA1c</span><span class="v">5.2</span></div></div>
+          </div>
+        </div>
+        <div class="pv-trend">
+          <div class="l"><h4>Trends across <em>up to four draws</em>.</h4><p>Compare values over time. Useful for tracking response and for future provider conversations.</p>
+            <div class="legend"><span><span class="dot"></span> Your value</span><span><span class="dot b"></span> Reference</span></div></div>
+          <div class="r">
+            <div class="head"><span><b>Free T3</b> · 4 draws</span><span>2.4 → 2.6</span></div>
+            <svg viewBox="0 0 400 130" preserveAspectRatio="none">
+              <rect x="0" y="40" width="400" height="50" fill="rgba(111,138,160,0.14)"/>
+              <line x1="0" y1="65" x2="400" y2="65" stroke="rgba(236,230,216,0.10)" stroke-dasharray="2 4"/>
+              <path d="M 50 80 L 150 65 L 250 55 L 350 60" fill="none" stroke="#C9A35E" stroke-width="1.6"/>
+              <circle cx="50" cy="80" r="4" fill="#C9A35E"/><circle cx="150" cy="65" r="4" fill="#C9A35E"/>
+              <circle cx="250" cy="55" r="4" fill="#C9A35E"/><circle cx="350" cy="60" r="4" fill="#C9A35E"/>
+            </svg>
+          </div>
+        </div>
+        <div class="pv-foot"><span><b>Educational</b></span><span class="right">Not diagnostic</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIW -->
+  <section class="section">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">04 · How it works</span>
+          <h2 class="h-display h2">Self-directed up front. <em>Provider-led</em> when it matters.</h2>
+        </div>
+        <div class="r"><p>First three steps are educational. Last two are the handoff to provider-guided Precision Care.</p></div>
+      </div>
+      <div class="hiw-list">
+        <div class="hiw-row"><div class="num">01</div><div class="nm">Upload labs <em>or</em> order</div><div class="desc">Drop a PDF/photo or order through Adonis. Stored encrypted.</div><div class="stamp"><b>Self-directed</b> · <em>~5 min</em></div></div>
+        <div class="hiw-row alt"><div class="num">02</div><div class="nm">Review <em>insights</em></div><div class="desc">Six categories, marker-level context, trends. Educational only.</div><div class="stamp"><b>Educational</b> · <em>your pace</em></div></div>
+        <div class="hiw-row"><div class="num">03</div><div class="nm">Identify what to <em>discuss</em></div><div class="desc">Save flagged markers and questions to a shareable summary.</div><div class="stamp"><b>Self-directed</b></div></div>
+        <div class="hiw-row bridge"><div class="num">04</div><div class="nm">Upgrade to <em>Precision Care</em></div><div class="desc">A Florida-licensed MD reads your data and meets you on a 30-min visit. Lab credit applies.</div><div class="stamp"><b>Provider-led</b> · <em>+$300</em></div></div>
+        <div class="hiw-row alt"><div class="num">05</div><div class="nm">Get <em>clinical interpretation</em></div><div class="desc">Diagnosis, treatment, and Rx are issued only by a licensed provider.</div><div class="stamp"><b>Licensed Rx</b></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI -->
+  <section class="section deep">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">05 · About the AI</span>
+          <h2 class="h-display h2">Pattern recognition, <em>not a diagnosis</em>.</h2>
+        </div>
+        <div class="r"><p>AI organizes your data — it doesn't replace your physician.</p></div>
+      </div>
+      <div class="ai">
+        <div class="ai-card does">
+          <div class="top"><span class="lbl">What it does</span><h3>Organize. <em>Summarize.</em> Help you ask better questions.</h3></div>
+          <ul>
+            <li><b>AI-powered organization</b> — sorting markers across the six categories.</li>
+            <li><b>Pattern recognition</b> — flags markers that have moved between draws.</li>
+            <li><b>Educational summaries</b> in plain English.</li>
+            <li>Helps you <b>prepare better questions</b> for any provider.</li>
+          </ul>
+          <div class="ftnote"><b>Educational use.</b> Not personalized medical advice.</div>
+        </div>
+        <div class="ai-card doesnt">
+          <div class="top"><span class="lbl">What it does not do</span><h3>Doesn't <em>diagnose</em>, <em>prescribe</em>, or replace.</h3></div>
+          <ul>
+            <li><span class="ban">No diagnosis</span> — no condition labels.</li>
+            <li><span class="ban">No prescriptions</span> — only licensed providers prescribe.</li>
+            <li><span class="ban">No treatment plan</span> — clinical plans require physician judgment.</li>
+            <li><span class="ban">No replacement</span> for your physician.</li>
+          </ul>
+          <div class="ftnote"><b>Banned framings.</b> AI doctor · diagnosis · Rx · treatment plan · guaranteed optimization.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upgrade -->
+  <section class="section">
+    <div class="wrap">
+      <div class="upgrade">
+        <div class="l">
+          <div class="ey">06 · The bridge</div>
+          <h3>Ready for <em>clinical interpretation</em>?</h3>
+          <p>Upgrade to Precision Care for a lab-guided physician visit and personalized optimization plan. Lab spend credits apply.</p>
+        </div>
+        <div class="actions">
+          <div class="price">From <b>$499<em>USD</em></b>Lab + intake + visit + plan</div>
+          <a class="btn primary full"><span>Upgrade to <em>Precision Care</em></span><span class="arr">→</span></a>
+          <a class="btn full"><span>Compare <em>both</em></span><span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compare -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">07 · Compare</span>
+          <h2 class="h-display h2">Self-directed, or <em>physician-led</em>.</h2>
+        </div>
+      </div>
+      <div class="compare">
+        <div class="cmp-card lab">
+          <div class="tag"><span class="lbl">Pathway 03 · this page</span><span class="nm">Lab <em>Intelligence</em></span></div>
+          <div class="price-row"><div class="pr">$0–199<em>start</em></div><div class="lbl">Free upload<br><b>+ panel</b></div></div>
+          <p class="blurb">Self-directed, educational pathway.</p>
+          <ul>
+            <li><b>Self-directed</b> · review at your pace</li>
+            <li><b>Educational</b> · organization &amp; summaries</li>
+            <li>6 categories + trends</li>
+            <li><span style="color: var(--warn)">No diagnosis or Rx</span></li>
+          </ul>
+          <div class="actions"><a class="btn"><span>Start <em>Lab Intelligence</em></span><span class="arr">→</span></a></div>
+        </div>
+        <div class="cmp-card pri">
+          <div class="tag"><span class="lbl">Pathway 02</span><span class="nm">Precision <em>Care</em></span></div>
+          <div class="price-row"><div class="pr">$499<em>package</em></div><div class="lbl"><b>Lab + visit + plan</b></div></div>
+          <p class="blurb">Physician-led: MD video visit + written plan.</p>
+          <ul>
+            <li><b>Physician-guided</b> · MD visit</li>
+            <li><b>Clinical interpretation</b> · 5-page plan</li>
+            <li>Personalized medical plan</li>
+            <li><b>Rx</b> when clinically appropriate</li>
+          </ul>
+          <div class="actions"><a class="btn primary"><span>Start <em>Precision</em></span><span class="arr">→</span></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust -->
+  <section class="section">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">08 · Trust &amp; compliance</span>
+          <h2 class="h-display h2">Plain rules, <em>plainly stated</em>.</h2>
+        </div>
+      </div>
+      <div class="trust">
+        <div class="trust-card"><div class="glyph"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="6" y="11" width="20" height="16" rx="1.5"/><path d="M 10 11 V 8 a 6 6 0 0 1 12 0 V 11"/></svg></div>
+          <div><div class="nm">Secure document <em>upload</em></div><div class="desc">Encrypted in transit (TLS 1.3) and at rest (AES-256), HIPAA-compliant store.</div><div class="stamp"><b>HIPAA</b> · BAA covered</div></div></div>
+        <div class="trust-card"><div class="glyph"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M 6 14 L 14 22 L 26 8"/></svg></div>
+          <div><div class="nm">Provider-guided <em>upgrade</em> available</div><div class="desc">Move to Precision Care any time. Lab spend credits apply.</div><div class="stamp"><b>Upgrade-ready</b></div></div></div>
+        <div class="trust-card"><div class="glyph"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M 6 8 H 26 V 24 H 6 Z"/></svg></div>
+          <div><div class="nm">Lab data used for <em>educational review</em> unless upgraded</div><div class="desc">No auto-share, no third-party use, member-controlled deletion.</div><div class="stamp"><b>No auto-share</b></div></div></div>
+        <div class="trust-card"><div class="glyph"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="6" y="6" width="20" height="20" rx="1.5"/><path d="M 11 16 L 14 19 L 21 12"/></svg></div>
+          <div><div class="nm">Prescriptions only through <em>licensed provider review</em></div><div class="desc">No Rx via Lab Intelligence. Florida-licensed providers only.</div><div class="stamp"><b>FL ME 142008</b></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section deep">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">09 · Common questions</span>
+          <h2 class="h-display h2">Things <em>worth asking</em>.</h2>
+        </div>
+      </div>
+      <div class="faq-grid">
+        <details><summary><span>Can I upload <em>outside labs</em>?</span><span class="plus"></span></summary><div class="a"><p><strong>Yes.</strong> PDFs, photos, and CSVs from Quest, LabCorp, your last physical.</p></div></details>
+        <details><summary><span>Order labs <em>through Adonis</em>?</span><span class="plus"></span></summary><div class="a"><p>Yes — single panels from $199. Lab spend credits toward Precision Care if you upgrade within 90 days.</p></div></details>
+        <details><summary><span>Is this <em>medical advice</em>?</span><span class="plus"></span></summary><div class="a"><p><strong>No.</strong> Educational review only — no diagnosis, treatment, or Rx.</p></div></details>
+        <details><summary><span>Can <em>AI prescribe</em> treatment?</span><span class="plus"></span></summary><div class="a"><p><strong>No.</strong> Prescriptions are issued only by a licensed physician after clinical review.</p></div></details>
+        <details><summary><span>When should I <em>upgrade</em>?</span><span class="plus"></span></summary><div class="a"><p>When you want a physician's interpretation — flagged markers, symptoms, or to get a written plan.</p></div></details>
+        <details><summary><span>Are my labs <em>secure</em>?</span><span class="plus"></span></summary><div class="a"><p>TLS 1.3 in transit, AES-256 at rest, HIPAA-compliant. Member-controlled deletion.</p></div></details>
+        <details><summary><span>Use for <em>hormones, thyroid, longevity</em>?</span><span class="plus"></span></summary><div class="a"><p>Yes — six default categories cover hormones, thyroid, metabolic, inflammation, nutrients, and cardiometabolic risk.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Disclaimer -->
+  <section class="section">
+    <div class="wrap">
+      <div class="disclaimer">
+        <h3>Medical <em>disclaimer</em></h3>
+        <div class="body">
+          <p><b>Lab Intelligence is designed for educational review and organization of health data. It does not diagnose, treat, prescribe, or replace medical care. Clinical interpretation, diagnosis, treatment, and prescriptions require review by a licensed provider.</b></p>
+          <p>Adonis is not a substitute for emergency care. The information here is general education, not personalized medical advice.</p>
+          <div class="legal">Adonis Health LLC · FL Telehealth · ME 142008 · CLIA labs · HIPAA · Educational service</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final -->
+  <section class="final">
+    <span class="eyebrow alt">Ready when you are</span>
+    <h2 class="h-display h2" style="margin-top: 14px;">Bring your <em>data</em>.<br>Or order it. Or skip ahead.</h2>
+    <p>Educational on-ramp. Upgrade to physician-guided care any time.</p>
+    <div class="actions">
+      <a class="btn primary"><span>Upload <em>my labs</em></span><span class="arr">→</span></a>
+      <a class="btn"><span>Browse <em>panels</em> · $199</span><span class="arr">→</span></a>
+      <a class="btn"><span>Skip to <em>Precision</em> · $499</span><span class="arr">→</span></a>
+    </div>
+    <div class="reassure">Educational only · <b>provider review for Rx</b></div>
+  </section>
+
+  <footer class="footer">
+    <div class="inner">
+      <div class="brand"><div class="l"><em>Adonis</em></div><p>FL-licensed. HIPAA. Generic-first.</p></div>
+      <div class="col"><h5>Pathways</h5><ul><li><a>Express</a></li><li><a>Precision</a></li><li><a>Lab Intel.</a></li></ul></div>
+      <div class="col"><h5>Care</h5><ul><li><a>Hair</a></li><li><a>Sexual</a></li><li><a>Hormone</a></li></ul></div>
+      <div class="col"><h5>Standards</h5><ul><li><a>Physicians</a></li><li><a>HIPAA</a></li><li><a>AI policy</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Adonis</span><span>FL ME 142008</span></div>
+  </footer>
+</article>
+
+<!-- ============================================================
+     3 · IMPLEMENTATION NOTES
+     ============================================================ -->
+<div class="label-bar" data-view="impl">
+  <span><b>Notes</b> · WordPress + WooCommerce + Prescribery + AI guardrails</span>
+  <span>Phased build · upload v1 · panel orders v1 · AI insights v2</span>
+</div>
+
+<div class="impl" data-view="impl">
+  <h2>A <em>phased</em> on-ramp. Upload v1, AI insights v2, upgrade-bridge always.</h2>
+  <p class="lead">Lab Intelligence is built as a phased product so we can
+  ship a useful, compliance-safe v1 (upload + organize + bridge to
+  Precision Care) without taking dependencies on AI lab interpretation
+  that don't exist yet. The page is the same in v1 and v2 — only the
+  insight depth grows.</p>
+
+  <div class="impl-grid">
+
+    <div class="impl-card">
+      <h4>Page architecture <em>WP page template</em></h4>
+      <ul>
+        <li>Slug <code>/lab-intelligence</code> — custom page template <code>page-lab-intelligence.php</code></li>
+        <li>Composed of <strong>11 reusable Gutenberg blocks</strong> mirroring Express + Precision pages</li>
+        <li>Marketing-controlled copy via ACF: hero, eduline (compliance disclosure), price anchors, FAQ list, AI does/doesn't lists</li>
+        <li>Single page, mobile-first; layout adapts via the same v4.5 design tokens</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Reusable blocks <em>Gutenberg</em></h4>
+      <ul>
+        <li><code>adonis/hero-pathway</code> reused with educational <code>eduline</code> slot variant</li>
+        <li><code>adonis/path-tri</code> · 3-up pathway selector (Upload · Order · Upgrade) — new block</li>
+        <li><code>adonis/insights-preview</code> · marketing visualization, takes a static JSON of categories — <strong>not</strong> a live data view</li>
+        <li><code>adonis/how-it-works</code> · reused, supports a <code>bridge</code> step variant</li>
+        <li><code>adonis/ai-positioning</code> · does/doesn't pair card — new compliance-critical block</li>
+        <li><code>adonis/upgrade-bridge</code> · bordered callout block, links to Precision Care</li>
+        <li><code>adonis/compare-cards</code> · reused (Lab Intel · Precision Care variant)</li>
+        <li><code>adonis/trust-grid</code> · reused</li>
+        <li><code>adonis/faq-accordion</code> · <code>adonis/disclaimer</code> · <code>adonis/final-cta</code> reused</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>WooCommerce products <em>two SKUs at launch</em></h4>
+      <ul>
+        <li><code>ADX-LI-UPLOAD</code> — free product, simple, virtual. Adds an "intake" line item to cart with $0 — used to track funnel + ToS acceptance</li>
+        <li><code>ADX-LI-PANEL</code> — variable product, simple, virtual. Variations: hormone-only ($199), thyroid+metabolic ($249), full panel ($349). At-home phlebotomy add-on as a variation attribute</li>
+        <li>Stripe <code>capture_method: manual</code> on paid panels — captured after kit shipment</li>
+        <li><strong>Lab credit:</strong> a 90-day coupon code is generated on every paid panel order, stamped against the customer email, redeemable on <code>ADX-PRC-01</code> Precision Care</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Upload pipeline <em>HIPAA-safe</em></h4>
+      <ul>
+        <li>WP custom endpoint <code>/wp-json/adonis/v1/labs/upload</code> · WP nonce + auth required</li>
+        <li>Uploads stream to S3 (HIPAA-eligible region) with object-level encryption, server-side AES-256</li>
+        <li>WordPress stores only the S3 key + filename + filetype on a <code>wp_adonis_lab_uploads</code> meta table — not the file itself</li>
+        <li>Member-initiated deletion: deletes object + soft-deletes row + writes audit log</li>
+        <li>Supported MIME: <code>application/pdf</code>, <code>image/jpeg</code>, <code>image/png</code>, <code>text/csv</code>; max 25MB per file</li>
+        <li>Virus scan via ClamAV before the file is acknowledged in the UI</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Prescribery integration <em>defer where possible</em></h4>
+      <ul>
+        <li>Lab ordering goes through Prescribery — POST <code>/lab-orders</code> with panel SKU and member ID</li>
+        <li>Prescribery returns <code>requisition_url</code> + <code>kit_tracking</code></li>
+        <li>Webhook <code>lab.results_available</code> → results land in Prescribery's clinical store; an event is mirrored to Adonis with metadata only (panel, draw date, result count)</li>
+        <li>Adonis does <strong>not</strong> ingest raw lab values in v1 — the educational preview uses the member's uploaded file as the source</li>
+        <li>If member upgrades to Precision Care, the lab order ID is passed into the case; physician sees results natively in Prescribery</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>AI positioning <em>compliance-critical</em></h4>
+      <ul>
+        <li><strong>v1 (launch):</strong> <em>no AI lab interpretation</em>. Insights are deterministic — file is parsed, markers categorized into the six buckets, compared against published reference ranges, summarized with hand-written copy. The "AI" framing is restricted to organization and pattern flagging</li>
+        <li><strong>v2 (future):</strong> AI summaries via a separate Prescribery-or-equivalent integration with BAA. Until that BAA is signed, no PHI flows into a third-party LLM</li>
+        <li>Banned framings — must <strong>never</strong> appear: <span class="ban">"AI doctor"</span>, <span class="ban">"AI diagnosis"</span>, <span class="ban">"AI treatment plan"</span>, <span class="ban">"AI prescription"</span>, <span class="ban">"guaranteed optimization"</span></li>
+        <li>Required pairing — every mention of AI on the page is paired with the does/doesn't card or the eduline disclosure</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Upgrade bridge <em>cart logic</em></h4>
+      <ul>
+        <li>Member clicks "Upgrade to Precision Care" → adds <code>ADX-PRC-01</code> to cart</li>
+        <li>If member has a paid panel order &lt;90 days old, the lab-credit coupon auto-applies in the cart (<code>woocommerce_before_calculate_totals</code> filter)</li>
+        <li>Uploaded labs are passed forward as a meta link on the new order, accessible to the physician inside Prescribery's case view</li>
+        <li>Same Prescribery handoff hook fires as on a vanilla Precision Care order — no special branch</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Member portal <em>uploads + summaries</em></h4>
+      <ul>
+        <li>WC My Account adds a <strong>Lab uploads</strong> tab — list of uploaded files, parse status, delete action</li>
+        <li><strong>Insights</strong> tab shows the same categorical view as the marketing preview, but populated from the member's actual uploaded file (deterministic v1)</li>
+        <li><strong>Trends</strong> tab activates when ≥2 panels exist for the same member · same marker (line chart, identical to marketing trend)</li>
+        <li>Save / share: insights export as a one-page <strong>discussion summary</strong> PDF — explicit "Educational. Bring this to your provider." footer baked in</li>
+        <li>No AI chat, no clinical questions, no diagnostic claims anywhere in the portal copy</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Compliance copy <em>required &amp; banned</em></h4>
+      <ul>
+        <li><strong>Required</strong> on the hero, the upload affordance, the insights preview, the AI section, and the disclaimer: educational-only framing</li>
+        <li><strong>Required</strong> in disclaimer, exact phrasing: "Lab Intelligence is designed for educational review and organization of health data. It does not diagnose, treat, prescribe, or replace medical care…"</li>
+        <li><strong>Banned</strong>: <span class="ban">"diagnose"</span>, <span class="ban">"treat"</span>, <span class="ban">"prescribe"</span>, <span class="ban">"cure"</span>, <span class="ban">"guaranteed"</span>, <span class="ban">"AI doctor"</span> in marketing or product surfaces</li>
+        <li><strong>Banned</strong>: framing any specific marker movement as a diagnosis or as causally indicating a condition</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Do-not-build <em>defer to Prescribery / future</em></h4>
+      <ul>
+        <li><strong>No</strong> custom AI medical platform — all third-party LLM calls require BAA + signed risk review before launch</li>
+        <li><strong>No</strong> duplicate of Prescribery's lab management — Adonis does not store raw lab values in v1</li>
+        <li><strong>No</strong> custom physician dashboard — Prescribery owns the clinician UI</li>
+        <li><strong>No</strong> custom diagnosis engine, no condition labeling, no risk-score outputs</li>
+        <li><strong>No</strong> push notifications around lab values without provider review attached</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Phased rollout <em>v1 → v2</em></h4>
+      <ul>
+        <li><strong>v1 (launch):</strong> Upload pipeline · panel orders · deterministic insights · upgrade bridge · trust + AI positioning · FAQ + disclaimer</li>
+        <li><strong>v1.1:</strong> trends across multiple uploads · discussion summary PDF export · lab-credit coupon flow tested end-to-end</li>
+        <li><strong>v2 (post-BAA):</strong> AI-enhanced summaries · category-level pattern flags · richer marker descriptions — gated behind explicit "AI use" toggle in member preferences</li>
+        <li>Marketing page does not change between v1 and v2 — copy is written for v2 capabilities and back-compatible with v1's deterministic output</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Design tokens <em>shared with Express + Precision</em></h4>
+      <ul>
+        <li>Same v4.5 dark-luxury system — <strong>no Lab-Intelligence-only color</strong></li>
+        <li>What signals "educational" here, not "clinical": eduline disclosure callout in hero · "Example preview" / "Educational view" tags on every visualization · 3-card pathway selector (vs Precision's package card peak)</li>
+        <li>What signals "upgrade-ready": single bronze-bordered surface — the upgrade bridge — same visual peak pattern as Precision's pricing card, repurposed for the bridge</li>
+        <li>Shared partials: <code>parts/notice-strip</code> · <code>parts/footer</code> · <code>parts/disclaimer</code> · <code>parts/eduline</code> (new)</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<script>
+const tw = document.getElementById('tweaks');
+document.getElementById('tw-trigger').addEventListener('click', () => tw.classList.toggle('on'));
+document.getElementById('tw-view').addEventListener('change', e => {
+  const v = e.target.value;
+  document.querySelectorAll('[data-view]').forEach(n => {
+    n.style.display = (v === 'all' || n.dataset.view === v) ? '' : 'none';
+  });
+});
+</script>
+</body>
+</html>

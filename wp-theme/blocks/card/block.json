@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "adonis/card",
+  "title": "Adonis Card",
+  "category": "design",
+  "description": "Card primitive: idx label, optional eyebrow, Fraunces title, body, optional CTA.",
+  "icon": "id-alt",
+  "keywords": ["card", "tile", "pathway"],
+  "attributes": {
+    "idx":      { "type": "string", "default": "01" },
+    "eyebrow":  { "type": "string", "default": "" },
+    "title":    { "type": "string", "default": "Card title" },
+    "body":     { "type": "string", "default": "" },
+    "ctaLabel": { "type": "string", "default": "" },
+    "ctaUrl":   { "type": "string", "default": "" },
+    "tone":     { "type": "string", "default": "default", "enum": ["default", "elevated"] }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "spacing": { "margin": true, "padding": true }
+  },
+  "textdomain": "adonis",
+  "render": "file:./render.php",
+  "style": "file:./style.css"
+}

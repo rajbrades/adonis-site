@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ADONIS — Brand Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=Söhne:wght@400;500&family=GT+Sectra:ital,wght@0,400;0,500;1,400&family=Canela:wght@300;400&family=Editorial+New:ital,wght@0,300;0,400;1,300&family=Söhne+Mono:wght@400&family=Söhne&family=Inter+Tight:wght@300;400;500;600&family=Neue+Haas+Grotesk+Display:wght@400;500&family=ABC+Diatype&family=GT+Super+Display:ital,wght@0,400;0,500;1,400&family=PP+Editorial+New:ital,wght@0,400;1,400&family=Lyon+Display:ital,wght@0,300;0,400;1,400&family=Söhne+Breit&family=ABC+Whyte:wght@300;400;500&family=ABC+Diatype+Mono&family=Söhne+Schmal&family=Mier+B:wght@400;500&family=Tiempos+Headline:ital,wght@0,400;1,400&family=Founders+Grotesk:wght@400;500&family=GT+America:wght@400;500&family=Romana&family=Söhne+Buch&family=Forma+DJR+Display:ital,wght@0,400;1,400&family=Sangbleu+Empire:ital,wght@0,400;1,400&family=Saol+Display:ital,wght@0,300;0,400;1,400&family=Domaine+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<!-- Reliable Google Font fallbacks for the not-actually-on-Google fonts above -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,400&family=Libre+Caslon+Display&family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<style>
+  /* shared specimen styles for the brand directions */
+  .spec-frame {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  .spec-frame *, .spec-frame *::before, .spec-frame *::after { box-sizing: border-box; }
+  .spec-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .spec-grid > .left, .spec-grid > .right {
+    padding: 56px;
+    overflow: hidden;
+  }
+  .spec-grid > .right {
+    border-left: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  /* swatch row */
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+  }
+  .swatch {
+    aspect-ratio: 1/1.1;
+    border-radius: 4px;
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.06);
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 8px;
+  }
+  .swatch .lbl {
+    font-family: ui-monospace, "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  /* dot grid micro-illustration on swatches */
+  .swatch.tex::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(currentColor 0.5px, transparent 0.5px);
+    background-size: 8px 8px;
+    opacity: 0.07;
+  }
+
+  .kicker {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .kicker::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.5;
+  }
+
+  .meta-row {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0.55;
+  }
+
+  /* placeholder image */
+  .ph {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: var(--ph-bg, #1a1a1a);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .ph::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent 0 12px,
+      rgba(255,255,255,0.04) 12px 13px
+    );
+  }
+  .ph .ph-lbl {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  /* ============== A — DARK LUXURY PERFORMANCE MEDICINE ============== */
+  .dir-a {
+    --bg:    #0E0E10;
+    --bg2:   #16161A;
+    --fg:    #EDE7DA;     /* warm off-white */
+    --mute:  #8A847A;
+    --line:  rgba(237, 231, 218, 0.10);
+    --line2: rgba(237, 231, 218, 0.16);
+    --acc:   #B58A4D;     /* desaturated bronze */
+    --acc2:  #D7BC8A;     /* champagne */
+    --oxblood: #5A2A2A;
+    --ph-bg: #0a0a0c;
+    color: var(--fg);
+    background: var(--bg);
+    font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+  }
+  .dir-a .display {
+    font-family: "Cormorant Garamond", "EB Garamond", "Fraunces", serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .dir-a .display em { font-style: italic; font-weight: 300; color: var(--acc2); }
+  .dir-a .swatches { color: var(--fg); }
+  .dir-a .acc { color: var(--acc); }
+  .dir-a .acc2 { color: var(--acc2); }
+
+  /* ============== B — EDITORIAL CLINICAL OPTIMIZATION ============== */
+  .dir-b {
+    --bg:    #F4EFE6;     /* warm ivory */
+    --bg2:   #EDE6D7;
+    --fg:    #1F1D1A;     /* charcoal */
+    --mute:  #7A736A;
+    --line:  rgba(31, 29, 26, 0.12);
+    --line2: rgba(31, 29, 26, 0.22);
+    --acc:   #8B6F4E;     /* taupe-bronze */
+    --acc2:  #C9A77A;     /* champagne */
+    --secondary: #2E3B30; /* deep clinical green */
+    --ph-bg: #d8cfc0;
+    color: var(--fg);
+    background: var(--bg);
+    font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+  }
+  .dir-b .display {
+    font-family: "Lora", "EB Garamond", serif;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+  }
+  .dir-b .display em { font-style: italic; font-weight: 400; color: var(--acc); }
+  .dir-b .acc { color: var(--acc); }
+  .dir-b .secondary { color: var(--secondary); }
+
+  /* ============== C — MODERN PREMIUM TELEHEALTH ============== */
+  .dir-c {
+    --bg:    #FAF8F4;     /* soft stone */
+    --bg2:   #F1ECE3;
+    --fg:    #1A1A1A;
+    --mute:  #6F6A62;
+    --line:  rgba(26, 26, 26, 0.10);
+    --line2: rgba(26, 26, 26, 0.20);
+    --acc:   #2A2A2A;     /* near-black primary */
+    --acc2:  #9A7B4F;     /* refined bronze accent */
+    --slate: #3A4250;
+    --ph-bg: #2a2a2a;
+    color: var(--fg);
+    background: var(--bg);
+    font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+  }
+  .dir-c .display {
+    font-family: "Playfair Display", "Fraunces", serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .dir-c .display em { font-style: italic; font-weight: 400; color: var(--acc2); }
+  .dir-c .acc2 { color: var(--acc2); }
+
+  /* ===== Shared component skeletons ===== */
+  .nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 56px;
+    border-bottom: 1px solid var(--line);
+    height: 72px;
+  }
+  .brand-mark {
+    font-family: "Cormorant Garamond", "Lora", "Playfair Display", serif;
+    font-size: 26px;
+    letter-spacing: 0.16em;
+    font-weight: 400;
+  }
+  .brand-mark .ad { letter-spacing: 0.34em; font-weight: 400; }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+  .nav-links a { color: inherit; opacity: 0.85; text-decoration: none; }
+
+  /* CTA */
+  .cta-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .cta-pri, .cta-sec, .cta-out {
+    font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    padding: 14px 22px;
+    border-radius: 0;
+    cursor: pointer;
+    border: 1px solid currentColor;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    background: transparent;
+  }
+
+  /* ============== HERO LAYOUT ============== */
+  .hero-block {
+    padding: 64px 56px 56px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
+    align-items: end;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-headline {
+    font-size: clamp(56px, 8.5vw, 132px);
+    line-height: 0.95;
+    text-wrap: balance;
+    max-width: 12ch;
+    margin-top: 28px;
+  }
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.5;
+    max-width: 42ch;
+    color: var(--mute);
+    margin-bottom: 32px;
+  }
+
+  /* ============== PRODUCT CARD ============== */
+  .pc {
+    background: var(--bg2);
+    border: 1px solid var(--line);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .pc .pc-img {
+    aspect-ratio: 4/3.4;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pc .pc-body {
+    padding: 24px 24px 20px;
+  }
+  .pc .pc-cat {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 12px;
+  }
+  .pc .pc-title {
+    font-size: 28px;
+    line-height: 1.05;
+  }
+  .pc .pc-desc {
+    font-size: 13px;
+    color: var(--mute);
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+  .pc .pc-foot {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .pc .pc-price {
+    font-size: 26px;
+    font-weight: 400;
+  }
+
+  /* ============== CHART ============== */
+  .chart-card {
+    background: var(--bg2);
+    border: 1px solid var(--line);
+    padding: 28px;
+  }
+  .chart-card .chart-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+  }
+  .chart-card .chart-h {
+    font-size: 22px;
+    line-height: 1.1;
+  }
+
+  /* type stack */
+  .type-stack { display: flex; flex-direction: column; gap: 4px; }
+
+  /* row of small product photos */
+  .ph-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .ph-row .ph { aspect-ratio: 1/1.1; }
+  .ph-row .ph .ph-lbl { font-size: 8px; }
+
+  /* footer of artboard */
+  .ab-foot {
+    padding: 20px 56px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+</style>
+</head>
+<body>
+
+<design-canvas data-title="ADONIS — Brand Identity Directions" data-subtitle="Three refined directions; the strongest is applied to the homepage in v5">
+  <div id="canvas-root"></div>
+</design-canvas>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+
+<script type="text/babel">
+  const { DCSection, DCArtboard } = window;
+
+  /* =====================================================================
+     SHARED SUB-COMPONENTS
+     ===================================================================== */
+
+  // Editorial photo placeholder (high-contrast portrait stripes)
+  const Portrait = ({ label = "PORTRAIT · EDITORIAL", tone = "dark", aspect = "4/5" }) => (
+    <div className="ph" style={{ aspectRatio: aspect, background: tone === "dark" ? "#0a0a0c" : "#bdb3a0" }}>
+      <div style={{
+        position: "absolute", inset: 0,
+        backgroundImage: tone === "dark"
+          ? "radial-gradient(ellipse 60% 80% at 50% 35%, rgba(255,240,210,0.18), transparent 70%), repeating-linear-gradient(90deg, transparent 0 6px, rgba(255,255,255,0.025) 6px 7px)"
+          : "radial-gradient(ellipse 60% 80% at 50% 35%, rgba(60,40,20,0.22), transparent 70%), repeating-linear-gradient(90deg, transparent 0 6px, rgba(0,0,0,0.04) 6px 7px)",
+      }}/>
+      {/* a soft silhouette suggestion */}
+      <svg viewBox="0 0 100 125" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.32 }}>
+        <ellipse cx="50" cy="42" rx="14" ry="17" fill={tone === "dark" ? "rgba(255,235,200,0.45)" : "rgba(40,30,20,0.55)"}/>
+        <path d={`M 22 125 C 22 88 36 74 50 74 C 64 74 78 88 78 125 Z`} fill={tone === "dark" ? "rgba(255,235,200,0.40)" : "rgba(40,30,20,0.50)"}/>
+      </svg>
+      <div className="ph-lbl">{label}</div>
+    </div>
+  );
+
+  // Product still life placeholder
+  const Bottle = ({ label = "VIAL", tone = "dark", w = 140, h = 200 }) => (
+    <svg viewBox="0 0 200 260" style={{ width: w, height: "auto" }}>
+      <defs>
+        <linearGradient id={`bot-${tone}-${label}`} x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stopColor={tone === "dark" ? "rgba(215,188,138,0.35)" : "rgba(139,111,78,0.28)"}/>
+          <stop offset="1" stopColor={tone === "dark" ? "rgba(215,188,138,0.08)" : "rgba(139,111,78,0.06)"}/>
+        </linearGradient>
+      </defs>
+      {/* cap */}
+      <rect x="70" y="20" width="60" height="28" fill={tone === "dark" ? "rgba(237,231,218,0.85)" : "rgba(31,29,26,0.85)"}/>
+      <rect x="62" y="48" width="76" height="10" fill={tone === "dark" ? "rgba(237,231,218,0.55)" : "rgba(31,29,26,0.55)"}/>
+      {/* bottle body */}
+      <rect x="50" y="58" width="100" height="180" rx="4"
+            fill={`url(#bot-${tone}-${label})`}
+            stroke={tone === "dark" ? "rgba(237,231,218,0.4)" : "rgba(31,29,26,0.45)"} strokeWidth="0.8"/>
+      {/* label */}
+      <rect x="64" y="120" width="72" height="86" fill={tone === "dark" ? "rgba(237,231,218,0.06)" : "rgba(255,250,240,0.55)"}
+            stroke={tone === "dark" ? "rgba(237,231,218,0.25)" : "rgba(31,29,26,0.18)"}/>
+      <text x="100" y="155" textAnchor="middle"
+            fontFamily="Cormorant Garamond, Lora, Playfair Display, serif"
+            fontStyle="italic" fontSize="16"
+            fill={tone === "dark" ? "rgba(237,231,218,0.95)" : "rgba(31,29,26,0.95)"}>Adonis</text>
+      <text x="100" y="175" textAnchor="middle"
+            fontFamily="JetBrains Mono, ui-monospace, monospace"
+            fontSize="6" letterSpacing="1.4"
+            fill={tone === "dark" ? "rgba(237,231,218,0.55)" : "rgba(31,29,26,0.55)"}>{label}</text>
+      <line x1="68" y1="186" x2="132" y2="186" stroke={tone === "dark" ? "rgba(237,231,218,0.3)" : "rgba(31,29,26,0.25)"}/>
+      <text x="100" y="198" textAnchor="middle"
+            fontFamily="JetBrains Mono, ui-monospace, monospace"
+            fontSize="5" letterSpacing="1.2"
+            fill={tone === "dark" ? "rgba(237,231,218,0.4)" : "rgba(31,29,26,0.45)"}>RX · COMPOUNDED</text>
+    </svg>
+  );
+
+  // Reusable micro chart
+  const MicroChart = ({ accent = "#B58A4D", muted = "#888", line = "rgba(0,0,0,0.1)", text = "#222", baselineLabel = "BASELINE" }) => (
+    <svg viewBox="0 0 480 200" style={{ width: "100%", height: "auto", color: text }}>
+      <g stroke="currentColor" strokeWidth="0.5" opacity="0.18">
+        <line x1="40" y1="20" x2="460" y2="20"/>
+        <line x1="40" y1="80" x2="460" y2="80"/>
+        <line x1="40" y1="140" x2="460" y2="140"/>
+        <line x1="40" y1="20" x2="40" y2="160"/>
+      </g>
+      <g fill="currentColor" opacity="0.5" fontFamily="JetBrains Mono, monospace" fontSize="8">
+        <text x="6" y="24">100</text>
+        <text x="10" y="84">75</text>
+        <text x="10" y="144">50</text>
+        <text x="38" y="178">wk 0</text>
+        <text x="158" y="178">wk 4</text>
+        <text x="278" y="178">wk 12</text>
+        <text x="408" y="178">wk 24</text>
+      </g>
+      <path d="M 40 130 L 460 130" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="3 3" opacity="0.4"/>
+      <text x="44" y="126" fill="currentColor" opacity="0.5"
+            fontFamily="JetBrains Mono, monospace" fontSize="7" letterSpacing="1.2">{baselineLabel}</text>
+      {/* area under curve */}
+      <path d="M 40 130 C 110 128 180 110 240 80 C 300 50 380 38 460 32 L 460 160 L 40 160 Z"
+            fill={accent} opacity="0.10"/>
+      {/* express line */}
+      <path d="M 40 130 C 120 128 200 120 280 105 C 350 92 420 84 460 80"
+            fill="none" stroke="currentColor" strokeWidth="1" opacity="0.45" strokeDasharray="2 3"/>
+      {/* precision line */}
+      <path d="M 40 130 C 110 128 180 110 240 80 C 300 50 380 38 460 32"
+            fill="none" stroke={accent} strokeWidth="1.6"/>
+      <circle cx="460" cy="32" r="3" fill={accent}/>
+      <circle cx="460" cy="80" r="2" fill="currentColor" opacity="0.6"/>
+    </svg>
+  );
+
+  /* =====================================================================
+     DIRECTION A — DARK LUXURY PERFORMANCE MEDICINE
+     ===================================================================== */
+  const DirectionA = () => (
+    <div className="dir-a spec-frame">
+      <div className="nav-bar">
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          <div className="brand-mark"><span className="ad">ADONIS</span></div>
+          <div className="meta-row" style={{ borderLeft: "1px solid var(--line)", paddingLeft: 16 }}>Performance Medicine</div>
+        </div>
+        <div className="nav-links">
+          <a>Treatments</a><a>Science</a><a>Physicians</a><a>Journal</a>
+        </div>
+        <div className="cta-row">
+          <span style={{ fontSize: 13, opacity: 0.85 }}>Log in</span>
+          <a className="cta-pri" style={{ background: "transparent", borderColor: "var(--acc)", color: "var(--acc2)", padding: "12px 20px" }}>
+            Begin consult <span style={{ fontFamily: "Cormorant Garamond, serif", fontStyle: "italic" }}>→</span>
+          </a>
+        </div>
+      </div>
+
+      <div className="hero-block">
+        <div>
+          <div className="kicker" style={{ color: "var(--acc2)" }}>A · Dark Luxury Performance Medicine</div>
+          <h1 className="display hero-headline" style={{ marginTop: 22 }}>
+            The standard of care, <em>privately practiced</em>.
+          </h1>
+        </div>
+        <div>
+          <p className="hero-sub">
+            A concierge medical practice for hair, hormones and sexual performance — biomarker-led, physician-written, dispensed from compounding pharmacies under the same roof.
+          </p>
+          <div className="cta-row">
+            <a className="cta-pri" style={{
+              background: "linear-gradient(180deg, #C9A675, #A07840)",
+              border: "1px solid #A07840",
+              color: "#11110F",
+              padding: "16px 28px"
+            }}>Begin consult</a>
+            <a className="cta-out" style={{ borderColor: "var(--line2)", color: "var(--fg)", padding: "16px 24px" }}>
+              See the protocol
+            </a>
+          </div>
+          <div className="meta-row" style={{ marginTop: 22, color: "var(--mute)" }}>
+            01 / Florida licensed &nbsp;·&nbsp; HIPAA &nbsp;·&nbsp; LegitScript
+          </div>
+        </div>
+      </div>
+
+      {/* SPEC GRID */}
+      <div className="spec-grid">
+        <div className="left">
+          {/* PALETTE */}
+          <div className="kicker acc" style={{ marginBottom: 16 }}>Palette · Men</div>
+          <div className="swatches" style={{ marginBottom: 28 }}>
+            <div className="swatch tex" style={{ background: "#0E0E10", color: "#EDE7DA" }}>
+              <div className="lbl"><div>Graphite</div><div style={{ opacity: 0.5 }}>#0E0E10</div></div>
+            </div>
+            <div className="swatch tex" style={{ background: "#16161A", color: "#EDE7DA" }}>
+              <div className="lbl"><div>Carbon</div><div style={{ opacity: 0.5 }}>#16161A</div></div>
+            </div>
+            <div className="swatch" style={{ background: "#EDE7DA", color: "#1F1D1A" }}>
+              <div className="lbl"><div>Off-White</div><div style={{ opacity: 0.5 }}>#EDE7DA</div></div>
+            </div>
+            <div className="swatch" style={{ background: "#B58A4D", color: "#11110F" }}>
+              <div className="lbl"><div>Bronze</div><div style={{ opacity: 0.7 }}>#B58A4D</div></div>
+            </div>
+            <div className="swatch" style={{ background: "#D7BC8A", color: "#11110F" }}>
+              <div className="lbl"><div>Champagne</div><div style={{ opacity: 0.7 }}>#D7BC8A</div></div>
+            </div>
+            <div className="swatch" style={{ background: "#5A2A2A", color: "#EDE7DA" }}>
+              <div className="lbl"><div>Oxblood</div><div style={{ opacity: 0.7 }}>#5A2A2A</div></div>
+            </div>
+          </div>
+
+          {/* TYPE */}
+          <div className="kicker acc" style={{ marginBottom: 16 }}>Typography</div>
+          <div className="type-stack" style={{ marginBottom: 22 }}>
+            <div style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 64, lineHeight: 1, letterSpacing: "-0.02em" }}>
+              Cormorant <em style={{ fontStyle: "italic", fontWeight: 300, color: "var(--acc2)" }}>Garamond</em>
+            </div>
+            <div className="meta-row" style={{ marginTop: 8 }}>Display Serif · Editorial</div>
+            <div style={{ marginTop: 14, fontFamily: "Inter Tight, sans-serif", fontSize: 22, letterSpacing: "-0.01em", fontWeight: 500 }}>
+              Inter Tight — modern UI sans
+            </div>
+            <div className="meta-row">UI · Body · 14–17px</div>
+            <div style={{ marginTop: 10, fontFamily: "JetBrains Mono, monospace", fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", opacity: 0.7 }}>
+              JetBrains Mono · Eyebrow & Data Labels
+            </div>
+          </div>
+
+          {/* PRODUCT */}
+          <div className="kicker acc" style={{ marginBottom: 16 }}>Product still & card</div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
+            <div className="pc">
+              <div className="pc-img"><Bottle tone="dark" label="TOPICAL FIN/MIN" w={110}/></div>
+              <div className="pc-body">
+                <div className="pc-cat">Hair · 90-day</div>
+                <div className="pc-title display">Topical <em>All-in-One</em></div>
+                <div className="pc-foot">
+                  <div className="pc-price display">$78<span style={{ fontSize: 12, color: "var(--mute)", marginLeft: 6 }}>/mo</span></div>
+                  <a style={{ fontSize: 12, color: "var(--acc2)", borderBottom: "1px solid var(--acc2)", paddingBottom: 2 }}>Add</a>
+                </div>
+              </div>
+            </div>
+            <div className="pc">
+              <div className="pc-img"><Bottle tone="dark" label="TROCHE · SIL" w={110}/></div>
+              <div className="pc-body">
+                <div className="pc-cat">Sexual · Daily</div>
+                <div className="pc-title display">Sildenafil <em>Troche</em></div>
+                <div className="pc-foot">
+                  <div className="pc-price display">$54<span style={{ fontSize: 12, color: "var(--mute)", marginLeft: 6 }}>/mo</span></div>
+                  <a style={{ fontSize: 12, color: "var(--acc2)", borderBottom: "1px solid var(--acc2)", paddingBottom: 2 }}>Add</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="right">
+          {/* CHART */}
+          <div className="kicker acc">Data card</div>
+          <div className="chart-card">
+            <div className="chart-head">
+              <div className="chart-h display">Density, <em>measured</em>.</div>
+              <div className="meta-row">Fig. 01 · n=184</div>
+            </div>
+            <MicroChart accent="#D7BC8A" text="#EDE7DA" baselineLabel="BASELINE"/>
+          </div>
+
+          {/* CTA SPEC */}
+          <div>
+            <div className="kicker acc" style={{ marginBottom: 12 }}>CTA hierarchy</div>
+            <div className="cta-row" style={{ marginBottom: 10 }}>
+              <a className="cta-pri" style={{
+                background: "linear-gradient(180deg, #D7BC8A, #B58A4D)",
+                border: "1px solid #B58A4D",
+                color: "#11110F"
+              }}>Begin consult →</a>
+              <a className="cta-out" style={{ borderColor: "var(--line2)", color: "var(--fg)" }}>See protocol</a>
+              <a style={{ fontSize: 13, color: "var(--acc2)", borderBottom: "1px solid var(--acc2)", paddingBottom: 2 }}>How precision works</a>
+            </div>
+          </div>
+
+          {/* PORTRAIT + PRODUCT IMAGES */}
+          <div>
+            <div className="kicker acc" style={{ marginBottom: 12 }}>Photography direction</div>
+            <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 10 }}>
+              <Portrait tone="dark" label="PHYSICIAN · LOW KEY"/>
+              <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gap: 10 }}>
+                <Portrait tone="dark" aspect="1/1" label="STILL · VIAL"/>
+                <Portrait tone="dark" aspect="1/1" label="LAB · MACRO"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="ab-foot">
+        <span>A · Dark Luxury Performance Medicine</span>
+        <span>Cormorant Garamond × Inter Tight · Graphite + Bronze</span>
+      </div>
+    </div>
+  );
+
+  /* =====================================================================
+     DIRECTION B — EDITORIAL CLINICAL OPTIMIZATION
+     ===================================================================== */
+  const DirectionB = () => (
+    <div className="dir-b spec-frame">
+      <div className="nav-bar">
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          <div className="brand-mark" style={{ fontFamily: "Lora, serif" }}>Adonis</div>
+          <div className="meta-row" style={{ borderLeft: "1px solid var(--line)", paddingLeft: 16 }}>The Practice</div>
+        </div>
+        <div className="nav-links">
+          <a>Hair</a><a>Hormones</a><a>Sexual Health</a><a>Diagnostics</a><a>Journal</a>
+        </div>
+        <div className="cta-row">
+          <span style={{ fontSize: 13, opacity: 0.85 }}>Log in</span>
+          <a className="cta-pri" style={{
+            background: "var(--fg)", borderColor: "var(--fg)", color: "var(--bg)", padding: "12px 20px"
+          }}>Begin consult</a>
+        </div>
+      </div>
+
+      <div className="hero-block" style={{ gridTemplateColumns: "1fr 1fr", alignItems: "center" }}>
+        <div>
+          <div className="kicker acc">B · Editorial Clinical Optimization</div>
+          <h1 className="display hero-headline" style={{ fontSize: "clamp(52px, 7vw, 116px)", marginTop: 26 }}>
+            Read your biology. <em>Then</em> prescribe.
+          </h1>
+          <p className="hero-sub" style={{ marginTop: 28, marginBottom: 28 }}>
+            Adonis is a quietly modern practice. We start with biomarkers, then write a protocol — for hair, hormones and longevity. No gimmicks. No avatars. Real physicians.
+          </p>
+          <div className="cta-row">
+            <a className="cta-pri" style={{ background: "var(--fg)", borderColor: "var(--fg)", color: "var(--bg)", padding: "16px 26px" }}>
+              Begin consult →
+            </a>
+            <a className="cta-out" style={{ borderColor: "var(--line2)", color: "var(--fg)", padding: "16px 24px" }}>
+              The protocol
+            </a>
+          </div>
+        </div>
+        <div style={{ position: "relative" }}>
+          <Portrait tone="light" aspect="4/5" label="EDITORIAL · PHYSICIAN"/>
+          <div style={{
+            position: "absolute", left: -28, bottom: 28,
+            background: "var(--bg)", border: "1px solid var(--line)",
+            padding: "16px 20px", maxWidth: 260
+          }}>
+            <div className="meta-row" style={{ marginBottom: 6 }}>Fig. 01 · Cohort wk 24</div>
+            <div className="display" style={{ fontSize: 28, lineHeight: 1.05 }}>
+              <em style={{ color: "var(--acc)" }}>+68%</em> measured density.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="spec-grid">
+        <div className="left">
+          {/* PALETTE WOMEN PRIMARY */}
+          <div className="kicker acc" style={{ marginBottom: 16 }}>Palette · Women</div>
+          <div className="swatches" style={{ marginBottom: 28 }}>
+            <div className="swatch" style={{ background: "#F4EFE6", color: "#1F1D1A" }}>
+              <div className="lbl"><div>Ivory</div><div style={{ opacity: 0.6 }}>#F4EFE6</div></div>
+            </div>
+            <div className="swatch" style={{ background: "#EDE6D7", color: "#1F1D1A" }}>
+              <div className="lbl"><div>Stone</div><div style={{ opacity: 0.6 }}>#EDE6D7</div></div>
+            </div>
+            <div className="swatch" style={{ background: "#1F1D1A", color: "#F4EFE6" }}>
+              <div className="lbl"><div>Charcoal</div><div style={{ opacity: 0.7 }}>#1F1D1A</div></div>
+            </div>
+            <div className="swatch" style={{ background: "#D6B5A5", color: "#1F1D1A" }}>
+              <div className="lbl"><div>Blush</div><div style={{ opacity: 0.7 }}>#D6B5A5</div></div>
+            </div>
+            <div className="swatch" style={{ background: "#C9A77A", color: "#1F1D1A" }}>
+              <div className="lbl"><div>Champagne</div><div style={{ opacity: 0.7 }}>#C9A77A</div></div>
+            </div>
+            <div className="swatch" style={{ background: "#8B6F4E", color: "#F4EFE6" }}>
+              <div className="lbl"><div>Taupe</div><div style={{ opacity: 0.7 }}>#8B6F4E</div></div>
+            </div>
+          </div>
+
+          {/* TYPE */}
+          <div className="kicker acc" style={{ marginBottom: 16 }}>Typography</div>
+          <div className="type-stack" style={{ marginBottom: 22 }}>
+            <div style={{ fontFamily: "Lora, serif", fontSize: 60, lineHeight: 1, letterSpacing: "-0.015em" }}>
+              Lora <em style={{ fontStyle: "italic", color: "var(--acc)" }}>Editorial</em>
+            </div>
+            <div className="meta-row" style={{ marginTop: 8 }}>Display Serif · Magazine</div>
+            <div style={{ marginTop: 14, fontFamily: "Inter Tight, sans-serif", fontSize: 22, letterSpacing: "-0.01em", fontWeight: 500 }}>
+              Inter Tight — UI & body
+            </div>
+            <div className="meta-row">UI · 14–17px · weight 400/500</div>
+          </div>
+
+          {/* PRODUCT */}
+          <div className="kicker acc" style={{ marginBottom: 16 }}>Product still & card</div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
+            <div className="pc">
+              <div className="pc-img"><Bottle tone="light" label="HAIR · TOPICAL" w={110}/></div>
+              <div className="pc-body">
+                <div className="pc-cat">Hair · Compounded</div>
+                <div className="pc-title display">The Hair <em>Topical</em></div>
+                <div className="pc-foot">
+                  <div className="pc-price display">$78<span style={{ fontSize: 12, color: "var(--mute)", marginLeft: 6 }}>/mo</span></div>
+                  <a style={{ fontSize: 12, color: "var(--acc)", borderBottom: "1px solid var(--acc)", paddingBottom: 2 }}>Add</a>
+                </div>
+              </div>
+            </div>
+            <div className="pc">
+              <div className="pc-img"><Bottle tone="light" label="ORAL · MIN/DUT" w={110}/></div>
+              <div className="pc-body">
+                <div className="pc-cat">Hair · Oral</div>
+                <div className="pc-title display">Min + <em>Dut</em></div>
+                <div className="pc-foot">
+                  <div className="pc-price display">$92<span style={{ fontSize: 12, color: "var(--mute)", marginLeft: 6 }}>/mo</span></div>
+                  <a style={{ fontSize: 12, color: "var(--acc)", borderBottom: "1px solid var(--acc)", paddingBottom: 2 }}>Add</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="right">
+          {/* CHART */}
+          <div className="kicker acc">Data card</div>
+          <div className="chart-card">
+            <div className="chart-head">
+              <div className="chart-h display">Density, <em>measured</em>.</div>
+              <div className="meta-row">Fig. 01 · n=184</div>
+            </div>
+            <MicroChart accent="#8B6F4E" text="#1F1D1A"/>
+          </div>
+
+          {/* CTA SPEC */}
+          <div>
+            <div className="kicker acc" style={{ marginBottom: 12 }}>CTA hierarchy</div>
+            <div className="cta-row" style={{ marginBottom: 10 }}>
+              <a className="cta-pri" style={{
+                background: "var(--fg)", borderColor: "var(--fg)", color: "var(--bg)"
+              }}>Begin consult →</a>
+              <a className="cta-out" style={{ borderColor: "var(--line2)", color: "var(--fg)" }}>The protocol</a>
+              <a style={{ fontSize: 13, color: "var(--acc)", borderBottom: "1px solid var(--acc)", paddingBottom: 2 }}>Read the journal</a>
+            </div>
+          </div>
+
+          {/* PORTRAIT GRID */}
+          <div>
+            <div className="kicker acc" style={{ marginBottom: 12 }}>Photography direction</div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 10 }}>
+              <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gap: 10 }}>
+                <Portrait tone="light" aspect="1/1" label="LAB · MACRO"/>
+                <Portrait tone="light" aspect="1/1" label="STILL · VIAL"/>
+              </div>
+              <Portrait tone="light" label="EDITORIAL · WOMEN"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="ab-foot">
+        <span>B · Editorial Clinical Optimization</span>
+        <span>Lora × Inter Tight · Ivory + Taupe-Bronze</span>
+      </div>
+    </div>
+  );
+
+  /* =====================================================================
+     DIRECTION C — MODERN PREMIUM TELEHEALTH
+     ===================================================================== */
+  const DirectionC = () => (
+    <div className="dir-c spec-frame">
+      <div className="nav-bar">
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          <div className="brand-mark" style={{ fontFamily: "Playfair Display, serif", letterSpacing: "0.18em", fontSize: 22 }}>ADONIS</div>
+        </div>
+        <div className="nav-links">
+          <a>Treatments</a><a>Diagnostics</a><a>Physicians</a><a>About</a>
+        </div>
+        <div className="cta-row">
+          <span style={{ fontSize: 13, opacity: 0.85 }}>Log in</span>
+          <a className="cta-pri" style={{
+            background: "var(--acc)", borderColor: "var(--acc)", color: "var(--bg)", padding: "12px 20px"
+          }}>Get started</a>
+        </div>
+      </div>
+
+      <div className="hero-block">
+        <div>
+          <div className="kicker" style={{ color: "var(--acc2)" }}>C · Modern Premium Telehealth</div>
+          <h1 className="display hero-headline" style={{ marginTop: 22 }}>
+            Personal medicine, <em>delivered</em>.
+          </h1>
+        </div>
+        <div>
+          <p className="hero-sub">
+            Hair, hormones, performance — written by physicians, dispensed from pharmacy partners, refined for a modern life. Begin in minutes.
+          </p>
+          <div className="cta-row">
+            <a className="cta-pri" style={{
+              background: "var(--acc)", borderColor: "var(--acc)", color: "var(--bg)", padding: "16px 28px"
+            }}>Get started →</a>
+            <a className="cta-out" style={{ borderColor: "var(--line2)", color: "var(--fg)", padding: "16px 24px" }}>
+              How it works
+            </a>
+          </div>
+          <div className="meta-row" style={{ marginTop: 22, color: "var(--mute)" }}>
+            FL licensed · HIPAA · Avg. Rx review 24h
+          </div>
+        </div>
+      </div>
+
+      <div className="spec-grid">
+        <div className="left">
+          {/* PALETTE */}
+          <div className="kicker" style={{ marginBottom: 16, color: "var(--acc2)" }}>Palette · Unisex</div>
+          <div className="swatches" style={{ marginBottom: 28 }}>
+            <div className="swatch" style={{ background: "#FAF8F4", color: "#1A1A1A" }}>
+              <div className="lbl"><div>Stone</div><div style={{ opacity: 0.55 }}>#FAF8F4</div></div>
+            </div>
+            <div className="swatch" style={{ background: "#F1ECE3", color: "#1A1A1A" }}>
+              <div className="lbl"><div>Linen</div><div style={{ opacity: 0.55 }}>#F1ECE3</div></div>
+            </div>
+            <div className="swatch tex" style={{ background: "#1A1A1A", color: "#FAF8F4" }}>
+              <div className="lbl"><div>Ink</div><div style={{ opacity: 0.65 }}>#1A1A1A</div></div>
+            </div>
+            <div className="swatch" style={{ background: "#9A7B4F", color: "#FAF8F4" }}>
+              <div className="lbl"><div>Bronze</div><div style={{ opacity: 0.7 }}>#9A7B4F</div></div>
+            </div>
+            <div className="swatch" style={{ background: "#3A4250", color: "#FAF8F4" }}>
+              <div className="lbl"><div>Slate</div><div style={{ opacity: 0.7 }}>#3A4250</div></div>
+            </div>
+            <div className="swatch" style={{ background: "#E8DDC9", color: "#1A1A1A" }}>
+              <div className="lbl"><div>Sand</div><div style={{ opacity: 0.55 }}>#E8DDC9</div></div>
+            </div>
+          </div>
+
+          {/* TYPE */}
+          <div className="kicker" style={{ marginBottom: 16, color: "var(--acc2)" }}>Typography</div>
+          <div className="type-stack" style={{ marginBottom: 22 }}>
+            <div style={{ fontFamily: "Playfair Display, serif", fontSize: 64, lineHeight: 1, letterSpacing: "-0.02em", fontWeight: 400 }}>
+              Playfair <em style={{ fontStyle: "italic", color: "var(--acc2)" }}>Display</em>
+            </div>
+            <div className="meta-row" style={{ marginTop: 8 }}>Display Serif · Refined</div>
+            <div style={{ marginTop: 14, fontFamily: "Inter, sans-serif", fontSize: 22, letterSpacing: "-0.005em", fontWeight: 500 }}>
+              Inter — clean modern UI
+            </div>
+            <div className="meta-row">UI · Body · 14–17px</div>
+          </div>
+
+          {/* PRODUCT */}
+          <div className="kicker" style={{ marginBottom: 16, color: "var(--acc2)" }}>Product still & card</div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
+            <div className="pc">
+              <div className="pc-img" style={{ background: "var(--bg2)" }}><Bottle tone="light" label="HAIR · TOPICAL" w={110}/></div>
+              <div className="pc-body">
+                <div className="pc-cat">Hair · Topical</div>
+                <div className="pc-title display">The <em>Topical</em></div>
+                <div className="pc-foot">
+                  <div className="pc-price display">$78<span style={{ fontSize: 12, color: "var(--mute)", marginLeft: 6 }}>/mo</span></div>
+                  <a style={{ fontSize: 12, color: "var(--acc2)", borderBottom: "1px solid var(--acc2)", paddingBottom: 2 }}>Add</a>
+                </div>
+              </div>
+            </div>
+            <div className="pc">
+              <div className="pc-img" style={{ background: "var(--bg2)" }}><Bottle tone="light" label="DAILY · TROCHE" w={110}/></div>
+              <div className="pc-body">
+                <div className="pc-cat">Sexual · Daily</div>
+                <div className="pc-title display">Daily <em>Troche</em></div>
+                <div className="pc-foot">
+                  <div className="pc-price display">$54<span style={{ fontSize: 12, color: "var(--mute)", marginLeft: 6 }}>/mo</span></div>
+                  <a style={{ fontSize: 12, color: "var(--acc2)", borderBottom: "1px solid var(--acc2)", paddingBottom: 2 }}>Add</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="right">
+          <div className="kicker" style={{ color: "var(--acc2)" }}>Data card</div>
+          <div className="chart-card">
+            <div className="chart-head">
+              <div className="chart-h display">Density, <em>measured</em>.</div>
+              <div className="meta-row">Fig. 01 · n=184</div>
+            </div>
+            <MicroChart accent="#9A7B4F" text="#1A1A1A"/>
+          </div>
+
+          <div>
+            <div className="kicker" style={{ marginBottom: 12, color: "var(--acc2)" }}>CTA hierarchy</div>
+            <div className="cta-row" style={{ marginBottom: 10 }}>
+              <a className="cta-pri" style={{ background: "var(--acc)", borderColor: "var(--acc)", color: "var(--bg)" }}>Get started →</a>
+              <a className="cta-out" style={{ borderColor: "var(--line2)", color: "var(--fg)" }}>How it works</a>
+              <a style={{ fontSize: 13, color: "var(--acc2)", borderBottom: "1px solid var(--acc2)", paddingBottom: 2 }}>Read the science</a>
+            </div>
+          </div>
+
+          <div>
+            <div className="kicker" style={{ marginBottom: 12, color: "var(--acc2)" }}>Photography direction</div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+              <Portrait tone="light" label="EDITORIAL · M"/>
+              <Portrait tone="light" label="EDITORIAL · W"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="ab-foot">
+        <span>C · Modern Premium Telehealth</span>
+        <span>Playfair × Inter · Stone + Refined Bronze</span>
+      </div>
+    </div>
+  );
+
+  /* =====================================================================
+     CANVAS LAYOUT
+     ===================================================================== */
+  const App = () => (
+    <>
+      <DCSection id="dirs" title="Three brand directions">
+        <DCArtboard id="A" label="A · Dark Luxury Performance Medicine" width={1640} height={1280}>
+          <DirectionA/>
+        </DCArtboard>
+        <DCArtboard id="B" label="B · Editorial Clinical Optimization" width={1640} height={1280}>
+          <DirectionB/>
+        </DCArtboard>
+        <DCArtboard id="C" label="C · Modern Premium Telehealth" width={1640} height={1280}>
+          <DirectionC/>
+        </DCArtboard>
+      </DCSection>
+    </>
+  );
+
+  // mount
+  const mount = document.getElementById("canvas-root");
+  ReactDOM.createRoot(mount).render(<App/>);
+</script>
+
+</body>
+</html>

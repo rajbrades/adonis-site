@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Adonis · Product Page Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   ADONIS — PRODUCT PAGE TEMPLATE
+   Reuses v4.5 token system. Adds deep green secondary accent
+   per product-page brief.
+   ============================================================ */
+:root {
+  --display: "Fraunces", "Times New Roman", Georgia, serif;
+  --sans: "Inter Tight", "Inter", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* core dark palette — graphite + warm ivory + bronze */
+  --bg:      #0F1116;
+  --bg2:     #181B22;
+  --bg3:     #1F232C;
+  --fg:      #ECE6D8;
+  --mute:    #898577;
+  --line:    rgba(236, 230, 216, 0.10);
+  --line2:   rgba(236, 230, 216, 0.18);
+  --line3:   rgba(236, 230, 216, 0.32);
+  --acc:     #C9A35E;          /* warm desaturated gold */
+  --acc-deep:#8E7038;
+  --acc-soft:rgba(201, 163, 94, 0.12);
+
+  /* secondary — deep green / slate */
+  --sec:     #2E4338;          /* deep botanical green */
+  --sec-deep:#1F2D24;
+  --sec-soft:rgba(46, 67, 56, 0.30);
+
+  /* status */
+  --warn:    #B58A4D;
+  --bad:     #8E4A3F;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #060709; color: var(--fg); }
+body { font-family: var(--sans); font-size: 16px; line-height: 1.5;
+       -webkit-font-smoothing: antialiased; min-height: 100vh; }
+
+/* ---------------- canvas / page wrappers ---------------- */
+.canvas { display: flex; flex-direction: column; gap: 80px;
+          padding: 64px 48px; background: #060709; }
+.label-bar { display: flex; align-items: center; gap: 18px;
+             font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+             text-transform: uppercase; color: var(--mute);
+             max-width: 1440px; margin: 0 auto; width: 100%; }
+.label-bar::before { content: ""; height: 1px; flex: 1; background: var(--line); }
+.label-bar::after  { content: ""; height: 1px; flex: 1; background: var(--line); }
+.label-bar b { color: var(--fg); font-weight: 500; }
+
+/* product page surface */
+.page { max-width: 1440px; margin: 0 auto; width: 100%;
+        background: var(--bg); color: var(--fg);
+        border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.page-mobile { max-width: 420px; margin: 0 auto; }
+
+/* ---------------- top notice ---------------- */
+.notice { background: #08090C; border-bottom: 1px solid var(--line);
+          font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+          text-transform: uppercase; color: var(--mute);
+          display: flex; justify-content: center; gap: 32px;
+          padding: 12px 24px; flex-wrap: wrap; }
+.notice b { color: var(--fg); font-weight: 500; }
+
+/* ---------------- nav ---------------- */
+.nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+       padding: 22px 48px; border-bottom: 1px solid var(--line); }
+.nav .l { font-family: var(--display); font-size: 26px; letter-spacing: .04em; }
+.nav .l em { font-style: italic; color: var(--acc); font-weight: 400; }
+.nav .c { display: flex; gap: 32px; font-family: var(--sans); font-size: 14.5px; }
+.nav .c a { color: var(--fg); opacity: .82; transition: opacity .2s; }
+.nav .c a.on { opacity: 1; border-bottom: 1px solid var(--acc); padding-bottom: 4px; }
+.nav .c a:hover { opacity: 1; }
+.nav .r { display: flex; gap: 16px; justify-content: flex-end; align-items: center; font-size: 14.5px; }
+.nav .r .cart { font-family: var(--mono); font-size: 12px; letter-spacing: .14em;
+                text-transform: uppercase; color: var(--mute); }
+.nav .r .cart b { color: var(--fg); }
+.nav .r .btn-mini { font-family: var(--sans); font-size: 13.5px; white-space: nowrap;
+                    background: var(--fg); color: var(--bg);
+                    padding: 9px 18px; border-radius: 999px; }
+
+/* breadcrumb strip */
+.crumbs { display: flex; gap: 12px; padding: 16px 48px;
+          border-bottom: 1px solid var(--line);
+          font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+          text-transform: uppercase; color: var(--mute); }
+.crumbs a { color: var(--mute); }
+.crumbs a:hover { color: var(--fg); }
+.crumbs .sep { color: var(--line3); }
+.crumbs .now { color: var(--acc); }
+
+/* ---------------- product hero ---------------- */
+.hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0;
+        border-bottom: 1px solid var(--line); }
+@media (max-width: 980px) { .hero { grid-template-columns: 1fr; } }
+
+.hero-media { background: linear-gradient(165deg, #14171E 0%, #0B0D11 100%);
+              padding: 72px 64px; position: relative; overflow: hidden;
+              min-height: 720px; display: flex; flex-direction: column;
+              justify-content: space-between; border-right: 1px solid var(--line); }
+.hero-media .grain { position: absolute; inset: 0; opacity: .04; pointer-events: none;
+                      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='.85' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+.hero-media .corner { font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+                       text-transform: uppercase; color: var(--mute);
+                       display: flex; justify-content: space-between; }
+.hero-media .corner b { color: var(--fg); font-weight: 500; }
+
+/* the "rx vial" hero illustration */
+.vial { flex: 1; display: grid; place-items: center; position: relative; z-index: 1; }
+.vial svg { max-width: 360px; width: 100%; height: auto; }
+.vial-label { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+              text-align: center; font-family: var(--display);
+              color: var(--acc); pointer-events: none; }
+.vial-label .rx { font-family: var(--mono); font-size: 10px; letter-spacing: .3em;
+                   text-transform: uppercase; color: var(--mute); margin-bottom: 4px; }
+.vial-label .nm { font-size: 26px; font-style: italic; font-weight: 400;
+                   line-height: 1; letter-spacing: -.01em; }
+.vial-label .ds { font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+                   text-transform: uppercase; color: var(--mute); margin-top: 6px; }
+
+.hero-thumbs { display: flex; gap: 10px; }
+.hero-thumbs .t { width: 64px; height: 64px; background: var(--bg2);
+                  border: 1px solid var(--line2); border-radius: 4px;
+                  position: relative; cursor: pointer; transition: border-color .2s; }
+.hero-thumbs .t.on { border-color: var(--acc); }
+.hero-thumbs .t::after { content: attr(data-l); position: absolute; inset: 0;
+                          display: grid; place-items: center;
+                          font-family: var(--mono); font-size: 10px;
+                          letter-spacing: .18em; color: var(--mute); }
+.hero-thumbs .t.on::after { color: var(--acc); }
+
+/* hero info column */
+.hero-info { padding: 64px 56px; display: flex; flex-direction: column; gap: 28px; }
+.hero-cat { font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+            text-transform: uppercase; color: var(--acc);
+            display: flex; align-items: center; gap: 12px; }
+.hero-cat::before { content: ""; width: 24px; height: 1px; background: var(--acc); }
+
+.hero-info h1 { font-family: var(--display); font-weight: 400;
+                font-size: clamp(40px, 4.4vw, 64px); line-height: 1.0;
+                letter-spacing: -.018em; text-wrap: balance; }
+.hero-info h1 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.hero-info .formula { font-family: var(--mono); font-size: 13px; letter-spacing: .14em;
+                       text-transform: uppercase; color: var(--mute); }
+
+.hero-positioning { font-size: 17px; line-height: 1.55; color: var(--fg);
+                     opacity: .88; max-width: 50ch; padding: 18px 0;
+                     border-top: 1px solid var(--line);
+                     border-bottom: 1px solid var(--line); }
+.hero-positioning em { font-family: var(--display); font-style: italic;
+                        color: var(--acc); font-weight: 400; font-size: 18px; }
+
+/* meta line */
+.hero-meta { display: flex; gap: 28px; font-family: var(--mono); font-size: 11.5px;
+             letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+.hero-meta b { color: var(--fg); font-weight: 500; }
+
+/* ---------------- selection module ---------------- */
+.select-mod { padding: 28px 32px; background: var(--bg2);
+              border: 1px solid var(--line); border-radius: 4px;
+              display: flex; flex-direction: column; gap: 22px; }
+.sm-row { display: flex; flex-direction: column; gap: 10px; }
+.sm-label { font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+            text-transform: uppercase; color: var(--mute);
+            display: flex; justify-content: space-between; }
+.sm-label .help { color: var(--acc); border-bottom: 1px solid var(--acc-soft);
+                   cursor: help; }
+
+/* dose pills */
+.dose-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.dose { background: transparent; border: 1px solid var(--line2); border-radius: 4px;
+        padding: 14px 16px; cursor: pointer; transition: all .2s;
+        display: flex; flex-direction: column; gap: 4px; text-align: left; color: var(--fg); }
+.dose:hover { border-color: var(--line3); }
+.dose.on { border-color: var(--acc); background: var(--acc-soft); }
+.dose .d { font-family: var(--display); font-size: 18px; font-weight: 400; }
+.dose .d em { font-style: italic; color: var(--acc); font-size: 14px; margin-left: 4px; font-weight: 300; }
+.dose .meta { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em;
+              text-transform: uppercase; color: var(--mute); }
+.dose.on .meta { color: var(--acc); }
+
+/* purchase cadence — radio-card */
+.cad-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.cad { background: transparent; border: 1px solid var(--line2); border-radius: 4px;
+       padding: 18px 22px; cursor: pointer; transition: all .2s;
+       display: grid; grid-template-columns: 18px 1fr auto; gap: 16px; align-items: center;
+       color: var(--fg); }
+.cad:hover { border-color: var(--line3); }
+.cad.on { border-color: var(--acc); background: rgba(201,163,94,0.06); }
+.cad .radio { width: 18px; height: 18px; border-radius: 50%;
+              border: 1.5px solid var(--line3); position: relative; }
+.cad.on .radio { border-color: var(--acc); }
+.cad.on .radio::after { content: ""; position: absolute; inset: 3px;
+                         background: var(--acc); border-radius: 50%; }
+.cad .info .nm { font-family: var(--display); font-size: 17px; font-weight: 400; }
+.cad .info .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.cad .info .sub { font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+                   text-transform: uppercase; color: var(--mute); margin-top: 3px; }
+.cad .price { font-family: var(--display); font-size: 22px; font-weight: 400;
+              text-align: right; }
+.cad .price em { font-family: var(--mono); font-size: 11px; font-style: normal;
+                  letter-spacing: .14em; text-transform: uppercase; color: var(--mute);
+                  display: block; margin-top: 2px; }
+.cad .price s { color: var(--mute); font-size: 14px; opacity: .65;
+                 display: block; margin-top: 2px; }
+.cad .badge { position: absolute; top: -1px; right: 16px; transform: translateY(-50%);
+              background: var(--acc); color: #0E1014; padding: 3px 9px; border-radius: 999px;
+              font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+              text-transform: uppercase; font-weight: 500; }
+.cad-wrap { position: relative; }
+
+/* what's included */
+.included { padding: 18px 0 4px; border-top: 1px solid var(--line); }
+.included h5 { font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+                text-transform: uppercase; color: var(--mute); margin-bottom: 12px; }
+.included ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.included li { display: grid; grid-template-columns: 18px 1fr; gap: 10px;
+                font-size: 14px; line-height: 1.45; align-items: baseline; }
+.included li::before { content: "✓"; color: var(--acc); font-family: var(--mono); font-size: 13px; }
+
+/* CTAs */
+.cta-stack { display: flex; flex-direction: column; gap: 10px; padding-top: 8px; }
+.btn { display: inline-flex; align-items: center; justify-content: space-between;
+       gap: 12px; padding: 18px 26px; font-family: var(--sans); font-size: 15px;
+       font-weight: 500; letter-spacing: .01em; cursor: pointer;
+       border: 1px solid var(--line2); border-radius: 999px;
+       transition: all .2s; color: var(--fg); background: transparent; }
+.btn em { font-family: var(--display); font-style: italic; font-weight: 400; color: var(--acc); }
+.btn .arr { font-family: var(--mono); font-size: 14px; opacity: .72; }
+.btn:hover { border-color: var(--acc); }
+.btn.primary { background: var(--acc); color: #0F1014; border-color: var(--acc); }
+.btn.primary em { color: #0F1014; }
+.btn.primary:hover { background: #D6B26A; border-color: #D6B26A; }
+.btn.ghost { background: transparent; }
+
+.reassure { font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+            text-transform: uppercase; color: var(--mute); line-height: 1.7;
+            display: flex; align-items: flex-start; gap: 10px;
+            padding: 14px 18px; background: rgba(236,230,216,0.03);
+            border: 1px solid var(--line); border-radius: 4px; margin-top: 4px; }
+.reassure::before { content: ""; width: 6px; height: 6px; border-radius: 50%;
+                     background: var(--acc); margin-top: 6px; flex-shrink: 0; }
+
+/* ---------------- section scaffolding ---------------- */
+.section { padding: 120px 48px; border-bottom: 1px solid var(--line); }
+.section.tight { padding: 80px 48px; }
+.section.alt { background: linear-gradient(180deg, var(--bg) 0%, #0B0D12 100%); }
+.section-head { margin-bottom: 56px; max-width: 64ch; }
+.section-head .idx { font-family: var(--mono); font-size: 12px; letter-spacing: .26em;
+                     text-transform: uppercase; color: var(--acc);
+                     display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.section-head .idx::before { content: ""; width: 24px; height: 1px; background: var(--acc); }
+.section-head h2 { font-family: var(--display); font-weight: 400;
+                   font-size: clamp(36px, 4vw, 56px); line-height: 1.02;
+                   letter-spacing: -.018em; text-wrap: balance; }
+.section-head h2 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.section-head p { color: var(--mute); margin-top: 16px; max-width: 56ch; line-height: 1.55; }
+
+/* ---------------- HOW IT WORKS — flow ---------------- */
+.flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+        border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+@media (max-width: 1100px) { .flow { grid-template-columns: 1fr 1fr; } }
+.flow-step { padding: 32px 28px; border-right: 1px solid var(--line);
+             display: flex; flex-direction: column; gap: 14px; position: relative; }
+.flow-step:last-child { border-right: 0; }
+.flow-step .n { font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+                text-transform: uppercase; color: var(--acc); }
+.flow-step .ico { width: 44px; height: 44px; border-radius: 50%;
+                   background: var(--bg2); border: 1px solid var(--line2);
+                   display: grid; place-items: center;
+                   font-family: var(--display); font-style: italic; font-size: 18px;
+                   color: var(--acc); }
+.flow-step h4 { font-family: var(--display); font-weight: 400; font-size: 18px;
+                line-height: 1.25; }
+.flow-step h4 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.flow-step p { font-size: 13.5px; line-height: 1.5; color: var(--mute); max-width: 28ch; }
+.flow-step .stamp { margin-top: auto; font-family: var(--mono); font-size: 10.5px;
+                     letter-spacing: .14em; text-transform: uppercase; color: var(--mute);
+                     padding-top: 14px; border-top: 1px dashed var(--line2); }
+.flow-step .stamp b { color: var(--fg); font-weight: 500; }
+
+/* ---------------- CLINICAL CREDIBILITY ---------------- */
+.cred-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: start; }
+@media (max-width: 980px) { .cred-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+.cred-card { background: var(--bg2); border: 1px solid var(--line); border-radius: 4px;
+             padding: 36px; display: flex; flex-direction: column; gap: 22px; }
+.cred-card .top { display: flex; gap: 18px; align-items: flex-start; }
+.cred-card .av { width: 72px; height: 72px; border-radius: 50%;
+                  border: 1px solid var(--line2); flex-shrink: 0;
+                  background: linear-gradient(135deg, var(--bg3), var(--bg2));
+                  display: grid; place-items: center;
+                  font-family: var(--display); font-style: italic; font-size: 22px;
+                  color: var(--acc); }
+.cred-card h3 { font-family: var(--display); font-weight: 400; font-size: 22px;
+                 line-height: 1.2; }
+.cred-card h3 em { font-style: italic; color: var(--mute); font-weight: 300; font-size: 14px;
+                    display: block; margin-top: 4px; }
+.cred-card .role { font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+                    text-transform: uppercase; color: var(--acc); margin-top: 8px; }
+.cred-card q { font-family: var(--display); font-style: italic; font-weight: 300;
+                font-size: 17px; line-height: 1.45; color: var(--fg);
+                padding: 18px 0; border-top: 1px solid var(--line);
+                border-bottom: 1px solid var(--line); display: block;
+                quotes: none; text-wrap: pretty; }
+.cred-card q::before, .cred-card q::after { content: ""; }
+.cred-card .creds { display: flex; flex-wrap: wrap; gap: 6px; }
+.cred-card .creds span { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+                          text-transform: uppercase; color: var(--mute);
+                          padding: 4px 10px; border: 1px solid var(--line2); border-radius: 3px; }
+
+.cred-list { display: flex; flex-direction: column; gap: 0;
+             border-top: 1px solid var(--line); }
+.cred-list .row { display: grid; grid-template-columns: 36px 1fr auto;
+                  gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--line);
+                  align-items: center; }
+.cred-list .ic { width: 28px; height: 28px; border: 1px solid var(--acc);
+                  border-radius: 50%; display: grid; place-items: center;
+                  color: var(--acc); font-family: var(--mono); font-size: 11px; }
+.cred-list .nm { font-family: var(--display); font-size: 17px; font-weight: 400;
+                  line-height: 1.3; }
+.cred-list .nm em { font-style: italic; color: var(--acc); font-weight: 300; font-size: 13px;
+                     display: block; margin-top: 3px; }
+.cred-list .v { font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+                 text-transform: uppercase; color: var(--mute); }
+
+/* ---------------- EDUCATION — 5-card stack ---------------- */
+.edu-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+            border-top: 1px solid var(--line); }
+@media (max-width: 1200px) { .edu-grid { grid-template-columns: 1fr 1fr; } }
+.edu { padding: 36px 28px; border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        display: flex; flex-direction: column; gap: 16px; position: relative; }
+.edu:last-child { border-right: 0; }
+@media (max-width: 1200px) {
+  .edu:nth-child(2n) { border-right: 0; }
+  .edu:nth-last-child(-n+2) { border-bottom: 0; }
+}
+.edu .label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .22em;
+              text-transform: uppercase; color: var(--acc); }
+.edu h4 { font-family: var(--display); font-weight: 400; font-size: 22px;
+          line-height: 1.1; max-width: 14ch; }
+.edu h4 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.edu p { font-size: 14px; line-height: 1.55; color: var(--mute); }
+.edu ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.edu li { font-size: 13.5px; line-height: 1.5; padding-left: 18px; position: relative;
+          color: var(--fg); opacity: .82; }
+.edu li::before { content: "—"; position: absolute; left: 0; color: var(--acc);
+                   font-family: var(--mono); font-size: 12px; }
+.edu.warn { background: linear-gradient(180deg, transparent 0%, rgba(181,138,77,0.04) 100%); }
+.edu.warn .label { color: var(--warn); }
+.edu.warn li::before { color: var(--warn); }
+
+/* ---------------- EXPRESS vs PRECISION upsell ---------------- */
+.upsell { background: linear-gradient(135deg, #0F1116 0%, #1A2520 100%);
+          border: 1px solid var(--sec); border-radius: 6px; overflow: hidden;
+          display: grid; grid-template-columns: 1.4fr 1fr; }
+@media (max-width: 980px) { .upsell { grid-template-columns: 1fr; } }
+.upsell .l { padding: 56px; display: flex; flex-direction: column; gap: 22px;
+              border-right: 1px solid var(--line); }
+.upsell .label { font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+                  text-transform: uppercase; color: var(--acc);
+                  display: flex; align-items: center; gap: 12px; }
+.upsell .label::before { content: ""; width: 24px; height: 1px; background: var(--acc); }
+.upsell h3 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 3vw, 40px);
+              line-height: 1.05; max-width: 22ch; text-wrap: balance; }
+.upsell h3 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.upsell p { color: var(--fg); opacity: .82; max-width: 50ch; line-height: 1.55; }
+.upsell .r { padding: 56px; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+.upsell .feat { display: grid; grid-template-columns: 24px 1fr;
+                 gap: 14px; align-items: baseline; padding: 12px 0;
+                 border-bottom: 1px solid var(--line); }
+.upsell .feat:last-child { border-bottom: 0; }
+.upsell .feat::before { content: "+"; color: var(--acc); font-family: var(--mono);
+                         font-size: 16px; }
+.upsell .feat .nm { font-family: var(--display); font-size: 16px; font-weight: 400; }
+.upsell .feat .nm em { font-style: italic; color: var(--mute); font-size: 13px;
+                         display: block; margin-top: 2px; font-weight: 300; }
+
+/* ---------------- FAQ ---------------- */
+.faqs { border-top: 1px solid var(--line); }
+.faq { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; padding: 24px 0;
+                display: grid; grid-template-columns: 1fr 24px; gap: 24px;
+                align-items: center; font-family: var(--display); font-weight: 400;
+                font-size: 19px; line-height: 1.3; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary em { font-style: italic; color: var(--acc); font-weight: 300; }
+.faq summary .plus { width: 24px; height: 24px; position: relative; }
+.faq summary .plus::before, .faq summary .plus::after { content: ""; position: absolute;
+                                                         background: var(--fg);
+                                                         transition: transform .3s; }
+.faq summary .plus::before { left: 0; right: 0; top: 50%; height: 1px; transform: translateY(-50%); }
+.faq summary .plus::after  { top: 0; bottom: 0; left: 50%; width: 1px; transform: translateX(-50%); }
+.faq[open] summary .plus::after { transform: translateX(-50%) rotate(90deg); }
+.faq .a { padding: 0 0 24px 0; max-width: 70ch; color: var(--mute);
+          line-height: 1.6; font-size: 15px; }
+.faq .a strong { color: var(--fg); font-weight: 500; }
+
+/* ---------------- DISCLAIMER ---------------- */
+.disclaimer { background: #08090C; border-top: 1px solid var(--line);
+              padding: 56px 48px; }
+.disc-wrap { max-width: 900px; margin: 0 auto; display: grid;
+             grid-template-columns: auto 1fr; gap: 32px; align-items: start; }
+.disc-wrap .ic { width: 48px; height: 48px; border: 1px solid var(--line2);
+                  border-radius: 50%; display: grid; place-items: center;
+                  font-family: var(--mono); font-size: 12px; color: var(--mute);
+                  letter-spacing: .14em; }
+.disc-wrap p { font-size: 13.5px; line-height: 1.65; color: var(--mute); }
+.disc-wrap p + p { margin-top: 12px; }
+.disc-wrap .label { font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+                     text-transform: uppercase; color: var(--fg);
+                     margin-bottom: 8px; display: block; }
+
+/* ---------------- footer mini ---------------- */
+.footer-mini { padding: 32px 48px; display: flex; justify-content: space-between;
+               font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+               text-transform: uppercase; color: var(--mute); flex-wrap: wrap; gap: 16px; }
+.footer-mini b { color: var(--fg); }
+
+/* ============================================================
+   MOBILE PAGE
+   ============================================================ */
+.m-page { background: var(--bg); color: var(--fg); }
+.m-page .notice { padding: 10px 16px; font-size: 9.5px; gap: 12px; }
+.m-page .nav { padding: 16px; grid-template-columns: 1fr auto auto; gap: 8px; }
+.m-page .nav .c { display: none; }
+.m-page .nav .l { font-size: 18px; }
+.m-page .nav .r { gap: 10px; }
+.m-page .nav .r .btn-mini { padding: 7px 12px; font-size: 11px; }
+.m-page .crumbs { padding: 12px 16px; font-size: 9.5px; gap: 8px; }
+.m-page .hero { grid-template-columns: 1fr; }
+.m-page .hero-media { padding: 32px 20px; min-height: 320px; border-right: 0;
+                       border-bottom: 1px solid var(--line); }
+.m-page .vial svg { max-width: 200px; }
+.m-page .hero-info { padding: 28px 20px; gap: 20px; }
+.m-page .hero-info h1 { font-size: 32px; }
+.m-page .hero-positioning { font-size: 14.5px; padding: 14px 0; }
+.m-page .hero-positioning em { font-size: 15px; }
+.m-page .hero-meta { font-size: 10px; gap: 14px; }
+.m-page .select-mod { padding: 18px; gap: 16px; }
+.m-page .dose-grid { grid-template-columns: 1fr 1fr; }
+.m-page .cad { padding: 14px 16px; gap: 12px; }
+.m-page .cad .info .nm { font-size: 14.5px; }
+.m-page .cad .price { font-size: 18px; }
+.m-page .btn { padding: 14px 18px; font-size: 13px; }
+.m-page .section { padding: 56px 20px; }
+.m-page .section.tight { padding: 40px 20px; }
+.m-page .section-head { margin-bottom: 32px; }
+.m-page .section-head h2 { font-size: 28px; }
+.m-page .flow { grid-template-columns: 1fr; }
+.m-page .flow-step { border-right: 0; border-bottom: 1px solid var(--line); padding: 20px 16px; }
+.m-page .flow-step:last-child { border-bottom: 0; }
+.m-page .cred-grid { grid-template-columns: 1fr; gap: 24px; }
+.m-page .cred-card { padding: 24px; }
+.m-page .edu-grid { grid-template-columns: 1fr; }
+.m-page .edu { border-right: 0; padding: 24px 16px; }
+.m-page .edu:nth-last-child(-n+2) { border-bottom: 1px solid var(--line); }
+.m-page .edu:last-child { border-bottom: 0; }
+.m-page .upsell { grid-template-columns: 1fr; }
+.m-page .upsell .l, .m-page .upsell .r { padding: 28px 20px; border-right: 0; }
+.m-page .upsell .l { border-bottom: 1px solid var(--line); }
+.m-page .upsell h3 { font-size: 22px; }
+.m-page .faq summary { font-size: 15px; padding: 18px 0; }
+.m-page .faq .a { font-size: 13.5px; }
+.m-page .disclaimer { padding: 32px 20px; }
+.m-page .disc-wrap { grid-template-columns: 1fr; gap: 16px; }
+
+/* ============================================================
+   IMPLEMENTATION NOTES PANEL
+   ============================================================ */
+.impl { max-width: 1280px; margin: 0 auto; width: 100%;
+         background: #0B0D11; color: var(--fg);
+         border: 1px solid var(--line); border-radius: 4px; padding: 56px 64px; }
+.impl h2 { font-family: var(--display); font-weight: 400; font-size: 36px;
+            line-height: 1.05; max-width: 24ch; margin-bottom: 8px; }
+.impl h2 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.impl .lead { color: var(--mute); margin-bottom: 40px; max-width: 60ch; }
+.impl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+@media (max-width: 980px) { .impl-grid { grid-template-columns: 1fr; } }
+.impl-card { padding: 28px; border: 1px solid var(--line); border-radius: 4px;
+              background: rgba(236,230,216,0.02); }
+.impl-card h4 { font-family: var(--display); font-weight: 400; font-size: 18px;
+                 margin-bottom: 14px; display: flex; align-items: baseline; gap: 12px; }
+.impl-card h4 em { font-family: var(--mono); font-style: normal; font-size: 11px;
+                    letter-spacing: .18em; text-transform: uppercase; color: var(--acc); }
+.impl-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.impl-card li { display: grid; grid-template-columns: 18px 1fr; gap: 10px;
+                 font-size: 13.5px; line-height: 1.55; color: var(--fg); opacity: .85; }
+.impl-card li::before { content: "›"; color: var(--acc); font-family: var(--mono); }
+.impl-card code { font-family: var(--mono); font-size: 12px; color: var(--acc);
+                   background: rgba(201,163,94,0.08); padding: 2px 6px; border-radius: 3px; }
+.impl-card .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .18em;
+                   text-transform: uppercase; color: var(--mute);
+                   padding: 3px 8px; border: 1px solid var(--line2); border-radius: 999px; }
+
+/* ============================================================
+   TWEAKS (panel)
+   ============================================================ */
+.tw-trigger { position: fixed; top: 16px; right: 16px; z-index: 100;
+               background: var(--bg2); border: 1px solid var(--line2);
+               color: var(--fg); padding: 10px 14px; border-radius: 999px;
+               font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+               text-transform: uppercase; cursor: pointer; }
+.tw-trigger:hover { border-color: var(--acc); }
+
+#tweaks { position: fixed; top: 56px; right: 16px; z-index: 99;
+           background: var(--bg); border: 1px solid var(--acc);
+           color: var(--fg); padding: 22px; border-radius: 4px; min-width: 280px;
+           display: none; flex-direction: column; gap: 14px;
+           box-shadow: 0 30px 60px rgba(0,0,0,.55); }
+#tweaks.on { display: flex; }
+#tweaks h4 { font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+              text-transform: uppercase; color: var(--acc);
+              padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+#tweaks label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+                 text-transform: uppercase; color: var(--mute); display: block; margin-bottom: 6px; }
+#tweaks select, #tweaks button { width: 100%; padding: 10px 12px;
+                                  background: var(--bg2); border: 1px solid var(--line2);
+                                  color: var(--fg); border-radius: 3px;
+                                  font-family: var(--mono); font-size: 12px;
+                                  letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+#tweaks select:focus, #tweaks button:hover { border-color: var(--acc); outline: none; }
+</style>
+</head>
+
+<body>
+
+<button class="tw-trigger" id="tw-trigger">Tweaks</button>
+
+<div id="tweaks">
+  <h4>Tweaks</h4>
+  <div>
+    <label>Product example</label>
+    <select id="tw-product">
+      <option value="hair">Hair Restoration · Finasteride + Minoxidil</option>
+      <option value="ed">ED · Tadalafil</option>
+    </select>
+  </div>
+  <div>
+    <label>View</label>
+    <select id="tw-view">
+      <option value="all">All views</option>
+      <option value="desktop">Desktop only</option>
+      <option value="mobile">Mobile only</option>
+      <option value="impl">Notes only</option>
+    </select>
+  </div>
+  <div>
+    <label>Section to focus</label>
+    <select id="tw-section">
+      <option value="">— jump to —</option>
+      <option value="hero">Hero + selection</option>
+      <option value="how">How it works</option>
+      <option value="cred">Clinical credibility</option>
+      <option value="edu">Product education</option>
+      <option value="upsell">Express vs Precision</option>
+      <option value="faq">FAQ</option>
+      <option value="disc">Disclaimer</option>
+    </select>
+  </div>
+</div>
+
+<div class="canvas">
+
+  <!-- ============================================================
+       DESKTOP PAGE
+       ============================================================ -->
+  <div class="label-bar" data-view="desktop">
+    <span><b>Desktop</b> · 1440 × content</span>
+    <span>Adonis Product Page Template</span>
+    <span>WordPress + WooCommerce</span>
+  </div>
+
+  <article class="page" data-view="desktop" id="desktop-page">
+
+    <!-- top notice -->
+    <div class="notice">
+      <span><b>HIPAA</b> compliant</span>
+      <span><b>Florida-licensed</b> physicians</span>
+      <span>Free <b>discreet</b> shipping</span>
+      <span>Cancel <b>anytime</b></span>
+    </div>
+
+    <!-- nav -->
+    <nav class="nav">
+      <div class="l">A D O N I S</div>
+      <div class="c">
+        <a href="#" class="on">Treatments</a>
+        <a href="#">Science</a>
+        <a href="#">Physicians</a>
+        <a href="#">Standards</a>
+      </div>
+      <div class="r">
+        <span class="cart">Cart · <b>0</b></span>
+        <a class="btn-mini" href="#">Member login</a>
+      </div>
+    </nav>
+
+    <!-- breadcrumb -->
+    <div class="crumbs">
+      <a href="#">Treatments</a>
+      <span class="sep">/</span>
+      <a href="#" data-cat>Hair Restoration</a>
+      <span class="sep">/</span>
+      <span class="now" data-product-name>Finasteride 1mg + Minoxidil 5%</span>
+    </div>
+
+    <!-- ============================================================
+         1 · PRODUCT HERO + SELECTION
+         ============================================================ -->
+    <section class="hero" id="hero" data-section="hero">
+
+      <!-- left: media -->
+      <div class="hero-media">
+        <div class="grain"></div>
+        <div class="corner">
+          <span data-product-rx>RX · ORAL + TOPICAL</span>
+          <span>SKU · <b data-product-sku>AD-FNM-001</b></span>
+        </div>
+
+        <div class="vial">
+          <!-- prescription vial illustration -->
+          <svg viewBox="0 0 200 320" fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round">
+            <!-- cap -->
+            <rect x="56" y="20" width="88" height="36" rx="3" stroke="rgba(201,163,94,0.42)" fill="rgba(201,163,94,0.06)"/>
+            <line x1="56" y1="32" x2="144" y2="32" stroke="rgba(201,163,94,0.32)"/>
+            <line x1="56" y1="44" x2="144" y2="44" stroke="rgba(201,163,94,0.32)"/>
+            <!-- neck -->
+            <path d="M 64 56 L 64 72 L 56 78 L 56 92 L 144 92 L 144 78 L 136 72 L 136 56" stroke="rgba(236,230,216,0.45)" fill="rgba(236,230,216,0.04)"/>
+            <!-- body -->
+            <rect x="40" y="92" width="120" height="200" rx="4" stroke="rgba(236,230,216,0.5)" fill="rgba(236,230,216,0.03)"/>
+            <!-- liquid line -->
+            <line x1="40" y1="170" x2="160" y2="170" stroke="rgba(201,163,94,0.45)"/>
+            <line x1="40" y1="172" x2="160" y2="172" stroke="rgba(201,163,94,0.18)"/>
+            <!-- label area -->
+            <rect x="48" y="200" width="104" height="80" rx="2" stroke="rgba(236,230,216,0.18)" fill="rgba(236,230,216,0.04)"/>
+            <line x1="58" y1="218" x2="142" y2="218" stroke="rgba(236,230,216,0.18)"/>
+            <line x1="58" y1="232" x2="142" y2="232" stroke="rgba(236,230,216,0.18)"/>
+            <line x1="58" y1="246" x2="120" y2="246" stroke="rgba(236,230,216,0.18)"/>
+            <line x1="58" y1="260" x2="142" y2="260" stroke="rgba(236,230,216,0.12)"/>
+            <line x1="58" y1="270" x2="100" y2="270" stroke="rgba(236,230,216,0.12)"/>
+            <!-- corner reg mark -->
+            <text x="48" y="92" font-family="ui-monospace,monospace" font-size="6" fill="rgba(201,163,94,0.6)" letter-spacing=".15em">℞</text>
+          </svg>
+          <div class="vial-label">
+            <div class="rx" data-product-rx-line>RX · COMPOUNDED</div>
+            <div class="nm" data-product-name-display>Finasteride<br>+ Minoxidil</div>
+            <div class="ds" data-product-form>1mg / 5%</div>
+          </div>
+        </div>
+
+        <div class="hero-thumbs">
+          <div class="t on" data-l="01"></div>
+          <div class="t" data-l="02"></div>
+          <div class="t" data-l="03"></div>
+          <div class="t" data-l="04"></div>
+        </div>
+      </div>
+
+      <!-- right: info -->
+      <div class="hero-info">
+        <div class="hero-cat" data-product-cat>01 · Hair Restoration</div>
+
+        <h1 data-product-h1>Daily <em>protocol</em> for hair restoration.</h1>
+        <div class="formula" data-product-formula>C₂₃H₃₆N₂O₂ · C₉H₁₅N₅O · ORAL + TOPICAL</div>
+
+        <p class="hero-positioning" data-product-positioning>
+          A physician-reviewed combination of <em>finasteride 1mg</em> oral and
+          <em>minoxidil 5%</em> topical solution — the two molecules with the
+          strongest published evidence base for androgenetic alopecia, dispensed
+          and shipped only after a Florida-licensed provider clears your case.
+        </p>
+
+        <div class="hero-meta">
+          <span>Starts at <b data-product-price>$39<span style="font-family:var(--mono);font-size:11px">/mo</span></b></span>
+          <span data-product-supply><b>30-day</b> supply</span>
+          <span><b>Free</b> shipping</span>
+          <span><b>HSA / FSA</b></span>
+        </div>
+
+        <!-- selection module -->
+        <div class="select-mod" id="select-mod">
+
+          <!-- DOSE -->
+          <div class="sm-row">
+            <div class="sm-label">
+              <span data-product-dose-label>Formula &amp; dose</span>
+              <span class="help">Compare options →</span>
+            </div>
+            <div class="dose-grid" id="dose-grid">
+              <button class="dose on" data-dose-label="Topical only">
+                <span class="d" data-product-dose-1>Topical<em>only</em></span>
+                <span class="meta" data-product-dose-1-meta>Minoxidil 5%</span>
+              </button>
+              <button class="dose" data-dose-label="Oral only">
+                <span class="d" data-product-dose-2>Oral<em>only</em></span>
+                <span class="meta" data-product-dose-2-meta>Finasteride 1mg</span>
+              </button>
+              <button class="dose" data-dose-label="Combined">
+                <span class="d" data-product-dose-3>Combined<em>protocol</em></span>
+                <span class="meta" data-product-dose-3-meta>Most prescribed</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- CADENCE / SUBSCRIPTION -->
+          <div class="sm-row">
+            <div class="sm-label">
+              <span>Purchase cadence</span>
+              <span style="color:var(--mute)">Pause or cancel anytime</span>
+            </div>
+            <div class="cad-grid" id="cad-grid">
+              <div class="cad-wrap">
+                <div class="cad" data-cad="one">
+                  <div class="radio"></div>
+                  <div class="info">
+                    <div class="nm">One-time <em>purchase</em></div>
+                    <div class="sub" data-product-cad-1>30-day supply · ships once</div>
+                  </div>
+                  <div class="price" data-product-cad-1-price>$59<em>per shipment</em></div>
+                </div>
+              </div>
+              <div class="cad-wrap">
+                <span class="badge">Save 33%</span>
+                <div class="cad on" data-cad="bi">
+                  <div class="radio"></div>
+                  <div class="info">
+                    <div class="nm">Bi-monthly <em>subscription</em></div>
+                    <div class="sub" data-product-cad-2>60-day supply · ships every 2 months</div>
+                  </div>
+                  <div class="price" data-product-cad-2-price>
+                    $39<em>per month</em><s>$59</s>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- WHAT'S INCLUDED -->
+          <div class="included">
+            <h5>What's included</h5>
+            <ul data-product-included>
+              <li>Licensed-physician case review and prescription approval</li>
+              <li>Compounded by an FDA-registered 503A pharmacy partner</li>
+              <li>Discreet, unbranded shipping with tracking</li>
+              <li>Async messaging with your assigned provider, included</li>
+              <li>Quarterly progress check-ins, optional</li>
+            </ul>
+          </div>
+
+          <!-- CTAs -->
+          <div class="cta-stack">
+            <a class="btn primary" href="#">
+              <span>Start <em>online visit</em></span>
+              <span class="arr">→</span>
+            </a>
+            <a class="btn ghost" href="#">
+              <span>Compare <em>options</em></span>
+              <span class="arr">→</span>
+            </a>
+            <div class="reassure">
+              Licensed-provider review required before any prescription is approved.
+              Adonis does not auto-dispense medication.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3 · HOW IT WORKS — flow
+         ============================================================ -->
+    <section class="section" id="how" data-section="how">
+      <div class="section-head">
+        <div class="idx">02 · From cart to first shipment</div>
+        <h2>A WordPress checkout, a <em>real</em> physician review.</h2>
+        <p>Your purchase isn't your prescription. The cart starts the case;
+        a licensed provider clears it. Nothing ships until they sign.</p>
+      </div>
+      <div class="flow">
+        <div class="flow-step">
+          <span class="n">Step 01</span>
+          <div class="ico">a</div>
+          <h4>Choose your <em>treatment</em></h4>
+          <p>Select dose, formula, and supply cadence on this page.
+          Add-ons are optional, never auto-checked.</p>
+          <div class="stamp">~ <b>2 min</b> · WooCommerce</div>
+        </div>
+        <div class="flow-step">
+          <span class="n">Step 02</span>
+          <div class="ico">b</div>
+          <h4>Secure <em>checkout</em></h4>
+          <p>HIPAA-compliant Stripe payment with HSA/FSA accepted.
+          You're not charged the full month until approval.</p>
+          <div class="stamp">~ <b>2 min</b> · Stripe + WooCommerce</div>
+        </div>
+        <div class="flow-step">
+          <span class="n">Step 03</span>
+          <div class="ico">c</div>
+          <h4>Medical <em>questionnaire</em></h4>
+          <p>Conditional intake covering history, medications, allergies,
+          and red flags. Built specifically for this protocol.</p>
+          <div class="stamp">~ <b>5 min</b> · Encrypted intake</div>
+        </div>
+        <div class="flow-step">
+          <span class="n">Step 04</span>
+          <div class="ico">d</div>
+          <h4>Provider <em>review</em></h4>
+          <p>A Florida-licensed physician reads the case, asks
+          follow-ups if needed, and approves, modifies, or declines.</p>
+          <div class="stamp">Avg <b>18 hrs</b> · MD signature</div>
+        </div>
+        <div class="flow-step">
+          <span class="n">Step 05</span>
+          <div class="ico">e</div>
+          <h4>Pharmacy <em>ships</em></h4>
+          <p>If approved, an FDA-registered 503A/B partner pharmacy
+          dispenses and ships in unbranded packaging.</p>
+          <div class="stamp">In <b>3–5 days</b> · Tracked</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4 · CLINICAL CREDIBILITY
+         ============================================================ -->
+    <section class="section alt" id="cred" data-section="cred">
+      <div class="section-head">
+        <div class="idx">03 · The clinical layer</div>
+        <h2>Doctor-reviewed, on the <em>record</em>.</h2>
+        <p data-product-cred-lead>Hair-restoration protocols on Adonis are reviewed under the
+        oversight of a board-certified dermatologist with hair transplant
+        surgical training. Every case, every prescription.</p>
+      </div>
+
+      <div class="cred-grid">
+        <div class="cred-card">
+          <div class="top">
+            <div class="av" data-product-cred-initial>AR</div>
+            <div>
+              <h3 data-product-cred-name>Aisha Robinson, MD<em>Board-certified dermatology · Hair restoration surgical training</em></h3>
+              <div class="role" data-product-cred-role>Hair Lead · Reviews this protocol</div>
+            </div>
+          </div>
+          <q data-product-cred-quote>The most common mistake I see in retail telehealth is treating
+          androgenetic alopecia as a single phenotype. Two patients with
+          identical questionnaire answers can have very different
+          underlying drivers. Review matters.</q>
+          <div class="creds">
+            <span>FL #ME-179215</span>
+            <span>ABD</span>
+            <span>Penn Derm '15</span>
+            <span>Howard '10</span>
+            <span>ISHRS member</span>
+          </div>
+        </div>
+
+        <ul class="cred-list">
+          <li class="row">
+            <div class="ic">✓</div>
+            <div class="nm">Doctor-reviewed care<em>Every case, every shipment</em></div>
+            <div class="v">Required</div>
+          </li>
+          <li class="row" data-product-cred-extra>
+            <div class="ic">✓</div>
+            <div class="nm">Hair-transplant surgical oversight<em>For density, recession, and shedding work</em></div>
+            <div class="v">Adonis-only</div>
+          </li>
+          <li class="row">
+            <div class="ic">✓</div>
+            <div class="nm">Florida-licensed provider network<em>Board-certified MDs &amp; NPs</em></div>
+            <div class="v">FL only</div>
+          </li>
+          <li class="row">
+            <div class="ic">✓</div>
+            <div class="nm">FDA-registered 503A / 503B pharmacy<em>Compounded &amp; generic dispensing</em></div>
+            <div class="v">Partner</div>
+          </li>
+          <li class="row">
+            <div class="ic">✓</div>
+            <div class="nm">Prescribed only when clinically appropriate<em>Approval is not guaranteed</em></div>
+            <div class="v">Standard</div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5 · PRODUCT EDUCATION
+         ============================================================ -->
+    <section class="section" id="edu" data-section="edu">
+      <div class="section-head">
+        <div class="idx">04 · Product education</div>
+        <h2>What this <em>protocol</em> actually does.</h2>
+        <p>Read before you check out — these are the things our
+        physicians want every member to understand before starting.</p>
+      </div>
+      <div class="edu-grid">
+
+        <div class="edu">
+          <span class="label">Who it's for</span>
+          <h4>Best <em>candidates</em></h4>
+          <p data-product-edu-1-p>Men with mild-to-moderate androgenetic alopecia (Norwood I–IV)
+          who have at least 18 months of available follicles.</p>
+          <ul data-product-edu-1-list>
+            <li>Visible miniaturization at the crown or temples</li>
+            <li>No history of finasteride sensitivity</li>
+            <li>Realistic expectation of slowed loss + partial regrowth</li>
+          </ul>
+        </div>
+
+        <div class="edu">
+          <span class="label">How it works</span>
+          <h4>Mechanism, <em>plainly</em></h4>
+          <p data-product-edu-2-p>Finasteride blocks DHT conversion at the follicle; minoxidil
+          extends anagen phase and increases follicular blood flow.</p>
+          <ul data-product-edu-2-list>
+            <li>5α-reductase type II inhibition (oral)</li>
+            <li>Vasodilation + K+ channel opening (topical)</li>
+            <li>Complementary pathways, additive in trial data</li>
+          </ul>
+        </div>
+
+        <div class="edu">
+          <span class="label">What to expect</span>
+          <h4>Realistic <em>timeline</em></h4>
+          <p data-product-edu-3-p>Initial shedding is common in months 1–3. Visible density
+          changes typically begin around month 6 with continued use.</p>
+          <ul data-product-edu-3-list>
+            <li>Months 1–3 — shedding phase, expected</li>
+            <li>Months 4–6 — early density stabilization</li>
+            <li>Months 6–12 — measurable regrowth in responders</li>
+          </ul>
+        </div>
+
+        <div class="edu">
+          <span class="label">Safety considerations</span>
+          <h4>Known <em>tradeoffs</em></h4>
+          <p data-product-edu-4-p>The molecules are well-characterized; their side-effect
+          profile is too. Your physician will discuss these specifically.</p>
+          <ul data-product-edu-4-list>
+            <li>Possible sexual side effects (~2–4% in trials)</li>
+            <li>Topical irritation or scalp dryness</li>
+            <li>Not for use during pregnancy or nursing</li>
+          </ul>
+        </div>
+
+        <div class="edu warn">
+          <span class="label">When this isn't right</span>
+          <h4>Decline <em>criteria</em></h4>
+          <p data-product-edu-5-p>Adonis providers will decline approval when this protocol is
+          not appropriate. We'd rather say no than ship the wrong thing.</p>
+          <ul data-product-edu-5-list>
+            <li>Pregnancy, nursing, or planning conception</li>
+            <li>History of finasteride-related side effects</li>
+            <li>Non-androgenic causes (alopecia areata, scarring, telogen)</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6 · EXPRESS vs PRECISION upsell
+         ============================================================ -->
+    <section class="section tight" id="upsell" data-section="upsell">
+      <div class="upsell">
+        <div class="l">
+          <div class="label">A second path</div>
+          <h3>Not sure if <em>Express Care</em> is enough?</h3>
+          <p>Some members want their protocol grounded in their actual
+          biology — not the average response curve. <em style="font-style:italic;color:var(--acc)">Precision Care</em>
+          adds at-home labs, a comprehensive intake, and a 30-minute
+          physician video visit before any prescription is signed.</p>
+          <a class="btn" href="#" style="align-self: flex-start; margin-top: 8px;">
+            <span>Compare <em>Express vs Precision</em></span>
+            <span class="arr">→</span>
+          </a>
+        </div>
+        <div class="r">
+          <div class="feat"><span class="nm">At-home biomarker panel<em>8 hormone &amp; metabolic markers · DHT included</em></span></div>
+          <div class="feat"><span class="nm">Comprehensive intake<em>Full medical history + medication interactions</em></span></div>
+          <div class="feat"><span class="nm">Physician video visit<em>30 minutes, scheduled with your assigned MD</em></span></div>
+          <div class="feat"><span class="nm">Optional pharmacogenomics<em>CYP genotyping for personalized dosing</em></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7 · FAQ
+         ============================================================ -->
+    <section class="section" id="faq" data-section="faq">
+      <div class="section-head">
+        <div class="idx">05 · Before you check out</div>
+        <h2>Direct <em>answers</em>, before you order.</h2>
+      </div>
+      <div class="faqs">
+        <details class="faq" open>
+          <summary><span>How does <em>provider review</em> actually work?</span><span class="plus"></span></summary>
+          <div class="a">
+            After checkout you'll complete a medical questionnaire built for
+            this specific protocol. A Florida-licensed physician reads your
+            answers, your medication list, and any flags — then either
+            approves, requests follow-ups, modifies the prescription, or
+            declines. <strong>You are never auto-prescribed.</strong> Average
+            review time is 18 hours; expedited review is available.
+          </div>
+        </details>
+        <details class="faq">
+          <summary><span>What happens immediately <em>after checkout</em>?</span><span class="plus"></span></summary>
+          <div class="a">
+            You'll receive an email with a link to your medical
+            questionnaire and your member portal. We hold the full
+            charge until your provider has cleared the case. If your
+            case is declined, your card is refunded automatically.
+          </div>
+        </details>
+        <details class="faq">
+          <summary><span>What if I'm <em>not approved</em>?</span><span class="plus"></span></summary>
+          <div class="a">
+            If a provider determines the protocol isn't appropriate for
+            you, you'll receive a written explanation and a full refund.
+            In some cases the provider will suggest an alternative
+            protocol or recommend the Precision Care path. There is no
+            charge for a declined case.
+          </div>
+        </details>
+        <details class="faq">
+          <summary><span>How do <em>subscriptions</em> work?</span><span class="plus"></span></summary>
+          <div class="a">
+            Subscriptions ship on the cadence you select (monthly or
+            bi-monthly). You can pause, modify dose, or cancel from your
+            member portal — no call, no retention pitch. Subscription
+            members are eligible for quarterly check-ins with their
+            provider, included.
+          </div>
+        </details>
+        <details class="faq">
+          <summary><span>When does the <em>medication ship</em>?</span><span class="plus"></span></summary>
+          <div class="a">
+            Medication ships only after provider approval. Typical
+            timeline is 3–5 business days from approval to your door for
+            generics, 5–7 for compounded protocols. All shipments are
+            unbranded with tracking and signature on request.
+          </div>
+        </details>
+        <details class="faq">
+          <summary><span>Are <em>results guaranteed</em>?</span><span class="plus"></span></summary>
+          <div class="a">
+            <strong>No.</strong> No reputable medical practice can
+            guarantee a clinical outcome, and we won't either. Response
+            varies based on biology, genetics, baseline severity, and
+            adherence. We track outcomes longitudinally and adjust your
+            protocol when the data calls for it.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8 · MEDICAL DISCLAIMER
+         ============================================================ -->
+    <div class="disclaimer" id="disc" data-section="disc">
+      <div class="disc-wrap">
+        <div class="ic">℞</div>
+        <div>
+          <span class="label">Medical disclaimer</span>
+          <p>Prescriptions are issued only when medically appropriate
+          after review by a licensed provider. Results vary by individual
+          biology, baseline severity, adherence, and medication
+          interactions. Any references to typical timelines or response
+          rates reflect published clinical-trial averages and are not a
+          guarantee of individual outcome.</p>
+          <p>Adonis does not auto-dispense medication. The purchase of
+          this product initiates a medical case; it does not constitute
+          a prescription. If your provider determines that this
+          treatment is not appropriate, your purchase is refunded in
+          full. Use of compounded medications carries additional
+          considerations your provider will discuss with you.</p>
+          <p style="font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--mute); margin-top:18px;">
+            Florida #PA-198142 · HIPAA · BAA-covered · 503A pharmacy partner
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer mini -->
+    <div class="footer-mini">
+      <span>© 2026 Adonis Health, P.A.</span>
+      <span><b>Florida</b>, first · 49 states pending</span>
+      <span>HSA / FSA · Stripe · WooCommerce</span>
+    </div>
+
+  </article>
+
+
+  <!-- ============================================================
+       MOBILE PAGE (replicated, condensed)
+       ============================================================ -->
+  <div class="label-bar" data-view="mobile">
+    <span><b>Mobile</b> · 390 × content</span>
+    <span>Same template, mobile-first stack</span>
+    <span>Same data attributes</span>
+  </div>
+
+  <article class="page page-mobile m-page" data-view="mobile" id="mobile-page">
+
+    <div class="notice">
+      <span><b>HIPAA</b> · <b>FL-licensed</b> MDs</span>
+    </div>
+
+    <nav class="nav">
+      <div class="l">A D O N I S</div>
+      <div class="c"></div>
+      <div class="r">
+        <span class="cart">Cart · <b>0</b></span>
+        <a class="btn-mini" href="#">Sign in</a>
+      </div>
+    </nav>
+
+    <div class="crumbs">
+      <a href="#" data-cat>Hair Restoration</a>
+      <span class="sep">/</span>
+      <span class="now" data-product-name>Finasteride 1mg + Minoxidil 5%</span>
+    </div>
+
+    <section class="hero">
+      <div class="hero-media">
+        <div class="grain"></div>
+        <div class="corner">
+          <span data-product-rx>RX · ORAL + TOPICAL</span>
+          <span>SKU · <b data-product-sku>AD-FNM-001</b></span>
+        </div>
+        <div class="vial">
+          <svg viewBox="0 0 200 320" fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round">
+            <rect x="56" y="20" width="88" height="36" rx="3" stroke="rgba(201,163,94,0.42)" fill="rgba(201,163,94,0.06)"/>
+            <line x1="56" y1="32" x2="144" y2="32" stroke="rgba(201,163,94,0.32)"/>
+            <line x1="56" y1="44" x2="144" y2="44" stroke="rgba(201,163,94,0.32)"/>
+            <path d="M 64 56 L 64 72 L 56 78 L 56 92 L 144 92 L 144 78 L 136 72 L 136 56" stroke="rgba(236,230,216,0.45)" fill="rgba(236,230,216,0.04)"/>
+            <rect x="40" y="92" width="120" height="200" rx="4" stroke="rgba(236,230,216,0.5)" fill="rgba(236,230,216,0.03)"/>
+            <line x1="40" y1="170" x2="160" y2="170" stroke="rgba(201,163,94,0.45)"/>
+            <rect x="48" y="200" width="104" height="80" rx="2" stroke="rgba(236,230,216,0.18)" fill="rgba(236,230,216,0.04)"/>
+            <line x1="58" y1="218" x2="142" y2="218" stroke="rgba(236,230,216,0.18)"/>
+            <line x1="58" y1="232" x2="142" y2="232" stroke="rgba(236,230,216,0.18)"/>
+            <line x1="58" y1="246" x2="120" y2="246" stroke="rgba(236,230,216,0.18)"/>
+          </svg>
+          <div class="vial-label">
+            <div class="rx" data-product-rx-line>RX · COMPOUNDED</div>
+            <div class="nm" data-product-name-display>Finasteride<br>+ Minoxidil</div>
+            <div class="ds" data-product-form>1mg / 5%</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-info">
+        <div class="hero-cat" data-product-cat>01 · Hair Restoration</div>
+        <h1 data-product-h1>Daily <em>protocol</em> for hair restoration.</h1>
+        <p class="hero-positioning" data-product-positioning>
+          A physician-reviewed combination of <em>finasteride 1mg</em> oral and
+          <em>minoxidil 5%</em> topical solution.
+        </p>
+        <div class="hero-meta">
+          <span>From <b data-product-price>$39<span style="font-family:var(--mono);font-size:10px">/mo</span></b></span>
+          <span><b>Free</b> ship</span>
+          <span><b>HSA/FSA</b></span>
+        </div>
+
+        <div class="select-mod">
+          <div class="sm-row">
+            <div class="sm-label"><span data-product-dose-label>Formula &amp; dose</span></div>
+            <div class="dose-grid">
+              <button class="dose"><span class="d" data-product-dose-1>Topical<em>only</em></span><span class="meta" data-product-dose-1-meta>Min. 5%</span></button>
+              <button class="dose"><span class="d" data-product-dose-2>Oral<em>only</em></span><span class="meta" data-product-dose-2-meta>Fin. 1mg</span></button>
+              <button class="dose on" style="grid-column: span 2"><span class="d" data-product-dose-3>Combined<em>protocol</em></span><span class="meta" data-product-dose-3-meta>Most prescribed</span></button>
+            </div>
+          </div>
+
+          <div class="sm-row">
+            <div class="sm-label"><span>Cadence</span></div>
+            <div class="cad-grid">
+              <div class="cad-wrap">
+                <div class="cad"><div class="radio"></div>
+                  <div class="info"><div class="nm">One-time</div><div class="sub" data-product-cad-1>30-day</div></div>
+                  <div class="price" data-product-cad-1-price>$59</div>
+                </div>
+              </div>
+              <div class="cad-wrap">
+                <span class="badge">−33%</span>
+                <div class="cad on"><div class="radio"></div>
+                  <div class="info"><div class="nm">Bi-monthly</div><div class="sub" data-product-cad-2>Every 2 months</div></div>
+                  <div class="price" data-product-cad-2-price>$39<em>/mo</em></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cta-stack">
+            <a class="btn primary" href="#"><span>Start <em>online visit</em></span><span class="arr">→</span></a>
+            <a class="btn ghost" href="#"><span>Compare options</span><span class="arr">→</span></a>
+            <div class="reassure">Licensed-provider review required.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="idx">02 · How it works</div>
+        <h2>Cart, <em>case</em>, ship.</h2>
+      </div>
+      <div class="flow">
+        <div class="flow-step"><span class="n">01</span><div class="ico">a</div><h4>Choose <em>treatment</em></h4><p>Dose, formula, cadence.</p></div>
+        <div class="flow-step"><span class="n">02</span><div class="ico">b</div><h4>Secure <em>checkout</em></h4><p>Charge held until approval.</p></div>
+        <div class="flow-step"><span class="n">03</span><div class="ico">c</div><h4>Medical <em>questionnaire</em></h4><p>~5 min, encrypted.</p></div>
+        <div class="flow-step"><span class="n">04</span><div class="ico">d</div><h4>Provider <em>review</em></h4><p>Avg 18 hrs · MD signature.</p></div>
+        <div class="flow-step"><span class="n">05</span><div class="ico">e</div><h4>Pharmacy <em>ships</em></h4><p>3–5 days · unbranded.</p></div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="section-head">
+        <div class="idx">03 · Clinical layer</div>
+        <h2>Doctor-reviewed, on the <em>record</em>.</h2>
+      </div>
+      <div class="cred-grid">
+        <div class="cred-card">
+          <div class="top">
+            <div class="av" data-product-cred-initial>AR</div>
+            <div>
+              <h3 data-product-cred-name>Aisha Robinson, MD<em>Dermatology · Hair restoration</em></h3>
+              <div class="role" data-product-cred-role>Reviews this protocol</div>
+            </div>
+          </div>
+          <q data-product-cred-quote>Two patients with identical questionnaire answers can have very different drivers. Review matters.</q>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="idx">04 · Education</div>
+        <h2>What this <em>protocol</em> does.</h2>
+      </div>
+      <div class="edu-grid">
+        <div class="edu"><span class="label">Who it's for</span><h4>Best <em>candidates</em></h4><p data-product-edu-1-p>Mild–moderate androgenetic alopecia with available follicles.</p></div>
+        <div class="edu"><span class="label">How it works</span><h4>Mechanism</h4><p data-product-edu-2-p>Blocks DHT (oral); extends anagen + blood flow (topical).</p></div>
+        <div class="edu"><span class="label">What to expect</span><h4>Timeline</h4><p data-product-edu-3-p>Months 1–3 shedding · 6–12 measurable response.</p></div>
+        <div class="edu"><span class="label">Safety</span><h4>Tradeoffs</h4><p data-product-edu-4-p>~2–4% sexual side effects · topical irritation possible.</p></div>
+        <div class="edu warn"><span class="label">Not for</span><h4>Decline <em>criteria</em></h4><p data-product-edu-5-p>Pregnancy · history of side effects · non-androgenic causes.</p></div>
+      </div>
+    </section>
+
+    <section class="section tight">
+      <div class="upsell">
+        <div class="l">
+          <div class="label">A second path</div>
+          <h3>Not sure if Express is <em>enough</em>?</h3>
+          <p>Precision Care adds labs, full intake, and a video visit.</p>
+          <a class="btn" href="#" style="align-self:flex-start"><span>Compare</span><span class="arr">→</span></a>
+        </div>
+        <div class="r">
+          <div class="feat"><span class="nm">Labs<em>8 biomarkers · DHT included</em></span></div>
+          <div class="feat"><span class="nm">Full intake<em>History + interactions</em></span></div>
+          <div class="feat"><span class="nm">Video visit<em>30 min · assigned MD</em></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="idx">05 · FAQ</div>
+        <h2>Direct <em>answers</em>.</h2>
+      </div>
+      <div class="faqs">
+        <details class="faq" open><summary><span>How does <em>review</em> work?</span><span class="plus"></span></summary><div class="a">A Florida-licensed physician reads your case and approves, modifies, or declines. <strong>Never auto-prescribed.</strong></div></details>
+        <details class="faq"><summary><span>What if <em>not approved</em>?</span><span class="plus"></span></summary><div class="a">Full refund + written explanation.</div></details>
+        <details class="faq"><summary><span>When does it <em>ship</em>?</span><span class="plus"></span></summary><div class="a">3–5 days from approval. Unbranded packaging.</div></details>
+        <details class="faq"><summary><span>Are results <em>guaranteed</em>?</span><span class="plus"></span></summary><div class="a"><strong>No.</strong> Response varies by biology and adherence.</div></details>
+      </div>
+    </section>
+
+    <div class="disclaimer">
+      <div class="disc-wrap">
+        <div class="ic">℞</div>
+        <div>
+          <span class="label">Disclaimer</span>
+          <p>Prescriptions issued only when medically appropriate after review by a licensed provider. Results vary.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-mini">
+      <span>© 2026 Adonis Health, P.A.</span>
+      <span>FL · WooCommerce</span>
+    </div>
+
+  </article>
+
+
+  <!-- ============================================================
+       IMPLEMENTATION NOTES
+       ============================================================ -->
+  <div class="label-bar" data-view="impl">
+    <span><b>Notes</b> · WordPress + WooCommerce</span>
+    <span>Reusable across treatment products</span>
+    <span>Map to existing post types &amp; ACF fields</span>
+  </div>
+
+  <div class="impl" data-view="impl">
+    <h2>Built on <em>WooCommerce</em>, without looking like it.</h2>
+    <p class="lead">Every section above is a reusable component. Below
+    is how each one maps to native WordPress + WooCommerce primitives,
+    with notes on where ACF / custom fields are needed.</p>
+
+    <div class="impl-grid">
+
+      <div class="impl-card">
+        <h4>1 · Product hero <em>WC core + ACF</em></h4>
+        <ul>
+          <li>Title — WC <code>post_title</code></li>
+          <li>Short clinical statement — <code>acf:positioning</code> (rich text, ~40 words)</li>
+          <li>Starting price — WC <code>_price</code> from variations, lowest active</li>
+          <li>One-time / bi-monthly — WooCommerce Subscriptions plugin, two variations sharing parent product</li>
+          <li>Vial illustration — SVG in <code>acf:hero_illustration</code> or featured image w/ overlay</li>
+          <li>Reassurance copy — global <code>acf:reassurance_text</code> (theme-options, not per-product)</li>
+        </ul>
+      </div>
+
+      <div class="impl-card">
+        <h4>2 · Selection module <em>WC variations</em></h4>
+        <ul>
+          <li>Dose options — <code>pa_dose</code> attribute, term per option</li>
+          <li>Cadence — <code>pa_cadence</code> attribute · "one-time" + "bi-monthly"</li>
+          <li>Subscription pricing — Subscriptions plugin, sign-up fee = $0, billing = every 2 months</li>
+          <li>"What's included" — <code>acf:included_items</code> (repeater, 3–6 rows)</li>
+          <li>Save-percent badge — calculated server-side, not hard-coded</li>
+        </ul>
+      </div>
+
+      <div class="impl-card">
+        <h4>3 · How it works <em>theme-options</em></h4>
+        <ul>
+          <li>Five steps are <strong>shared</strong> across all products → store in theme options, not per-product</li>
+          <li>Override per-product via <code>acf:flow_override</code> if a treatment has a non-standard step</li>
+          <li>Render with a single template part: <code>template-parts/product-flow.php</code></li>
+        </ul>
+      </div>
+
+      <div class="impl-card">
+        <h4>4 · Clinical credibility <em>CPT: physicians</em></h4>
+        <ul>
+          <li>Physicians are a custom post type (<code>physician</code>) with name, role, license, quote, image</li>
+          <li>Each product has <code>acf:reviewing_physician</code> (post-object field → physician post)</li>
+          <li>Compliance row — global theme options (HIPAA, 503A/B, FL licensure, etc.)</li>
+          <li>Lead paragraph — <code>acf:credibility_lead</code> (overrideable per product, e.g. "hair transplant surgical training" line)</li>
+        </ul>
+      </div>
+
+      <div class="impl-card">
+        <h4>5 · Product education <em>5 ACF blocks</em></h4>
+        <ul>
+          <li>Five fixed slots: who-its-for, how-it-works, what-to-expect, safety, decline-criteria</li>
+          <li>Each is a flexible-content block: <code>{ paragraph, bullet_list }</code></li>
+          <li>Decline-criteria block uses <code>warn</code> CSS modifier (orange tag)</li>
+          <li>If a slot is empty → render skipped, never blank card</li>
+        </ul>
+      </div>
+
+      <div class="impl-card">
+        <h4>6 · Express vs Precision upsell <em>shared partial</em></h4>
+        <ul>
+          <li>Static across all products — single <code>partials/upsell-precision.php</code></li>
+          <li>Toggleable per product via <code>acf:show_precision_upsell</code> (default: true)</li>
+          <li>Link target = a single CMS page (<code>/precision</code>), not a product</li>
+          <li>Precision is <strong>not a WooCommerce product</strong> — it's a service intake routed via Gravity Forms or similar</li>
+        </ul>
+      </div>
+
+      <div class="impl-card">
+        <h4>7 · FAQ <em>CPT: faq + taxonomy</em></h4>
+        <ul>
+          <li>FAQ is a custom post type tagged by <code>faq_topic</code> taxonomy</li>
+          <li>Six questions per page are pulled by topic (e.g. tax = <code>checkout-flow</code>)</li>
+          <li>Per-product overrides via <code>acf:additional_faqs</code> (relationship field)</li>
+          <li>Native <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> — accessible without JS</li>
+        </ul>
+      </div>
+
+      <div class="impl-card">
+        <h4>8 · Disclaimer + footer <em>theme-options</em></h4>
+        <ul>
+          <li>Disclaimer text is global, not per-product — <code>theme-options:medical_disclaimer</code></li>
+          <li>State licensure line auto-populated from <code>theme-options:licensed_states</code></li>
+          <li>Compliance footer (HIPAA, BAA, 503A, license #) — single source of truth</li>
+        </ul>
+      </div>
+
+      <div class="impl-card">
+        <h4>Order flow <em>WC + intake</em></h4>
+        <ul>
+          <li>WC checkout completes → order status: <code>on-hold</code> (not <code>processing</code>)</li>
+          <li>Order action triggers email with intake link (Gravity Forms / ManyContacts / custom)</li>
+          <li>Card is <strong>authorized only</strong> at checkout, captured on provider approval</li>
+          <li>Provider review system is <strong>external</strong> — Adonis does not build a custom prescribing platform; integrate Prescribery, MDLive partner, or comparable</li>
+          <li>On approval webhook → order moves to <code>processing</code>, pharmacy fulfills</li>
+          <li>On decline webhook → order moves to <code>refunded</code>, automatic</li>
+        </ul>
+      </div>
+
+      <div class="impl-card">
+        <h4>Compliance constraints <em>do-not</em></h4>
+        <ul>
+          <li>Never imply automatic approval — every CTA pairs with provider-review reassurance</li>
+          <li>Never imply guaranteed results — FAQ answers explicitly deny</li>
+          <li>Never imply instant prescriptions — flow shows ~18hr review window</li>
+          <li>Do not duplicate Prescribery's clinical workflow — defer to integration partner for the medical layer</li>
+          <li>State availability gated server-side via shipping address; UI shows "FL only" badge while expanding</li>
+        </ul>
+      </div>
+
+      <div class="impl-card">
+        <h4>Design tokens <em>shared</em></h4>
+        <ul>
+          <li>Inherited from Adonis design system v4.5 — graphite + warm ivory + bronze</li>
+          <li>Secondary green (<code>--sec: #2E4338</code>) reserved for upsell + clinical-layer accents only</li>
+          <li>One CTA color (<code>--acc: #C9A35E</code>) — never multiple gradient buttons</li>
+          <li>Editorial italic (<span style="font-family:var(--display); font-style:italic; color:var(--acc); font-weight:300;">Fraunces</span>) used for emphasis only, never as body copy</li>
+        </ul>
+      </div>
+
+      <div class="impl-card">
+        <h4>Reusability per product <em>fields needed</em></h4>
+        <ul>
+          <li><code>acf:positioning</code> — 1 paragraph</li>
+          <li><code>acf:dose_options</code> — repeater (3 rows × { label, sublabel, formula })</li>
+          <li><code>acf:reviewing_physician</code> — post-object</li>
+          <li><code>acf:credibility_lead</code> — 1 paragraph</li>
+          <li><code>acf:education_blocks</code> — flexible content (5 slots)</li>
+          <li><code>acf:additional_faqs</code> — relationship</li>
+          <li>Everything else is global / shared.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ============================================================
+   PRODUCT-DATA SWAP (Hair ↔ ED)
+   Drives every [data-product-*] node from a single object.
+   ============================================================ */
+const PRODUCTS = {
+  hair: {
+    rx:           'RX · ORAL + TOPICAL',
+    sku:          'AD-FNM-001',
+    catLabel:     'Hair Restoration',
+    cat:          '01 · Hair Restoration',
+    name:         'Finasteride 1mg + Minoxidil 5%',
+    h1:           'Daily <em>protocol</em> for hair restoration.',
+    nameDisplay:  'Finasteride<br>+ Minoxidil',
+    rxLine:       'RX · COMPOUNDED',
+    form:         '1mg / 5%',
+    formula:      'C₂₃H₃₆N₂O₂ · C₉H₁₅N₅O · ORAL + TOPICAL',
+    positioning:  'A physician-reviewed combination of <em>finasteride 1mg</em> oral and <em>minoxidil 5%</em> topical solution — the two molecules with the strongest published evidence base for androgenetic alopecia, dispensed and shipped only after a Florida-licensed provider clears your case.',
+    price:        '$39<span style="font-family:var(--mono);font-size:11px">/mo</span>',
+    supply:       '<b>30-day</b> supply',
+    doseLabel:    'Formula & dose',
+    dose1:        'Topical<em>only</em>',  dose1m: 'Minoxidil 5%',
+    dose2:        'Oral<em>only</em>',      dose2m: 'Finasteride 1mg',
+    dose3:        'Combined<em>protocol</em>', dose3m: 'Most prescribed',
+    cad1:         '30-day supply · ships once', cad1p: '$59<em>per shipment</em>',
+    cad2:         '60-day supply · ships every 2 months', cad2p: '$39<em>per month</em><s>$59</s>',
+    credInitial:  'AR',
+    credName:     'Aisha Robinson, MD<em>Board-certified dermatology · Hair restoration surgical training</em>',
+    credRole:     'Hair Lead · Reviews this protocol',
+    credQuote:    'The most common mistake I see in retail telehealth is treating androgenetic alopecia as a single phenotype. Two patients with identical questionnaire answers can have very different underlying drivers. Review matters.',
+    credLead:     'Hair-restoration protocols on Adonis are reviewed under the oversight of a board-certified dermatologist with hair transplant surgical training. Every case, every prescription.',
+    credExtra:    '<div class="ic">✓</div><div class="nm">Hair-transplant surgical oversight<em>For density, recession, and shedding work</em></div><div class="v">Adonis-only</div>',
+    edu1p:  'Men with mild-to-moderate androgenetic alopecia (Norwood I–IV) who have at least 18 months of available follicles.',
+    edu1l:  ['Visible miniaturization at the crown or temples','No history of finasteride sensitivity','Realistic expectation of slowed loss + partial regrowth'],
+    edu2p:  'Finasteride blocks DHT conversion at the follicle; minoxidil extends anagen phase and increases follicular blood flow.',
+    edu2l:  ['5α-reductase type II inhibition (oral)','Vasodilation + K+ channel opening (topical)','Complementary pathways, additive in trial data'],
+    edu3p:  'Initial shedding is common in months 1–3. Visible density changes typically begin around month 6 with continued use.',
+    edu3l:  ['Months 1–3 — shedding phase, expected','Months 4–6 — early density stabilization','Months 6–12 — measurable regrowth in responders'],
+    edu4p:  'The molecules are well-characterized; their side-effect profile is too. Your physician will discuss these specifically.',
+    edu4l:  ['Possible sexual side effects (~2–4% in trials)','Topical irritation or scalp dryness','Not for use during pregnancy or nursing'],
+    edu5p:  'Adonis providers will decline approval when this protocol is not appropriate. We\'d rather say no than ship the wrong thing.',
+    edu5l:  ['Pregnancy, nursing, or planning conception','History of finasteride-related side effects','Non-androgenic causes (alopecia areata, scarring, telogen)'],
+    included: ['Licensed-physician case review and prescription approval','Compounded by an FDA-registered 503A pharmacy partner','Discreet, unbranded shipping with tracking','Async messaging with your assigned provider, included','Quarterly progress check-ins, optional']
+  },
+
+  ed: {
+    rx:           'RX · ORAL · ON-DEMAND OR DAILY',
+    sku:          'AD-TAD-002',
+    catLabel:     'Sexual Wellness',
+    cat:          '02 · Sexual Wellness',
+    name:         'Tadalafil — daily or as-needed',
+    h1:           'Evidence-based <em>pharmacotherapy</em> for ED.',
+    nameDisplay:  'Tadalafil',
+    rxLine:       'RX · GENERIC',
+    form:         '2.5 / 5 / 10 mg',
+    formula:      'C₂₂H₁₉N₃O₄ · ORAL · PDE5 INHIBITOR',
+    positioning:  'A long-acting <em>PDE5 inhibitor</em> dosed for either continuous daily support or <em>as-needed</em> use — the same active molecule as Cialis, dispensed as a generic by an FDA-registered partner pharmacy after a Florida-licensed physician clears your case.',
+    price:        '$2<span style="font-family:var(--mono);font-size:11px">/dose</span>',
+    supply:       '<b>30-dose</b> supply',
+    doseLabel:    'Strength & schedule',
+    dose1:        'Daily<em>2.5 mg</em>',   dose1m: 'Continuous',
+    dose2:        'Daily<em>5 mg</em>',     dose2m: 'Standard daily',
+    dose3:        'On-demand<em>10 mg</em>', dose3m: 'As needed',
+    cad1:         '30-dose supply · ships once', cad1p: '$89<em>per shipment</em>',
+    cad2:         '60-dose supply · ships every 2 months', cad2p: '$59<em>per month</em><s>$89</s>',
+    credInitial:  'DK',
+    credName:     'David Khoury, MD<em>Board-certified internal medicine · Endocrinology &amp; men\'s health</em>',
+    credRole:     'Senior Physician · Reviews this protocol',
+    credQuote:    'Most ED has a measurable cause — vascular, hormonal, medication-mediated, or mixed. PDE5 inhibitors work, and they work better when we know what we\'re actually treating.',
+    credLead:     'Sexual-wellness protocols on Adonis are reviewed by board-certified physicians trained in men\'s health and endocrinology. We screen for cardiovascular and medication contraindications before any prescription is signed.',
+    credExtra:    '<div class="ic">✓</div><div class="nm">Cardiovascular &amp; nitrate screening<em>Required before approval</em></div><div class="v">Standard</div>',
+    edu1p:  'Adult men experiencing erectile dysfunction without contraindications to PDE5 inhibitors. Both situational and chronic patterns are appropriate candidates.',
+    edu1l:  ['No nitrate medication use','No severe cardiovascular disease','Stable on existing blood-pressure regimen'],
+    edu2p:  'Tadalafil inhibits PDE5, prolonging cGMP-mediated smooth muscle relaxation and improving blood flow to erectile tissue.',
+    edu2l:  ['Half-life ~17.5 hrs (longest of class)','Daily dosing maintains continuous effect','Effect is response to arousal, not automatic'],
+    edu3p:  'Onset typically 30–45 minutes for on-demand dosing. Daily dosing reaches steady state by day 5.',
+    edu3l:  ['On-demand: 30–45 min onset · ~36 hr window','Daily: full effect by day 5–7','Food and alcohol minimally affect tadalafil specifically'],
+    edu4p:  'Generally well-tolerated. Your physician will review your medication list for interactions before approval.',
+    edu4l:  ['Headache, flushing, nasal congestion most common','Back or muscle pain in some users','Rare priapism — seek care if erection >4 hrs'],
+    edu5p:  'Adonis providers will decline approval when this protocol is not appropriate or when ED warrants in-person evaluation.',
+    edu5l:  ['Concurrent nitrate use (absolute contraindication)','Severe cardiovascular disease or recent MI/stroke','Sudden ED onset suggesting vascular workup needed'],
+    included: ['Licensed-physician case review and prescription approval','Cardiovascular &amp; medication interaction screening','Generic tadalafil from an FDA-registered partner pharmacy','Discreet, unbranded shipping with tracking','Async messaging with your assigned provider, included']
+  }
+};
+
+function setProduct(p) {
+  const d = PRODUCTS[p];
+  if (!d) return;
+  const set = (sel, html) => document.querySelectorAll(sel).forEach(n => n.innerHTML = html);
+
+  set('[data-product-rx]', d.rx);
+  set('[data-product-sku]', d.sku);
+  set('[data-product-cat]', d.cat);
+  set('[data-cat]', d.catLabel);
+  set('[data-product-name]', d.name);
+  set('[data-product-name-display]', d.nameDisplay);
+  set('[data-product-rx-line]', d.rxLine);
+  set('[data-product-form]', d.form);
+  set('[data-product-formula]', d.formula);
+  set('[data-product-h1]', d.h1);
+  set('[data-product-positioning]', d.positioning);
+  set('[data-product-price]', d.price);
+  set('[data-product-supply]', d.supply);
+  set('[data-product-dose-label]', d.doseLabel);
+  set('[data-product-dose-1]',     d.dose1);
+  set('[data-product-dose-1-meta]',d.dose1m);
+  set('[data-product-dose-2]',     d.dose2);
+  set('[data-product-dose-2-meta]',d.dose2m);
+  set('[data-product-dose-3]',     d.dose3);
+  set('[data-product-dose-3-meta]',d.dose3m);
+  set('[data-product-cad-1]', d.cad1);
+  set('[data-product-cad-1-price]', d.cad1p);
+  set('[data-product-cad-2]', d.cad2);
+  set('[data-product-cad-2-price]', d.cad2p);
+  set('[data-product-cred-initial]', d.credInitial);
+  set('[data-product-cred-name]',    d.credName);
+  set('[data-product-cred-role]',    d.credRole);
+  set('[data-product-cred-quote]',   d.credQuote);
+  set('[data-product-cred-lead]',    d.credLead);
+  set('[data-product-cred-extra]',   d.credExtra);
+
+  set('[data-product-edu-1-p]', d.edu1p);
+  set('[data-product-edu-2-p]', d.edu2p);
+  set('[data-product-edu-3-p]', d.edu3p);
+  set('[data-product-edu-4-p]', d.edu4p);
+  set('[data-product-edu-5-p]', d.edu5p);
+
+  // bullet lists
+  const ul = (sel, items) => document.querySelectorAll(sel).forEach(node =>
+    node.innerHTML = items.map(i => '<li>' + i + '</li>').join(''));
+  ul('[data-product-edu-1-list]', d.edu1l);
+  ul('[data-product-edu-2-list]', d.edu2l);
+  ul('[data-product-edu-3-list]', d.edu3l);
+  ul('[data-product-edu-4-list]', d.edu4l);
+  ul('[data-product-edu-5-list]', d.edu5l);
+  ul('[data-product-included]',   d.included);
+}
+
+setProduct('hair');
+
+// Tweaks panel
+const tw = document.getElementById('tweaks');
+document.getElementById('tw-trigger').addEventListener('click', () => tw.classList.toggle('on'));
+document.getElementById('tw-product').addEventListener('change', e => setProduct(e.target.value));
+document.getElementById('tw-view').addEventListener('change', e => {
+  const v = e.target.value;
+  document.querySelectorAll('[data-view]').forEach(n => {
+    n.style.display = (v === 'all' || n.dataset.view === v) ? '' : 'none';
+  });
+});
+document.getElementById('tw-section').addEventListener('change', e => {
+  const id = e.target.value;
+  if (!id) return;
+  const node = document.getElementById(id);
+  if (node) node.scrollIntoView({block: 'start', behavior: 'smooth'});
+});
+
+// Dose pill toggle (visual only, both desktop + mobile)
+document.querySelectorAll('#dose-grid .dose, .m-page .dose-grid .dose').forEach(b => {
+  b.addEventListener('click', () => {
+    const grid = b.closest('.dose-grid');
+    grid.querySelectorAll('.dose').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+  });
+});
+// Cadence radio toggle
+document.querySelectorAll('#cad-grid .cad, .m-page .cad-grid .cad').forEach(b => {
+  b.addEventListener('click', () => {
+    const grid = b.closest('.cad-grid');
+    grid.querySelectorAll('.cad').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+  });
+});
+// FAQ details — let multiple stay open if user wants (no JS needed)
+</script>
+
+</body>
+</html>

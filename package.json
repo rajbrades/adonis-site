@@ -1,0 +1,9 @@
+{
+  "name": "adonis-handoff",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Design handoff + WP block theme scaffold for Adonis. Tooling-only package.json (zero dependencies).",
+  "scripts": {
+    "lint:copy": "node scripts/lint-banned-phrases.mjs"
+  }
+}

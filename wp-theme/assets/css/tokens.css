@@ -1,0 +1,86 @@
+/* Adonis design tokens — men (default/dark) + women (light).
+   Theme switch: toggle body.men / body.women. body.neutral falls back to men. */
+
+:root {
+  /* Men palette */
+  --m-bg:        #0F1116;
+  --m-bg2:       #181B22;
+  --m-fg:        #ECE6D8;
+  --m-mute:      #898577;
+  --m-line:      rgba(236, 230, 216, 0.10);
+  --m-line2:     rgba(236, 230, 216, 0.18);
+  --m-acc:       #C9A35E;
+  --m-acc2:      #C9A35E;
+  --m-acc-deep:  #8E7038;
+  --m-secondary: #5A2A2A;
+  --m-chart:     #B58A4D;
+
+  /* Women palette */
+  --w-bg:        #FBFAF7;
+  --w-bg2:       #F3F1EC;
+  --w-fg:        #1F1D1A;
+  --w-mute:      #7A736A;
+  --w-line:      rgba(31, 29, 26, 0.12);
+  --w-line2:     rgba(31, 29, 26, 0.22);
+  --w-acc:       #533673;
+  --w-acc2:      #533673;
+  --w-acc-deep:  #3C2655;
+
+  /* Type */
+  --display: "Fraunces", "Cormorant Garamond", Georgia, serif;
+  --sans:    "Inter Tight", system-ui, sans-serif;
+  --mono:    "JetBrains Mono", "IBM Plex Mono", "SF Mono", ui-monospace, monospace;
+
+  /* Radius */
+  --r-sm:   4px;
+  --r-md:   6px;
+  --r-lg:   12px;
+  --r-pill: 999px;
+
+  /* Layout */
+  --container-max: 1400px;
+  --gutter:        40px;
+  --gutter-mobile: 20px;
+
+  /* Default to men palette so :root alone renders correctly */
+  --bg:        var(--m-bg);
+  --bg2:       var(--m-bg2);
+  --fg:        var(--m-fg);
+  --mute:      var(--m-mute);
+  --line:      var(--m-line);
+  --line2:     var(--m-line2);
+  --acc:       var(--m-acc);
+  --acc2:      var(--m-acc2);
+  --acc-deep:  var(--m-acc-deep);
+  --secondary: var(--m-secondary);
+  --chart:     var(--m-chart);
+}
+
+body.men,
+body.neutral {
+  --bg:        var(--m-bg);
+  --bg2:       var(--m-bg2);
+  --fg:        var(--m-fg);
+  --mute:      var(--m-mute);
+  --line:      var(--m-line);
+  --line2:     var(--m-line2);
+  --acc:       var(--m-acc);
+  --acc2:      var(--m-acc2);
+  --acc-deep:  var(--m-acc-deep);
+  --secondary: var(--m-secondary);
+  --chart:     var(--m-chart);
+}
+
+body.women {
+  --bg:        var(--w-bg);
+  --bg2:       var(--w-bg2);
+  --fg:        var(--w-fg);
+  --mute:      var(--w-mute);
+  --line:      var(--w-line);
+  --line2:     var(--w-line2);
+  --acc:       var(--w-acc);
+  --acc2:      var(--w-acc2);
+  --acc-deep:  var(--w-acc-deep);
+  --secondary: var(--w-acc);
+  --chart:     var(--w-acc);
+}

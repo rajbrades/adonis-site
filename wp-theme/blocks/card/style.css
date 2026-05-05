@@ -1,0 +1,60 @@
+/* Adonis card — bg2 surface, hairline border, idx label header, Fraunces title. */
+
+.adonis-card {
+  background: var(--bg2);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color .25s, transform .25s;
+}
+.adonis-card:hover {
+  border-color: var(--line2);
+  transform: translateY(-1px);
+}
+
+.adonis-card--elevated {
+  background: var(--bg);
+  border-color: var(--line2);
+}
+
+.adonis-card__head {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.adonis-card__title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(24px, 2.4vw, 36px);
+  line-height: 1.05;
+  margin: 0;
+}
+
+.adonis-card__body {
+  color: var(--mute);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.adonis-card__body p { margin: 0 0 12px; }
+.adonis-card__body p:last-child { margin: 0; }
+
+.adonis-card__cta {
+  margin-top: auto;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.adonis-card__cta:hover { color: var(--acc); text-decoration: none; }
+
+@media (max-width: 720px) {
+  .adonis-card { padding: 24px; }
+}

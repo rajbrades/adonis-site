@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Adonis · Cart, Checkout, Handoff</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   ADONIS — CART + CHECKOUT + HANDOFF
+   v4.5 dark luxury tokens · graphite + warm ivory + bronze
+   secondary deep green for clinical reassurance.
+   ============================================================ */
+:root {
+  --display: "Fraunces", "Times New Roman", Georgia, serif;
+  --sans:    "Inter Tight", "Inter", system-ui, sans-serif;
+  --mono:    "JetBrains Mono", ui-monospace, monospace;
+
+  --bg:      #0F1116;
+  --bg2:     #181B22;
+  --bg3:     #1F232C;
+  --fg:      #ECE6D8;
+  --mute:    #898577;
+  --line:    rgba(236, 230, 216, 0.10);
+  --line2:   rgba(236, 230, 216, 0.18);
+  --line3:   rgba(236, 230, 216, 0.32);
+  --acc:     #C9A35E;
+  --acc-deep:#8E7038;
+  --acc-soft:rgba(201, 163, 94, 0.12);
+
+  --sec:     #2E4338;
+  --sec-deep:#1F2D24;
+  --sec-soft:rgba(46, 67, 56, 0.30);
+
+  --warn:    #B58A4D;
+  --good:    #6F8A6A;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #060709; color: var(--fg); }
+body { font-family: var(--sans); font-size: 16px; line-height: 1.5;
+       -webkit-font-smoothing: antialiased; min-height: 100vh; }
+button { font-family: inherit; }
+input, select, textarea { font-family: inherit; }
+
+/* ----- canvas ----- */
+.canvas { display: flex; flex-direction: column; gap: 80px;
+          padding: 64px 48px; background: #060709; }
+.label-bar { display: flex; align-items: center; gap: 18px;
+             font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+             text-transform: uppercase; color: var(--mute);
+             max-width: 1440px; margin: 0 auto; width: 100%; }
+.label-bar::before, .label-bar::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+.label-bar b { color: var(--fg); font-weight: 500; }
+
+/* page surface */
+.page { max-width: 1440px; margin: 0 auto; width: 100%;
+        background: var(--bg); color: var(--fg);
+        border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.page-mobile { max-width: 420px; margin: 0 auto; }
+
+/* ----- shared chrome (notice, nav, secure step bar) ----- */
+.notice { background: #08090C; border-bottom: 1px solid var(--line);
+          font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+          text-transform: uppercase; color: var(--mute);
+          display: flex; justify-content: center; gap: 32px;
+          padding: 12px 24px; flex-wrap: wrap; }
+.notice b { color: var(--fg); font-weight: 500; }
+
+.nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+       padding: 22px 48px; border-bottom: 1px solid var(--line); }
+.nav .l { font-family: var(--display); font-size: 26px; letter-spacing: .04em; }
+.nav .l em { font-style: italic; color: var(--acc); font-weight: 400; }
+.nav .c { font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+          text-transform: uppercase; color: var(--mute);
+          display: flex; gap: 18px; align-items: center; }
+.nav .c span { display: flex; align-items: center; gap: 8px; }
+.nav .c .lock::before { content: ""; width: 8px; height: 10px;
+                         border: 1px solid currentColor; border-radius: 2px;
+                         display: inline-block; vertical-align: -1px; margin-right: 4px;
+                         box-shadow: inset 0 -3px 0 var(--bg); }
+.nav .c .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--acc); }
+.nav .r { display: flex; gap: 14px; justify-content: flex-end; align-items: center;
+          font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+          text-transform: uppercase; color: var(--mute); }
+.nav .r b { color: var(--fg); font-weight: 500; }
+
+/* checkout step bar (top of checkout) */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr);
+         border-bottom: 1px solid var(--line); }
+.steps .step { padding: 18px 24px; border-right: 1px solid var(--line);
+               display: flex; align-items: center; gap: 14px; position: relative; }
+.steps .step:last-child { border-right: 0; }
+.steps .step .n { font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+                   width: 26px; height: 26px; border: 1px solid var(--line2);
+                   border-radius: 50%; display: grid; place-items: center;
+                   color: var(--mute); flex-shrink: 0; }
+.steps .step .t { font-family: var(--display); font-size: 16px; font-weight: 400; }
+.steps .step .t em { font-style: italic; font-size: 12px; color: var(--mute);
+                      font-weight: 300; display: block; margin-top: 1px;
+                      font-family: var(--mono); letter-spacing: .14em;
+                      text-transform: uppercase; }
+.steps .step.done { color: var(--mute); }
+.steps .step.done .n { border-color: var(--acc); color: var(--acc); }
+.steps .step.done .n::after { content: "✓"; }
+.steps .step.done .n b { display: none; }
+.steps .step.on { background: rgba(201,163,94,0.05); }
+.steps .step.on .n { border-color: var(--acc); color: var(--acc); background: var(--acc-soft); }
+.steps .step.on .t em { color: var(--acc); }
+
+/* ----- typography ----- */
+.h-display { font-family: var(--display); font-weight: 400; line-height: 1.04;
+             letter-spacing: -.018em; text-wrap: balance; }
+.h-display em { font-style: italic; color: var(--acc); font-weight: 300; }
+.h1 { font-size: clamp(40px, 4vw, 56px); }
+.h2 { font-size: clamp(30px, 2.6vw, 38px); }
+.h3 { font-size: 22px; }
+.eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+           text-transform: uppercase; color: var(--acc);
+           display: flex; align-items: center; gap: 12px; }
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--acc); }
+
+/* ----- buttons ----- */
+.btn { display: inline-flex; align-items: center; justify-content: space-between;
+       gap: 12px; padding: 18px 26px; font-family: var(--sans); font-size: 15px;
+       font-weight: 500; cursor: pointer; border: 1px solid var(--line2);
+       border-radius: 999px; transition: all .2s; color: var(--fg);
+       background: transparent; text-decoration: none; }
+.btn em { font-family: var(--display); font-style: italic; font-weight: 400; color: var(--acc); }
+.btn .arr { font-family: var(--mono); font-size: 14px; opacity: .72; }
+.btn:hover { border-color: var(--acc); }
+.btn.primary { background: var(--acc); color: #0F1014; border-color: var(--acc); }
+.btn.primary em { color: #0F1014; }
+.btn.primary:hover { background: #D6B26A; border-color: #D6B26A; }
+.btn.full { width: 100%; }
+.btn.lg { padding: 20px 28px; font-size: 16px; }
+.btn.sm { padding: 11px 16px; font-size: 13px; }
+
+/* ----- reassurance pill ----- */
+.reassure { font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+            text-transform: uppercase; color: var(--mute); line-height: 1.7;
+            display: flex; align-items: flex-start; gap: 10px;
+            padding: 14px 18px; background: rgba(236,230,216,0.03);
+            border: 1px solid var(--line); border-radius: 4px; }
+.reassure::before { content: ""; width: 6px; height: 6px; border-radius: 50%;
+                     background: var(--acc); margin-top: 6px; flex-shrink: 0; }
+.reassure.sec { border-color: var(--sec); background: var(--sec-soft); }
+.reassure.sec::before { background: var(--sec); }
+
+/* ============================================================
+   CART PAGE
+   ============================================================ */
+.cart-wrap { display: grid; grid-template-columns: 1.5fr 1fr; gap: 0;
+             border-top: 1px solid var(--line); }
+@media (max-width: 980px) { .cart-wrap { grid-template-columns: 1fr; } }
+
+.cart-l { padding: 56px 56px 56px 56px; border-right: 1px solid var(--line); }
+.cart-r { padding: 56px 48px; background: var(--bg2); }
+.cart-head { margin-bottom: 40px; }
+.cart-head h1 { margin-top: 14px; }
+.cart-head p { color: var(--mute); margin-top: 14px; max-width: 50ch; }
+
+/* line item */
+.line { display: grid; grid-template-columns: 90px 1fr auto; gap: 24px;
+        padding: 28px 0; border-top: 1px solid var(--line); }
+.line:first-child { border-top: 1px solid var(--line2); }
+.line:last-child { border-bottom: 1px solid var(--line); }
+.line .thumb { width: 90px; height: 90px; background: linear-gradient(165deg, #14171E 0%, #0B0D11 100%);
+               border: 1px solid var(--line2); border-radius: 4px;
+               display: grid; place-items: center; position: relative; overflow: hidden; }
+.line .thumb svg { width: 56px; height: auto; opacity: .9; }
+.line .thumb .rx { position: absolute; bottom: 6px; left: 6px;
+                    font-family: var(--mono); font-size: 8px; letter-spacing: .14em;
+                    color: var(--acc); }
+.line .info .top { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.line .info h3 { font-family: var(--display); font-weight: 400; font-size: 21px;
+                 line-height: 1.15; }
+.line .info h3 em { font-style: italic; color: var(--acc); font-weight: 300; font-size: 17px; }
+.line .info .formula { font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+                        text-transform: uppercase; color: var(--mute); margin-top: 6px; }
+.line .info .meta-row { display: flex; gap: 16px; margin-top: 10px;
+                         font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
+                         text-transform: uppercase; color: var(--mute); }
+.line .info .meta-row b { color: var(--fg); font-weight: 500; }
+
+.line .info .controls { margin-top: 16px; display: flex; gap: 16px;
+                         font-family: var(--sans); font-size: 13px; }
+.line .info .controls a { color: var(--mute); border-bottom: 1px solid var(--line2);
+                           padding-bottom: 1px; cursor: pointer; }
+.line .info .controls a:hover { color: var(--acc); border-color: var(--acc); }
+.line .info .controls a.danger:hover { color: var(--warn); border-color: var(--warn); }
+
+.line .price { text-align: right; }
+.line .price .amt { font-family: var(--display); font-size: 26px; font-weight: 400; }
+.line .price .per { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+                     text-transform: uppercase; color: var(--mute); margin-top: 4px; }
+.line .price s { display: block; color: var(--mute); font-size: 14px;
+                  margin-top: 4px; opacity: .65; }
+
+/* subscription toggle inside line */
+.sub-toggle { margin-top: 18px; padding: 14px 16px;
+              border: 1px solid var(--line2); border-radius: 4px;
+              display: grid; grid-template-columns: 1fr auto; gap: 14px;
+              align-items: center; background: rgba(201,163,94,0.04); }
+.sub-toggle.on { border-color: var(--acc); background: var(--acc-soft); }
+.sub-toggle .info .nm { font-family: var(--display); font-size: 15px; font-weight: 400; }
+.sub-toggle .info .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.sub-toggle .info .why { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em;
+                          text-transform: uppercase; color: var(--mute); margin-top: 4px; }
+.sub-toggle .switch { width: 40px; height: 22px; background: var(--bg3);
+                       border-radius: 999px; position: relative; cursor: pointer;
+                       border: 1px solid var(--line2); transition: all .2s; }
+.sub-toggle.on .switch { background: var(--acc); border-color: var(--acc); }
+.sub-toggle .switch::after { content: ""; width: 16px; height: 16px;
+                              background: var(--fg); border-radius: 50%;
+                              position: absolute; top: 2px; left: 2px;
+                              transition: transform .2s; }
+.sub-toggle.on .switch::after { transform: translateX(18px); background: #0F1014; }
+
+/* support / faq area inside cart */
+.cart-faq { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); }
+.cart-faq .eyebrow { margin-bottom: 18px; }
+.cart-faq details { border-bottom: 1px solid var(--line); }
+.cart-faq summary { list-style: none; cursor: pointer; padding: 18px 0;
+                     display: grid; grid-template-columns: 1fr 24px; gap: 24px;
+                     align-items: center; font-family: var(--display); font-weight: 400;
+                     font-size: 17px; line-height: 1.3; }
+.cart-faq summary::-webkit-details-marker { display: none; }
+.cart-faq summary em { font-style: italic; color: var(--acc); font-weight: 300; }
+.cart-faq summary .plus { width: 20px; height: 20px; position: relative; }
+.cart-faq summary .plus::before, .cart-faq summary .plus::after { content: ""; position: absolute; background: var(--fg); transition: transform .3s; }
+.cart-faq summary .plus::before { left: 0; right: 0; top: 50%; height: 1px; transform: translateY(-50%); }
+.cart-faq summary .plus::after  { top: 0; bottom: 0; left: 50%; width: 1px; transform: translateX(-50%); }
+.cart-faq details[open] summary .plus::after { transform: translateX(-50%) rotate(90deg); }
+.cart-faq .a { padding: 0 0 18px 0; max-width: 64ch; color: var(--mute);
+                line-height: 1.6; font-size: 14px; }
+.cart-faq .a strong { color: var(--fg); font-weight: 500; }
+
+/* CART R — summary + next steps */
+.summary { display: flex; flex-direction: column; gap: 22px; }
+.summary h3 { margin-bottom: 4px; }
+.sum-rows { display: flex; flex-direction: column; gap: 10px;
+            padding: 18px 0; border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line); }
+.sum-rows .row { display: flex; justify-content: space-between; align-items: baseline;
+                  font-size: 14px; }
+.sum-rows .row .l { color: var(--mute); }
+.sum-rows .row .v { font-family: var(--mono); font-size: 13px; letter-spacing: .04em;
+                     color: var(--fg); }
+.sum-rows .row .v.muted { color: var(--mute); }
+.sum-rows .row .v.savings { color: var(--good); }
+
+.sum-total { display: flex; justify-content: space-between; align-items: baseline;
+              padding: 14px 0; border-bottom: 1px solid var(--line2); }
+.sum-total .l { font-family: var(--display); font-size: 18px; }
+.sum-total .l em { font-family: var(--mono); font-size: 11px; font-style: normal;
+                    letter-spacing: .14em; text-transform: uppercase; color: var(--mute);
+                    display: block; margin-top: 3px; }
+.sum-total .v { font-family: var(--display); font-size: 36px; font-weight: 400; }
+.sum-total .v em { font-family: var(--mono); font-size: 11px; font-style: normal;
+                    letter-spacing: .14em; text-transform: uppercase; color: var(--acc);
+                    display: block; margin-top: 4px; text-align: right; }
+
+/* next steps strip in cart */
+.next-steps { margin-top: 28px; }
+.next-steps .eyebrow { margin-bottom: 18px; }
+.ns-list { display: flex; flex-direction: column; gap: 0; }
+.ns-item { display: grid; grid-template-columns: 36px 1fr; gap: 16px;
+            padding: 16px 0; border-bottom: 1px solid var(--line);
+            align-items: flex-start; position: relative; }
+.ns-item:last-child { border-bottom: 0; }
+.ns-item .n { width: 28px; height: 28px; border: 1px solid var(--line2);
+               border-radius: 50%; display: grid; place-items: center;
+               font-family: var(--mono); font-size: 11px; color: var(--mute);
+               background: var(--bg2); margin-top: 2px; }
+.ns-item.on .n { border-color: var(--acc); color: var(--acc); background: var(--acc-soft); }
+.ns-item .t { font-family: var(--display); font-size: 15px; font-weight: 400; line-height: 1.35; }
+.ns-item .t em { font-style: italic; color: var(--acc); font-weight: 300; }
+.ns-item .d { font-size: 12.5px; color: var(--mute); margin-top: 4px; line-height: 1.5; }
+.ns-item .stamp { font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+                   text-transform: uppercase; color: var(--mute); margin-top: 6px; }
+
+.cta-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
+.tertiary-link { font-family: var(--sans); font-size: 13px; color: var(--mute);
+                  text-align: center; padding: 6px; }
+.tertiary-link a { color: var(--mute); border-bottom: 1px solid var(--line2); }
+.tertiary-link a:hover { color: var(--acc); border-color: var(--acc); }
+
+/* ============================================================
+   CHECKOUT PAGE
+   ============================================================ */
+.co-wrap { display: grid; grid-template-columns: 1.4fr 1fr; gap: 0;
+           border-top: 1px solid var(--line); }
+@media (max-width: 980px) { .co-wrap { grid-template-columns: 1fr; } }
+.co-l { padding: 56px 56px 80px 56px; border-right: 1px solid var(--line); }
+.co-r { padding: 56px 48px; background: var(--bg2); position: relative; }
+.co-r .sticky { position: sticky; top: 24px; display: flex; flex-direction: column; gap: 22px; }
+
+/* form */
+.fset { margin-bottom: 48px; }
+.fset .eyebrow { margin-bottom: 14px; }
+.fset h2 { margin-bottom: 8px; font-size: 28px; }
+.fset .lead { color: var(--mute); margin-bottom: 24px; max-width: 56ch; font-size: 14.5px; }
+
+.field-grid { display: grid; gap: 14px; }
+.field-grid.two { grid-template-columns: 1fr 1fr; }
+.field-grid.three { grid-template-columns: 2fr 1fr 1fr; }
+@media (max-width: 600px) { .field-grid.two, .field-grid.three { grid-template-columns: 1fr; } }
+
+.field { display: flex; flex-direction: column; gap: 6px; position: relative; }
+.field label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em;
+                text-transform: uppercase; color: var(--mute); }
+.field label .req { color: var(--acc); margin-left: 4px; }
+.field input, .field select, .field textarea {
+  background: transparent; border: 1px solid var(--line2);
+  border-radius: 3px; padding: 14px 16px; color: var(--fg);
+  font-size: 15px; font-family: var(--sans); transition: all .2s;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; border-color: var(--acc); background: rgba(201,163,94,0.04);
+}
+.field input::placeholder { color: var(--mute); opacity: .55; }
+.field .help { font-size: 11.5px; color: var(--mute); }
+
+.field-checkbox { display: grid; grid-template-columns: 18px 1fr; gap: 12px;
+                   padding: 12px 0; align-items: flex-start; cursor: pointer; }
+.field-checkbox .box { width: 18px; height: 18px; border: 1.5px solid var(--line3);
+                        border-radius: 3px; position: relative; margin-top: 2px;
+                        transition: all .2s; flex-shrink: 0; }
+.field-checkbox.on .box { border-color: var(--acc); background: var(--acc); }
+.field-checkbox.on .box::after { content: "✓"; position: absolute; inset: 0;
+                                  display: grid; place-items: center;
+                                  color: #0F1014; font-size: 12px; font-weight: 600; }
+.field-checkbox .text { font-size: 13.5px; line-height: 1.5; color: var(--fg); }
+.field-checkbox .text em { color: var(--mute); font-style: normal; font-size: 12px;
+                            display: block; margin-top: 2px; }
+
+/* payment radio cards */
+.pay-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+@media (max-width: 600px) { .pay-grid { grid-template-columns: 1fr; } }
+.pay { padding: 18px 16px; border: 1px solid var(--line2); border-radius: 4px;
+        cursor: pointer; transition: all .2s;
+        display: flex; flex-direction: column; gap: 6px; align-items: center;
+        text-align: center; }
+.pay:hover { border-color: var(--line3); }
+.pay.on { border-color: var(--acc); background: var(--acc-soft); }
+.pay .nm { font-family: var(--display); font-size: 16px; font-weight: 400; }
+.pay .nm em { font-style: italic; color: var(--acc); font-size: 13px;
+               font-weight: 300; display: block; margin-top: 2px; }
+.pay .glyph { font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+               color: var(--mute); }
+.pay.on .glyph { color: var(--acc); }
+
+/* card field cluster */
+.card-cluster { padding: 22px; border: 1px solid var(--line2); border-radius: 4px;
+                background: rgba(236,230,216,0.02); display: grid; gap: 14px; }
+.card-cluster .field-grid.two { grid-template-columns: 1fr 1fr; }
+
+/* CO-R sidebar */
+.summary-card { background: var(--bg); border: 1px solid var(--line);
+                 border-radius: 4px; padding: 28px; }
+.summary-card .eyebrow { margin-bottom: 14px; }
+.summary-card h3 { margin-bottom: 18px; }
+
+.summary-line { display: grid; grid-template-columns: 56px 1fr auto; gap: 16px;
+                 padding: 16px 0; border-top: 1px solid var(--line);
+                 align-items: center; }
+.summary-line:first-of-type { border-top: 1px solid var(--line2); }
+.summary-line:last-of-type  { border-bottom: 1px solid var(--line); }
+.summary-line .thumb { width: 56px; height: 56px;
+                        background: linear-gradient(165deg, #14171E 0%, #0B0D11 100%);
+                        border: 1px solid var(--line2); border-radius: 3px;
+                        display: grid; place-items: center; }
+.summary-line .thumb svg { width: 32px; opacity: .9; }
+.summary-line .info .nm { font-family: var(--display); font-size: 15px; line-height: 1.2; }
+.summary-line .info .nm em { font-style: italic; color: var(--acc); font-weight: 300; font-size: 12px; }
+.summary-line .info .meta { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em;
+                             text-transform: uppercase; color: var(--mute); margin-top: 4px; }
+.summary-line .price { text-align: right; font-family: var(--display); font-size: 17px; }
+.summary-line .price em { font-family: var(--mono); font-size: 10px; font-style: normal;
+                           letter-spacing: .12em; text-transform: uppercase; color: var(--mute);
+                           display: block; margin-top: 2px; }
+
+/* prescribery handoff card (sec accent) */
+.handoff { padding: 24px; background: linear-gradient(135deg, transparent 0%, var(--sec-soft) 100%);
+            border: 1px solid var(--sec); border-radius: 4px;
+            display: flex; flex-direction: column; gap: 14px; }
+.handoff .label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .26em;
+                   text-transform: uppercase; color: var(--acc);
+                   display: flex; align-items: center; gap: 10px; }
+.handoff .label::before { content: ""; width: 6px; height: 6px; border-radius: 50%;
+                          background: var(--acc); }
+.handoff h4 { font-family: var(--display); font-size: 19px; line-height: 1.25; max-width: 24ch; }
+.handoff h4 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.handoff p { font-size: 13.5px; line-height: 1.55; color: var(--fg); opacity: .9; }
+.handoff .partner { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+                     text-transform: uppercase; color: var(--mute);
+                     padding-top: 12px; border-top: 1px dashed var(--line2); }
+.handoff .partner b { color: var(--fg); }
+
+/* ============================================================
+   THANK-YOU SCREEN
+   ============================================================ */
+.ty-wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0;
+           border-top: 1px solid var(--line); min-height: 720px; }
+@media (max-width: 980px) { .ty-wrap { grid-template-columns: 1fr; } }
+.ty-l { padding: 80px 64px; border-right: 1px solid var(--line);
+         display: flex; flex-direction: column; gap: 32px;
+         background: linear-gradient(165deg, #0F1116 0%, #14171E 100%); position: relative; overflow: hidden; }
+.ty-l::after { content: ""; position: absolute; inset: 0;
+               background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='.85' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+               opacity: .04; pointer-events: none; }
+.ty-l > * { position: relative; z-index: 1; }
+.ty-status { display: flex; align-items: center; gap: 16px;
+              font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+              text-transform: uppercase; color: var(--acc); }
+.ty-status .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--acc);
+                   box-shadow: 0 0 0 4px rgba(201,163,94,0.18); }
+.ty-l h1 { margin-top: 8px; }
+.ty-order { display: flex; flex-direction: column; gap: 4px;
+             padding: 18px 0; border-top: 1px solid var(--line);
+             border-bottom: 1px solid var(--line); }
+.ty-order .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: .22em;
+                  text-transform: uppercase; color: var(--mute); }
+.ty-order .num { font-family: var(--mono); font-size: 18px; letter-spacing: .14em; color: var(--fg); }
+.ty-order .det { font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+                  text-transform: uppercase; color: var(--mute); margin-top: 6px; }
+.ty-order .det b { color: var(--fg); }
+
+.ty-actions { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+
+/* right column — next steps */
+.ty-r { padding: 80px 56px; background: var(--bg2); display: flex; flex-direction: column; gap: 32px; }
+.ty-r h2 { margin-top: 6px; max-width: 18ch; }
+
+.ty-steps { display: flex; flex-direction: column; gap: 0;
+             border-top: 1px solid var(--line); }
+.ty-step { display: grid; grid-template-columns: 44px 1fr auto; gap: 18px;
+            padding: 22px 0; border-bottom: 1px solid var(--line);
+            align-items: center; }
+.ty-step .n { width: 36px; height: 36px; border: 1px solid var(--line2);
+               border-radius: 50%; display: grid; place-items: center;
+               font-family: var(--mono); font-size: 12px; color: var(--mute);
+               background: var(--bg); }
+.ty-step.done .n { border-color: var(--acc); color: var(--acc); background: var(--acc-soft); }
+.ty-step.done .n::after { content: "✓"; position: absolute; }
+.ty-step.done .n span { display: none; }
+.ty-step.now .n { border-color: var(--acc); color: var(--acc);
+                   background: var(--acc); }
+.ty-step.now .n span { color: #0F1014; font-weight: 600; }
+.ty-step .t { font-family: var(--display); font-size: 17px; font-weight: 400; line-height: 1.3; }
+.ty-step .t em { font-style: italic; color: var(--acc); font-weight: 300; }
+.ty-step .d { font-size: 13.5px; color: var(--mute); margin-top: 4px; line-height: 1.5; }
+.ty-step .stamp { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+                   text-transform: uppercase; color: var(--mute); white-space: nowrap; }
+.ty-step.now .stamp { color: var(--acc); }
+
+.ty-cta-card { padding: 28px; border: 1px solid var(--acc);
+                background: var(--acc-soft); border-radius: 4px;
+                display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
+.ty-cta-card h3 { font-family: var(--display); font-size: 20px; line-height: 1.2; }
+.ty-cta-card h3 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.ty-cta-card p { color: var(--fg); opacity: .88; font-size: 14px; line-height: 1.55; max-width: 44ch; }
+.ty-cta-card .partner { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+                         text-transform: uppercase; color: var(--mute); }
+
+/* ============================================================
+   MOBILE OVERRIDES (.m-page)
+   ============================================================ */
+.m-page .notice { padding: 10px 16px; font-size: 9.5px; gap: 12px; }
+.m-page .nav { padding: 14px 16px; grid-template-columns: 1fr auto; }
+.m-page .nav .c { display: none; }
+.m-page .nav .l { font-size: 18px; }
+.m-page .steps { grid-template-columns: 1fr 1fr; }
+.m-page .steps .step:nth-child(2) { border-right: 0; }
+.m-page .steps .step:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+.m-page .steps .step { padding: 12px 14px; gap: 10px; }
+.m-page .steps .step .t { font-size: 13px; }
+.m-page .steps .step .t em { font-size: 9.5px; }
+
+/* CART mobile */
+.m-page .cart-wrap { grid-template-columns: 1fr; }
+.m-page .cart-l, .m-page .cart-r { padding: 28px 18px; border-right: 0; }
+.m-page .cart-l { border-bottom: 1px solid var(--line); }
+.m-page .h1 { font-size: 30px; }
+.m-page .line { grid-template-columns: 70px 1fr; gap: 16px; padding: 20px 0; }
+.m-page .line .price { grid-column: 1 / -1; text-align: left;
+                        display: flex; align-items: baseline; gap: 12px;
+                        padding-top: 14px; border-top: 1px dashed var(--line2);
+                        margin-top: 14px; }
+.m-page .line .price .amt { font-size: 22px; }
+.m-page .line .price s { display: inline; margin-top: 0; margin-left: 4px; }
+.m-page .line .thumb { width: 70px; height: 70px; }
+.m-page .sub-toggle { padding: 12px 14px; }
+
+/* CHECKOUT mobile */
+.m-page .co-wrap { grid-template-columns: 1fr; }
+.m-page .co-l { padding: 24px 18px; border-right: 0;
+                 border-bottom: 1px solid var(--line); }
+.m-page .co-r { padding: 24px 18px; }
+.m-page .co-r .sticky { position: relative; top: 0; gap: 18px; }
+.m-page .field-grid.two, .m-page .field-grid.three { grid-template-columns: 1fr; }
+.m-page .pay-grid { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+.m-page .pay { padding: 14px 8px; }
+.m-page .pay .nm { font-size: 14px; }
+.m-page .pay .nm em { font-size: 11px; }
+.m-page .summary-card { padding: 20px; }
+.m-page .handoff { padding: 18px; }
+
+/* mobile sticky checkout bar (under CO-L for mobile order) */
+.m-page .mobile-sticky { position: sticky; bottom: 0;
+                          background: var(--bg); border-top: 1px solid var(--acc);
+                          padding: 14px 18px; display: flex; flex-direction: column; gap: 10px;
+                          z-index: 5; box-shadow: 0 -10px 30px rgba(0,0,0,0.4); }
+.m-page .mobile-sticky .row { display: flex; justify-content: space-between; align-items: baseline; }
+.m-page .mobile-sticky .row .lbl { font-family: var(--mono); font-size: 10.5px;
+                                     letter-spacing: .14em; text-transform: uppercase;
+                                     color: var(--mute); }
+.m-page .mobile-sticky .row .v { font-family: var(--display); font-size: 22px; }
+.m-page .mobile-sticky .trust { font-family: var(--mono); font-size: 9.5px;
+                                  letter-spacing: .14em; text-transform: uppercase;
+                                  color: var(--mute); text-align: center; padding-top: 4px;
+                                  border-top: 1px dashed var(--line); }
+.m-page .mobile-sticky .trust b { color: var(--fg); }
+
+/* THANK YOU mobile */
+.m-page .ty-wrap { grid-template-columns: 1fr; min-height: 0; }
+.m-page .ty-l, .m-page .ty-r { padding: 32px 20px; border-right: 0; }
+.m-page .ty-l { border-bottom: 1px solid var(--line); }
+.m-page .ty-step { grid-template-columns: 36px 1fr; padding: 18px 0; }
+.m-page .ty-step .stamp { grid-column: 2 / -1; padding-left: 0; }
+.m-page .ty-cta-card { padding: 22px; }
+
+/* ============================================================
+   IMPLEMENTATION NOTES
+   ============================================================ */
+.impl { max-width: 1280px; margin: 0 auto; width: 100%;
+         background: #0B0D11; color: var(--fg);
+         border: 1px solid var(--line); border-radius: 4px; padding: 56px 64px; }
+@media (max-width: 700px) { .impl { padding: 32px 24px; } }
+.impl h2 { font-family: var(--display); font-weight: 400; font-size: 36px;
+            line-height: 1.05; max-width: 26ch; margin-bottom: 8px; }
+.impl h2 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.impl .lead { color: var(--mute); margin-bottom: 40px; max-width: 60ch; }
+.impl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 980px) { .impl-grid { grid-template-columns: 1fr; } }
+.impl-card { padding: 28px; border: 1px solid var(--line); border-radius: 4px;
+              background: rgba(236,230,216,0.02); }
+.impl-card h4 { font-family: var(--display); font-weight: 400; font-size: 18px;
+                 margin-bottom: 14px; display: flex; align-items: baseline; gap: 12px; }
+.impl-card h4 em { font-family: var(--mono); font-style: normal; font-size: 11px;
+                    letter-spacing: .18em; text-transform: uppercase; color: var(--acc); }
+.impl-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.impl-card li { display: grid; grid-template-columns: 18px 1fr; gap: 10px;
+                 font-size: 13.5px; line-height: 1.55; color: var(--fg); opacity: .85; }
+.impl-card li::before { content: "›"; color: var(--acc); font-family: var(--mono); }
+.impl-card code { font-family: var(--mono); font-size: 12px; color: var(--acc);
+                   background: rgba(201,163,94,0.08); padding: 2px 6px; border-radius: 3px; }
+
+/* ============================================================
+   TWEAKS PANEL
+   ============================================================ */
+.tw-trigger { position: fixed; top: 16px; right: 16px; z-index: 100;
+               background: var(--bg2); border: 1px solid var(--line2);
+               color: var(--fg); padding: 10px 14px; border-radius: 999px;
+               font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+               text-transform: uppercase; cursor: pointer; }
+.tw-trigger:hover { border-color: var(--acc); }
+#tweaks { position: fixed; top: 56px; right: 16px; z-index: 99;
+           background: var(--bg); border: 1px solid var(--acc);
+           color: var(--fg); padding: 22px; border-radius: 4px; min-width: 280px;
+           display: none; flex-direction: column; gap: 14px;
+           box-shadow: 0 30px 60px rgba(0,0,0,.55); }
+#tweaks.on { display: flex; }
+#tweaks h4 { font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+              text-transform: uppercase; color: var(--acc);
+              padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+#tweaks label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+                 text-transform: uppercase; color: var(--mute); display: block; margin-bottom: 6px; }
+#tweaks select { width: 100%; padding: 10px 12px;
+                  background: var(--bg2); border: 1px solid var(--line2);
+                  color: var(--fg); border-radius: 3px;
+                  font-family: var(--mono); font-size: 12px;
+                  letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+#tweaks select:focus { border-color: var(--acc); outline: none; }
+</style>
+</head>
+<body>
+
+<button class="tw-trigger" id="tw-trigger">Tweaks</button>
+<div id="tweaks">
+  <h4>Tweaks</h4>
+  <div>
+    <label>Product example</label>
+    <select id="tw-product">
+      <option value="hair">Hair · Finasteride + Minoxidil</option>
+      <option value="ed">ED · Tadalafil</option>
+    </select>
+  </div>
+  <div>
+    <label>View</label>
+    <select id="tw-view">
+      <option value="all">All views</option>
+      <option value="cart-d">Cart · desktop</option>
+      <option value="cart-m">Cart · mobile</option>
+      <option value="co-d">Checkout · desktop</option>
+      <option value="co-m">Checkout · mobile</option>
+      <option value="ty">Thank-you</option>
+      <option value="impl">Notes only</option>
+    </select>
+  </div>
+</div>
+
+<div class="canvas">
+
+<!-- ============================================================
+     1 · CART · DESKTOP
+     ============================================================ -->
+<div class="label-bar" data-view="cart-d">
+  <span><b>Cart</b> · desktop · 1440</span>
+  <span>WooCommerce <code style="font-family:var(--mono);color:var(--fg)">/cart</code></span>
+  <span>Editable line item · subscription toggle · next-steps preview</span>
+</div>
+
+<article class="page" data-view="cart-d" id="cart-desktop">
+  <div class="notice">
+    <span><b>HIPAA</b> compliant</span>
+    <span><b>Florida-licensed</b> physicians</span>
+    <span>Free <b>discreet</b> shipping</span>
+    <span>Cancel <b>anytime</b></span>
+  </div>
+  <nav class="nav">
+    <div class="l">A D O N I S</div>
+    <div class="c">
+      <span class="lock">Secure cart</span>
+      <span><span class="dot"></span> Encrypted · TLS 1.3</span>
+    </div>
+    <div class="r">Order #<b data-order-num>—</b> · Held until provider review</div>
+  </nav>
+
+  <div class="cart-wrap">
+
+    <!-- LEFT: line items + faq -->
+    <div class="cart-l">
+      <div class="cart-head">
+        <div class="eyebrow">01 · Your cart</div>
+        <h1 class="h-display h1">Review your <em>protocol</em>.</h1>
+        <p>Subscription is optional. Most members choose bi-monthly delivery
+        to stay consistent and avoid refill gaps — but you can switch at any
+        time from your member portal.</p>
+      </div>
+
+      <!-- LINE ITEM -->
+      <div class="line">
+        <div class="thumb">
+          <svg viewBox="0 0 60 96" fill="none" stroke="currentColor" stroke-width="0.6" stroke-linecap="round" style="color:var(--acc)">
+            <rect x="18" y="6" width="24" height="10" rx="1.5" stroke="rgba(201,163,94,0.5)" fill="rgba(201,163,94,0.06)"/>
+            <path d="M 22 16 V 22 L 18 24 V 28 H 42 V 24 L 38 22 V 16" stroke="rgba(236,230,216,0.5)" fill="rgba(236,230,216,0.04)"/>
+            <rect x="14" y="28" width="32" height="60" rx="1.5" stroke="rgba(236,230,216,0.55)" fill="rgba(236,230,216,0.04)"/>
+            <line x1="14" y1="50" x2="46" y2="50" stroke="rgba(201,163,94,0.5)"/>
+            <rect x="18" y="60" width="24" height="22" rx="1" stroke="rgba(236,230,216,0.2)"/>
+            <line x1="20" y1="66" x2="40" y2="66" stroke="rgba(236,230,216,0.18)"/>
+            <line x1="20" y1="72" x2="40" y2="72" stroke="rgba(236,230,216,0.18)"/>
+            <line x1="20" y1="78" x2="34" y2="78" stroke="rgba(236,230,216,0.12)"/>
+          </svg>
+          <span class="rx" data-product-rx-mark>℞ FNM</span>
+        </div>
+        <div class="info">
+          <div class="top">
+            <h3 data-product-h3>Finasteride 1mg <em>+</em> Minoxidil 5%</h3>
+          </div>
+          <div class="formula" data-product-formula>C₂₃H₃₆N₂O₂ · C₉H₁₅N₅O · ORAL + TOPICAL</div>
+          <div class="meta-row">
+            <span><b data-product-supply>60-day</b> supply</span>
+            <span><b data-product-cadence>Ships every 2 months</b></span>
+            <span data-product-dose-line><b>Combined</b> protocol</span>
+          </div>
+
+          <!-- subscription toggle -->
+          <div class="sub-toggle on" id="sub-toggle">
+            <div class="info">
+              <div class="nm">Bi-monthly <em>subscription</em></div>
+              <div class="why">Most chosen · save vs one-time · pause anytime</div>
+            </div>
+            <div class="switch"></div>
+          </div>
+
+          <div class="controls">
+            <a>Edit dose</a>
+            <a>Switch to one-time</a>
+            <a class="danger">Remove from cart</a>
+          </div>
+        </div>
+        <div class="price">
+          <div class="amt" data-product-price>$78</div>
+          <div class="per" data-product-per>per shipment · $39/mo</div>
+          <s data-product-strikethrough>$118 if one-time</s>
+        </div>
+      </div>
+
+      <!-- support FAQ -->
+      <div class="cart-faq">
+        <div class="eyebrow">Quick answers</div>
+        <details open>
+          <summary><span>What happens <em>after checkout</em>?</span><span class="plus"></span></summary>
+          <div class="a">You'll be sent to a secure medical questionnaire (~5 minutes). A Florida-licensed physician reads your case and either approves, modifies, or declines your prescription. <strong>Your card is authorized at checkout but not charged in full until provider approval.</strong></div>
+        </details>
+        <details>
+          <summary><span>What if I'm <em>not approved</em>?</span><span class="plus"></span></summary>
+          <div class="a">If a provider determines this protocol isn't appropriate for you, you'll receive a written explanation and your card is automatically released — there is no charge for a declined case. In some cases the provider may suggest an alternative.</div>
+        </details>
+        <details>
+          <summary><span>When does <em>medication ship</em>?</span><span class="plus"></span></summary>
+          <div class="a">Generic prescriptions typically ship within 3–5 business days of provider approval; compounded protocols 5–7. All shipments are unbranded with tracking, signature on request.</div>
+        </details>
+      </div>
+    </div>
+
+    <!-- RIGHT: summary + next steps -->
+    <div class="cart-r">
+      <div class="summary">
+        <div class="eyebrow">02 · Order summary</div>
+        <h3 class="h-display h3">Today's <em>order</em>.</h3>
+
+        <div class="sum-rows">
+          <div class="row"><span class="l">Subtotal · 1 protocol</span><span class="v" data-product-price>$78.00</span></div>
+          <div class="row"><span class="l">Subscription savings (33%)</span><span class="v savings" data-product-savings>−$40.00</span></div>
+          <div class="row"><span class="l">Estimated shipping</span><span class="v">Free</span></div>
+          <div class="row"><span class="l">Estimated tax</span><span class="v muted">Calculated at checkout</span></div>
+        </div>
+
+        <div class="sum-total">
+          <div class="l">Total today<em>Authorized · charged on approval</em></div>
+          <div class="v" data-product-price>$78<em>per shipment</em></div>
+        </div>
+
+        <div class="reassure sec">
+          Licensed-provider review is required before any prescription is approved or shipped.
+          If your treatment is not clinically appropriate, your order will not be fulfilled.
+        </div>
+
+        <div class="cta-stack">
+          <a class="btn primary lg full" href="#">
+            <span>Continue to <em>checkout</em></span><span class="arr">→</span>
+          </a>
+          <a class="btn full" href="#"><span>Keep <em>shopping</em></span><span class="arr">→</span></a>
+          <div class="tertiary-link">Have a code? <a>Apply discount</a></div>
+        </div>
+      </div>
+
+      <div class="next-steps">
+        <div class="eyebrow">After this</div>
+        <div class="ns-list">
+          <div class="ns-item on">
+            <div class="n">1</div>
+            <div>
+              <div class="t">Complete <em>checkout</em></div>
+              <div class="d">Contact, shipping, payment. Card authorized only.</div>
+              <div class="stamp">Now · 2 min</div>
+            </div>
+          </div>
+          <div class="ns-item">
+            <div class="n">2</div>
+            <div>
+              <div class="t">Secure medical <em>questionnaire</em></div>
+              <div class="d">Conditional intake covering history, medications, red flags.</div>
+              <div class="stamp">Right after · ~5 min</div>
+            </div>
+          </div>
+          <div class="ns-item">
+            <div class="n">3</div>
+            <div>
+              <div class="t">Licensed-provider <em>review</em></div>
+              <div class="d">A Florida-licensed physician reviews your case.</div>
+              <div class="stamp">Avg 18 hrs · MD signature</div>
+            </div>
+          </div>
+          <div class="ns-item">
+            <div class="n">4</div>
+            <div>
+              <div class="t">Pharmacy <em>fulfillment</em></div>
+              <div class="d">If approved, FDA-registered partner pharmacy dispenses and ships.</div>
+              <div class="stamp">3–5 days · unbranded</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<!-- ============================================================
+     2 · CART · MOBILE
+     ============================================================ -->
+<div class="label-bar" data-view="cart-m">
+  <span><b>Cart</b> · mobile · 390</span>
+  <span>Stacked summary + next steps</span>
+</div>
+<article class="page page-mobile m-page" data-view="cart-m">
+  <div class="notice"><span><b>HIPAA</b> · <b>FL-licensed</b> MDs</span></div>
+  <nav class="nav">
+    <div class="l">A D O N I S</div>
+    <div class="r">Order held<br><b data-order-num>—</b></div>
+  </nav>
+  <div class="cart-wrap">
+    <div class="cart-l">
+      <div class="cart-head">
+        <div class="eyebrow">01 · Cart</div>
+        <h1 class="h-display h1">Review your <em>protocol</em>.</h1>
+      </div>
+
+      <div class="line">
+        <div class="thumb">
+          <svg viewBox="0 0 60 96" fill="none" stroke="currentColor" stroke-width="0.6" stroke-linecap="round" style="color:var(--acc)">
+            <rect x="18" y="6" width="24" height="10" rx="1.5" stroke="rgba(201,163,94,0.5)" fill="rgba(201,163,94,0.06)"/>
+            <path d="M 22 16 V 22 L 18 24 V 28 H 42 V 24 L 38 22 V 16" stroke="rgba(236,230,216,0.5)" fill="rgba(236,230,216,0.04)"/>
+            <rect x="14" y="28" width="32" height="60" rx="1.5" stroke="rgba(236,230,216,0.55)" fill="rgba(236,230,216,0.04)"/>
+            <line x1="14" y1="50" x2="46" y2="50" stroke="rgba(201,163,94,0.5)"/>
+          </svg>
+          <span class="rx" data-product-rx-mark>℞ FNM</span>
+        </div>
+        <div class="info">
+          <h3 data-product-h3>Finasteride 1mg <em>+</em> Minoxidil 5%</h3>
+          <div class="formula" data-product-formula>ORAL + TOPICAL</div>
+          <div class="meta-row">
+            <span><b data-product-supply>60-day</b></span>
+            <span><b data-product-cadence>Bi-monthly</b></span>
+          </div>
+          <div class="sub-toggle on">
+            <div class="info">
+              <div class="nm">Bi-monthly <em>subscription</em></div>
+              <div class="why">Save 33% · pause anytime</div>
+            </div>
+            <div class="switch"></div>
+          </div>
+          <div class="controls">
+            <a>Edit dose</a>
+            <a class="danger">Remove</a>
+          </div>
+        </div>
+        <div class="price">
+          <div class="amt" data-product-price>$78</div>
+          <div class="per" data-product-per>per shipment</div>
+          <s data-product-strikethrough>$118 one-time</s>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-r">
+      <div class="summary">
+        <div class="eyebrow">Order summary</div>
+        <div class="sum-rows">
+          <div class="row"><span class="l">Subtotal</span><span class="v" data-product-price>$78.00</span></div>
+          <div class="row"><span class="l">Subscription −33%</span><span class="v savings" data-product-savings>−$40.00</span></div>
+          <div class="row"><span class="l">Shipping</span><span class="v">Free</span></div>
+          <div class="row"><span class="l">Tax</span><span class="v muted">At checkout</span></div>
+        </div>
+        <div class="sum-total">
+          <div class="l">Total<em>Charged on approval</em></div>
+          <div class="v" data-product-price>$78</div>
+        </div>
+        <div class="reassure sec">
+          Provider review required before any Rx is approved.
+        </div>
+        <div class="cta-stack">
+          <a class="btn primary full" href="#"><span>Continue to <em>checkout</em></span><span class="arr">→</span></a>
+        </div>
+
+        <div class="next-steps">
+          <div class="eyebrow">After this</div>
+          <div class="ns-list">
+            <div class="ns-item on"><div class="n">1</div><div><div class="t">Checkout</div><div class="stamp">Now · 2 min</div></div></div>
+            <div class="ns-item"><div class="n">2</div><div><div class="t">Questionnaire</div><div class="stamp">~5 min</div></div></div>
+            <div class="ns-item"><div class="n">3</div><div><div class="t">Provider review</div><div class="stamp">Avg 18 hrs</div></div></div>
+            <div class="ns-item"><div class="n">4</div><div><div class="t">Pharmacy ships</div><div class="stamp">3–5 days</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================
+     3 · CHECKOUT · DESKTOP
+     ============================================================ -->
+<div class="label-bar" data-view="co-d">
+  <span><b>Checkout</b> · desktop · 1440</span>
+  <span>WooCommerce <code style="font-family:var(--mono);color:var(--fg)">/checkout</code></span>
+  <span>Sticky summary · Stripe payment · provider-review reassurance</span>
+</div>
+
+<article class="page" data-view="co-d" id="checkout-desktop">
+  <div class="notice">
+    <span><b>HIPAA</b> compliant</span>
+    <span>TLS 1.3 · <b>Stripe-secured</b></span>
+    <span>Card authorized · charged on approval</span>
+  </div>
+  <nav class="nav">
+    <div class="l">A D O N I S</div>
+    <div class="c">
+      <span class="lock">Secure checkout</span>
+      <span><span class="dot"></span> Doctor-reviewed care</span>
+      <span><span class="dot"></span> Rx only if clinically appropriate</span>
+    </div>
+    <div class="r">Order #<b data-order-num>—</b></div>
+  </nav>
+
+  <!-- step bar -->
+  <div class="steps">
+    <div class="step done"><div class="n">1</div><div class="t">Cart<em>Reviewed</em></div></div>
+    <div class="step on"><div class="n">2</div><div class="t">Secure checkout<em>You are here</em></div></div>
+    <div class="step"><div class="n">3</div><div class="t">Medical questionnaire<em>~5 min · next</em></div></div>
+    <div class="step"><div class="n">4</div><div class="t">Provider review<em>Avg 18 hrs</em></div></div>
+  </div>
+
+  <div class="co-wrap">
+
+    <!-- LEFT: form -->
+    <div class="co-l">
+
+      <header style="margin-bottom: 40px;">
+        <div class="eyebrow">A premium checkout</div>
+        <h1 class="h-display h1" style="margin-top:14px;">Secure <em>checkout</em>.</h1>
+        <p style="color:var(--mute); margin-top:14px; max-width:54ch;">
+          Your card is authorized at checkout but not charged in full
+          until a licensed provider has approved your case. If your
+          treatment isn't clinically appropriate, your authorization is
+          released automatically — no charge.
+        </p>
+      </header>
+
+      <!-- 1 · contact -->
+      <div class="fset">
+        <div class="eyebrow">01 · Contact</div>
+        <h2 class="h-display h2">Where to <em>reach</em> you.</h2>
+        <p class="lead">We'll send your questionnaire link, provider updates, and tracking here. We never share or sell your information.</p>
+        <div class="field-grid">
+          <div class="field">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" placeholder="you@domain.com" value="">
+            <div class="help">Used as your member login.</div>
+          </div>
+          <div class="field-grid two">
+            <div class="field"><label>First name <span class="req">*</span></label><input type="text" placeholder="As on photo ID"></div>
+            <div class="field"><label>Last name <span class="req">*</span></label><input type="text" placeholder=""></div>
+          </div>
+          <div class="field-grid two">
+            <div class="field"><label>Date of birth <span class="req">*</span></label><input type="text" placeholder="MM / DD / YYYY"></div>
+            <div class="field"><label>Mobile (for Rx updates)</label><input type="tel" placeholder="(305) 000-0000"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 · shipping -->
+      <div class="fset">
+        <div class="eyebrow">02 · Shipping</div>
+        <h2 class="h-display h2">Where to <em>ship</em> if approved.</h2>
+        <p class="lead">All shipments arrive in unbranded packaging. Florida-only at launch; we'll show eligible states automatically.</p>
+        <div class="field-grid">
+          <div class="field"><label>Street address <span class="req">*</span></label><input type="text" placeholder="123 Brickell Ave."></div>
+          <div class="field"><label>Apt / Suite</label><input type="text" placeholder="Apt 1204"></div>
+          <div class="field-grid three">
+            <div class="field"><label>City <span class="req">*</span></label><input type="text" placeholder="Miami"></div>
+            <div class="field"><label>State <span class="req">*</span></label>
+              <select><option>FL — Florida</option><option disabled>Other states pending</option></select>
+            </div>
+            <div class="field"><label>ZIP <span class="req">*</span></label><input type="text" placeholder="33131"></div>
+          </div>
+          <div class="field-checkbox on" data-cb><div class="box"></div>
+            <div class="text">Billing address is the same as shipping<em>Uncheck to enter a separate billing address</em></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 · payment -->
+      <div class="fset">
+        <div class="eyebrow">03 · Payment</div>
+        <h2 class="h-display h2">How you'd like to <em>pay</em>.</h2>
+        <p class="lead">Card authorized today, captured only on provider approval. HSA / FSA accepted at no extra cost.</p>
+
+        <div class="pay-grid">
+          <div class="pay on" data-pay><div class="nm">Card<em>Visa · MC · Amex</em></div><div class="glyph">VISA · MC · AMEX</div></div>
+          <div class="pay" data-pay><div class="nm">HSA / FSA<em>Health spending</em></div><div class="glyph">FSA · HSA</div></div>
+          <div class="pay" data-pay><div class="nm">Apple Pay<em>One-tap</em></div><div class="glyph"></div></div>
+        </div>
+
+        <div class="card-cluster">
+          <div class="field">
+            <label>Card number <span class="req">*</span></label>
+            <input type="text" placeholder="1234 1234 1234 1234">
+          </div>
+          <div class="field-grid two">
+            <div class="field"><label>Expiry <span class="req">*</span></label><input type="text" placeholder="MM / YY"></div>
+            <div class="field"><label>CVC <span class="req">*</span></label><input type="text" placeholder="•••"></div>
+          </div>
+          <div class="field"><label>Name on card</label><input type="text" placeholder=""></div>
+        </div>
+
+        <div style="margin-top: 22px; display:flex; flex-direction: column; gap: 12px;">
+          <div class="field-checkbox on" data-cb><div class="box"></div>
+            <div class="text">I understand my order is <strong>reviewed by a licensed provider</strong>, and medication is prescribed and fulfilled only when clinically appropriate.</div>
+          </div>
+          <div class="field-checkbox on" data-cb><div class="box"></div>
+            <div class="text">I agree to the Adonis <a style="color:var(--acc); border-bottom:1px solid var(--acc-soft);">Terms</a>, <a style="color:var(--acc); border-bottom:1px solid var(--acc-soft);">Privacy Policy</a>, and <a style="color:var(--acc); border-bottom:1px solid var(--acc-soft);">Telehealth Consent</a>.</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 28px;">
+          <a class="btn primary lg full" href="#thankyou-desktop">
+            <span>Place order &amp; <em>start online visit</em></span><span class="arr">→</span>
+          </a>
+          <div class="reassure" style="margin-top: 12px;">
+            Card authorized · charged only after provider approval ·
+            Powered by <b style="color:var(--fg)">Stripe</b>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: sticky summary -->
+    <div class="co-r">
+      <div class="sticky">
+        <div class="summary-card">
+          <div class="eyebrow">Order summary</div>
+          <h3 class="h-display h3">Today's <em>order</em>.</h3>
+
+          <div class="summary-line">
+            <div class="thumb">
+              <svg viewBox="0 0 60 96" fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" style="color:var(--acc)">
+                <rect x="18" y="6" width="24" height="10" rx="1.5" stroke="rgba(201,163,94,0.5)" fill="rgba(201,163,94,0.06)"/>
+                <rect x="14" y="28" width="32" height="60" rx="1.5" stroke="rgba(236,230,216,0.55)" fill="rgba(236,230,216,0.04)"/>
+                <line x1="14" y1="50" x2="46" y2="50" stroke="rgba(201,163,94,0.5)"/>
+              </svg>
+            </div>
+            <div class="info">
+              <div class="nm" data-product-summary-nm>Finasteride 1mg <em>+</em> Min. 5%</div>
+              <div class="meta"><span data-product-cadence>Bi-monthly</span> · <span data-product-supply>60-day</span></div>
+            </div>
+            <div class="price" data-product-price>$78<em>per shipment</em></div>
+          </div>
+
+          <div class="sum-rows" style="border-bottom:0; padding-bottom: 4px;">
+            <div class="row"><span class="l">Subscription savings</span><span class="v savings" data-product-savings>−$40.00</span></div>
+            <div class="row"><span class="l">Shipping</span><span class="v">Free</span></div>
+            <div class="row"><span class="l">Tax (FL)</span><span class="v muted" data-product-tax>$5.46</span></div>
+          </div>
+
+          <div class="sum-total">
+            <div class="l">Total today<em>Authorized only</em></div>
+            <div class="v" data-product-total>$83.46<em>USD</em></div>
+          </div>
+        </div>
+
+        <!-- Prescribery handoff -->
+        <div class="handoff">
+          <span class="label">After checkout</span>
+          <h4>You'll complete a secure <em>medical questionnaire</em>.</h4>
+          <p>After checkout, you'll complete a secure medical
+          questionnaire powered by our clinical workflow partner. A
+          licensed provider will review your information before any
+          prescription is approved or shipped.</p>
+          <div class="partner">Powered by <b>Prescribery</b> · HIPAA · BAA-covered</div>
+        </div>
+
+        <div class="reassure sec">
+          Your order is reviewed by a licensed provider.
+          Medication is prescribed and fulfilled only when clinically appropriate.
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================
+     4 · CHECKOUT · MOBILE
+     ============================================================ -->
+<div class="label-bar" data-view="co-m">
+  <span><b>Checkout</b> · mobile · 390</span>
+  <span>Sticky bottom CTA · trust copy near button</span>
+</div>
+
+<article class="page page-mobile m-page" data-view="co-m">
+  <div class="notice"><span><b>HIPAA</b> · TLS 1.3 · Stripe</span></div>
+  <nav class="nav">
+    <div class="l">A D O N I S</div>
+    <div class="r">#<b data-order-num>—</b></div>
+  </nav>
+  <div class="steps">
+    <div class="step done"><div class="n">1</div><div class="t">Cart<em>Done</em></div></div>
+    <div class="step on"><div class="n">2</div><div class="t">Checkout<em>You are here</em></div></div>
+    <div class="step"><div class="n">3</div><div class="t">Questionnaire<em>~5 min</em></div></div>
+    <div class="step"><div class="n">4</div><div class="t">Review<em>Avg 18 hrs</em></div></div>
+  </div>
+
+  <div class="co-wrap">
+    <div class="co-l">
+      <header style="margin-bottom: 24px;">
+        <div class="eyebrow">Secure checkout</div>
+        <h1 class="h-display h1" style="margin-top:10px;">Secure <em>checkout</em>.</h1>
+      </header>
+
+      <!-- compact summary at top of mobile -->
+      <div class="summary-card" style="margin-bottom: 24px;">
+        <div class="summary-line" style="border-top:0; padding-top:0;">
+          <div class="thumb">
+            <svg viewBox="0 0 60 96" fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" style="color:var(--acc)">
+              <rect x="14" y="28" width="32" height="60" rx="1.5" stroke="rgba(236,230,216,0.55)" fill="rgba(236,230,216,0.04)"/>
+              <line x1="14" y1="50" x2="46" y2="50" stroke="rgba(201,163,94,0.5)"/>
+            </svg>
+          </div>
+          <div class="info">
+            <div class="nm" data-product-summary-nm>Finasteride <em>+</em> Min.</div>
+            <div class="meta"><span data-product-cadence>Bi-monthly</span> · <span data-product-supply>60-day</span></div>
+          </div>
+          <div class="price" data-product-price>$78</div>
+        </div>
+      </div>
+
+      <div class="fset">
+        <div class="eyebrow">01 · Contact</div>
+        <h2 class="h-display h2" style="font-size:22px;">Where to <em>reach</em> you.</h2>
+        <div class="field-grid">
+          <div class="field"><label>Email</label><input type="email" placeholder="you@domain.com"></div>
+          <div class="field"><label>First name</label><input type="text"></div>
+          <div class="field"><label>Last name</label><input type="text"></div>
+          <div class="field"><label>Date of birth</label><input type="text" placeholder="MM / DD / YYYY"></div>
+        </div>
+      </div>
+
+      <div class="fset">
+        <div class="eyebrow">02 · Shipping</div>
+        <h2 class="h-display h2" style="font-size:22px;">Where to <em>ship</em>.</h2>
+        <div class="field-grid">
+          <div class="field"><label>Street</label><input type="text"></div>
+          <div class="field"><label>City</label><input type="text"></div>
+          <div class="field"><label>State</label><select><option>FL</option></select></div>
+          <div class="field"><label>ZIP</label><input type="text"></div>
+        </div>
+      </div>
+
+      <div class="fset" style="margin-bottom: 16px;">
+        <div class="eyebrow">03 · Payment</div>
+        <h2 class="h-display h2" style="font-size:22px;">How you'd like to <em>pay</em>.</h2>
+        <div class="pay-grid">
+          <div class="pay on" data-pay><div class="nm">Card</div></div>
+          <div class="pay" data-pay><div class="nm">HSA/FSA</div></div>
+          <div class="pay" data-pay><div class="nm">Apple Pay</div></div>
+        </div>
+        <div class="card-cluster">
+          <div class="field"><label>Card</label><input type="text" placeholder="1234 1234 1234 1234"></div>
+          <div class="field-grid two">
+            <div class="field"><label>MM/YY</label><input type="text"></div>
+            <div class="field"><label>CVC</label><input type="text"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- handoff card on mobile, before sticky CTA -->
+      <div class="handoff" style="margin-top: 8px;">
+        <span class="label">After checkout</span>
+        <h4>Secure <em>medical questionnaire</em>, then provider review.</h4>
+        <p>A licensed provider reviews your case before any Rx is approved or shipped.</p>
+        <div class="partner">Powered by <b>Prescribery</b> · HIPAA</div>
+      </div>
+    </div>
+
+    <!-- mobile sticky bottom CTA -->
+    <div class="mobile-sticky">
+      <div class="row">
+        <span class="lbl">Total today · authorized only</span>
+        <span class="v" data-product-total>$83.46</span>
+      </div>
+      <a class="btn primary full" href="#thankyou-mobile"><span>Place order &amp; <em>start visit</em></span><span class="arr">→</span></a>
+      <div class="trust">Card <b>authorized</b> · charged on <b>provider approval</b> · <b>Stripe</b></div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================
+     5 · THANK YOU / HANDOFF · DESKTOP + MOBILE PAIR
+     ============================================================ -->
+<div class="label-bar" data-view="ty">
+  <span><b>Thank-you</b> · handoff to questionnaire</span>
+  <span>Provider review next · 18 hr SLA</span>
+  <span>Card authorized only — visible to user</span>
+</div>
+
+<article class="page" data-view="ty" id="thankyou-desktop">
+  <div class="notice">
+    <span><b>Visit started</b></span>
+    <span>Order #<b data-order-num>—</b></span>
+    <span>Card authorized · not yet charged</span>
+  </div>
+  <nav class="nav">
+    <div class="l">A D O N I S</div>
+    <div class="c">
+      <span class="lock">Secure portal</span>
+      <span><span class="dot"></span> Florida-licensed providers</span>
+    </div>
+    <div class="r">Member since <b id="ty-since">today</b></div>
+  </nav>
+
+  <div class="ty-wrap">
+    <div class="ty-l">
+      <div class="ty-status"><span class="dot"></span> Online visit · started</div>
+      <h1 class="h-display h1">Your online <em>visit</em><br>has started.</h1>
+      <p style="color: var(--fg); opacity: .82; max-width: 44ch; line-height: 1.55;">
+        Thanks, <b style="color:var(--fg);">first name</b>. Your order is in. Now we hand off
+        to the part that actually matters: a Florida-licensed physician
+        reading your case before anything ships.
+      </p>
+
+      <div class="ty-order">
+        <span class="lbl">Order reference</span>
+        <span class="num" data-order-num-full>AD–2026–01–04217</span>
+        <span class="det">
+          <b data-product-summary-nm>Finasteride 1mg + Min. 5%</b> ·
+          <b data-product-cadence>Bi-monthly</b> ·
+          authorized <b data-product-total>$83.46</b>
+        </span>
+      </div>
+
+      <div class="reassure sec">
+        Card authorized only. We charge in full only after a licensed
+        provider has approved your case. If declined, your authorization
+        is released — no charge.
+      </div>
+
+      <div class="ty-actions">
+        <a class="btn primary lg full" href="#" style="position: relative;">
+          <span>Continue to your <em>medical questionnaire</em></span><span class="arr">→</span>
+        </a>
+        <div class="tertiary-link">A confirmation has been emailed to <b style="color:var(--fg);">you@domain.com</b>.</div>
+      </div>
+    </div>
+
+    <div class="ty-r">
+      <div class="eyebrow">What happens next</div>
+      <h2 class="h-display h2">From here, <em>three steps</em>.</h2>
+
+      <div class="ty-steps">
+        <div class="ty-step now">
+          <div class="n"><span>2</span></div>
+          <div>
+            <div class="t">Complete your <em>medical questionnaire</em></div>
+            <div class="d">A secure ~5-minute intake covering your history, current medications, and any contraindications. Encrypted in transit and at rest.</div>
+          </div>
+          <div class="stamp">~5 min · now</div>
+        </div>
+        <div class="ty-step">
+          <div class="n"><span>3</span></div>
+          <div>
+            <div class="t">A licensed provider <em>reviews</em> your case</div>
+            <div class="d">A Florida-licensed physician reads your answers and either approves, requests follow-ups, modifies, or declines. You'll be notified by email and SMS.</div>
+          </div>
+          <div class="stamp">Avg 18 hrs</div>
+        </div>
+        <div class="ty-step">
+          <div class="n"><span>4</span></div>
+          <div>
+            <div class="t">If approved, your <em>prescription</em> ships</div>
+            <div class="d">An FDA-registered partner pharmacy fulfills and ships in unbranded packaging with tracking. We notify you the moment it leaves the door.</div>
+          </div>
+          <div class="stamp">3–5 days</div>
+        </div>
+      </div>
+
+      <div class="ty-cta-card">
+        <h3>Don't lose your <em>spot in line</em>.</h3>
+        <p>Provider review starts the moment your questionnaire is in. Most members complete it within 10 minutes of placing an order.</p>
+        <a class="btn primary full" href="#"><span>Start <em>questionnaire</em> now</span><span class="arr">→</span></a>
+        <div class="partner">Questionnaire and provider workflow powered by <b style="color:var(--fg)">Prescribery</b> — HIPAA-compliant clinical layer.</div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="page page-mobile m-page" data-view="ty" id="thankyou-mobile">
+  <div class="notice"><span><b>Visit started</b> · #<b data-order-num>—</b></span></div>
+  <nav class="nav">
+    <div class="l">A D O N I S</div>
+    <div class="r">Member<br><b>today</b></div>
+  </nav>
+  <div class="ty-wrap">
+    <div class="ty-l">
+      <div class="ty-status"><span class="dot"></span> Visit · started</div>
+      <h1 class="h-display h1" style="font-size:30px;">Your visit has <em>started</em>.</h1>
+      <p style="color: var(--fg); opacity: .82; max-width: 38ch;">
+        A Florida-licensed physician will review your case before anything ships.
+      </p>
+      <div class="ty-order">
+        <span class="lbl">Order</span>
+        <span class="num" data-order-num-full>AD–2026–01–04217</span>
+        <span class="det"><b data-product-summary-nm>Finasteride + Min.</b> · authorized <b data-product-total>$83.46</b></span>
+      </div>
+      <a class="btn primary full" href="#"><span>Continue to <em>questionnaire</em></span><span class="arr">→</span></a>
+    </div>
+    <div class="ty-r">
+      <div class="eyebrow">What's next</div>
+      <h2 class="h-display h2" style="font-size:22px;">From here, <em>three steps</em>.</h2>
+      <div class="ty-steps">
+        <div class="ty-step now"><div class="n"><span>2</span></div><div><div class="t">Medical <em>questionnaire</em></div><div class="d">~5 min · encrypted intake.</div></div><div class="stamp">Now</div></div>
+        <div class="ty-step"><div class="n"><span>3</span></div><div><div class="t">Provider <em>review</em></div><div class="d">FL-licensed physician.</div></div><div class="stamp">~18 hrs</div></div>
+        <div class="ty-step"><div class="n"><span>4</span></div><div><div class="t">Pharmacy <em>ships</em></div><div class="d">Unbranded · tracked.</div></div><div class="stamp">3–5 days</div></div>
+      </div>
+      <div class="ty-cta-card">
+        <h3>Start your <em>questionnaire</em> now.</h3>
+        <p>Most members finish in under 10 minutes.</p>
+        <a class="btn primary full" href="#"><span>Open <em>questionnaire</em></span><span class="arr">→</span></a>
+        <div class="partner">Powered by <b style="color:var(--fg)">Prescribery</b></div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================
+     6 · IMPLEMENTATION NOTES
+     ============================================================ -->
+<div class="label-bar" data-view="impl">
+  <span><b>Notes</b> · WordPress + WooCommerce + Prescribery</span>
+  <span>What's native, what's custom, what to defer</span>
+</div>
+
+<div class="impl" data-view="impl">
+  <h2>Built on <em>WooCommerce + Prescribery</em>, without looking like it.</h2>
+  <p class="lead">Cart, checkout, and post-purchase handoff use native
+  WC primitives plus a small set of integration hooks. Every piece of
+  the clinical workflow is delegated to Prescribery — Adonis owns the
+  experience, not the prescribing system.</p>
+
+  <div class="impl-grid">
+
+    <div class="impl-card">
+      <h4>Cart page <em>WooCommerce native</em></h4>
+      <ul>
+        <li>Built on the WC Cart block — line items, totals, coupon code all native</li>
+        <li>Subscription toggle is a per-line variation switch (WooCommerce Subscriptions plugin)</li>
+        <li>"Save 33%" comparison computed server-side from <code>$one_time</code> vs <code>$subscription_price</code> — never hard-coded</li>
+        <li>Estimated tax = "Calculated at checkout" until ZIP is known (FL = 6% state + 1% Miami-Dade county)</li>
+        <li>Right-rail next-steps strip is a <strong>theme partial</strong>, not an order detail — same on every cart</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Subscription control <em>WC Subscriptions</em></h4>
+      <ul>
+        <li>Bi-monthly = <code>billing_period: month</code> + <code>billing_interval: 2</code></li>
+        <li>Toggle persists via <code>cart_item_data['_adonis_cadence']</code></li>
+        <li>Pause / cancel / dose-change exposed in member portal — no retention pitch, single click</li>
+        <li>Copy is fixed per brand brief: "Subscription is optional. Most members choose bi-monthly delivery to stay consistent and avoid refill gaps."</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Checkout page <em>WC + Stripe + custom blocks</em></h4>
+      <ul>
+        <li>Use <strong>WC Checkout block</strong> as the base, restyled via this CSS</li>
+        <li>Step bar is a <strong>custom block</strong> above the checkout block</li>
+        <li>Sticky right-rail summary is custom — uses <code>woocommerce_review_order_before_cart_contents</code> hook</li>
+        <li>Stripe in <strong>authorize-only mode</strong>: <code>capture_method: manual</code> on Payment Intent</li>
+        <li>Payment is captured via API webhook from Prescribery on provider approval</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Form fields <em>WC + ACF</em></h4>
+      <ul>
+        <li>Standard fields use WC default — <code>billing_email</code>, <code>billing_first_name</code>, etc.</li>
+        <li>Date of birth = custom field <code>_adonis_dob</code>, required, validated 18+</li>
+        <li>State dropdown filtered server-side to enabled states (FL only at launch)</li>
+        <li>Telehealth consent checkbox required, logged to order meta with timestamp + IP</li>
+        <li>HSA/FSA = Stripe payment method type — no separate processor</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Prescribery handoff <em>API + redirect</em></h4>
+      <ul>
+        <li>WC <code>thankyou</code> page = our handoff screen, not a generic receipt</li>
+        <li>On <code>woocommerce_thankyou</code> hook: POST order to Prescribery <code>/cases</code></li>
+        <li>Prescribery returns <code>questionnaire_url</code> + <code>case_id</code></li>
+        <li>"Continue to questionnaire" CTA links to that URL — opens Prescribery's flow in same tab or embedded iframe</li>
+        <li>Adonis stores <code>case_id</code> on order, polls Prescribery webhook for approval / decline / modification</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Order lifecycle <em>WC statuses</em></h4>
+      <ul>
+        <li>Checkout complete → status <code>on-hold</code> (not <code>processing</code>)</li>
+        <li>Payment Intent <code>requires_capture</code> — money authorized, not charged</li>
+        <li>Prescribery webhook <code>case.approved</code> → capture Payment Intent → status <code>processing</code> → pharmacy fulfillment</li>
+        <li>Webhook <code>case.declined</code> → cancel Payment Intent → status <code>refunded</code> → email user</li>
+        <li>Webhook <code>case.modified</code> → recalc total → re-authorize → email user for confirmation</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Compliance copy <em>do-not list</em></h4>
+      <ul>
+        <li>Never use: "guaranteed approval", "instant prescription", "no doctor needed", "cure ED", "cure hair loss", "results guaranteed"</li>
+        <li>Always pair Rx CTAs with provider-review reassurance — same line, same screen</li>
+        <li>Disclaimer: "Prescriptions are issued only when medically appropriate after review by a licensed provider. Results vary."</li>
+        <li>State licensure & 503A disclosure required in checkout footer + thank-you page</li>
+        <li>HIPAA + BAA-coverage badging on every checkout chrome (notice strip + handoff card)</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Mobile checkout <em>sticky pattern</em></h4>
+      <ul>
+        <li>Order summary collapses to a single line at top + sticky bottom CTA bar</li>
+        <li>Sticky bar has <strong>three things only</strong>: total, primary CTA, trust microcopy</li>
+        <li>Trust line near payment button is required by brief — "Card authorized · charged on provider approval · Stripe"</li>
+        <li>Pay-method radio collapses to compact 3-up grid; card cluster fields stack 1-up</li>
+        <li>No distractions in mobile checkout — no testimonials, no badges row, no upsells</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Thank-you screen <em>handoff, not receipt</em></h4>
+      <ul>
+        <li>Replaces WC default thank-you template via <code>woocommerce_thankyou.php</code> override</li>
+        <li>Headline: "Your online visit has started." — never "Order placed" / "Thanks for your purchase"</li>
+        <li>Three explicit next-step rows with timing — questionnaire, review, ship</li>
+        <li>Primary CTA links directly to Prescribery questionnaire URL (deep link with <code>case_id</code>)</li>
+        <li>Order reference shown for support, but it's <strong>not</strong> the focus</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Do-not-build list <em>defer to Prescribery</em></h4>
+      <ul>
+        <li>No custom medical questionnaire — embed Prescribery's</li>
+        <li>No custom provider dashboard — Prescribery owns the clinician UI</li>
+        <li>No custom Rx record / dispense log — Prescribery + pharmacy partner own the medical record</li>
+        <li>No custom video-visit tooling for Precision tier — Prescribery integrates with telehealth provider</li>
+        <li>Adonis owns: marketing site, product pages, cart, checkout, thank-you, member portal, subscription billing</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Reusable components <em>theme partials</em></h4>
+      <ul>
+        <li><code>parts/notice-strip.php</code> — top compliance bar, used on cart + checkout + thank-you</li>
+        <li><code>parts/step-bar.php</code> — 4-step progress, conditional class per current page</li>
+        <li><code>parts/handoff-card.php</code> — green-accent Prescribery handoff explanation</li>
+        <li><code>parts/next-steps.php</code> — 4-row "after this" strip with timing stamps</li>
+        <li><code>parts/reassure.php</code> — single line provider-review reassurance, two variants (bronze, sec-green)</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Design tokens <em>shared</em></h4>
+      <ul>
+        <li>Inherits Adonis design system v4.5: graphite + warm ivory + bronze</li>
+        <li>Secondary green <code>--sec: #2E4338</code> reserved for clinical reassurance + Prescribery handoff cards</li>
+        <li>Single CTA color across whole flow — bronze gold <code>--acc: #C9A35E</code></li>
+        <li>Italic <span style="font-family:var(--display); font-style:italic; color:var(--acc); font-weight:300;">Fraunces</span> emphasis only — never as body copy</li>
+        <li>Forms use a single border treatment — no boxed inputs, no lifted cards in form fields</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<script>
+/* ============================================================
+   PRODUCT-DATA SWAP (Hair / ED) — drives summary lines, totals,
+   and the thank-you reference.
+   ============================================================ */
+const PRODUCTS = {
+  hair: {
+    rxMark:        '℞ FNM',
+    h3:            'Finasteride 1mg <em>+</em> Minoxidil 5%',
+    formula:       'C₂₃H₃₆N₂O₂ · C₉H₁₅N₅O · ORAL + TOPICAL',
+    supply:        '60-day',
+    cadence:       'Ships every 2 months',
+    cadenceShort:  'Bi-monthly',
+    doseLine:      '<b>Combined</b> protocol',
+    price:         '$78',
+    priceFull:     '$78.00',
+    per:           'per shipment · $39/mo',
+    strikethrough: '$118 if one-time',
+    savings:       '−$40.00',
+    tax:           '$5.46',
+    total:         '$83.46',
+    summaryNm:     'Finasteride 1mg <em>+</em> Min. 5%'
+  },
+  ed: {
+    rxMark:        '℞ TAD',
+    h3:            'Tadalafil <em>—</em> daily 5mg',
+    formula:       'C₂₂H₁₉N₃O₄ · ORAL · PDE5 INHIBITOR',
+    supply:        '60-dose',
+    cadence:       'Ships every 2 months',
+    cadenceShort:  'Bi-monthly',
+    doseLine:      '<b>Daily</b> 5 mg',
+    price:         '$118',
+    priceFull:     '$118.00',
+    per:           'per shipment · $59/mo',
+    strikethrough: '$178 if one-time',
+    savings:       '−$60.00',
+    tax:           '$8.26',
+    total:         '$126.26',
+    summaryNm:     'Tadalafil <em>—</em> 5mg daily'
+  }
+};
+
+function setProduct(p) {
+  const d = PRODUCTS[p];
+  if (!d) return;
+  const set = (sel, html) => document.querySelectorAll(sel).forEach(n => n.innerHTML = html);
+  set('[data-product-rx-mark]',     d.rxMark);
+  set('[data-product-h3]',          d.h3);
+  set('[data-product-formula]',     d.formula);
+  set('[data-product-supply]',      d.supply);
+  set('[data-product-cadence]',     d.cadenceShort);
+  set('[data-product-dose-line]',   d.doseLine);
+  set('[data-product-price]',       d.price);
+  set('[data-product-per]',         d.per);
+  set('[data-product-strikethrough]', d.strikethrough);
+  set('[data-product-savings]',     d.savings);
+  set('[data-product-tax]',         d.tax);
+  set('[data-product-total]',       d.total);
+  set('[data-product-summary-nm]',  d.summaryNm);
+}
+setProduct('hair');
+
+// Order number stub
+const num = 'AD-2026-01-' + (Math.floor(Math.random() * 90000) + 10000);
+document.querySelectorAll('[data-order-num]').forEach(n => n.textContent = num);
+document.querySelectorAll('[data-order-num-full]').forEach(n => n.textContent = num.replace(/-/g, '–'));
+
+// Tweaks
+const tw = document.getElementById('tweaks');
+document.getElementById('tw-trigger').addEventListener('click', () => tw.classList.toggle('on'));
+document.getElementById('tw-product').addEventListener('change', e => setProduct(e.target.value));
+document.getElementById('tw-view').addEventListener('change', e => {
+  const v = e.target.value;
+  document.querySelectorAll('[data-view]').forEach(n => {
+    n.style.display = (v === 'all' || n.dataset.view === v) ? '' : 'none';
+  });
+});
+
+// Sub toggle
+document.querySelectorAll('.sub-toggle').forEach(t => {
+  t.addEventListener('click', () => t.classList.toggle('on'));
+});
+// Pay method
+document.querySelectorAll('[data-pay]').forEach(p => {
+  p.addEventListener('click', () => {
+    const grid = p.closest('.pay-grid');
+    grid.querySelectorAll('[data-pay]').forEach(x => x.classList.remove('on'));
+    p.classList.add('on');
+  });
+});
+// Checkbox
+document.querySelectorAll('[data-cb]').forEach(c => {
+  c.addEventListener('click', () => c.classList.toggle('on'));
+});
+</script>
+</body>
+</html>

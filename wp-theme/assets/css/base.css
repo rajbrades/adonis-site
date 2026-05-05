@@ -1,0 +1,100 @@
+/* Reset, typography, container, and shared primitives (idx label, chip, gender toggle). */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  font-feature-settings: "tnum";
+  transition: background .25s, color .25s;
+}
+
+img, svg { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3, h4 { font-family: var(--display); font-weight: 300; margin: 0; }
+h1 { font-size: clamp(56px, 8vw, 132px); line-height: 0.96; }
+h2 { font-size: clamp(44px, 6vw, 96px);  line-height: 1.02; }
+h3 { font-size: clamp(28px, 3vw, 44px);  font-weight: 400; }
+h4 { font-size: clamp(20px, 2vw, 24px);  font-weight: 500; }
+
+em { color: var(--acc2); font-style: italic; }
+
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+
+/* Container — 1400 max, 40 gutter desktop & tablet, 20 gutter mobile */
+.adonis-container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+@media (max-width: 720px) {
+  .adonis-container { padding-inline: var(--gutter-mobile); }
+}
+
+/* Idx label — mono uppercase. Reserved for section idx tags + chips. */
+.idx-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+/* Chip — mono uppercase, small radius */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg);
+  border: 1px solid var(--line2);
+  border-radius: var(--r-sm);
+}
+
+/* Gender toggle (men / women) — pill segmented control */
+.adonis-gender-toggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line2);
+  border-radius: 999px;
+}
+.adonis-gender-toggle__btn {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  padding: 6px 14px;
+  border: 0;
+  background: transparent;
+  color: var(--mute);
+  cursor: pointer;
+  border-radius: 999px;
+  transition: background .25s, color .25s;
+}
+.adonis-gender-toggle__btn[aria-pressed="true"] {
+  background: var(--fg);
+  color: var(--bg);
+}
+.adonis-gender-toggle__btn:hover:not([aria-pressed="true"]) {
+  color: var(--fg);
+}
+
+/* Gender-conditional copy spans — controlled purely via CSS, not JS rewrites. */
+.g-men, .g-women, .g-neutral { display: none; }
+body.men     .g-men,
+body.neutral .g-men,
+body.neutral .g-neutral,
+body.women   .g-women { display: inline; }

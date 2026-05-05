@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "adonis/button",
+  "title": "Adonis Button",
+  "category": "design",
+  "description": "Pill button — primary (accent) or secondary (ghost). Inter Tight 14px, 999px radius, sentence case.",
+  "icon": "button",
+  "keywords": ["button", "cta", "pill"],
+  "attributes": {
+    "label":      { "type": "string", "default": "Get started" },
+    "url":        { "type": "string", "default": "#" },
+    "variant":    { "type": "string", "default": "accent", "enum": ["accent", "ghost"] },
+    "italicWord": { "type": "string", "default": "" }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "spacing": { "margin": true }
+  },
+  "textdomain": "adonis",
+  "render": "file:./render.php",
+  "style": "file:./style.css"
+}

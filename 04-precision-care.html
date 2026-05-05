@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Adonis · Precision Care</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   ADONIS · PRECISION CARE — landing
+   v4.5 dark luxury identity · graphite + ivory + bronze
+   secondary deep green for clinical credibility
+   ============================================================ */
+:root {
+  --display: "Fraunces", "Times New Roman", Georgia, serif;
+  --sans:    "Inter Tight", "Inter", system-ui, sans-serif;
+  --mono:    "JetBrains Mono", ui-monospace, monospace;
+
+  --bg:      #0F1116;
+  --bg2:     #181B22;
+  --bg3:     #1F232C;
+  --bg4:     #0A0C10;
+  --fg:      #ECE6D8;
+  --fg-soft: rgba(236, 230, 216, 0.72);
+  --mute:    #898577;
+  --mute2:   #5E5B52;
+  --line:    rgba(236, 230, 216, 0.10);
+  --line2:   rgba(236, 230, 216, 0.18);
+  --line3:   rgba(236, 230, 216, 0.32);
+
+  --acc:     #C9A35E;          /* bronze gold */
+  --acc-d:   #8E7038;
+  --acc-soft:rgba(201, 163, 94, 0.12);
+  --acc-line:rgba(201, 163, 94, 0.32);
+
+  --sec:     #2E4338;          /* deep green - clinical reassurance */
+  --sec2:    #3D5847;
+  --sec-soft:rgba(46, 67, 56, 0.32);
+
+  --good:    #6F8A6A;
+  --warn:    #B58A4D;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #060709; color: var(--fg); }
+body { font-family: var(--sans); font-size: 16px; line-height: 1.55;
+       -webkit-font-smoothing: antialiased; min-height: 100vh; }
+
+img, svg { display: block; max-width: 100%; }
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+a { color: inherit; text-decoration: none; }
+em { font-style: italic; }
+
+/* ----- type system ----- */
+.h-display { font-family: var(--display); font-weight: 400; line-height: 1.02;
+             letter-spacing: -.022em; text-wrap: balance; }
+.h-display em { font-style: italic; color: var(--acc); font-weight: 300; }
+.h1 { font-size: clamp(48px, 5.6vw, 92px); }
+.h2 { font-size: clamp(36px, 3.6vw, 60px); }
+.h3 { font-size: clamp(24px, 2.0vw, 32px); }
+.h4 { font-size: 21px; }
+
+.body-l { font-size: 19px; line-height: 1.5; max-width: 56ch; }
+.body-m { font-size: 16px; line-height: 1.6; }
+.body-s { font-size: 14px; line-height: 1.5; color: var(--fg-soft); }
+
+.eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .28em;
+           text-transform: uppercase; color: var(--acc);
+           display: inline-flex; align-items: center; gap: 12px; }
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--acc); flex-shrink: 0; }
+
+.eyebrow.alt { color: var(--mute); }
+.eyebrow.alt::before { background: var(--mute); }
+
+.mono { font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+        text-transform: uppercase; color: var(--mute); }
+
+/* ----- buttons ----- */
+.btn { display: inline-flex; align-items: center; justify-content: space-between;
+       gap: 14px; padding: 19px 28px; font-family: var(--sans); font-size: 15px;
+       font-weight: 500; border: 1px solid var(--line2); border-radius: 999px;
+       transition: all .22s; color: var(--fg); background: transparent; cursor: pointer; }
+.btn em { font-family: var(--display); font-style: italic; font-weight: 400; color: var(--acc); }
+.btn .arr { font-family: var(--mono); font-size: 14px; opacity: .72; }
+.btn:hover { border-color: var(--acc); }
+.btn.primary { background: var(--acc); color: #0F1014; border-color: var(--acc); }
+.btn.primary em { color: #0F1014; }
+.btn.primary:hover { background: #D6B26A; border-color: #D6B26A; }
+.btn.lg { padding: 22px 32px; font-size: 16px; }
+.btn.full { width: 100%; }
+
+/* ============================================================
+   CANVAS — labels separating each view
+   ============================================================ */
+.canvas { display: flex; flex-direction: column; gap: 80px;
+          padding: 64px 48px; background: #060709; }
+.label-bar { max-width: 1440px; margin: 0 auto; width: 100%;
+             display: flex; align-items: center; gap: 18px;
+             font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+             text-transform: uppercase; color: var(--mute); }
+.label-bar::before, .label-bar::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+.label-bar b { color: var(--fg); font-weight: 500; }
+.label-bar code { color: var(--acc); font-family: var(--mono); font-size: 11px; }
+
+.page { max-width: 1440px; margin: 0 auto; width: 100%;
+        background: var(--bg); color: var(--fg);
+        border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.page-mobile { max-width: 420px; margin: 0 auto; }
+
+/* ============================================================
+   GLOBAL CHROME (notice + nav)
+   ============================================================ */
+.notice { background: #08090C; border-bottom: 1px solid var(--line);
+          font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+          text-transform: uppercase; color: var(--mute);
+          display: flex; justify-content: center; gap: 32px;
+          padding: 12px 24px; flex-wrap: wrap; }
+.notice b { color: var(--fg); font-weight: 500; }
+
+.nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+       padding: 22px 48px; border-bottom: 1px solid var(--line); }
+.nav .l { font-family: var(--display); font-size: 26px; letter-spacing: .04em; }
+.nav .l em { font-style: italic; color: var(--acc); font-weight: 400; }
+.nav .c { display: flex; gap: 28px; font-family: var(--sans); font-size: 13.5px; color: var(--fg-soft); }
+.nav .c a { display: inline-flex; align-items: center; gap: 6px; }
+.nav .c a.on { color: var(--acc); }
+.nav .c a.on::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--acc); }
+.nav .r { display: flex; gap: 12px; justify-content: flex-end; align-items: center; }
+.nav .r a.ghost { font-family: var(--sans); font-size: 13.5px; color: var(--fg-soft); padding: 10px 16px; }
+.nav .r a.ghost:hover { color: var(--acc); }
+.nav .r .btn { padding: 11px 20px; font-size: 13px; white-space: nowrap; }
+
+/* breadcrumb / category strip */
+.crumb { display: flex; align-items: center; justify-content: space-between;
+         padding: 16px 48px; border-bottom: 1px solid var(--line);
+         font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+         text-transform: uppercase; color: var(--mute); }
+.crumb .l { display: flex; gap: 12px; align-items: center; }
+.crumb .l span { color: var(--mute2); }
+.crumb .l b { color: var(--acc); font-weight: 500; }
+.crumb .r { display: flex; gap: 16px; align-items: center; }
+.crumb .r .pill { padding: 5px 12px; border: 1px solid var(--acc-line); border-radius: 999px; color: var(--acc); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero { position: relative; padding: 96px 48px 80px; overflow: hidden;
+        border-bottom: 1px solid var(--line); }
+.hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 80px;
+             max-width: 1280px; margin: 0 auto; align-items: center; }
+.hero .l { display: flex; flex-direction: column; gap: 32px; }
+.hero .l .meta { display: flex; gap: 28px; flex-wrap: wrap;
+                  font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+                  text-transform: uppercase; color: var(--mute); }
+.hero .l .meta b { color: var(--fg); font-weight: 500; }
+.hero h1 { max-width: 16ch; }
+.hero .lead { color: var(--fg-soft); max-width: 50ch; line-height: 1.5; font-size: 19px; }
+.hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 4px; }
+
+/* price anchor */
+.anchor { display: flex; align-items: baseline; gap: 18px; padding: 22px 0;
+           border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+           margin-top: 8px; }
+.anchor .lbl { font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+                text-transform: uppercase; color: var(--mute); }
+.anchor .price { font-family: var(--display); font-size: 56px; font-weight: 400;
+                  line-height: 1; letter-spacing: -.02em; }
+.anchor .price em { font-style: italic; color: var(--acc); font-weight: 300; font-size: 24px; vertical-align: top; }
+.anchor .det { font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+                text-transform: uppercase; color: var(--mute); margin-left: auto; line-height: 1.7; }
+.anchor .det b { color: var(--fg); }
+
+/* hero diagnostic visual */
+.hero .r { position: relative; }
+.diagnostic { position: relative; aspect-ratio: 0.78;
+              background: linear-gradient(165deg, #0F1116 0%, #161A22 60%, #0A0C10 100%);
+              border: 1px solid var(--line2); border-radius: 6px; overflow: hidden;
+              padding: 30px; display: flex; flex-direction: column; gap: 18px; }
+.diagnostic::before { content: ""; position: absolute; inset: 0;
+                       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='.85' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+                       opacity: .04; pointer-events: none; }
+.diagnostic > * { position: relative; z-index: 1; }
+.diagnostic .head { display: flex; justify-content: space-between; align-items: flex-start; }
+.diagnostic .head .t { font-family: var(--mono); font-size: 10px; letter-spacing: .26em;
+                        text-transform: uppercase; color: var(--acc); }
+.diagnostic .head .pnl { font-family: var(--display); font-size: 21px; line-height: 1.1; margin-top: 4px; }
+.diagnostic .head .pnl em { font-style: italic; color: var(--acc); font-weight: 300; }
+.diagnostic .head .id { font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+                         color: var(--mute); text-align: right; }
+.diagnostic .head .id b { color: var(--fg); display: block; font-size: 12px;
+                           letter-spacing: .04em; text-transform: none; margin-top: 2px; }
+
+.bm-list { display: flex; flex-direction: column; gap: 0; flex: 1;
+            border-top: 1px solid var(--line); margin-top: 4px; }
+.bm-row { display: grid; grid-template-columns: 1fr auto auto;
+          padding: 14px 0; gap: 16px; align-items: baseline;
+          border-bottom: 1px dashed var(--line); }
+.bm-row .nm { font-family: var(--display); font-size: 16px; font-weight: 400; line-height: 1.2; }
+.bm-row .nm em { font-family: var(--mono); font-style: normal; font-size: 9.5px;
+                  letter-spacing: .14em; text-transform: uppercase; color: var(--mute);
+                  display: block; margin-top: 3px; }
+.bm-row .v { font-family: var(--mono); font-size: 14px; color: var(--fg); letter-spacing: .04em; min-width: 56px; text-align: right; }
+.bm-row .v small { color: var(--mute); margin-left: 3px; font-size: 10px; }
+.bm-row .flag { font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em;
+                 text-transform: uppercase; color: var(--mute); padding: 4px 10px;
+                 border: 1px solid var(--line2); border-radius: 999px; min-width: 64px; text-align: center; }
+.bm-row .flag.opt { color: var(--good); border-color: var(--good); }
+.bm-row .flag.lo  { color: var(--warn); border-color: var(--warn); }
+.bm-row .flag.hi  { color: var(--warn); border-color: var(--warn); }
+.bm-row .flag.now { color: var(--acc); border-color: var(--acc); }
+
+.diagnostic .foot { display: flex; justify-content: space-between; align-items: center;
+                     padding-top: 14px; border-top: 1px solid var(--line);
+                     font-family: var(--mono); font-size: 10px; letter-spacing: .18em;
+                     text-transform: uppercase; color: var(--mute); }
+.diagnostic .foot b { color: var(--fg); }
+.diagnostic .reading { display: flex; align-items: center; gap: 6px; }
+.diagnostic .reading::before { content: ""; width: 6px; height: 6px; border-radius: 50%;
+                                background: var(--acc); animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+
+/* example ribbon */
+.example-tag { position: absolute; top: 18px; right: 18px; z-index: 2;
+                font-family: var(--mono); font-size: 9.5px; letter-spacing: .22em;
+                text-transform: uppercase; color: var(--bg);
+                background: var(--acc); padding: 5px 12px; border-radius: 999px; }
+
+/* ============================================================
+   SECTION SHELL
+   ============================================================ */
+.section { padding: 120px 48px; border-bottom: 1px solid var(--line); position: relative; }
+.section .wrap { max-width: 1280px; margin: 0 auto; }
+.section .head { display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+                  margin-bottom: 64px; align-items: end; }
+.section .head .l { display: flex; flex-direction: column; gap: 22px; }
+.section .head h2 { max-width: 18ch; }
+.section .head .r { color: var(--fg-soft); max-width: 48ch; font-size: 17px; line-height: 1.55; }
+.section .head .r p + p { margin-top: 14px; }
+
+.section.center .head { grid-template-columns: 1fr; text-align: center; max-width: 720px; margin-left: auto; margin-right: auto; }
+.section.center .head .l { align-items: center; }
+
+.section.alt { background: var(--bg2); }
+.section.deep { background: var(--bg4); }
+
+/* ============================================================
+   2 · WHAT'S INCLUDED — premium cards
+   ============================================================ */
+.included { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+             background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.inc-card { background: var(--bg); padding: 36px 32px;
+             display: flex; flex-direction: column; gap: 18px; min-height: 320px; }
+.inc-card .num { font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+                  color: var(--acc); }
+.inc-card .glyph { width: 64px; height: 64px; border: 1px solid var(--line2);
+                    border-radius: 4px; display: grid; place-items: center;
+                    background: rgba(201,163,94,0.04); }
+.inc-card .glyph svg { width: 28px; color: var(--acc); }
+.inc-card h3 { font-family: var(--display); font-weight: 400; font-size: 22px;
+                line-height: 1.2; }
+.inc-card h3 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.inc-card p { color: var(--fg-soft); font-size: 14.5px; line-height: 1.55; flex: 1; }
+.inc-card .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em;
+                  text-transform: uppercase; color: var(--mute);
+                  padding-top: 14px; border-top: 1px solid var(--line); }
+.inc-card .tag b { color: var(--fg); }
+
+/* ============================================================
+   3 · WHO IT'S FOR — chip lattice
+   ============================================================ */
+.who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+             border-top: 1px solid var(--line2); border-bottom: 1px solid var(--line2); }
+.who-row { display: grid; grid-template-columns: 80px 1fr 1fr;
+            padding: 32px 0; border-top: 1px dashed var(--line);
+            grid-column: 1 / -1; align-items: center; gap: 32px; }
+.who-row:first-child { border-top: 0; }
+.who-row .num { font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+                 color: var(--acc); }
+.who-row .nm { font-family: var(--display); font-size: 26px; font-weight: 400;
+                line-height: 1.15; }
+.who-row .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.who-row .ctx { font-size: 14.5px; color: var(--fg-soft); line-height: 1.55; max-width: 56ch; }
+.who-row .ctx b { color: var(--fg); font-weight: 500; }
+@media (max-width: 800px) { .who-row { grid-template-columns: 56px 1fr; }
+                            .who-row .ctx { grid-column: 2 / -1; } }
+
+/* ============================================================
+   4 · BIOMARKER PREVIEW — premium visual
+   ============================================================ */
+.bm-board { background: linear-gradient(165deg, #0F1116 0%, #14171E 100%);
+             border: 1px solid var(--line2); border-radius: 6px; padding: 48px;
+             position: relative; overflow: hidden; }
+.bm-board::before { content: ""; position: absolute; inset: 0;
+                     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='.85' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+                     opacity: .04; pointer-events: none; }
+.bm-board > * { position: relative; z-index: 1; }
+.bm-board .top { display: flex; justify-content: space-between; align-items: flex-start;
+                  padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.bm-board .top .l { display: flex; flex-direction: column; gap: 8px; }
+.bm-board .top .l .mono { letter-spacing: .26em; color: var(--acc); }
+.bm-board .top .l h3 { font-family: var(--display); font-size: 28px; font-weight: 400; line-height: 1.1; }
+.bm-board .top .l h3 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.bm-board .top .r { display: flex; gap: 28px; font-family: var(--mono); font-size: 11px;
+                     letter-spacing: .18em; text-transform: uppercase; color: var(--mute); }
+.bm-board .top .r b { color: var(--fg); font-weight: 500; display: block; font-size: 13px; letter-spacing: 0; text-transform: none; margin-top: 2px; }
+
+.bm-cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+            background: var(--line); margin-top: 32px;
+            border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.bm-cat { background: var(--bg); padding: 28px 24px;
+           display: flex; flex-direction: column; gap: 16px; }
+.bm-cat .ch { display: flex; align-items: baseline; justify-content: space-between; }
+.bm-cat .ch .nm { font-family: var(--display); font-size: 19px; font-weight: 400;
+                   line-height: 1.1; }
+.bm-cat .ch .nm em { font-style: italic; color: var(--acc); font-weight: 300; font-size: 14px; }
+.bm-cat .ch .ct { font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+                   text-transform: uppercase; color: var(--mute); }
+.bm-cat .ch .ct b { color: var(--acc); font-weight: 500; }
+.bm-cat ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.bm-cat li { display: grid; grid-template-columns: 1fr auto; gap: 12px;
+              font-size: 13px; line-height: 1.45; padding-bottom: 7px;
+              border-bottom: 1px dashed var(--line); }
+.bm-cat li:last-child { border-bottom: 0; padding-bottom: 0; }
+.bm-cat li .nm2 { color: var(--fg-soft); }
+.bm-cat li .un { font-family: var(--mono); font-size: 10px; color: var(--mute);
+                  letter-spacing: .04em; }
+
+.bm-foot { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line);
+            display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+            font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em;
+            text-transform: uppercase; color: var(--mute); align-items: center; }
+.bm-foot b { color: var(--fg); font-weight: 500; }
+.bm-foot .right { color: var(--acc); }
+
+/* ============================================================
+   5 · HOW IT WORKS — vertical staggered
+   ============================================================ */
+.hiw-list { display: flex; flex-direction: column; gap: 1px; background: var(--line);
+             border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.hiw-row { display: grid; grid-template-columns: 120px 1fr 1.2fr 220px;
+            padding: 32px 36px; gap: 36px; align-items: center;
+            background: var(--bg); }
+.hiw-row.alt { background: var(--bg2); }
+.hiw-row .num { font-family: var(--display); font-size: 56px; font-weight: 300;
+                 color: var(--acc); line-height: 1; letter-spacing: -.02em; }
+.hiw-row .nm  { font-family: var(--display); font-size: 22px; font-weight: 400; line-height: 1.2; }
+.hiw-row .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.hiw-row .desc { color: var(--fg-soft); font-size: 14.5px; line-height: 1.55; }
+.hiw-row .stamp { display: flex; flex-direction: column; gap: 4px;
+                   font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+                   text-transform: uppercase; color: var(--mute); text-align: right; }
+.hiw-row .stamp b { color: var(--fg); font-weight: 500; font-size: 12px; }
+.hiw-row .stamp em { font-family: var(--mono); font-style: normal; color: var(--acc);
+                      letter-spacing: .04em; text-transform: none; font-size: 11px; }
+
+/* ============================================================
+   6 · COMPARE — Express vs Precision
+   ============================================================ */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 900px) { .compare { grid-template-columns: 1fr; } }
+.cmp-card { padding: 40px 36px; border: 1px solid var(--line2); border-radius: 6px;
+             display: flex; flex-direction: column; gap: 22px; background: var(--bg); position: relative; }
+.cmp-card.pri { border-color: var(--acc); background: linear-gradient(180deg, rgba(201,163,94,0.05) 0%, var(--bg) 60%); }
+.cmp-card .tag { font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+                  text-transform: uppercase; color: var(--mute); display: flex;
+                  justify-content: space-between; align-items: baseline; }
+.cmp-card.pri .tag { color: var(--acc); }
+.cmp-card .tag .nm { font-family: var(--display); font-size: 28px; font-weight: 400;
+                      line-height: 1.05; color: var(--fg); letter-spacing: -.01em;
+                      text-transform: none; }
+.cmp-card .tag .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.cmp-card .price-row { display: flex; align-items: baseline; gap: 14px;
+                        padding: 16px 0; border-top: 1px solid var(--line);
+                        border-bottom: 1px solid var(--line); }
+.cmp-card .price-row .pr { font-family: var(--display); font-size: 38px; font-weight: 400; line-height: 1; }
+.cmp-card .price-row .pr em { font-family: var(--mono); font-style: normal; font-size: 12px;
+                               letter-spacing: .14em; text-transform: uppercase; color: var(--mute);
+                               margin-left: 4px; }
+.cmp-card .price-row .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em;
+                             text-transform: uppercase; color: var(--mute); margin-left: auto; line-height: 1.5; text-align: right; }
+.cmp-card .price-row .lbl b { color: var(--fg); }
+.cmp-card .blurb { color: var(--fg-soft); font-size: 14.5px; line-height: 1.55; }
+.cmp-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.cmp-card li { display: grid; grid-template-columns: 18px 1fr; gap: 12px;
+                font-size: 14.5px; line-height: 1.5; }
+.cmp-card li::before { content: ""; width: 16px; height: 16px;
+                        background: rgba(201,163,94,0.12); border-radius: 50%;
+                        position: relative; margin-top: 2px;
+                        background-image: radial-gradient(circle at center, var(--acc) 30%, transparent 31%); }
+.cmp-card.exp li::before { background-image: radial-gradient(circle at center, var(--mute) 30%, transparent 31%); }
+.cmp-card .best { font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em;
+                   text-transform: uppercase; color: var(--mute); padding: 14px 18px;
+                   border: 1px dashed var(--line2); border-radius: 4px; line-height: 1.6; }
+.cmp-card .best b { color: var(--fg); }
+.cmp-card .actions { display: flex; gap: 10px; margin-top: auto; padding-top: 8px; }
+.cmp-card .actions .btn { flex: 1; }
+
+/* ============================================================
+   7 · PHYSICIAN CREDIBILITY
+   ============================================================ */
+.docs-wrap { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 64px; align-items: start; }
+@media (max-width: 900px) { .docs-wrap { grid-template-columns: 1fr; gap: 40px; } }
+.doc-card { background: linear-gradient(165deg, #0F1116 0%, #14171E 100%);
+             border: 1px solid var(--line2); border-radius: 6px; padding: 32px;
+             display: flex; flex-direction: column; gap: 20px; position: relative; overflow: hidden; }
+.doc-card::after { content: ""; position: absolute; inset: 0;
+                    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='.85' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+                    opacity: .04; pointer-events: none; }
+.doc-card > * { position: relative; z-index: 1; }
+.doc-portrait { width: 100%; aspect-ratio: 1; border-radius: 4px;
+                 background: linear-gradient(160deg, #2A2A26 0%, #181815 100%);
+                 border: 1px solid var(--line2); display: grid; place-items: center;
+                 color: var(--mute); font-family: var(--mono); font-size: 10px;
+                 letter-spacing: .22em; position: relative; overflow: hidden; }
+.doc-portrait::before { content: ""; position: absolute; inset: 30%;
+                         background: radial-gradient(ellipse at top, var(--acc-soft) 0%, transparent 70%);
+                         border-radius: 50%; }
+.doc-portrait::after { content: ""; position: absolute; bottom: 12px; left: 12px;
+                        right: 12px; height: 1px; background: var(--line2); }
+.doc-portrait span { position: relative; z-index: 2; }
+.doc-card .nm { font-family: var(--display); font-size: 24px; font-weight: 400; line-height: 1.1; }
+.doc-card .nm em { font-style: italic; color: var(--acc); font-weight: 300; font-size: 16px; display: block; margin-top: 4px; }
+.doc-card .creds { display: flex; flex-direction: column; gap: 10px;
+                    padding-top: 18px; border-top: 1px solid var(--line); }
+.doc-card .creds .row { display: grid; grid-template-columns: 100px 1fr;
+                         gap: 12px; font-size: 13px; line-height: 1.45; }
+.doc-card .creds .row .k { font-family: var(--mono); font-size: 10.5px;
+                            letter-spacing: .18em; text-transform: uppercase; color: var(--mute); }
+.doc-card .creds .row .v { color: var(--fg); }
+.doc-card .creds .row .v b { color: var(--acc); font-weight: 500; }
+
+.cred-list { display: flex; flex-direction: column; gap: 0;
+              border-top: 1px solid var(--line); }
+.cred-row { padding: 24px 0; border-bottom: 1px solid var(--line);
+             display: grid; grid-template-columns: 32px 1fr 80px;
+             gap: 20px; align-items: baseline; }
+.cred-row .k { font-family: var(--mono); font-size: 11px; letter-spacing: .22em; color: var(--acc); }
+.cred-row .nm { font-family: var(--display); font-size: 19px; line-height: 1.25; }
+.cred-row .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.cred-row .desc { color: var(--fg-soft); font-size: 14px; line-height: 1.5; margin-top: 6px; }
+.cred-row .stamp { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+                    text-transform: uppercase; color: var(--mute); text-align: right; }
+.cred-row .stamp b { color: var(--fg); font-weight: 500; }
+
+/* ============================================================
+   8 · PACKAGE PRICING CARD
+   ============================================================ */
+.pkg-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+@media (max-width: 900px) { .pkg-wrap { grid-template-columns: 1fr; } }
+.pkg-l h2 { max-width: 16ch; }
+.pkg-l p { color: var(--fg-soft); margin-top: 18px; max-width: 44ch; line-height: 1.55; }
+.pkg-l .meta { display: flex; flex-direction: column; gap: 16px; margin-top: 32px;
+                padding-top: 24px; border-top: 1px solid var(--line); }
+.pkg-l .meta .row { display: grid; grid-template-columns: 130px 1fr; gap: 16px;
+                     font-size: 13.5px; }
+.pkg-l .meta .row .k { font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+                        text-transform: uppercase; color: var(--mute); padding-top: 2px; }
+.pkg-l .meta .row .v { color: var(--fg); line-height: 1.45; }
+
+.pkg-card { background: linear-gradient(165deg, #14171E 0%, #0B0D11 100%);
+             border: 1px solid var(--acc); border-radius: 6px; padding: 40px 36px;
+             display: flex; flex-direction: column; gap: 24px;
+             box-shadow: 0 30px 80px rgba(0,0,0,0.4),
+                         inset 0 1px 0 rgba(201,163,94,0.18); position: relative; overflow: hidden; }
+.pkg-card::before { content: ""; position: absolute; top: -40%; right: -20%; width: 320px; height: 320px;
+                     background: radial-gradient(circle, var(--acc-soft) 0%, transparent 70%);
+                     pointer-events: none; }
+.pkg-card > * { position: relative; z-index: 1; }
+.pkg-card .head { display: flex; justify-content: space-between; align-items: flex-start;
+                   padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+.pkg-card .head .l { display: flex; flex-direction: column; gap: 4px; }
+.pkg-card .head .l .mono { color: var(--acc); letter-spacing: .26em; }
+.pkg-card .head .l h3 { font-family: var(--display); font-size: 32px; font-weight: 400; line-height: 1; margin-top: 4px; }
+.pkg-card .head .l h3 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.pkg-card .head .r .pr { font-family: var(--display); font-size: 64px; font-weight: 400; line-height: 1;
+                          letter-spacing: -.02em; text-align: right; }
+.pkg-card .head .r .pr em { font-family: var(--mono); font-style: normal; font-size: 12px;
+                             letter-spacing: .18em; text-transform: uppercase; color: var(--mute);
+                             display: block; margin-top: 4px; }
+.pkg-card .lead { font-family: var(--display); font-size: 17px; font-style: italic;
+                   font-weight: 300; line-height: 1.5; color: var(--fg-soft); max-width: 36ch; }
+.pkg-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.pkg-card li { display: grid; grid-template-columns: 22px 1fr auto; gap: 12px; align-items: baseline;
+                font-size: 14.5px; padding: 12px 0; border-bottom: 1px dashed var(--line); }
+.pkg-card li:last-child { border-bottom: 0; }
+.pkg-card li::before { content: "✓"; color: var(--acc); font-family: var(--mono); font-size: 13px;
+                        line-height: 1; display: grid; place-items: center;
+                        width: 20px; height: 20px; border: 1px solid var(--acc-line);
+                        border-radius: 50%; background: var(--acc-soft); }
+.pkg-card li .nm { color: var(--fg); }
+.pkg-card li .nm em { font-family: var(--display); font-style: italic; color: var(--acc); font-weight: 300; }
+.pkg-card li .det { font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+                     text-transform: uppercase; color: var(--mute); }
+.pkg-card .reassure { font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+                       text-transform: uppercase; color: var(--mute); line-height: 1.7;
+                       padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.pkg-card .reassure b { color: var(--fg); font-weight: 500; }
+.pkg-card .actions { display: flex; flex-direction: column; gap: 10px; }
+
+/* ============================================================
+   9 · FAQ
+   ============================================================ */
+.faq-grid { display: grid; grid-template-columns: 1fr; gap: 0;
+             border-top: 1px solid var(--line); }
+.faq-grid details { border-bottom: 1px solid var(--line); }
+.faq-grid summary { list-style: none; cursor: pointer; padding: 28px 0;
+                     display: grid; grid-template-columns: 60px 1fr 28px;
+                     gap: 24px; align-items: center;
+                     font-family: var(--display); font-weight: 400;
+                     font-size: 22px; line-height: 1.25; }
+.faq-grid summary::-webkit-details-marker { display: none; }
+.faq-grid summary em { font-style: italic; color: var(--acc); font-weight: 300; }
+.faq-grid summary .num { font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+                          color: var(--mute); }
+.faq-grid summary .plus { width: 22px; height: 22px; position: relative; }
+.faq-grid summary .plus::before, .faq-grid summary .plus::after { content: ""; position: absolute; background: var(--fg); transition: transform .3s; }
+.faq-grid summary .plus::before { left: 0; right: 0; top: 50%; height: 1px; transform: translateY(-50%); }
+.faq-grid summary .plus::after  { top: 0; bottom: 0; left: 50%; width: 1px; transform: translateX(-50%); }
+.faq-grid details[open] summary .plus::after { transform: translateX(-50%) rotate(90deg); }
+.faq-grid details[open] summary .num { color: var(--acc); }
+.faq-grid .a { padding: 0 0 28px 84px;
+                color: var(--fg-soft); font-size: 15.5px; line-height: 1.6; }
+.faq-grid .a p { max-width: 78ch; }
+.faq-grid .a strong { color: var(--fg); font-weight: 500; }
+.faq-grid .a p + p { margin-top: 12px; }
+@media (max-width: 700px) {
+  .faq-grid summary { grid-template-columns: 1fr 22px; }
+  .faq-grid summary .num { display: none; }
+  .faq-grid .a { padding-left: 0; }
+}
+
+/* ============================================================
+   10 · DISCLAIMER
+   ============================================================ */
+.disclaimer { padding: 56px 64px; background: var(--bg2); border: 1px solid var(--line);
+               border-radius: 4px; display: grid; grid-template-columns: 1fr 1.6fr;
+               gap: 56px; align-items: start; }
+@media (max-width: 800px) { .disclaimer { grid-template-columns: 1fr; gap: 28px; padding: 36px 28px; } }
+.disclaimer h3 { font-family: var(--display); font-size: 24px; font-weight: 400; line-height: 1.15; max-width: 14ch; }
+.disclaimer h3 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.disclaimer .body p { color: var(--fg-soft); font-size: 14.5px; line-height: 1.65; }
+.disclaimer .body p + p { margin-top: 14px; }
+.disclaimer .body b { color: var(--fg); font-weight: 500; }
+.disclaimer .body .legal { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em;
+                            color: var(--mute); margin-top: 22px; padding-top: 18px;
+                            border-top: 1px dashed var(--line); line-height: 1.7; }
+
+/* ============================================================
+   FINAL CTA
+   ============================================================ */
+.final { padding: 140px 48px 160px; text-align: center; border-bottom: 1px solid var(--line);
+          background: linear-gradient(180deg, var(--bg) 0%, #0A0C10 100%); position: relative; }
+.final h2 { max-width: 22ch; margin: 0 auto 28px; }
+.final p { color: var(--fg-soft); max-width: 50ch; margin: 0 auto 36px; font-size: 17px; line-height: 1.55; }
+.final .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.final .reassure { font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+                    text-transform: uppercase; color: var(--mute); margin-top: 36px; }
+.final .reassure b { color: var(--fg); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer { padding: 48px; background: #07080B; }
+.footer .inner { max-width: 1280px; margin: 0 auto;
+                  display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr;
+                  gap: 56px; }
+@media (max-width: 800px) { .footer .inner { grid-template-columns: 1fr 1fr; gap: 36px; } }
+.footer .brand .l { font-family: var(--display); font-size: 30px; letter-spacing: .04em; }
+.footer .brand .l em { font-style: italic; color: var(--acc); font-weight: 400; }
+.footer .brand p { color: var(--mute); font-size: 13px; line-height: 1.55; margin-top: 14px; max-width: 32ch; }
+.footer .col h5 { font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+                   text-transform: uppercase; color: var(--mute); margin-bottom: 14px; }
+.footer .col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.footer .col a { font-size: 13.5px; color: var(--fg-soft); }
+.footer .col a:hover { color: var(--acc); }
+.footer .legal { max-width: 1280px; margin: 48px auto 0; padding-top: 24px;
+                  border-top: 1px solid var(--line);
+                  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+                  font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+                  text-transform: uppercase; color: var(--mute); }
+
+/* ============================================================
+   MOBILE OVERRIDES (.m-page)
+   ============================================================ */
+.m-page .notice { font-size: 9.5px; padding: 10px 16px; gap: 14px; }
+.m-page .nav { padding: 14px 16px; grid-template-columns: 1fr auto; }
+.m-page .nav .l { font-size: 18px; }
+.m-page .nav .c { display: none; }
+.m-page .nav .r .ghost { display: none; }
+.m-page .nav .r .btn { padding: 9px 14px; font-size: 12px; }
+
+.m-page .crumb { padding: 10px 16px; font-size: 9.5px; flex-wrap: wrap; gap: 8px; }
+.m-page .crumb .r .pill { padding: 4px 10px; }
+
+.m-page .hero { padding: 32px 18px 40px; }
+.m-page .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+.m-page .h1 { font-size: 38px; }
+.m-page .hero .lead { font-size: 16px; line-height: 1.5; }
+.m-page .hero .ctas { flex-direction: column; align-items: stretch; gap: 8px; }
+.m-page .hero .ctas .btn { justify-content: center; }
+.m-page .anchor { flex-wrap: wrap; gap: 10px; padding: 16px 0; }
+.m-page .anchor .price { font-size: 38px; }
+.m-page .anchor .det { width: 100%; margin-left: 0; }
+.m-page .diagnostic { padding: 22px; }
+.m-page .diagnostic .head .pnl { font-size: 17px; }
+.m-page .diagnostic .head .id { font-size: 9px; }
+.m-page .bm-row { grid-template-columns: 1fr auto; gap: 8px; padding: 12px 0; }
+.m-page .bm-row .nm { font-size: 14px; }
+.m-page .bm-row .v { font-size: 12px; min-width: 0; }
+.m-page .bm-row .flag { display: none; }
+
+.m-page .section { padding: 56px 18px; }
+.m-page .section .head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
+.m-page .h2 { font-size: 30px; }
+.m-page .section .head .r { font-size: 15px; }
+
+/* mobile: included grid */
+.m-page .included { grid-template-columns: 1fr; }
+.m-page .inc-card { min-height: 0; padding: 28px 22px; }
+
+/* mobile: who */
+.m-page .who-row { grid-template-columns: 56px 1fr; gap: 16px; padding: 20px 0; }
+.m-page .who-row .ctx { grid-column: 2 / -1; }
+.m-page .who-row .nm { font-size: 20px; }
+
+/* mobile: bm-board */
+.m-page .bm-board { padding: 22px; }
+.m-page .bm-board .top { flex-direction: column; gap: 16px; }
+.m-page .bm-board .top .r { gap: 18px; }
+.m-page .bm-cats { grid-template-columns: 1fr; }
+
+/* mobile: hiw */
+.m-page .hiw-row { grid-template-columns: 56px 1fr; gap: 16px; padding: 22px 18px; }
+.m-page .hiw-row .num { font-size: 32px; }
+.m-page .hiw-row .desc { grid-column: 2 / -1; }
+.m-page .hiw-row .stamp { grid-column: 2 / -1; text-align: left; flex-direction: row; gap: 12px; flex-wrap: wrap; }
+
+/* mobile: compare */
+.m-page .compare { grid-template-columns: 1fr; }
+.m-page .cmp-card { padding: 28px 22px; }
+.m-page .cmp-card .tag .nm { font-size: 22px; }
+.m-page .cmp-card .actions { flex-direction: column; }
+
+/* mobile: docs */
+.m-page .docs-wrap { grid-template-columns: 1fr; gap: 28px; }
+.m-page .doc-card { padding: 22px; }
+.m-page .cred-row { grid-template-columns: 28px 1fr; gap: 12px; padding: 18px 0; }
+.m-page .cred-row .stamp { grid-column: 2 / -1; text-align: left; padding-top: 4px; }
+
+/* mobile: package */
+.m-page .pkg-wrap { grid-template-columns: 1fr; gap: 32px; }
+.m-page .pkg-card { padding: 28px 22px; }
+.m-page .pkg-card .head .r .pr { font-size: 44px; }
+.m-page .pkg-card .head .l h3 { font-size: 24px; }
+
+/* mobile: faq */
+.m-page .faq-grid summary { padding: 20px 0; font-size: 17px; grid-template-columns: 1fr 22px; }
+.m-page .faq-grid .a { padding: 0 0 20px 0; font-size: 14.5px; }
+
+/* mobile: final */
+.m-page .final { padding: 64px 22px 80px; }
+.m-page .final .actions { flex-direction: column; align-items: stretch; }
+.m-page .final .actions .btn { justify-content: center; }
+.m-page .footer { padding: 32px 22px; }
+.m-page .footer .inner { grid-template-columns: 1fr 1fr; gap: 24px; }
+
+/* ============================================================
+   IMPLEMENTATION NOTES PANEL
+   ============================================================ */
+.impl { max-width: 1280px; margin: 0 auto; width: 100%;
+         background: #0B0D11; color: var(--fg);
+         border: 1px solid var(--line); border-radius: 4px; padding: 56px 64px; }
+@media (max-width: 700px) { .impl { padding: 32px 24px; } }
+.impl h2 { font-family: var(--display); font-weight: 400; font-size: 36px; line-height: 1.05;
+            max-width: 26ch; margin-bottom: 8px; }
+.impl h2 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.impl .lead { color: var(--mute); margin-bottom: 40px; max-width: 60ch; }
+.impl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 980px) { .impl-grid { grid-template-columns: 1fr; } }
+.impl-card { padding: 28px; border: 1px solid var(--line); border-radius: 4px;
+              background: rgba(236,230,216,0.02); }
+.impl-card h4 { font-family: var(--display); font-weight: 400; font-size: 18px;
+                 margin-bottom: 14px; display: flex; align-items: baseline; gap: 12px; }
+.impl-card h4 em { font-family: var(--mono); font-style: normal; font-size: 11px;
+                    letter-spacing: .18em; text-transform: uppercase; color: var(--acc); }
+.impl-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.impl-card li { display: flex; align-items: flex-start; gap: 10px;
+                 font-size: 13.5px; line-height: 1.55; color: var(--fg); opacity: .85; }
+.impl-card li::before { content: "›"; color: var(--acc); font-family: var(--mono);
+                         flex: 0 0 8px; line-height: 1.55; }
+.impl-card code { font-family: var(--mono); font-size: 12px; color: var(--acc);
+                   background: rgba(201,163,94,0.08); padding: 2px 6px; border-radius: 3px; }
+
+/* ============================================================
+   TWEAKS PANEL
+   ============================================================ */
+.tw-trigger { position: fixed; top: 16px; right: 16px; z-index: 100;
+               background: var(--bg2); border: 1px solid var(--line2);
+               color: var(--fg); padding: 10px 14px; border-radius: 999px;
+               font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+               text-transform: uppercase; cursor: pointer; }
+.tw-trigger:hover { border-color: var(--acc); }
+#tweaks { position: fixed; top: 56px; right: 16px; z-index: 99;
+           background: var(--bg); border: 1px solid var(--acc);
+           color: var(--fg); padding: 22px; border-radius: 4px; min-width: 280px;
+           display: none; flex-direction: column; gap: 14px;
+           box-shadow: 0 30px 60px rgba(0,0,0,.55); }
+#tweaks.on { display: flex; }
+#tweaks h4 { font-family: var(--mono); font-size: 11px; letter-spacing: .26em;
+              text-transform: uppercase; color: var(--acc);
+              padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+#tweaks label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+                 text-transform: uppercase; color: var(--mute); display: block; margin-bottom: 6px; }
+#tweaks select { width: 100%; padding: 10px 12px;
+                  background: var(--bg2); border: 1px solid var(--line2);
+                  color: var(--fg); border-radius: 3px;
+                  font-family: var(--mono); font-size: 12px;
+                  letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+#tweaks select:focus { border-color: var(--acc); outline: none; }
+</style>
+</head>
+<body>
+
+<button class="tw-trigger" id="tw-trigger">Tweaks</button>
+<div id="tweaks">
+  <h4>Tweaks</h4>
+  <div>
+    <label>View</label>
+    <select id="tw-view">
+      <option value="all">All views</option>
+      <option value="desktop">Desktop only</option>
+      <option value="mobile">Mobile only</option>
+      <option value="impl">Notes only</option>
+    </select>
+  </div>
+</div>
+
+<div class="canvas">
+
+<!-- ============================================================
+     1 · DESKTOP
+     ============================================================ -->
+<div class="label-bar" data-view="desktop">
+  <span><b>Precision Care</b> · landing · desktop · 1440</span>
+  <span>WooCommerce package product · <code>/precision-care</code></span>
+  <span>Lab + intake + physician video + plan</span>
+</div>
+
+<article class="page" data-view="desktop">
+  <!-- notice -->
+  <div class="notice">
+    <span><b>Florida-licensed</b> physicians</span>
+    <span><b>HIPAA</b> compliant clinical workflow</span>
+    <span><b>Lab-guided</b> personalized care</span>
+    <span>Ships <b>discreetly</b> · <b>cancel anytime</b></span>
+  </div>
+
+  <!-- nav -->
+  <nav class="nav">
+    <div class="l">A D O N I S</div>
+    <div class="c">
+      <a>Express Care</a>
+      <a class="on">Precision Care</a>
+      <a>Hair</a>
+      <a>Sexual wellness</a>
+      <a>Hormone &amp; thyroid</a>
+      <a>Standards</a>
+    </div>
+    <div class="r">
+      <a class="ghost">Log in</a>
+      <a class="btn primary"><span>Get <em>started</em></span><span class="arr">→</span></a>
+    </div>
+  </nav>
+
+  <div class="crumb">
+    <div class="l"><span>Care pathways</span> · <b>Precision Care</b></div>
+    <div class="r">
+      <span class="pill">Mid-premium · lab-guided</span>
+      <span>Starting at $499</span>
+    </div>
+  </div>
+
+  <!-- ============= HERO ============= -->
+  <section class="hero" data-screen-label="01 Hero">
+    <div class="hero-grid">
+      <div class="l">
+        <div class="meta">
+          <span><b>Care pathway 02</b></span>
+          <span>Lab-guided</span>
+          <span>Physician video</span>
+          <span>Personalized plan</span>
+        </div>
+
+        <h1 class="h-display h1">Go deeper with<br><em>data-driven</em> optimization.</h1>
+
+        <p class="lead">Precision Care combines lab testing, comprehensive
+        intake, and a physician visit to help identify the drivers behind
+        performance, hormone, thyroid, metabolic, and longevity concerns.</p>
+
+        <div class="anchor">
+          <div class="lbl">Starting at</div>
+          <div class="price"><em>$</em>499</div>
+          <div class="det">
+            <b>Lab + intake + visit + plan</b><br>
+            One-time · subscriptions optional after plan
+          </div>
+        </div>
+
+        <div class="ctas">
+          <a class="btn primary lg"><span>Start <em>Precision Care</em></span><span class="arr">→</span></a>
+          <a class="btn lg"><span>Compare to <em>Express Care</em></span><span class="arr">→</span></a>
+        </div>
+      </div>
+
+      <div class="r">
+        <span class="example-tag">Example panel</span>
+        <div class="diagnostic">
+          <div class="head">
+            <div>
+              <div class="t">Panel · 02</div>
+              <div class="pnl">A male <em>endocrine</em><br>baseline.</div>
+            </div>
+            <div class="id">REF · ADX-PRC-01<br><b>Specimen 04217</b></div>
+          </div>
+
+          <div class="bm-list">
+            <div class="bm-row">
+              <div class="nm">Total testosterone<em>Free + total · LC-MS</em></div>
+              <div class="v">612 <small>ng/dL</small></div>
+              <div class="flag opt">Optimal</div>
+            </div>
+            <div class="bm-row">
+              <div class="nm">SHBG<em>Sex hormone binding globulin</em></div>
+              <div class="v">28.4 <small>nmol/L</small></div>
+              <div class="flag opt">Optimal</div>
+            </div>
+            <div class="bm-row">
+              <div class="nm">Free T3<em>Active thyroid hormone</em></div>
+              <div class="v">2.6 <small>pg/mL</small></div>
+              <div class="flag lo">Low-normal</div>
+            </div>
+            <div class="bm-row">
+              <div class="nm">hs-CRP<em>Inflammation</em></div>
+              <div class="v">0.8 <small>mg/L</small></div>
+              <div class="flag opt">Optimal</div>
+            </div>
+            <div class="bm-row">
+              <div class="nm">Fasting insulin<em>Metabolic</em></div>
+              <div class="v">11.2 <small>µIU/mL</small></div>
+              <div class="flag hi">Above target</div>
+            </div>
+            <div class="bm-row">
+              <div class="nm">Vit D · 25(OH)<em>Nutrient</em></div>
+              <div class="v">36 <small>ng/mL</small></div>
+              <div class="flag now">Reviewing</div>
+            </div>
+          </div>
+
+          <div class="foot">
+            <span>Phlebotomy · <b>at-home or LabCorp</b></span>
+            <span class="reading">Live — physician reading</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 2 · WHAT'S INCLUDED ============= -->
+  <section class="section" data-screen-label="02 Whats Included">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">02 · What's included</span>
+          <h2 class="h-display h2">Four parts. <em>One protocol.</em></h2>
+        </div>
+        <div class="r">
+          <p>Precision Care is a single package — every component is
+          included, sequenced, and reviewed together. No à-la-carte
+          add-ons, no surprise charges between intake and visit.</p>
+        </div>
+      </div>
+
+      <div class="included">
+        <div class="inc-card">
+          <div class="num">01</div>
+          <div class="glyph">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+              <rect x="9" y="3" width="14" height="26" rx="1.5"/>
+              <line x1="9" y1="10" x2="23" y2="10"/>
+              <line x1="9" y1="17" x2="23" y2="17"/>
+              <line x1="13" y1="6.5" x2="19" y2="6.5"/>
+              <circle cx="13" cy="22" r="1"/><circle cx="16" cy="22" r="1"/><circle cx="19" cy="22" r="1"/>
+              <circle cx="13" cy="25" r="1"/><circle cx="16" cy="25" r="1"/>
+            </svg>
+          </div>
+          <h3>Comprehensive <em>lab panel</em></h3>
+          <p>50+ biomarkers spanning hormones, thyroid, metabolic, inflammation, and nutrients. At-home phlebotomy or LabCorp draw — your choice.</p>
+          <div class="tag"><b>~50 markers</b> · 1 draw · 3–5 day result</div>
+        </div>
+        <div class="inc-card">
+          <div class="num">02</div>
+          <div class="glyph">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+              <path d="M 6 4 H 23 L 26 7 V 28 H 6 Z"/>
+              <path d="M 23 4 V 7 H 26"/>
+              <line x1="10" y1="13" x2="22" y2="13"/>
+              <line x1="10" y1="17" x2="22" y2="17"/>
+              <line x1="10" y1="21" x2="18" y2="21"/>
+              <line x1="10" y1="25" x2="14" y2="25"/>
+            </svg>
+          </div>
+          <h3>Comprehensive <em>medical intake</em></h3>
+          <p>Detailed history covering medications, family history, lifestyle, performance and hormonal symptoms, recovery and sleep — built for a clinician's eye, not a chatbot's.</p>
+          <div class="tag"><b>~22 min</b> · clinician-grade · async</div>
+        </div>
+        <div class="inc-card">
+          <div class="num">03</div>
+          <div class="glyph">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+              <rect x="3" y="8" width="22" height="16" rx="1.5"/>
+              <path d="M 25 12 L 30 9 V 23 L 25 20 Z"/>
+              <circle cx="14" cy="16" r="3"/>
+            </svg>
+          </div>
+          <h3>Physician <em>video visit</em></h3>
+          <p>One-on-one with a Florida-licensed physician. They've read your labs and intake before the call. No five-minute checklists — actual conversation.</p>
+          <div class="tag"><b>~30 min</b> · same-week · MD-led</div>
+        </div>
+        <div class="inc-card">
+          <div class="num">04</div>
+          <div class="glyph">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+              <path d="M 8 4 H 24 V 28 H 8 Z"/>
+              <line x1="11" y1="10" x2="21" y2="10"/>
+              <line x1="11" y1="14" x2="21" y2="14"/>
+              <line x1="11" y1="18" x2="17" y2="18"/>
+              <path d="M 19 22 L 21 24 L 24 21"/>
+            </svg>
+          </div>
+          <h3>Personalized <em>optimization plan</em></h3>
+          <p>Written by your physician after your visit: what to address, in what order, with what (Rx, lifestyle, follow-up labs). Yours to keep — not locked in a portal.</p>
+          <div class="tag"><b>~5 pages</b> · written · re-reviewed at 3 mo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 3 · WHO IT'S FOR ============= -->
+  <section class="section alt" data-screen-label="03 Who Its For">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">03 · Who it's for</span>
+          <h2 class="h-display h2">For the <em>data-curious</em>, the optimizing, and the genuinely concerned.</h2>
+        </div>
+        <div class="r">
+          <p>Some men come in already knowing what they want measured.
+          Others come in because something feels off and a 30-second
+          questionnaire isn't enough. Both are right at home in
+          Precision Care.</p>
+        </div>
+      </div>
+
+      <div class="who-grid">
+        <div class="who-row">
+          <div class="num">01</div>
+          <div class="nm"><em>Low energy</em> that won't lift</div>
+          <div class="ctx">Persistent fatigue, brain fog, or lost drive — even with reasonable sleep and exercise. Often <b>thyroid, testosterone, iron, or insulin-driven</b> when the root cause is biological.</div>
+        </div>
+        <div class="who-row">
+          <div class="num">02</div>
+          <div class="nm"><em>Hair loss</em> with broader context</div>
+          <div class="ctx">Pattern hair loss can have hormonal and metabolic drivers worth checking — DHT, ferritin, thyroid, inflammation. Useful before or alongside a topical/oral protocol.</div>
+        </div>
+        <div class="who-row">
+          <div class="num">03</div>
+          <div class="nm"><em>Sexual performance</em> concerns</div>
+          <div class="ctx">When ED isn't responsive to first-line treatment, or when libido has dropped — the answer is often hormonal, vascular, or metabolic. Worth knowing which.</div>
+        </div>
+        <div class="who-row">
+          <div class="num">04</div>
+          <div class="nm"><em>Recovery</em> and <em>training</em> issues</div>
+          <div class="ctx">Slower recovery, persistent injuries, plateaus you can't out-train. We measure inflammation, recovery hormones, and the metabolic markers your wearable can't.</div>
+        </div>
+        <div class="who-row">
+          <div class="num">05</div>
+          <div class="nm"><em>Hormone</em> concerns</div>
+          <div class="ctx">Total and free testosterone, SHBG, estradiol, DHT, prolactin, cortisol. Read together — not in isolation.</div>
+        </div>
+        <div class="who-row">
+          <div class="num">06</div>
+          <div class="nm"><em>Thyroid</em> concerns</div>
+          <div class="ctx">Beyond TSH alone — Free T3, Free T4, reverse T3, antibodies. Where the GP often stops, we begin.</div>
+        </div>
+        <div class="who-row">
+          <div class="num">07</div>
+          <div class="nm"><em>Longevity</em> goals</div>
+          <div class="ctx">Cardiometabolic risk read deeper than your annual physical: ApoB, Lp(a), insulin, hs-CRP, HbA1c. The markers that actually move with intervention.</div>
+        </div>
+        <div class="who-row">
+          <div class="num">08</div>
+          <div class="nm">A desire for <em>deeper data</em></div>
+          <div class="ctx">You've done the questionnaires, you've tried the protocols, and you'd rather see the numbers and meet the physician reading them. This pathway is built for you.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 4 · BIOMARKER PREVIEW ============= -->
+  <section class="section" data-screen-label="04 Biomarker Preview">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">04 · Sample biomarkers</span>
+          <h2 class="h-display h2">A sample of the <em>data behind the visit</em>.</h2>
+        </div>
+        <div class="r">
+          <p>An illustrative breakdown of the categories Precision Care looks
+          at. Specific markers and reference ranges depend on your case.</p>
+          <p style="font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); margin-top: 22px;">Example only · not an offer of diagnosis</p>
+        </div>
+      </div>
+
+      <div class="bm-board">
+        <div class="top">
+          <div class="l">
+            <span class="mono">Panel · ADX-PRC-01</span>
+            <h3>Six categories. <em>Read together.</em></h3>
+          </div>
+          <div class="r">
+            <span>Total markers<b>~50</b></span>
+            <span>Categories<b>6</b></span>
+            <span>Method<b>LC-MS · CLIA</b></span>
+          </div>
+        </div>
+
+        <div class="bm-cats">
+          <div class="bm-cat">
+            <div class="ch">
+              <div class="nm">Hormones <em>endocrine</em></div>
+              <div class="ct"><b>9</b> markers</div>
+            </div>
+            <ul>
+              <li><span class="nm2">Total testosterone</span><span class="un">ng/dL</span></li>
+              <li><span class="nm2">Free testosterone</span><span class="un">pg/mL</span></li>
+              <li><span class="nm2">SHBG</span><span class="un">nmol/L</span></li>
+              <li><span class="nm2">Estradiol</span><span class="un">pg/mL</span></li>
+              <li><span class="nm2">DHT</span><span class="un">ng/dL</span></li>
+              <li><span class="nm2">Prolactin · Cortisol</span><span class="un">ng/mL</span></li>
+            </ul>
+          </div>
+          <div class="bm-cat">
+            <div class="ch">
+              <div class="nm">Thyroid <em>full panel</em></div>
+              <div class="ct"><b>5</b> markers</div>
+            </div>
+            <ul>
+              <li><span class="nm2">TSH</span><span class="un">µIU/mL</span></li>
+              <li><span class="nm2">Free T3</span><span class="un">pg/mL</span></li>
+              <li><span class="nm2">Free T4</span><span class="un">ng/dL</span></li>
+              <li><span class="nm2">Reverse T3</span><span class="un">ng/dL</span></li>
+              <li><span class="nm2">TPO antibodies</span><span class="un">IU/mL</span></li>
+            </ul>
+          </div>
+          <div class="bm-cat">
+            <div class="ch">
+              <div class="nm">Metabolic <em>insulin axis</em></div>
+              <div class="ct"><b>8</b> markers</div>
+            </div>
+            <ul>
+              <li><span class="nm2">Fasting glucose</span><span class="un">mg/dL</span></li>
+              <li><span class="nm2">Fasting insulin</span><span class="un">µIU/mL</span></li>
+              <li><span class="nm2">HbA1c</span><span class="un">%</span></li>
+              <li><span class="nm2">HOMA-IR</span><span class="un">index</span></li>
+              <li><span class="nm2">Triglycerides · HDL</span><span class="un">mg/dL</span></li>
+            </ul>
+          </div>
+          <div class="bm-cat">
+            <div class="ch">
+              <div class="nm">Inflammation <em>systemic</em></div>
+              <div class="ct"><b>4</b> markers</div>
+            </div>
+            <ul>
+              <li><span class="nm2">hs-CRP</span><span class="un">mg/L</span></li>
+              <li><span class="nm2">Homocysteine</span><span class="un">µmol/L</span></li>
+              <li><span class="nm2">Ferritin</span><span class="un">ng/mL</span></li>
+              <li><span class="nm2">ESR</span><span class="un">mm/hr</span></li>
+            </ul>
+          </div>
+          <div class="bm-cat">
+            <div class="ch">
+              <div class="nm">Nutrients <em>essential</em></div>
+              <div class="ct"><b>9</b> markers</div>
+            </div>
+            <ul>
+              <li><span class="nm2">Vit D · 25(OH)</span><span class="un">ng/mL</span></li>
+              <li><span class="nm2">Vit B12 · folate</span><span class="un">pg/mL</span></li>
+              <li><span class="nm2">Magnesium · zinc</span><span class="un">mg/dL</span></li>
+              <li><span class="nm2">Iron · TIBC</span><span class="un">µg/dL</span></li>
+              <li><span class="nm2">Omega-3 index</span><span class="un">%</span></li>
+            </ul>
+          </div>
+          <div class="bm-cat">
+            <div class="ch">
+              <div class="nm">Cardiometabolic <em>risk</em></div>
+              <div class="ct"><b>7</b> markers</div>
+            </div>
+            <ul>
+              <li><span class="nm2">ApoB</span><span class="un">mg/dL</span></li>
+              <li><span class="nm2">Lp(a)</span><span class="un">nmol/L</span></li>
+              <li><span class="nm2">Total · LDL · HDL</span><span class="un">mg/dL</span></li>
+              <li><span class="nm2">Triglycerides</span><span class="un">mg/dL</span></li>
+              <li><span class="nm2">Particle size (NMR)</span><span class="un">opt.</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bm-foot">
+          <span>Lab partner · <b>Quest / LabCorp</b></span>
+          <span>Method · <b>LC-MS · ELISA · turbidimetry</b></span>
+          <span class="right">Example panel — actual markers depend on case</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 5 · HOW IT WORKS ============= -->
+  <section class="section deep" data-screen-label="05 How It Works">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">05 · How it works</span>
+          <h2 class="h-display h2">Five steps. <em>About ten days.</em></h2>
+        </div>
+        <div class="r">
+          <p>From purchase to plan. Most members complete intake the
+          same day, get bloodwork drawn within 48 hours, and are on a
+          video visit with their physician within a week.</p>
+        </div>
+      </div>
+
+      <div class="hiw-list">
+        <div class="hiw-row">
+          <div class="num">01</div>
+          <div class="nm">Purchase <em>Precision Care</em></div>
+          <div class="desc">One-time package, $499. Card authorized at checkout, charged after a member-services intake confirmation call.</div>
+          <div class="stamp"><b>~2 min</b><em>Today</em></div>
+        </div>
+        <div class="hiw-row alt">
+          <div class="num">02</div>
+          <div class="nm">Complete the <em>comprehensive intake</em></div>
+          <div class="desc">Detailed clinical questionnaire — history, medications, lifestyle, symptoms, performance and recovery. Read by your physician before your visit.</div>
+          <div class="stamp"><b>~22 min</b><em>Day 1</em></div>
+        </div>
+        <div class="hiw-row">
+          <div class="num">03</div>
+          <div class="nm">Complete <em>lab testing</em></div>
+          <div class="desc">At-home phlebotomy (we send a draw kit and a phlebotomist to you) or a same-week LabCorp / Quest appointment. ~50 markers, single fasted draw.</div>
+          <div class="stamp"><b>1 visit</b><em>Day 2–4</em></div>
+        </div>
+        <div class="hiw-row alt">
+          <div class="num">04</div>
+          <div class="nm">Meet a <em>physician by video</em></div>
+          <div class="desc">A Florida-licensed physician — having read your intake and labs in advance — joins you for a 30-minute one-on-one. Real conversation, not a script.</div>
+          <div class="stamp"><b>~30 min</b><em>Day 7–10</em></div>
+        </div>
+        <div class="hiw-row">
+          <div class="num">05</div>
+          <div class="nm">Receive your <em>personalized plan</em></div>
+          <div class="desc">A written 5-page plan from your physician. Findings, priorities, recommendations (Rx if appropriate, lifestyle, supplementation, follow-up labs), in plain language. Yours to keep.</div>
+          <div class="stamp"><b>5 pages</b><em>Within 48 hrs</em></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 6 · COMPARE ============= -->
+  <section class="section" data-screen-label="06 Express vs Precision">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">06 · Compare pathways</span>
+          <h2 class="h-display h2">Two pathways. <em>One front door.</em></h2>
+        </div>
+        <div class="r">
+          <p>Most members start with Express Care if they know what
+          they need (hair, ED) and move to Precision Care when they
+          want context. Some start with Precision and never look back.
+          Either path works.</p>
+        </div>
+      </div>
+
+      <div class="compare">
+        <!-- Express -->
+        <div class="cmp-card exp">
+          <div class="tag">
+            <span>Pathway 01</span>
+            <span class="nm">Express <em>Care</em></span>
+          </div>
+          <div class="price-row">
+            <div class="pr">$0<em>visit</em></div>
+            <div class="lbl">Then <b>medication only</b><br>Generic from <b>$29/mo</b></div>
+          </div>
+          <p class="blurb">A licensed-provider review, focused on getting clinically appropriate treatment for hair loss, ED, and select wellness needs. No labs.</p>
+          <ul>
+            <li>Faster — same-week treatment access</li>
+            <li>Lower cost — no visit fee, generics from $29/mo</li>
+            <li>Online questionnaire + asynchronous provider review</li>
+            <li>Best for hair loss and ED treatment access</li>
+            <li>Generic + compounded options where clinically appropriate</li>
+          </ul>
+          <div class="best"><b>Best for</b> single, well-defined symptoms — pattern hair loss, on-demand ED, where the answer is likely a known protocol and the question is whether it's appropriate for you.</div>
+          <div class="actions">
+            <a class="btn" style="flex:1;"><span>Explore <em>Express Care</em></span><span class="arr">→</span></a>
+          </div>
+        </div>
+
+        <!-- Precision -->
+        <div class="cmp-card pri">
+          <div class="tag">
+            <span>Pathway 02 · this page</span>
+            <span class="nm">Precision <em>Care</em></span>
+          </div>
+          <div class="price-row">
+            <div class="pr">$499<em>package</em></div>
+            <div class="lbl"><b>Lab + intake + visit + plan</b><br>Treatment quoted separately</div>
+          </div>
+          <p class="blurb">A deeper, lab-guided look at the biology behind your symptoms — built around a one-on-one with a physician who has read your data first.</p>
+          <ul>
+            <li>Lab-guided — ~50 markers across 6 categories</li>
+            <li>Comprehensive clinical intake reviewed by an MD</li>
+            <li>30-minute one-on-one physician video visit</li>
+            <li>Personalized written plan to keep</li>
+            <li>Best for deeper optimization and complex goals</li>
+          </ul>
+          <div class="best"><b>Best for</b> hormone, thyroid, and metabolic concerns; sexual performance with possible hormonal drivers; longevity goals; biohackers and optimization-minded members who want the data and the physician.</div>
+          <div class="actions">
+            <a class="btn primary" style="flex:1;"><span>Start <em>Precision Care</em></span><span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 7 · PHYSICIAN CREDIBILITY ============= -->
+  <section class="section alt" data-screen-label="07 Physician Credibility">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">07 · Physician-led</span>
+          <h2 class="h-display h2">Read by a <em>physician</em>, not a chatbot.</h2>
+        </div>
+        <div class="r">
+          <p>Precision Care visits are conducted by Florida-licensed
+          physicians with subspecialty experience in men's health, hair
+          restoration, and metabolic optimization. Every plan is written
+          and signed by the physician you meet.</p>
+        </div>
+      </div>
+
+      <div class="docs-wrap">
+        <div class="doc-card">
+          <div class="doc-portrait"><span>Portrait · MD-led</span></div>
+          <div>
+            <div class="nm">Dr. <em>Andrew Larrabee, MD</em></div>
+            <p style="color: var(--fg-soft); font-size: 14px; line-height: 1.55; margin-top: 8px;">Medical Director · Adonis. Hair-transplant surgeon, board-certified in family medicine, with a clinical focus on hormone-mediated dermatology and male endocrine health.</p>
+          </div>
+          <div class="creds">
+            <div class="row"><span class="k">Boards</span><span class="v"><b>ABFM</b> · ISHRS member</span></div>
+            <div class="row"><span class="k">License</span><span class="v">FL · ME 142008 · active</span></div>
+            <div class="row"><span class="k">Focus</span><span class="v">Hair · hormone · metabolic</span></div>
+            <div class="row"><span class="k">Visits</span><span class="v"><b>~30 min</b> · video · same-week</span></div>
+          </div>
+        </div>
+
+        <div class="cred-list">
+          <div class="cred-row">
+            <div class="k">01</div>
+            <div>
+              <div class="nm">Physician-led <em>care</em></div>
+              <div class="desc">Every Precision Care visit is conducted by an MD — not a coach, not an NP triage, not an AI summary. Your visit, your plan, your physician's signature.</div>
+            </div>
+            <div class="stamp"><b>MD-only</b><br>visits</div>
+          </div>
+          <div class="cred-row">
+            <div class="k">02</div>
+            <div>
+              <div class="nm">Hair transplant <em>surgical</em> credibility</div>
+              <div class="desc">Our medical director is an active hair-transplant surgeon. Hair concerns are treated as the surgical / dermatological subspecialty they are — not as a generic supplement category.</div>
+            </div>
+            <div class="stamp"><b>ISHRS</b><br>member</div>
+          </div>
+          <div class="cred-row">
+            <div class="k">03</div>
+            <div>
+              <div class="nm">Licensed-provider <em>review</em>, every order</div>
+              <div class="desc">No prescription is approved or shipped without a Florida-licensed provider's signature. Card is authorized at checkout, captured on approval. No charge if declined.</div>
+            </div>
+            <div class="stamp"><b>FL ME</b><br>verified</div>
+          </div>
+          <div class="cred-row">
+            <div class="k">04</div>
+            <div>
+              <div class="nm">Lab-guided <em>care</em></div>
+              <div class="desc">Comprehensive lab panels run through CLIA-certified labs (Quest, LabCorp), reviewed by your physician before your visit. Methods include LC-MS, ELISA, and NMR particle sizing.</div>
+            </div>
+            <div class="stamp"><b>CLIA</b><br>certified</div>
+          </div>
+          <div class="cred-row">
+            <div class="k">05</div>
+            <div>
+              <div class="nm">Transparent <em>recommendations</em></div>
+              <div class="desc">Plans state what's recommended, why, and what wasn't (and why not). Generic-first when clinically appropriate. You can fill an Rx with us or take it elsewhere — your choice.</div>
+            </div>
+            <div class="stamp"><b>Generic</b><br>first</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 8 · PACKAGE PRICING ============= -->
+  <section class="section" data-screen-label="08 Package Pricing">
+    <div class="wrap">
+      <div class="pkg-wrap">
+        <div class="pkg-l">
+          <span class="eyebrow">08 · The package</span>
+          <h2 class="h-display h2" style="margin-top: 22px;">Everything in <em>one price</em>.</h2>
+          <p>One package, one price. Every component is included — labs,
+          intake, physician visit, and the written plan. No à-la-carte
+          surprises. Treatment, if recommended, is quoted separately.</p>
+
+          <div class="meta">
+            <div class="row"><span class="k">SKU</span><span class="v">ADX-PRC-01</span></div>
+            <div class="row"><span class="k">Type</span><span class="v">Package · WooCommerce simple product</span></div>
+            <div class="row"><span class="k">Eligibility</span><span class="v">Florida residents · 21+ · launch state</span></div>
+            <div class="row"><span class="k">Charge</span><span class="v">Card authorized · captured after intake confirmation</span></div>
+            <div class="row"><span class="k">Refund</span><span class="v">Full refund pre-lab-draw · partial after</span></div>
+          </div>
+        </div>
+
+        <div class="pkg-card">
+          <div class="head">
+            <div class="l">
+              <span class="mono">Pathway 02</span>
+              <h3>Precision <em>Care</em></h3>
+            </div>
+            <div class="r">
+              <div class="pr">$499<em>USD · package</em></div>
+            </div>
+          </div>
+
+          <p class="lead">A lab-guided look at the biology behind your symptoms — read by a physician, written into a plan that's yours to keep.</p>
+
+          <ul>
+            <li><span class="nm">Comprehensive <em>lab panel</em></span><span class="det">~50 markers</span></li>
+            <li><span class="nm">Comprehensive <em>medical intake</em></span><span class="det">~22 min</span></li>
+            <li><span class="nm">Physician <em>video visit</em></span><span class="det">~30 min</span></li>
+            <li><span class="nm">Personalized <em>optimization plan</em></span><span class="det">5 pages</span></li>
+            <li><span class="nm">3-month <em>follow-up review</em></span><span class="det">included</span></li>
+          </ul>
+
+          <div class="reassure">
+            <b>Card authorized</b> at checkout · charged after member-services confirmation. <b>No charge</b> if you don't qualify clinically.
+          </div>
+
+          <div class="actions">
+            <a class="btn primary lg full"><span>Start <em>Precision Care</em> · $499</span><span class="arr">→</span></a>
+            <a class="btn full"><span>Add to <em>cart</em></span><span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 9 · FAQ ============= -->
+  <section class="section alt" data-screen-label="09 FAQ">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">09 · Common questions</span>
+          <h2 class="h-display h2">Things <em>worth asking</em>.</h2>
+        </div>
+        <div class="r">
+          <p>If you don't see your question here, member services
+          replies the same business day during launch. We answer in
+          plain language, not legalese.</p>
+        </div>
+      </div>
+
+      <div class="faq-grid">
+        <details>
+          <summary><span class="num">Q · 01</span><span>Is Precision Care <em>required</em> for treatment?</span><span class="plus"></span></summary>
+          <div class="a">
+            <p><strong>No.</strong> Express Care is the right path for most members seeking treatment for pattern hair loss or ED. Precision Care is for members who want lab-level context — hormones, thyroid, metabolic markers — alongside, before, or instead of treatment.</p>
+            <p>Many members start with Express Care, see good results, and only move to Precision Care if questions remain or new concerns arise.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="num">Q · 02</span><span>Can I start with <em>Express Care</em> first?</span><span class="plus"></span></summary>
+          <div class="a"><p>Yes. Express Care is a separate pathway with its own questionnaire, provider review, and treatment options. You can move to Precision Care at any time — it's the deeper diagnostic complement, not a prerequisite or a replacement.</p></div>
+        </details>
+        <details>
+          <summary><span class="num">Q · 03</span><span>What labs are <em>included</em>?</span><span class="plus"></span></summary>
+          <div class="a">
+            <p>The standard Precision Care panel covers ~50 biomarkers across six categories: hormones (testosterone total + free, SHBG, estradiol, DHT, prolactin, cortisol), full thyroid, metabolic / insulin axis, inflammation, nutrients, and cardiometabolic risk (ApoB, Lp(a), particle sizing).</p>
+            <p>Your physician may request additional or alternate markers based on your intake. Specific markers and reference ranges depend on your case.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="num">Q · 04</span><span>What happens <em>after I purchase</em>?</span><span class="plus"></span></summary>
+          <div class="a"><p>Your card is authorized but not charged in full at checkout. A member-services coordinator confirms your eligibility, schedules your physician visit, and ships your phlebotomy kit (or schedules a LabCorp draw). Charge is captured at that confirmation. No charge if you don't qualify clinically.</p></div>
+        </details>
+        <details>
+          <summary><span class="num">Q · 05</span><span>Can I use <em>outside labs</em>?</span><span class="plus"></span></summary>
+          <div class="a"><p>If you've had compatible labs run within the last 90 days, you can submit them and we'll discount the package by the lab portion (typically $150). Your physician decides whether the panels are sufficient or if any markers need to be re-drawn.</p></div>
+        </details>
+        <details>
+          <summary><span class="num">Q · 06</span><span>Does this <em>guarantee</em> a prescription?</span><span class="plus"></span></summary>
+          <div class="a"><p><strong>No.</strong> Precision Care provides medical evaluation and personalized recommendations. A prescription is issued only when medically appropriate, by a licensed physician, after reviewing your labs, intake, and visit. No reputable medical practice can guarantee a prescription, and we don't.</p></div>
+        </details>
+        <details>
+          <summary><span class="num">Q · 07</span><span>Is this <em>available for men and women</em>?</span><span class="plus"></span></summary>
+          <div class="a"><p>Adonis is currently focused on men's performance medicine — hair, sexual wellness, hormone, thyroid, and metabolic optimization. A women's pathway with its own panels, plans, and physicians is in active development; join the early access list from the women's home view.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= 10 · DISCLAIMER ============= -->
+  <section class="section deep" data-screen-label="10 Medical Disclaimer">
+    <div class="wrap">
+      <div class="disclaimer">
+        <h3>Medical <em>disclaimer</em></h3>
+        <div class="body">
+          <p><b>Precision Care provides lab-guided medical evaluation and
+          personalized recommendations. Prescriptions or therapies are
+          provided only when medically appropriate after review by a
+          licensed provider. Results vary.</b></p>
+          <p>Adonis is not a substitute for emergency care. If you are
+          experiencing a medical emergency, call 911 or your local
+          emergency number. The information on this page is for general
+          educational purposes; it is not personalized medical advice.</p>
+          <div class="legal">
+            Adonis Health LLC · FL Telehealth Provider · Florida Med Board ME 142008 (Medical Director) · CLIA-certified lab partners · Compounded medications dispensed under section 503A of the FD&amp;C Act when clinically appropriate · HIPAA-compliant clinical workflow powered by Prescribery
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= FINAL CTA ============= -->
+  <section class="final" data-screen-label="11 Final CTA">
+    <span class="eyebrow alt">Ready when you are</span>
+    <h2 class="h-display h2" style="margin-top: 18px;">A deeper look,<br>read by a <em>physician</em>.</h2>
+    <p>Lab + intake + physician video visit + a written plan to keep — for $499. One package, no surprises, no chatbots.</p>
+    <div class="actions">
+      <a class="btn primary lg"><span>Start <em>Precision Care</em> · $499</span><span class="arr">→</span></a>
+      <a class="btn lg"><span>Compare to <em>Express Care</em></span><span class="arr">→</span></a>
+    </div>
+    <div class="reassure">Card authorized · charged after member-services confirmation · <b>No charge if you don't qualify</b></div>
+  </section>
+
+  <!-- ============= FOOTER ============= -->
+  <footer class="footer">
+    <div class="inner">
+      <div class="brand">
+        <div class="l"><em>Adonis</em></div>
+        <p>Performance medicine for men. Florida-licensed physicians. HIPAA-compliant. Generic-first when clinically appropriate.</p>
+      </div>
+      <div class="col">
+        <h5>Pathways</h5>
+        <ul>
+          <li><a>Express Care</a></li>
+          <li><a>Precision Care</a></li>
+          <li><a>Subscriptions</a></li>
+          <li><a>Member portal</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h5>Care</h5>
+        <ul>
+          <li><a>Hair restoration</a></li>
+          <li><a>Sexual wellness</a></li>
+          <li><a>Hormone &amp; thyroid</a></li>
+          <li><a>Metabolic &amp; longevity</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h5>Standards</h5>
+        <ul>
+          <li><a>Physicians</a></li>
+          <li><a>Labs &amp; methods</a></li>
+          <li><a>Privacy &amp; HIPAA</a></li>
+          <li><a>Telehealth consent</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Adonis Health LLC</span>
+      <span>FL Telehealth Provider · ME 142008</span>
+      <span>Member services · Mon–Fri · 9–6 ET</span>
+    </div>
+  </footer>
+</article>
+
+<!-- ============================================================
+     2 · MOBILE
+     ============================================================ -->
+<div class="label-bar" data-view="mobile">
+  <span><b>Precision Care</b> · landing · mobile · 390</span>
+  <span>Single-column · sticky CTA pattern</span>
+</div>
+
+<article class="page page-mobile m-page" data-view="mobile">
+
+  <div class="notice"><span><b>FL-licensed</b> MDs · <b>HIPAA</b></span></div>
+  <nav class="nav">
+    <div class="l">A D O N I S</div>
+    <div class="r">
+      <a class="ghost">Log in</a>
+      <a class="btn primary" style="padding:9px 14px;font-size:12px;">Start →</a>
+    </div>
+  </nav>
+  <div class="crumb">
+    <div class="l">Care · <b>Precision</b></div>
+    <div class="r"><span class="pill">$499</span></div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="l">
+        <div class="meta">
+          <span><b>Care 02</b></span>
+          <span>Lab-guided</span>
+          <span>MD video</span>
+        </div>
+        <h1 class="h-display h1">Go deeper with <em>data-driven</em> optimization.</h1>
+        <p class="lead">Lab testing + comprehensive intake + a physician visit to find the drivers behind performance, hormone, thyroid, metabolic, and longevity concerns.</p>
+        <div class="anchor">
+          <div class="lbl">Starting at</div>
+          <div class="price"><em>$</em>499</div>
+          <div class="det"><b>Lab + intake + visit + plan</b></div>
+        </div>
+        <div class="ctas">
+          <a class="btn primary"><span>Start <em>Precision Care</em></span><span class="arr">→</span></a>
+          <a class="btn"><span>Compare <em>Express Care</em></span><span class="arr">→</span></a>
+        </div>
+      </div>
+      <div class="r">
+        <div class="diagnostic">
+          <div class="head">
+            <div>
+              <div class="t">Panel · 02</div>
+              <div class="pnl">A male <em>endocrine</em><br>baseline.</div>
+            </div>
+            <div class="id">REF · ADX<br><b>04217</b></div>
+          </div>
+          <div class="bm-list">
+            <div class="bm-row"><div class="nm">Total testosterone<em>LC-MS</em></div><div class="v">612</div></div>
+            <div class="bm-row"><div class="nm">SHBG<em>nmol/L</em></div><div class="v">28.4</div></div>
+            <div class="bm-row"><div class="nm">Free T3<em>thyroid</em></div><div class="v">2.6</div></div>
+            <div class="bm-row"><div class="nm">hs-CRP<em>inflammation</em></div><div class="v">0.8</div></div>
+            <div class="bm-row"><div class="nm">Fasting insulin<em>metabolic</em></div><div class="v">11.2</div></div>
+          </div>
+          <div class="foot">
+            <span><b>At-home or LabCorp</b></span>
+            <span class="reading">Reading</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Included -->
+  <section class="section">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">02 · What's included</span>
+          <h2 class="h-display h2">Four parts. <em>One protocol.</em></h2>
+        </div>
+        <div class="r"><p>Every component included, sequenced, and reviewed together. No à-la-carte add-ons.</p></div>
+      </div>
+      <div class="included">
+        <div class="inc-card">
+          <div class="num">01</div>
+          <h3>Comprehensive <em>lab panel</em></h3>
+          <p>~50 biomarkers across hormones, thyroid, metabolic, inflammation, nutrients. At-home or LabCorp.</p>
+          <div class="tag"><b>~50 markers</b> · 1 draw · 3–5 day result</div>
+        </div>
+        <div class="inc-card">
+          <div class="num">02</div>
+          <h3>Comprehensive <em>medical intake</em></h3>
+          <p>Detailed history covering medications, family history, lifestyle, symptoms, recovery, and sleep.</p>
+          <div class="tag"><b>~22 min</b> · clinician-grade · async</div>
+        </div>
+        <div class="inc-card">
+          <div class="num">03</div>
+          <h3>Physician <em>video visit</em></h3>
+          <p>One-on-one with a Florida-licensed physician who has read your labs and intake first.</p>
+          <div class="tag"><b>~30 min</b> · same-week · MD-led</div>
+        </div>
+        <div class="inc-card">
+          <div class="num">04</div>
+          <h3>Personalized <em>plan</em></h3>
+          <p>Written by your physician after your visit. What to address, in what order, with what.</p>
+          <div class="tag"><b>~5 pages</b> · re-reviewed at 3 mo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">03 · Who it's for</span>
+          <h2 class="h-display h2">For the <em>data-curious</em>, the optimizing, the genuinely concerned.</h2>
+        </div>
+        <div class="r"><p>Some come in knowing what they want measured. Others because something feels off and a 30-second questionnaire isn't enough.</p></div>
+      </div>
+      <div class="who-grid">
+        <div class="who-row"><div class="num">01</div><div class="nm"><em>Low energy</em> that won't lift</div><div class="ctx">Often <b>thyroid, testosterone, iron, or insulin-driven</b>.</div></div>
+        <div class="who-row"><div class="num">02</div><div class="nm"><em>Hair loss</em> with broader context</div><div class="ctx">DHT, ferritin, thyroid, inflammation — often before/alongside a protocol.</div></div>
+        <div class="who-row"><div class="num">03</div><div class="nm"><em>Sexual performance</em> concerns</div><div class="ctx">When ED isn't first-line responsive, often hormonal or vascular.</div></div>
+        <div class="who-row"><div class="num">04</div><div class="nm"><em>Recovery</em> &amp; <em>training</em></div><div class="ctx">Inflammation, recovery hormones, metabolic markers your wearable can't.</div></div>
+        <div class="who-row"><div class="num">05</div><div class="nm"><em>Hormone</em> concerns</div><div class="ctx">T total &amp; free, SHBG, estradiol, DHT, prolactin, cortisol — read together.</div></div>
+        <div class="who-row"><div class="num">06</div><div class="nm"><em>Thyroid</em> concerns</div><div class="ctx">Beyond TSH alone — Free T3, T4, reverse T3, antibodies.</div></div>
+        <div class="who-row"><div class="num">07</div><div class="nm"><em>Longevity</em> goals</div><div class="ctx">ApoB, Lp(a), insulin, hs-CRP, HbA1c — markers that move with intervention.</div></div>
+        <div class="who-row"><div class="num">08</div><div class="nm">A desire for <em>deeper data</em></div><div class="ctx">You'd rather see the numbers and meet the physician reading them.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Biomarker preview (mobile collapsed) -->
+  <section class="section">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">04 · Sample biomarkers</span>
+          <h2 class="h-display h2">A sample of the <em>data behind the visit</em>.</h2>
+        </div>
+        <div class="r"><p>Illustrative breakdown — markers and ranges depend on your case.</p></div>
+      </div>
+      <div class="bm-board">
+        <div class="top">
+          <div class="l"><span class="mono">Panel · ADX-PRC-01</span><h3>Six categories. <em>Read together.</em></h3></div>
+          <div class="r"><span>Markers<b>~50</b></span><span>Cats<b>6</b></span></div>
+        </div>
+        <div class="bm-cats">
+          <div class="bm-cat"><div class="ch"><div class="nm">Hormones <em>endocrine</em></div><div class="ct"><b>9</b></div></div>
+            <ul><li><span class="nm2">Testosterone · SHBG</span><span class="un">ng/dL</span></li><li><span class="nm2">Estradiol · DHT</span><span class="un">pg/mL</span></li><li><span class="nm2">Prolactin · cortisol</span><span class="un">ng/mL</span></li></ul></div>
+          <div class="bm-cat"><div class="ch"><div class="nm">Thyroid</div><div class="ct"><b>5</b></div></div>
+            <ul><li><span class="nm2">TSH · Free T3 / T4</span><span class="un">µIU</span></li><li><span class="nm2">Reverse T3</span><span class="un">ng/dL</span></li><li><span class="nm2">TPO antibodies</span><span class="un">IU</span></li></ul></div>
+          <div class="bm-cat"><div class="ch"><div class="nm">Metabolic</div><div class="ct"><b>8</b></div></div>
+            <ul><li><span class="nm2">Glucose · insulin · A1c</span><span class="un">mg/dL</span></li><li><span class="nm2">HOMA-IR</span><span class="un">idx</span></li><li><span class="nm2">Trig · HDL</span><span class="un">mg/dL</span></li></ul></div>
+          <div class="bm-cat"><div class="ch"><div class="nm">Inflammation</div><div class="ct"><b>4</b></div></div>
+            <ul><li><span class="nm2">hs-CRP</span><span class="un">mg/L</span></li><li><span class="nm2">Homocysteine</span><span class="un">µmol/L</span></li><li><span class="nm2">Ferritin · ESR</span><span class="un">ng/mL</span></li></ul></div>
+          <div class="bm-cat"><div class="ch"><div class="nm">Nutrients</div><div class="ct"><b>9</b></div></div>
+            <ul><li><span class="nm2">Vit D · B12 · folate</span><span class="un">ng</span></li><li><span class="nm2">Mg · Zn · Fe</span><span class="un">mg/dL</span></li><li><span class="nm2">Omega-3 index</span><span class="un">%</span></li></ul></div>
+          <div class="bm-cat"><div class="ch"><div class="nm">Cardiometabolic</div><div class="ct"><b>7</b></div></div>
+            <ul><li><span class="nm2">ApoB · Lp(a)</span><span class="un">mg/dL</span></li><li><span class="nm2">LDL / HDL / Trig</span><span class="un">mg/dL</span></li><li><span class="nm2">Particle size</span><span class="un">NMR</span></li></ul></div>
+        </div>
+        <div class="bm-foot"><span><b>Quest / LabCorp</b></span><span class="right">Example only — actual markers depend on case</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIW -->
+  <section class="section deep">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">05 · How it works</span>
+          <h2 class="h-display h2">Five steps. <em>About ten days.</em></h2>
+        </div>
+        <div class="r"><p>From purchase to plan. Most members are in a video visit within a week.</p></div>
+      </div>
+      <div class="hiw-list">
+        <div class="hiw-row"><div class="num">01</div><div class="nm">Purchase <em>Precision Care</em></div><div class="desc">$499 package · card authorized at checkout, charged after intake confirmation.</div><div class="stamp"><b>~2 min</b> · <em>Today</em></div></div>
+        <div class="hiw-row alt"><div class="num">02</div><div class="nm">Comprehensive <em>intake</em></div><div class="desc">Detailed clinical questionnaire — read by your physician before your visit.</div><div class="stamp"><b>~22 min</b> · <em>Day 1</em></div></div>
+        <div class="hiw-row"><div class="num">03</div><div class="nm">Lab <em>testing</em></div><div class="desc">At-home phlebotomy or same-week LabCorp / Quest. Single fasted draw, ~50 markers.</div><div class="stamp"><b>1 visit</b> · <em>Day 2–4</em></div></div>
+        <div class="hiw-row alt"><div class="num">04</div><div class="nm">Physician <em>video visit</em></div><div class="desc">A Florida-licensed physician — having read your data — joins for a 30-minute one-on-one.</div><div class="stamp"><b>~30 min</b> · <em>Day 7–10</em></div></div>
+        <div class="hiw-row"><div class="num">05</div><div class="nm">Personalized <em>plan</em></div><div class="desc">A written 5-page plan — Rx if appropriate, lifestyle, follow-up. Yours to keep.</div><div class="stamp"><b>5 pages</b> · <em>+48 hrs</em></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compare -->
+  <section class="section">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">06 · Compare pathways</span>
+          <h2 class="h-display h2">Two pathways. <em>One front door.</em></h2>
+        </div>
+        <div class="r"><p>Most start with Express. Some start with Precision and never look back. Either path works.</p></div>
+      </div>
+      <div class="compare">
+        <div class="cmp-card exp">
+          <div class="tag"><span>Pathway 01</span><span class="nm">Express <em>Care</em></span></div>
+          <div class="price-row"><div class="pr">$0<em>visit</em></div><div class="lbl">Generic from <b>$29/mo</b></div></div>
+          <p class="blurb">Provider review focused on hair loss, ED, and select wellness needs.</p>
+          <ul>
+            <li>Faster · same-week treatment</li>
+            <li>Lower cost · no visit fee</li>
+            <li>Async questionnaire + provider review</li>
+            <li>Best for hair loss and ED</li>
+          </ul>
+          <div class="best"><b>Best for</b> single, well-defined symptoms — pattern hair loss, on-demand ED.</div>
+          <div class="actions"><a class="btn"><span>Explore <em>Express</em></span><span class="arr">→</span></a></div>
+        </div>
+        <div class="cmp-card pri">
+          <div class="tag"><span>Pathway 02 · this page</span><span class="nm">Precision <em>Care</em></span></div>
+          <div class="price-row"><div class="pr">$499<em>package</em></div><div class="lbl"><b>Lab + intake + visit + plan</b></div></div>
+          <p class="blurb">Lab-guided look at the biology behind your symptoms — built around an MD video visit.</p>
+          <ul>
+            <li>Lab-guided · ~50 markers</li>
+            <li>Comprehensive clinical intake</li>
+            <li>30-min physician video visit</li>
+            <li>Personalized written plan to keep</li>
+          </ul>
+          <div class="best"><b>Best for</b> hormone, thyroid, metabolic concerns; longevity goals; biohackers.</div>
+          <div class="actions"><a class="btn primary"><span>Start <em>Precision</em></span><span class="arr">→</span></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Docs -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">07 · Physician-led</span>
+          <h2 class="h-display h2">Read by a <em>physician</em>, not a chatbot.</h2>
+        </div>
+        <div class="r"><p>Florida-licensed physicians with subspecialty experience in men's health, hair restoration, metabolic optimization.</p></div>
+      </div>
+      <div class="docs-wrap">
+        <div class="doc-card">
+          <div class="doc-portrait"><span>Portrait · MD-led</span></div>
+          <div class="nm">Dr. <em>Andrew Larrabee, MD</em></div>
+          <div class="creds">
+            <div class="row"><span class="k">Boards</span><span class="v"><b>ABFM</b> · ISHRS member</span></div>
+            <div class="row"><span class="k">License</span><span class="v">FL · ME 142008</span></div>
+            <div class="row"><span class="k">Focus</span><span class="v">Hair · hormone · metabolic</span></div>
+          </div>
+        </div>
+        <div class="cred-list">
+          <div class="cred-row"><div class="k">01</div><div><div class="nm">Physician-led <em>care</em></div><div class="desc">MD-only visits — not a coach, not an NP triage, not an AI summary.</div></div><div class="stamp"><b>MD-only</b></div></div>
+          <div class="cred-row"><div class="k">02</div><div><div class="nm">Hair transplant <em>surgical</em> credibility</div><div class="desc">Active hair-transplant surgeon. Hair concerns treated as the subspecialty they are.</div></div><div class="stamp"><b>ISHRS</b></div></div>
+          <div class="cred-row"><div class="k">03</div><div><div class="nm">Licensed-provider <em>review</em></div><div class="desc">No Rx without a Florida-licensed provider's signature. No charge if declined.</div></div><div class="stamp"><b>FL ME</b></div></div>
+          <div class="cred-row"><div class="k">04</div><div><div class="nm">Lab-guided <em>care</em></div><div class="desc">CLIA-certified labs. LC-MS, ELISA, NMR.</div></div><div class="stamp"><b>CLIA</b></div></div>
+          <div class="cred-row"><div class="k">05</div><div><div class="nm">Transparent <em>recommendations</em></div><div class="desc">Generic-first. Take the Rx with us or elsewhere — your choice.</div></div><div class="stamp"><b>Generic-first</b></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Package -->
+  <section class="section">
+    <div class="wrap">
+      <div class="pkg-wrap">
+        <div class="pkg-l">
+          <span class="eyebrow">08 · The package</span>
+          <h2 class="h-display h2" style="margin-top: 16px;">Everything in <em>one price</em>.</h2>
+          <p>Labs, intake, physician visit, written plan — all included. Treatment quoted separately.</p>
+          <div class="meta">
+            <div class="row"><span class="k">SKU</span><span class="v">ADX-PRC-01</span></div>
+            <div class="row"><span class="k">Eligibility</span><span class="v">FL · 21+</span></div>
+            <div class="row"><span class="k">Charge</span><span class="v">Card authorized · captured after confirmation</span></div>
+          </div>
+        </div>
+        <div class="pkg-card">
+          <div class="head">
+            <div class="l"><span class="mono">Pathway 02</span><h3>Precision <em>Care</em></h3></div>
+            <div class="r"><div class="pr">$499<em>USD</em></div></div>
+          </div>
+          <p class="lead">A lab-guided look at the biology behind your symptoms — read by a physician, written into a plan that's yours to keep.</p>
+          <ul>
+            <li><span class="nm">Comprehensive <em>lab panel</em></span><span class="det">~50</span></li>
+            <li><span class="nm">Comprehensive <em>intake</em></span><span class="det">~22m</span></li>
+            <li><span class="nm">Physician <em>video visit</em></span><span class="det">~30m</span></li>
+            <li><span class="nm">Personalized <em>plan</em></span><span class="det">5p</span></li>
+            <li><span class="nm">3-month <em>follow-up</em></span><span class="det">incl.</span></li>
+          </ul>
+          <div class="reassure"><b>No charge</b> if you don't qualify clinically.</div>
+          <div class="actions">
+            <a class="btn primary full"><span>Start <em>Precision</em> · $499</span><span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section alt">
+    <div class="wrap">
+      <div class="head">
+        <div class="l">
+          <span class="eyebrow">09 · Common questions</span>
+          <h2 class="h-display h2">Things <em>worth asking</em>.</h2>
+        </div>
+      </div>
+      <div class="faq-grid">
+        <details><summary><span>Is Precision Care <em>required</em>?</span><span class="plus"></span></summary><div class="a"><p><strong>No.</strong> Express Care covers hair, ED, and select wellness. Precision is for lab-level context.</p></div></details>
+        <details><summary><span>Start with <em>Express Care</em>?</span><span class="plus"></span></summary><div class="a"><p>Yes. Move to Precision Care anytime — it's complementary, not a prerequisite.</p></div></details>
+        <details><summary><span>What labs are <em>included</em>?</span><span class="plus"></span></summary><div class="a"><p>~50 biomarkers across hormones, thyroid, metabolic, inflammation, nutrients, and cardiometabolic risk. Markers depend on your case.</p></div></details>
+        <details><summary><span>What <em>after I purchase</em>?</span><span class="plus"></span></summary><div class="a"><p>Card authorized · member services confirms eligibility, schedules visit, ships kit · charge captured at confirmation.</p></div></details>
+        <details><summary><span>Can I use <em>outside labs</em>?</span><span class="plus"></span></summary><div class="a"><p>Compatible labs &lt;90 days old → discount of ~$150. Physician decides if sufficient.</p></div></details>
+        <details><summary><span>Does this <em>guarantee</em> a prescription?</span><span class="plus"></span></summary><div class="a"><p><strong>No.</strong> Rx is issued only when medically appropriate after physician review.</p></div></details>
+        <details><summary><span>Available for <em>men &amp; women</em>?</span><span class="plus"></span></summary><div class="a"><p>Currently men's performance medicine. Women's pathway in development — join early access from the women's home view.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Disclaimer -->
+  <section class="section deep">
+    <div class="wrap">
+      <div class="disclaimer">
+        <h3>Medical <em>disclaimer</em></h3>
+        <div class="body">
+          <p><b>Precision Care provides lab-guided medical evaluation and personalized recommendations. Prescriptions or therapies are provided only when medically appropriate after review by a licensed provider. Results vary.</b></p>
+          <p>Adonis is not a substitute for emergency care. The information here is general education, not personalized medical advice.</p>
+          <div class="legal">Adonis Health LLC · FL Telehealth · ME 142008 · CLIA labs · 503A when appropriate · HIPAA · Prescribery</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final -->
+  <section class="final">
+    <span class="eyebrow alt">Ready when you are</span>
+    <h2 class="h-display h2" style="margin-top: 14px;">A deeper look,<br>read by a <em>physician</em>.</h2>
+    <p>Lab + intake + physician video visit + written plan to keep — for $499.</p>
+    <div class="actions">
+      <a class="btn primary"><span>Start <em>Precision Care</em> · $499</span><span class="arr">→</span></a>
+      <a class="btn"><span>Compare <em>Express</em></span><span class="arr">→</span></a>
+    </div>
+    <div class="reassure"><b>No charge</b> if you don't qualify</div>
+  </section>
+
+  <footer class="footer">
+    <div class="inner">
+      <div class="brand">
+        <div class="l"><em>Adonis</em></div>
+        <p>Performance medicine for men. FL-licensed. HIPAA. Generic-first.</p>
+      </div>
+      <div class="col"><h5>Pathways</h5><ul><li><a>Express</a></li><li><a>Precision</a></li><li><a>Subscriptions</a></li></ul></div>
+      <div class="col"><h5>Care</h5><ul><li><a>Hair</a></li><li><a>Sexual</a></li><li><a>Hormone</a></li><li><a>Metabolic</a></li></ul></div>
+      <div class="col"><h5>Standards</h5><ul><li><a>Physicians</a></li><li><a>Labs</a></li><li><a>HIPAA</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Adonis</span><span>FL ME 142008</span></div>
+  </footer>
+</article>
+
+<!-- ============================================================
+     3 · IMPLEMENTATION NOTES
+     ============================================================ -->
+<div class="label-bar" data-view="impl">
+  <span><b>Notes</b> · WordPress + WooCommerce + ACF + Prescribery</span>
+  <span>WC product type · reusable blocks · do-not-build</span>
+</div>
+
+<div class="impl" data-view="impl">
+  <h2>Built on <em>WooCommerce + Prescribery</em>, sold like a service.</h2>
+  <p class="lead">Precision Care is a single WooCommerce simple product
+  ($499) wrapped in a marketing landing page. The clinical workflow —
+  intake, scheduling, video visit, plan delivery — is delegated to
+  Prescribery and a small set of integration hooks. Adonis owns the
+  page, not the prescribing system.</p>
+
+  <div class="impl-grid">
+
+    <div class="impl-card">
+      <h4>Page architecture <em>WP page template</em></h4>
+      <ul>
+        <li>Slug <code>/precision-care</code> — custom page template <code>page-precision-care.php</code></li>
+        <li>Composed of <strong>11 reusable Gutenberg blocks</strong>, one per section — see "Reusable section blocks" below</li>
+        <li>Mobile is the same page; layout adapts via the CSS in this design — <strong>no separate mobile theme</strong></li>
+        <li>Content fields driven by ACF so marketing can edit copy without dev — eyebrow, h2, body, CTA labels, price anchor, panel name</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>WooCommerce product <em>simple, virtual</em></h4>
+      <ul>
+        <li>Product type: <code>simple</code> · virtual ✓ · downloadable ✗</li>
+        <li>SKU <code>ADX-PRC-01</code> · regular price $499 · tax class · service</li>
+        <li><strong>Not</strong> a subscription — Precision Care is a one-time package. Treatment Rx, if recommended, is sold as a separate subscription product after the visit.</li>
+        <li>Stock: managed manually based on physician availability; flip to "out of stock" when the visit calendar is saturated</li>
+        <li>Eligibility: <code>billing_state == FL</code> required at checkout — server-side check, not just client validation</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Reusable section blocks <em>Gutenberg</em></h4>
+      <ul>
+        <li><code>adonis/hero-pathway</code> — h1 + subhead + price anchor + dual CTA + diagnostic visual slot</li>
+        <li><code>adonis/included-grid</code> — 4-up "what's in the package" with glyph + tag</li>
+        <li><code>adonis/who-its-for</code> — numbered row list, configurable rows</li>
+        <li><code>adonis/biomarker-panel</code> — sample-panel visual, takes a JSON of categories</li>
+        <li><code>adonis/how-it-works</code> — vertical steps with stamps</li>
+        <li><code>adonis/compare-cards</code> — Express vs Precision side-by-side</li>
+        <li><code>adonis/docs-credibility</code> — physician card + cred list</li>
+        <li><code>adonis/package-card</code> — pricing card bound to a WC product</li>
+        <li><code>adonis/faq-accordion</code> — native <code>&lt;details&gt;</code> · ACF repeater</li>
+        <li><code>adonis/disclaimer</code> · <code>adonis/final-cta</code></li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Package CTA → cart <em>WC standard</em></h4>
+      <ul>
+        <li>"Start Precision Care" links to <code>?add-to-cart=&lt;product_id&gt;</code> — native WC URL</li>
+        <li>Cart page is the same shared cart we already designed; line item shows package name + included components in <code>woocommerce_get_item_data</code></li>
+        <li>Single line, single quantity (locked) — Precision Care is a one-time package</li>
+        <li>Tax: WC tax class "service" · 6% FL state, no county for digital service</li>
+        <li>Shipping: virtual — no shipping charge; phlebotomy kit logistics handled by Prescribery / lab partner</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Charge timing <em>Stripe authorize-only</em></h4>
+      <ul>
+        <li>Payment Intent <code>capture_method: manual</code> at checkout — same pattern as Express</li>
+        <li>Order status: <code>on-hold</code> after checkout</li>
+        <li>Member services confirms eligibility + schedules visit → manual capture via WC admin → status <code>processing</code></li>
+        <li>If declined eligibility: cancel intent → status <code>refunded</code> → email user</li>
+        <li>Copy on every CTA must reflect this: "Card authorized · captured after member-services confirmation"</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Prescribery handoff <em>after capture</em></h4>
+      <ul>
+        <li>WC <code>order_status_processing</code> hook → POST to Prescribery <code>/precision-cases</code></li>
+        <li>Returns <code>intake_url</code>, <code>case_id</code>, <code>visit_calendar_url</code></li>
+        <li>Thank-you page → "Continue to your medical questionnaire" → opens Prescribery intake</li>
+        <li>Webhooks: <code>case.intake_complete</code>, <code>case.lab_drawn</code>, <code>case.visit_scheduled</code>, <code>case.visit_complete</code>, <code>case.plan_delivered</code> — each updates order meta + emails member</li>
+        <li>Adonis stores order timeline; the clinical record stays in Prescribery</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Lab partner <em>logistics, not record</em></h4>
+      <ul>
+        <li>At-home phlebotomy: <strong>Getlabs</strong> or equivalent — Prescribery dispatches</li>
+        <li>In-network draw: <strong>LabCorp</strong> or <strong>Quest</strong> requisition emailed by Prescribery</li>
+        <li>Adonis does not see raw lab values — they go to the physician via Prescribery's clinical layer</li>
+        <li>The diagnostic visualization on the page is <strong>marketing illustration</strong>, not a live patient view — fed from a static JSON</li>
+        <li>"~50 markers" is the marketing figure; the physician selects the actual panel per case</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Compliance copy <em>required &amp; banned</em></h4>
+      <ul>
+        <li><strong>Required</strong> on every Rx-adjacent CTA: provider-review reassurance line</li>
+        <li><strong>Required</strong> in disclaimer: "Prescriptions or therapies are provided only when medically appropriate…"</li>
+        <li><strong>Banned</strong>: "guaranteed prescription", "guaranteed results", "instant", "cure", "treats X" without qualifier</li>
+        <li><strong>Banned</strong>: claims a specific biomarker means a specific diagnosis — biomarker section must be framed as "data behind the visit", not diagnosis</li>
+        <li>State licensure + 503A disclosure required in footer + disclaimer</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>FAQ <em>do not generate</em></h4>
+      <ul>
+        <li>FAQ copy is hand-written and legally reviewed — no AI generation, no auto-summaries</li>
+        <li>Stored as ACF repeater on the page itself (<strong>not</strong> a global FAQ CPT) so legal can review per-page</li>
+        <li>Specific bans: never claim Express is "less safe", never imply Precision is required for Rx, never state outcome guarantees</li>
+        <li>"Does this guarantee a prescription?" must always answer "No." — first word, bolded</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Do-not-build <em>defer to Prescribery</em></h4>
+      <ul>
+        <li>No custom intake form — Prescribery owns it (HIPAA + BAA covered)</li>
+        <li>No custom video visit tooling — Prescribery integrates with telehealth provider (Doxy.me, Zoom Health)</li>
+        <li>No custom physician dashboard — Prescribery owns the clinician UI</li>
+        <li>No custom lab record viewer for members — they receive the written plan PDF; raw labs available on request through member services</li>
+        <li>No custom Rx record / dispense log — pharmacy partner + Prescribery</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Member portal <em>minimum viable</em></h4>
+      <ul>
+        <li>WP frontend at <code>/member</code> · WooCommerce My Account screens, restyled</li>
+        <li>Tabs: <strong>Orders</strong> (WC native) · <strong>Care timeline</strong> (custom · reads order meta from Prescribery webhooks) · <strong>Documents</strong> (plan PDF link from Prescribery) · <strong>Subscriptions</strong> (treatment Rx, native WC Subs)</li>
+        <li>No clinical decision-making, no lab dashboards, no AI insights</li>
+        <li>Communication preferences: email + SMS toggles (Prescribery sends, we render preference)</li>
+      </ul>
+    </div>
+
+    <div class="impl-card">
+      <h4>Design tokens <em>shared with Express</em></h4>
+      <ul>
+        <li>Same v4.5 dark-luxury system — <strong>no Precision-only color</strong></li>
+        <li>What signals "premium" here: typographic restraint (Fraunces italic for emphasis only), the diagnostic panel visual, the deep-green clinical reassurance accent, more whitespace, fewer CTAs per screen</li>
+        <li>The pricing card has the only gold-bordered surface on the page — single visual peak, intentional</li>
+        <li>Typography scale is one step larger than Express on h1/h2 — Precision feels editorial, Express feels operational</li>
+        <li>Shared partials: <code>parts/notice-strip</code> · <code>parts/footer</code> · <code>parts/disclaimer</code> · <code>parts/reassure</code></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<script>
+const tw = document.getElementById('tweaks');
+document.getElementById('tw-trigger').addEventListener('click', () => tw.classList.toggle('on'));
+document.getElementById('tw-view').addEventListener('change', e => {
+  const v = e.target.value;
+  document.querySelectorAll('[data-view]').forEach(n => {
+    n.style.display = (v === 'all' || n.dataset.view === v) ? '' : 'none';
+  });
+});
+</script>
+</body>
+</html>
