@@ -436,3 +436,4 @@ The previous "open questions" list has been resolved. These are the binding deci
   - `Subscriptions` — already provided by WC Subscriptions
   - `Lab Uploads` — custom (S3 + HIPAA-safe pipeline; see file 05 notes)
   - `Insights` — custom (deterministic insights cache)
+
