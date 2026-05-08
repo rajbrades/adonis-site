@@ -1,0 +1,187 @@
+<!-- Adonis Checkout · DESIGN PREVIEW
+     Static markup of the checkout form. WC integration replaces:
+       • Form fields with <!-- wp:woocommerce/checkout-* /--> blocks (contact,
+         shipping, billing, payment).
+       • Right-rail summary with <!-- wp:woocommerce/checkout-totals /-->.
+       • Place-order CTA with WC's checkout submit button.
+     Stripe is the wired payment provider per resolved decisions
+     (auth-then-capture). FL gate (mu-plugins/adonis-fl-gate.php) hooks
+     into woocommerce_after_checkout_validation here. -->
+
+<!-- wp:html -->
+<div class="adonis-cc__notice">
+	<span><b>HIPAA</b> compliant</span>
+	<span>TLS 1.3 · <b>Stripe-secured</b></span>
+	<span>Card authorized · charged on approval</span>
+</div>
+
+<nav class="adonis-cc__nav">
+	<div class="l">A D O N I S</div>
+	<div class="c">
+		<span class="lock">Secure checkout</span>
+		<span><span class="dot"></span> Doctor-reviewed care</span>
+		<span><span class="dot"></span> Rx only if clinically appropriate</span>
+	</div>
+	<div class="r">Order #<b>—</b></div>
+</nav>
+
+<div class="adonis-cc__steps">
+	<div class="step is-done"><div class="n">1</div><div class="t">Cart<em>Reviewed</em></div></div>
+	<div class="step is-on"><div class="n">2</div><div class="t">Secure checkout<em>You are here</em></div></div>
+	<div class="step"><div class="n">3</div><div class="t">Medical questionnaire<em>~5 min · next</em></div></div>
+	<div class="step"><div class="n">4</div><div class="t">Provider review<em>Avg 18 hrs</em></div></div>
+</div>
+<!-- /wp:html -->
+
+<!-- wp:group {"tagName":"main","className":"adonis-cc"} -->
+<main class="wp-block-group adonis-cc">
+
+	<!-- wp:html -->
+	<div class="adonis-cc__co-wrap">
+
+		<!-- LEFT — form -->
+		<div class="adonis-cc__co-l">
+			<header style="margin-bottom: 40px;">
+				<div class="adonis-cc__eyebrow">A premium checkout</div>
+				<h1 class="adonis-cc__h-display adonis-cc__h1" style="margin-top:14px;">Secure <em>checkout</em>.</h1>
+				<p style="color:var(--mute); margin-top:14px; max-width:54ch;">Your card is authorized at checkout but not charged in full until a licensed provider has approved your case. If your treatment isn't clinically appropriate, your authorization is released automatically — no charge.</p>
+			</header>
+
+			<!-- 01 · Contact -->
+			<div class="adonis-cc__fset">
+				<div class="adonis-cc__eyebrow">01 · Contact</div>
+				<h2 class="adonis-cc__h-display adonis-cc__h2">Where to <em>reach</em> you.</h2>
+				<p class="lead">We'll send your questionnaire link, provider updates, and tracking here. We never share or sell your information.</p>
+				<div class="adonis-cc__field-grid">
+					<div class="adonis-cc__field">
+						<label>Email <span class="req">*</span></label>
+						<input type="email" placeholder="you@domain.com">
+						<div class="help">Used as your member login.</div>
+					</div>
+					<div class="adonis-cc__field-grid adonis-cc__field-grid--two">
+						<div class="adonis-cc__field"><label>First name <span class="req">*</span></label><input type="text" placeholder="As on photo ID"></div>
+						<div class="adonis-cc__field"><label>Last name <span class="req">*</span></label><input type="text"></div>
+					</div>
+					<div class="adonis-cc__field-grid adonis-cc__field-grid--two">
+						<div class="adonis-cc__field"><label>Date of birth <span class="req">*</span></label><input type="text" placeholder="MM / DD / YYYY"></div>
+						<div class="adonis-cc__field"><label>Mobile (for Rx updates)</label><input type="tel" placeholder="(305) 000-0000"></div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 02 · Shipping -->
+			<div class="adonis-cc__fset">
+				<div class="adonis-cc__eyebrow">02 · Shipping</div>
+				<h2 class="adonis-cc__h-display adonis-cc__h2">Where to <em>ship</em> if approved.</h2>
+				<p class="lead">All shipments arrive in unbranded packaging. Florida-only at launch; we'll show eligible states automatically.</p>
+				<div class="adonis-cc__field-grid">
+					<div class="adonis-cc__field"><label>Street address <span class="req">*</span></label><input type="text" placeholder="123 Brickell Ave."></div>
+					<div class="adonis-cc__field"><label>Apt / Suite</label><input type="text" placeholder="Apt 1204"></div>
+					<div class="adonis-cc__field-grid adonis-cc__field-grid--three">
+						<div class="adonis-cc__field"><label>City <span class="req">*</span></label><input type="text" placeholder="Miami"></div>
+						<div class="adonis-cc__field"><label>State <span class="req">*</span></label><select><option>FL — Florida</option><option disabled>Other states pending</option></select></div>
+						<div class="adonis-cc__field"><label>ZIP <span class="req">*</span></label><input type="text" placeholder="33131"></div>
+					</div>
+					<label class="adonis-cc__field-checkbox is-on">
+						<div class="box"></div>
+						<div class="text">Billing address is the same as shipping<em>Uncheck to enter a separate billing address</em></div>
+					</label>
+				</div>
+			</div>
+
+			<!-- 03 · Payment -->
+			<div class="adonis-cc__fset">
+				<div class="adonis-cc__eyebrow">03 · Payment</div>
+				<h2 class="adonis-cc__h-display adonis-cc__h2">How you'd like to <em>pay</em>.</h2>
+				<p class="lead">Card authorized today, captured only on provider approval. HSA / FSA accepted at no extra cost.</p>
+
+				<div class="adonis-cc__pay-grid">
+					<div class="adonis-cc__pay is-on"><div class="nm">Card<em>Visa · MC · Amex</em></div><div class="glyph">VISA · MC · AMEX</div></div>
+					<div class="adonis-cc__pay"><div class="nm">HSA / FSA<em>Health spending</em></div><div class="glyph">FSA · HSA</div></div>
+					<div class="adonis-cc__pay"><div class="nm">Apple Pay<em>One-tap</em></div><div class="glyph"></div></div>
+				</div>
+
+				<div class="adonis-cc__card-cluster">
+					<div class="adonis-cc__field"><label>Card number <span class="req">*</span></label><input type="text" placeholder="1234 1234 1234 1234"></div>
+					<div class="adonis-cc__field-grid adonis-cc__field-grid--two">
+						<div class="adonis-cc__field"><label>Expiry <span class="req">*</span></label><input type="text" placeholder="MM / YY"></div>
+						<div class="adonis-cc__field"><label>CVC <span class="req">*</span></label><input type="text" placeholder="•••"></div>
+					</div>
+					<div class="adonis-cc__field"><label>Name on card</label><input type="text"></div>
+				</div>
+
+				<div style="margin-top: 22px; display:flex; flex-direction: column; gap: 12px;">
+					<label class="adonis-cc__field-checkbox is-on">
+						<div class="box"></div>
+						<div class="text">I understand my order is <strong>reviewed by a licensed provider</strong>, and medication is prescribed and fulfilled only when clinically appropriate.</div>
+					</label>
+					<label class="adonis-cc__field-checkbox is-on">
+						<div class="box"></div>
+						<div class="text">I agree to the Adonis <a style="color:var(--acc); border-bottom:1px solid var(--acc-soft);">Terms</a>, <a style="color:var(--acc); border-bottom:1px solid var(--acc-soft);">Privacy Policy</a>, and <a style="color:var(--acc); border-bottom:1px solid var(--acc-soft);">Telehealth Consent</a>.</div>
+					</label>
+				</div>
+
+				<div style="margin-top: 28px; display: flex; flex-direction: column; gap: 12px;">
+					<a class="adonis-cc__btn adonis-cc__btn--primary adonis-cc__btn--lg adonis-cc__btn--full" href="/order-received">
+						<span>Place order &amp; <em>start online visit</em></span><span class="arr">→</span>
+					</a>
+					<div class="adonis-cc__reassure">Card authorized · charged only after provider approval · Powered by <b style="color:var(--fg)">Stripe</b></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- RIGHT — sticky summary + Prescribery handoff -->
+		<div class="adonis-cc__co-r">
+			<div class="sticky">
+				<div class="adonis-cc__summary-card">
+					<div class="adonis-cc__eyebrow">Order summary</div>
+					<h3 class="adonis-cc__h-display adonis-cc__h3">Today's <em>order</em>.</h3>
+
+					<div class="adonis-cc__summary-line">
+						<div class="thumb">
+							<svg viewBox="0 0 60 96" fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" style="color:var(--acc)" aria-hidden="true">
+								<rect x="18" y="6" width="24" height="10" rx="1.5" stroke="rgba(201,163,94,0.5)" fill="rgba(201,163,94,0.06)"/>
+								<rect x="14" y="28" width="32" height="60" rx="1.5" stroke="rgba(236,230,216,0.55)" fill="rgba(236,230,216,0.04)"/>
+								<line x1="14" y1="50" x2="46" y2="50" stroke="rgba(201,163,94,0.5)"/>
+							</svg>
+						</div>
+						<div class="info">
+							<div class="nm">Finasteride 1mg <em>+</em> Min. 5%</div>
+							<div class="meta">Bi-monthly · 60-day</div>
+						</div>
+						<div class="price">$78<em>per shipment</em></div>
+					</div>
+
+					<div class="adonis-cc__sum-rows" style="border-bottom: 0;">
+						<div class="row"><span class="l">Subscription savings</span><span class="v savings">−$40.00</span></div>
+						<div class="row"><span class="l">Shipping</span><span class="v">Free</span></div>
+						<div class="row"><span class="l">Tax (FL)</span><span class="v muted">$5.46</span></div>
+					</div>
+
+					<div class="adonis-cc__sum-total">
+						<div class="l">Total today<em>Authorized only</em></div>
+						<div class="v">$83.46<em>USD</em></div>
+					</div>
+				</div>
+
+				<!-- Prescribery handoff card — explains the post-checkout flow -->
+				<div class="adonis-cc__handoff">
+					<span class="label">After checkout</span>
+					<h4>You'll complete a secure <em>medical questionnaire</em>.</h4>
+					<p>After checkout, you'll complete a secure medical questionnaire powered by our clinical workflow partner. A licensed provider will review your information before any prescription is approved or shipped.</p>
+					<div class="partner">Powered by <b>Prescribery</b> · HIPAA · BAA-covered</div>
+				</div>
+
+				<div class="adonis-cc__reassure adonis-cc__reassure--sec">
+					Your order is reviewed by a licensed provider. Medication is prescribed and fulfilled only when clinically appropriate.
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- /wp:html -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

@@ -23,6 +23,29 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('adonis-tokens', $uri . '/assets/css/tokens.css', [], filemtime($dir . '/assets/css/tokens.css'));
     wp_enqueue_style('adonis-base',   $uri . '/assets/css/base.css',   ['adonis-tokens'], filemtime($dir . '/assets/css/base.css'));
 
+    if (is_front_page()) {
+        wp_enqueue_style('adonis-home', $uri . '/assets/css/home.css', ['adonis-base'], filemtime($dir . '/assets/css/home.css'));
+    }
+
+    if (is_singular('product')) {
+        wp_enqueue_style('adonis-product', $uri . '/assets/css/product.css', ['adonis-base'], filemtime($dir . '/assets/css/product.css'));
+    }
+
+    // Cart, checkout, and order-received all share commerce.css.
+    $is_commerce = (function_exists('is_cart') && is_cart())
+        || (function_exists('is_checkout') && is_checkout())
+        || (function_exists('is_order_received_page') && is_order_received_page());
+    if ($is_commerce) {
+        wp_enqueue_style('adonis-commerce', $uri . '/assets/css/commerce.css', ['adonis-base'], filemtime($dir . '/assets/css/commerce.css'));
+    }
+
+    if (is_page('precision-care')) {
+        wp_enqueue_style('adonis-precision-care', $uri . '/assets/css/precision-care.css', ['adonis-base'], filemtime($dir . '/assets/css/precision-care.css'));
+    }
+    if (is_page('lab-intelligence')) {
+        wp_enqueue_style('adonis-lab-intelligence', $uri . '/assets/css/lab-intelligence.css', ['adonis-base'], filemtime($dir . '/assets/css/lab-intelligence.css'));
+    }
+
     wp_enqueue_script(
         'adonis-gender-toggle',
         $uri . '/assets/js/gender-toggle.js',
@@ -35,6 +58,9 @@ add_action('wp_enqueue_scripts', function () {
 add_action('init', function () {
     register_block_type(__DIR__ . '/blocks/button');
     register_block_type(__DIR__ . '/blocks/card');
+    register_block_type(__DIR__ . '/blocks/condition-card');
+    register_block_type(__DIR__ . '/blocks/pathway-card');
+    register_block_type(__DIR__ . '/blocks/product-card');
 });
 
 /**

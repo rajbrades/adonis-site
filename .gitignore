@@ -17,6 +17,10 @@ npm-debug.log*
 # Build output
 dist/
 build/
+_dist/
+
+# wp-now runtime — WordPress core + WC + plugins, regenerated on demand
+.wp-now-content/
 
 # Env
 .env

@@ -1,0 +1,929 @@
+/* /precision-care landing page styles. Loaded only on the Precision Care
+   page (matched by slug 'precision-care' in functions.php).
+   Static design preview — copy is final per resolved decisions. */
+
+.adonis-pc { color: var(--fg); }
+
+/* Reuse homepage's .adonis-panel + .adonis-container utilities. Section
+   variants below extend those. */
+.adonis-pc__panel-alt { background: linear-gradient(180deg, var(--bg) 0%, #0B0D12 100%); }
+.adonis-pc__panel-deep { background: var(--bg2); }
+
+.adonis-pc h2.adonis-pc__h2 {
+	font-family: var(--display);
+	font-weight: 400;
+	font-size: clamp(36px, 4vw, 56px);
+	line-height: 1.05;
+	letter-spacing: -.02em;
+	margin: 0;
+}
+.adonis-pc h2 em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+}
+.adonis-pc__eyebrow {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .26em;
+	text-transform: uppercase;
+	color: var(--acc);
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 14px;
+}
+.adonis-pc__eyebrow::before {
+	content: "";
+	width: 24px;
+	height: 1px;
+	background: var(--acc);
+}
+
+/* 2-col head pattern (left intro, right blurb) — used on every section */
+.adonis-pc__head {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 64px;
+	margin-bottom: 56px;
+	align-items: end;
+	padding-bottom: 28px;
+	border-bottom: 1px solid var(--line);
+}
+@media (max-width: 900px) {
+	.adonis-pc__head {
+		grid-template-columns: 1fr;
+		gap: 24px;
+	}
+}
+.adonis-pc__head .l h2 { max-width: 16ch; text-wrap: balance; }
+.adonis-pc__head .r p {
+	color: var(--mute);
+	max-width: 50ch;
+	line-height: 1.55;
+	margin: 0;
+}
+.adonis-pc__head .r p + p { margin-top: 14px; }
+
+/* Page-level CTAs — same shape as product page (.adonis-pp__cta) */
+.adonis-pc__cta {
+	display: inline-flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 18px 26px;
+	font-family: var(--sans);
+	font-size: 15px;
+	font-weight: 500;
+	letter-spacing: .01em;
+	border: 1px solid var(--line2);
+	border-radius: 999px;
+	background: transparent;
+	color: var(--fg);
+	text-decoration: none;
+	transition: all .2s;
+}
+.adonis-pc__cta em {
+	font-family: var(--display);
+	font-style: italic;
+	font-weight: 400;
+	color: var(--acc);
+}
+.adonis-pc__cta .arr {
+	font-family: var(--mono);
+	font-size: 14px;
+	opacity: .72;
+}
+.adonis-pc__cta:hover {
+	border-color: var(--acc);
+	text-decoration: none;
+}
+.adonis-pc__cta--primary {
+	background: var(--acc);
+	color: var(--bg);
+	border-color: var(--acc);
+}
+.adonis-pc__cta--primary em { color: var(--bg); }
+.adonis-pc__cta--primary:hover {
+	background: var(--acc-deep);
+	border-color: var(--acc-deep);
+}
+.adonis-pc__cta--lg { padding: 20px 28px; font-size: 16px; }
+.adonis-pc__cta--full { width: 100%; }
+
+/* ─── 01 · Hero ─────────────────────────────────────────────────────────── */
+
+.adonis-pc__hero-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 64px;
+	align-items: center;
+}
+@media (max-width: 980px) {
+	.adonis-pc__hero-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+.adonis-pc__hero-meta {
+	display: flex;
+	gap: 14px;
+	flex-wrap: wrap;
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .18em;
+	text-transform: uppercase;
+	color: var(--mute);
+	margin-bottom: 28px;
+}
+.adonis-pc__hero-meta span:first-child b { color: var(--fg); font-weight: 500; }
+
+.adonis-pc__hero-h1 {
+	font-family: var(--display);
+	font-weight: 400;
+	font-size: clamp(48px, 6vw, 88px);
+	line-height: 1;
+	letter-spacing: -.025em;
+	text-wrap: balance;
+	margin: 0;
+}
+.adonis-pc__hero-h1 em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+}
+
+.adonis-pc__hero-lead {
+	font-family: var(--display);
+	font-size: 19px;
+	font-weight: 300;
+	line-height: 1.45;
+	margin: 28px 0 0;
+	max-width: 48ch;
+	color: var(--fg);
+	opacity: .9;
+}
+
+/* Anchor block — "Starting at $499" pricing card */
+.adonis-pc__anchor {
+	margin: 36px 0;
+	padding: 22px 24px;
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	background: var(--bg2);
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	gap: 24px;
+	align-items: center;
+}
+.adonis-pc__anchor .lbl {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	color: var(--mute);
+}
+.adonis-pc__anchor .price {
+	font-family: var(--display);
+	font-size: 44px;
+	font-weight: 400;
+	line-height: 1;
+}
+.adonis-pc__anchor .price em {
+	font-family: var(--mono);
+	font-size: 16px;
+	font-style: normal;
+	color: var(--acc);
+	margin-right: 4px;
+	vertical-align: 6px;
+}
+.adonis-pc__anchor .det {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	line-height: 1.6;
+}
+.adonis-pc__anchor .det b { color: var(--fg); }
+@media (max-width: 720px) {
+	.adonis-pc__anchor { grid-template-columns: 1fr; gap: 12px; }
+}
+
+.adonis-pc__hero-ctas {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+	margin-top: 8px;
+}
+
+/* Hero right — diagnostic panel preview */
+.adonis-pc__diagnostic {
+	background: var(--bg2);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	padding: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+.adonis-pc__example-tag {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .26em;
+	text-transform: uppercase;
+	color: var(--mute);
+	margin-bottom: 14px;
+}
+.adonis-pc__diagnostic .head {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 16px;
+	padding-bottom: 18px;
+	border-bottom: 1px solid var(--line);
+}
+.adonis-pc__diagnostic .head .t {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	color: var(--mute);
+}
+.adonis-pc__diagnostic .head .pnl {
+	font-family: var(--display);
+	font-size: 22px;
+	line-height: 1.2;
+	margin-top: 6px;
+}
+.adonis-pc__diagnostic .head .pnl em { font-style: italic; color: var(--acc); font-weight: 300; }
+.adonis-pc__diagnostic .head .id {
+	text-align: right;
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	line-height: 1.6;
+}
+.adonis-pc__diagnostic .head .id b { color: var(--fg); font-weight: 500; }
+
+.adonis-pc__bm-list { display: flex; flex-direction: column; }
+.adonis-pc__bm-row {
+	display: grid;
+	grid-template-columns: 1fr auto auto;
+	gap: 16px;
+	padding: 12px 0;
+	border-bottom: 1px solid var(--line);
+	align-items: center;
+}
+.adonis-pc__bm-row:last-child { border-bottom: 0; }
+.adonis-pc__bm-row .nm {
+	font-family: var(--display);
+	font-size: 15px;
+}
+.adonis-pc__bm-row .nm em {
+	font-style: italic;
+	color: var(--mute);
+	font-weight: 300;
+	font-size: 11.5px;
+	display: block;
+	margin-top: 2px;
+}
+.adonis-pc__bm-row .v {
+	font-family: var(--mono);
+	font-size: 13px;
+	letter-spacing: .04em;
+	color: var(--fg);
+	white-space: nowrap;
+}
+.adonis-pc__bm-row .v small {
+	font-size: 10.5px;
+	color: var(--mute);
+	margin-left: 4px;
+}
+.adonis-pc__bm-row .flag {
+	font-family: var(--mono);
+	font-size: 10px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	padding: 4px 9px;
+	border: 1px solid var(--line2);
+	border-radius: 3px;
+	white-space: nowrap;
+}
+.adonis-pc__bm-row .flag.opt { color: var(--good); border-color: var(--good); }
+.adonis-pc__bm-row .flag.lo  { color: var(--mute); }
+.adonis-pc__bm-row .flag.hi  { color: var(--warn); border-color: var(--warn); }
+.adonis-pc__bm-row .flag.now { color: var(--acc); border-color: var(--acc); background: var(--acc-soft); }
+
+.adonis-pc__diagnostic .foot {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	flex-wrap: wrap;
+	padding-top: 14px;
+	border-top: 1px solid var(--line);
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+}
+.adonis-pc__diagnostic .foot b { color: var(--fg); font-weight: 500; }
+.adonis-pc__diagnostic .foot .reading { color: var(--acc); }
+
+/* ─── 02 · What's Included (4 cards) ───────────────────────────────────── */
+
+.adonis-pc__included {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 16px;
+}
+@media (max-width: 1100px) { .adonis-pc__included { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px)  { .adonis-pc__included { grid-template-columns: 1fr; } }
+
+.adonis-pc__inc-card {
+	background: var(--bg2);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	padding: 28px;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	transition: border-color .25s;
+}
+.adonis-pc__inc-card:hover { border-color: var(--acc); }
+.adonis-pc__inc-card .num {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .26em;
+	color: var(--acc);
+}
+.adonis-pc__inc-card .glyph {
+	width: 40px;
+	height: 40px;
+	color: var(--acc);
+}
+.adonis-pc__inc-card h3 {
+	font-family: var(--display);
+	font-weight: 400;
+	font-size: 22px;
+	line-height: 1.2;
+	margin: 0;
+}
+.adonis-pc__inc-card h3 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.adonis-pc__inc-card p {
+	color: var(--mute);
+	font-size: 13.5px;
+	line-height: 1.55;
+	margin: 0;
+}
+.adonis-pc__inc-card .tag {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	padding-top: 14px;
+	border-top: 1px dashed var(--line2);
+	margin-top: auto;
+}
+.adonis-pc__inc-card .tag b { color: var(--fg); font-weight: 500; }
+
+/* ─── 03 · Who It's For (8-row grid) ───────────────────────────────────── */
+
+.adonis-pc__who-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0;
+	border-top: 1px solid var(--line);
+}
+@media (max-width: 900px) { .adonis-pc__who-grid { grid-template-columns: 1fr; } }
+.adonis-pc__who-row {
+	display: grid;
+	grid-template-columns: 60px 1fr;
+	gap: 18px;
+	padding: 24px 28px 24px 0;
+	border-bottom: 1px solid var(--line);
+	border-right: 1px solid var(--line);
+	align-items: start;
+}
+.adonis-pc__who-row:nth-child(2n) { border-right: 0; padding-right: 0; padding-left: 28px; }
+.adonis-pc__who-row .num {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .22em;
+	color: var(--acc);
+}
+.adonis-pc__who-row .nm {
+	font-family: var(--display);
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 1.3;
+	grid-column: 2;
+}
+.adonis-pc__who-row .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.adonis-pc__who-row .ctx {
+	font-size: 13.5px;
+	line-height: 1.55;
+	color: var(--mute);
+	margin-top: 8px;
+	grid-column: 2;
+}
+.adonis-pc__who-row .ctx b { color: var(--fg); font-weight: 500; }
+
+/* ─── 05 · How It Works (5-step alternating list) ──────────────────────── */
+
+.adonis-pc__hiw-list {
+	display: flex;
+	flex-direction: column;
+	border-top: 1px solid var(--line);
+}
+.adonis-pc__hiw-row {
+	display: grid;
+	grid-template-columns: 80px 2fr 3fr 120px;
+	gap: 24px;
+	padding: 28px 0;
+	border-bottom: 1px solid var(--line);
+	align-items: center;
+}
+@media (max-width: 900px) {
+	.adonis-pc__hiw-row {
+		grid-template-columns: 60px 1fr;
+		gap: 16px;
+	}
+	.adonis-pc__hiw-row .desc, .adonis-pc__hiw-row .stamp { grid-column: 2; }
+}
+.adonis-pc__hiw-row.alt { background: rgba(201, 163, 94, 0.025); }
+.adonis-pc__hiw-row .num {
+	font-family: var(--mono);
+	font-size: 26px;
+	color: var(--acc);
+	letter-spacing: .04em;
+}
+.adonis-pc__hiw-row .nm {
+	font-family: var(--display);
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 1.3;
+}
+.adonis-pc__hiw-row .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.adonis-pc__hiw-row .desc {
+	color: var(--mute);
+	font-size: 14px;
+	line-height: 1.55;
+}
+.adonis-pc__hiw-row .stamp {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	text-align: right;
+}
+.adonis-pc__hiw-row .stamp b {
+	display: block;
+	color: var(--fg);
+	font-weight: 500;
+}
+.adonis-pc__hiw-row .stamp em {
+	font-style: italic;
+	color: var(--mute);
+	font-weight: 300;
+	font-size: 10px;
+	display: block;
+	margin-top: 2px;
+}
+@media (max-width: 900px) { .adonis-pc__hiw-row .stamp { text-align: left; } }
+
+/* ─── 06 · Compare (Express vs Precision 2-up) ─────────────────────────── */
+
+.adonis-pc__compare {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 16px;
+}
+@media (max-width: 900px) { .adonis-pc__compare { grid-template-columns: 1fr; } }
+.adonis-pc__cmp-card {
+	background: var(--bg2);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	padding: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+.adonis-pc__cmp-card.pri {
+	border-color: var(--acc);
+	background: linear-gradient(180deg, var(--bg2) 0%, rgba(201, 163, 94, 0.03) 100%);
+}
+.adonis-pc__cmp-card .tag {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding-bottom: 18px;
+	border-bottom: 1px solid var(--line);
+}
+.adonis-pc__cmp-card .tag span:first-child {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	color: var(--mute);
+}
+.adonis-pc__cmp-card .tag .nm {
+	font-family: var(--display);
+	font-size: 32px;
+	font-weight: 400;
+}
+.adonis-pc__cmp-card .tag .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.adonis-pc__cmp-card .price-row {
+	display: flex;
+	gap: 24px;
+	align-items: baseline;
+	justify-content: space-between;
+}
+.adonis-pc__cmp-card .pr {
+	font-family: var(--display);
+	font-size: 36px;
+	font-weight: 400;
+}
+.adonis-pc__cmp-card .pr em {
+	font-family: var(--mono);
+	font-size: 11px;
+	font-style: normal;
+	color: var(--mute);
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	margin-left: 6px;
+}
+.adonis-pc__cmp-card .lbl {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	text-align: right;
+	line-height: 1.6;
+}
+.adonis-pc__cmp-card .lbl b { color: var(--fg); }
+.adonis-pc__cmp-card .blurb {
+	color: var(--mute);
+	font-size: 14.5px;
+	line-height: 1.55;
+	margin: 0;
+}
+.adonis-pc__cmp-card ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.adonis-pc__cmp-card ul li {
+	font-size: 13.5px;
+	line-height: 1.55;
+	padding-left: 18px;
+	position: relative;
+	color: var(--fg);
+	opacity: .88;
+}
+.adonis-pc__cmp-card ul li::before {
+	content: "→";
+	position: absolute;
+	left: 0;
+	color: var(--acc);
+	font-family: var(--mono);
+	font-size: 12px;
+}
+.adonis-pc__cmp-card .best {
+	padding: 14px 16px;
+	background: var(--bg);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	font-size: 13px;
+	color: var(--fg);
+	line-height: 1.55;
+}
+.adonis-pc__cmp-card .best b { color: var(--acc); font-weight: 500; }
+.adonis-pc__cmp-card .actions {
+	display: flex;
+	gap: 8px;
+	margin-top: auto;
+}
+
+/* ─── 07 · Physician Credibility ───────────────────────────────────────── */
+
+.adonis-pc__docs-wrap {
+	display: grid;
+	grid-template-columns: 1fr 1.6fr;
+	gap: 48px;
+}
+@media (max-width: 900px) { .adonis-pc__docs-wrap { grid-template-columns: 1fr; gap: 32px; } }
+.adonis-pc__doc-card {
+	background: var(--bg2);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	padding: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+}
+.adonis-pc__doc-portrait {
+	aspect-ratio: 1/1;
+	border-radius: 50%;
+	width: 96px;
+	background: linear-gradient(135deg, var(--bg3), var(--bg2));
+	border: 1px solid var(--line2);
+	display: grid;
+	place-items: center;
+	font-family: var(--mono);
+	font-size: 10px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	text-align: center;
+	padding: 10px;
+}
+.adonis-pc__doc-card .nm {
+	font-family: var(--display);
+	font-size: 22px;
+	line-height: 1.2;
+}
+.adonis-pc__doc-card .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.adonis-pc__doc-card .creds {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	border-top: 1px solid var(--line);
+}
+.adonis-pc__doc-card .creds .row {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 10px 0;
+	border-bottom: 1px solid var(--line);
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+}
+.adonis-pc__doc-card .creds .row:last-child { border-bottom: 0; }
+.adonis-pc__doc-card .creds .v { color: var(--fg); }
+.adonis-pc__doc-card .creds .v b { color: var(--acc); }
+
+.adonis-pc__cred-list {
+	display: flex;
+	flex-direction: column;
+	border-top: 1px solid var(--line);
+}
+.adonis-pc__cred-row {
+	display: grid;
+	grid-template-columns: 50px 1fr 80px;
+	gap: 18px;
+	padding: 22px 0;
+	border-bottom: 1px solid var(--line);
+	align-items: center;
+}
+.adonis-pc__cred-row:last-child { border-bottom: 0; }
+.adonis-pc__cred-row .k {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .22em;
+	color: var(--acc);
+}
+.adonis-pc__cred-row .nm {
+	font-family: var(--display);
+	font-size: 17px;
+	line-height: 1.3;
+}
+.adonis-pc__cred-row .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.adonis-pc__cred-row .desc {
+	font-size: 13.5px;
+	color: var(--mute);
+	margin-top: 6px;
+	line-height: 1.55;
+}
+.adonis-pc__cred-row .stamp {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	text-align: right;
+	line-height: 1.5;
+}
+.adonis-pc__cred-row .stamp b { color: var(--acc); font-weight: 500; }
+
+/* ─── 08 · Package Pricing ─────────────────────────────────────────────── */
+
+.adonis-pc__pkg-wrap {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 64px;
+	align-items: start;
+}
+@media (max-width: 900px) { .adonis-pc__pkg-wrap { grid-template-columns: 1fr; gap: 32px; } }
+.adonis-pc__pkg-l h2 { margin-top: 22px; }
+.adonis-pc__pkg-l p {
+	color: var(--mute);
+	margin: 18px 0 32px;
+	max-width: 50ch;
+	line-height: 1.55;
+}
+.adonis-pc__pkg-l .meta { display: flex; flex-direction: column; }
+.adonis-pc__pkg-l .meta .row {
+	display: flex;
+	justify-content: space-between;
+	padding: 12px 0;
+	border-bottom: 1px solid var(--line);
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	gap: 20px;
+}
+.adonis-pc__pkg-l .meta .row:first-child { border-top: 1px solid var(--line); }
+.adonis-pc__pkg-l .meta .v { color: var(--fg); text-align: right; }
+
+.adonis-pc__pkg-card {
+	background: var(--bg2);
+	border: 1px solid var(--acc);
+	border-radius: 4px;
+	padding: 36px;
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+}
+.adonis-pc__pkg-card .head {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 16px;
+}
+.adonis-pc__pkg-card .mono {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	color: var(--mute);
+}
+.adonis-pc__pkg-card h3 {
+	font-family: var(--display);
+	font-size: 32px;
+	line-height: 1.1;
+	font-weight: 400;
+	margin: 6px 0 0;
+}
+.adonis-pc__pkg-card h3 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.adonis-pc__pkg-card .pr {
+	font-family: var(--display);
+	font-size: 36px;
+	font-weight: 400;
+	text-align: right;
+}
+.adonis-pc__pkg-card .pr em {
+	font-family: var(--mono);
+	font-size: 11px;
+	font-style: normal;
+	color: var(--mute);
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	display: block;
+	margin-top: 4px;
+}
+.adonis-pc__pkg-card .lead {
+	color: var(--mute);
+	font-size: 14.5px;
+	line-height: 1.55;
+	margin: 0;
+}
+.adonis-pc__pkg-card ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+}
+.adonis-pc__pkg-card ul li {
+	display: flex;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 12px 0;
+	border-bottom: 1px solid var(--line);
+	font-size: 14px;
+}
+.adonis-pc__pkg-card ul li:last-child { border-bottom: 0; }
+.adonis-pc__pkg-card ul li .nm em { font-style: italic; color: var(--acc); font-weight: 300; }
+.adonis-pc__pkg-card ul li .det {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	white-space: nowrap;
+}
+.adonis-pc__pkg-card .reassure {
+	padding: 14px 16px;
+	background: var(--bg);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	line-height: 1.6;
+}
+.adonis-pc__pkg-card .reassure b { color: var(--acc); }
+.adonis-pc__pkg-card .actions {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+/* ─── 09 · FAQ ─────────────────────────────────────────────────────────── */
+
+.adonis-pc__faq-grid {
+	border-top: 1px solid var(--line);
+}
+.adonis-pc__faq-grid details {
+	border-bottom: 1px solid var(--line);
+}
+.adonis-pc__faq-grid summary {
+	list-style: none;
+	cursor: pointer;
+	padding: 22px 0;
+	display: grid;
+	grid-template-columns: 80px 1fr 24px;
+	gap: 18px;
+	align-items: center;
+	font-family: var(--display);
+	font-size: 19px;
+	font-weight: 400;
+	line-height: 1.3;
+}
+.adonis-pc__faq-grid summary::-webkit-details-marker { display: none; }
+.adonis-pc__faq-grid summary .num {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .22em;
+	color: var(--acc);
+}
+.adonis-pc__faq-grid summary em { font-style: italic; color: var(--acc); font-weight: 300; }
+.adonis-pc__faq-grid summary .plus { width: 24px; height: 24px; position: relative; }
+.adonis-pc__faq-grid summary .plus::before,
+.adonis-pc__faq-grid summary .plus::after {
+	content: "";
+	position: absolute;
+	background: var(--fg);
+	transition: transform .3s;
+}
+.adonis-pc__faq-grid summary .plus::before { left: 0; right: 0; top: 50%; height: 1px; transform: translateY(-50%); }
+.adonis-pc__faq-grid summary .plus::after  { top: 0; bottom: 0; left: 50%; width: 1px; transform: translateX(-50%); }
+.adonis-pc__faq-grid details[open] summary .plus::after { transform: translateX(-50%) rotate(90deg); }
+.adonis-pc__faq-grid .a {
+	padding: 0 0 22px 98px;
+	max-width: 70ch;
+	color: var(--mute);
+	line-height: 1.65;
+	font-size: 14.5px;
+}
+.adonis-pc__faq-grid .a strong { color: var(--fg); font-weight: 500; }
+.adonis-pc__faq-grid .a p + p { margin-top: 12px; }
+@media (max-width: 720px) {
+	.adonis-pc__faq-grid summary { grid-template-columns: 1fr 24px; }
+	.adonis-pc__faq-grid summary .num { display: none; }
+	.adonis-pc__faq-grid .a { padding-left: 0; }
+}
+
+/* ─── 10 · Medical Disclaimer ──────────────────────────────────────────── */
+
+.adonis-pc__disclaimer {
+	max-width: 880px;
+	margin: 0 auto;
+}
+.adonis-pc__disclaimer h3 {
+	font-family: var(--display);
+	font-size: 28px;
+	font-weight: 400;
+	line-height: 1.2;
+	margin: 0 0 24px;
+}
+.adonis-pc__disclaimer h3 em { font-style: italic; color: var(--acc); font-weight: 300; }
+.adonis-pc__disclaimer .body { font-size: 14.5px; line-height: 1.65; color: var(--mute); }
+.adonis-pc__disclaimer .body p { margin: 0 0 14px; }
+.adonis-pc__disclaimer .body p b { color: var(--fg); font-weight: 500; }
+.adonis-pc__disclaimer .legal {
+	margin-top: 28px;
+	padding-top: 20px;
+	border-top: 1px solid var(--line);
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	line-height: 1.7;
+}

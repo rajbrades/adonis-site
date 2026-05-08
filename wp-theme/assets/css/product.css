@@ -1,0 +1,1272 @@
+/* Single-product page styles. Loaded only on product templates (see
+   functions.php — is_singular('product') guard). Static design preview;
+   real WC integration replaces hardcoded copy with dynamic blocks at the
+   marked points in the template. */
+
+/* ─── Top notice strip ─────────────────────────────────────────────────── */
+
+.adonis-pp__notice {
+	background: #08090C;
+	border-bottom: 1px solid var(--line);
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	color: var(--mute);
+	display: flex;
+	justify-content: center;
+	gap: 32px;
+	padding: 12px 24px;
+	flex-wrap: wrap;
+}
+.adonis-pp__notice b {
+	color: var(--fg);
+	font-weight: 500;
+}
+
+/* ─── Breadcrumb strip ─────────────────────────────────────────────────── */
+
+.adonis-pp__crumbs {
+	display: flex;
+	gap: 12px;
+	padding: 16px 40px;
+	border-bottom: 1px solid var(--line);
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .18em;
+	text-transform: uppercase;
+	color: var(--mute);
+	flex-wrap: wrap;
+}
+@media (max-width: 720px) {
+	.adonis-pp__crumbs { padding: 16px 20px; }
+}
+.adonis-pp__crumbs a { color: var(--mute); text-decoration: none; }
+.adonis-pp__crumbs a:hover { color: var(--fg); }
+.adonis-pp__crumbs .sep { color: var(--line3); }
+.adonis-pp__crumbs .now { color: var(--acc); }
+
+/* ─── Hero — image left, info right ────────────────────────────────────── */
+
+.adonis-pp__hero {
+	display: grid;
+	grid-template-columns: 1.1fr 1fr;
+	gap: 0;
+	border-bottom: 1px solid var(--line);
+}
+@media (max-width: 980px) {
+	.adonis-pp__hero { grid-template-columns: 1fr; }
+}
+
+.adonis-pp__hero-media {
+	background: linear-gradient(165deg, #14171E 0%, #0B0D11 100%);
+	padding: 72px 64px;
+	position: relative;
+	overflow: hidden;
+	min-height: 720px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border-right: 1px solid var(--line);
+}
+@media (max-width: 980px) {
+	.adonis-pp__hero-media {
+		min-height: 560px;
+		padding: 48px 32px;
+		border-right: 0;
+		border-bottom: 1px solid var(--line);
+	}
+}
+@media (max-width: 720px) {
+	.adonis-pp__hero-media { padding: 32px 20px; min-height: 480px; }
+}
+
+.adonis-pp__hero-grain {
+	position: absolute;
+	inset: 0;
+	opacity: .04;
+	pointer-events: none;
+	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+.adonis-pp__hero-corner {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	color: var(--mute);
+	display: flex;
+	justify-content: space-between;
+	gap: 16px;
+	flex-wrap: wrap;
+	position: relative;
+	z-index: 1;
+}
+.adonis-pp__hero-corner b {
+	color: var(--fg);
+	font-weight: 500;
+}
+
+/* Vial illustration with overlaid label */
+.adonis-pp__vial {
+	flex: 1;
+	display: grid;
+	place-items: center;
+	position: relative;
+	z-index: 1;
+}
+.adonis-pp__vial svg {
+	max-width: 360px;
+	width: 100%;
+	height: auto;
+}
+.adonis-pp__vial-label {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	font-family: var(--display);
+	color: var(--acc);
+	pointer-events: none;
+}
+.adonis-pp__vial-label .rx {
+	font-family: var(--mono);
+	font-size: 10px;
+	letter-spacing: .3em;
+	text-transform: uppercase;
+	color: var(--mute);
+	margin-bottom: 4px;
+}
+.adonis-pp__vial-label .nm {
+	font-size: 26px;
+	font-style: italic;
+	font-weight: 400;
+	line-height: 1;
+	letter-spacing: -.01em;
+}
+.adonis-pp__vial-label .ds {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .18em;
+	text-transform: uppercase;
+	color: var(--mute);
+	margin-top: 6px;
+}
+
+/* Thumbnail strip — static for v1 (no carousel JS). */
+.adonis-pp__thumbs {
+	display: flex;
+	gap: 10px;
+	position: relative;
+	z-index: 1;
+}
+.adonis-pp__thumbs .t {
+	width: 64px;
+	height: 64px;
+	background: var(--bg2);
+	border: 1px solid var(--line2);
+	border-radius: 4px;
+	position: relative;
+	cursor: pointer;
+	transition: border-color .2s;
+}
+.adonis-pp__thumbs .t.is-active {
+	border-color: var(--acc);
+}
+.adonis-pp__thumbs .t::after {
+	content: attr(data-l);
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	font-family: var(--mono);
+	font-size: 10px;
+	letter-spacing: .18em;
+	color: var(--mute);
+}
+.adonis-pp__thumbs .t.is-active::after {
+	color: var(--acc);
+}
+
+/* ─── Hero info column ─────────────────────────────────────────────────── */
+
+.adonis-pp__hero-info {
+	padding: 64px 56px;
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+}
+@media (max-width: 720px) {
+	.adonis-pp__hero-info { padding: 40px 20px; gap: 24px; }
+}
+
+.adonis-pp__cat {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .26em;
+	text-transform: uppercase;
+	color: var(--acc);
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+.adonis-pp__cat::before {
+	content: "";
+	width: 24px;
+	height: 1px;
+	background: var(--acc);
+}
+
+.adonis-pp__h1 {
+	font-family: var(--display);
+	font-weight: 400;
+	font-size: clamp(40px, 4.4vw, 64px);
+	line-height: 1;
+	letter-spacing: -.018em;
+	text-wrap: balance;
+	margin: 0;
+}
+.adonis-pp__h1 em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+}
+
+.adonis-pp__formula {
+	font-family: var(--mono);
+	font-size: 13px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+}
+
+.adonis-pp__positioning {
+	font-size: 17px;
+	line-height: 1.55;
+	color: var(--fg);
+	opacity: .88;
+	max-width: 50ch;
+	padding: 18px 0;
+	border-top: 1px solid var(--line);
+	border-bottom: 1px solid var(--line);
+	margin: 0;
+}
+.adonis-pp__positioning em {
+	font-family: var(--display);
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 400;
+	font-size: 18px;
+}
+
+.adonis-pp__meta {
+	display: flex;
+	gap: 28px;
+	font-family: var(--mono);
+	font-size: 11.5px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	flex-wrap: wrap;
+}
+.adonis-pp__meta b {
+	color: var(--fg);
+	font-weight: 500;
+}
+.adonis-pp__meta .px-per {
+	font-family: var(--mono);
+	font-size: 11px;
+	font-weight: 400;
+}
+
+/* ─── Selection module — dose + cadence + included + CTAs ──────────────── */
+
+.adonis-pp__select {
+	padding: 28px 32px;
+	background: var(--bg2);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+}
+@media (max-width: 720px) {
+	.adonis-pp__select { padding: 22px 18px; }
+}
+
+.adonis-pp__sm-row {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.adonis-pp__sm-label {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	color: var(--mute);
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+.adonis-pp__help {
+	color: var(--acc);
+	border-bottom: 1px solid var(--acc-soft);
+	cursor: help;
+}
+
+/* Dose grid — 3 toggleable buttons */
+.adonis-pp__dose-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 8px;
+}
+@media (max-width: 540px) {
+	.adonis-pp__dose-grid { grid-template-columns: 1fr; }
+}
+.adonis-pp__dose {
+	background: transparent;
+	border: 1px solid var(--line2);
+	border-radius: 4px;
+	padding: 14px 16px;
+	cursor: pointer;
+	transition: all .2s;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	text-align: left;
+	color: var(--fg);
+}
+.adonis-pp__dose:hover {
+	border-color: var(--line3);
+}
+.adonis-pp__dose.is-active {
+	border-color: var(--acc);
+	background: var(--acc-soft);
+}
+.adonis-pp__dose .d {
+	font-family: var(--display);
+	font-size: 18px;
+	font-weight: 400;
+}
+.adonis-pp__dose .d em {
+	font-style: italic;
+	color: var(--acc);
+	font-size: 14px;
+	margin-left: 4px;
+	font-weight: 300;
+}
+.adonis-pp__dose .meta {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	color: var(--mute);
+}
+.adonis-pp__dose.is-active .meta {
+	color: var(--acc);
+}
+
+/* Cadence grid — radio cards */
+.adonis-pp__cad-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 8px;
+}
+.adonis-pp__cad-wrap {
+	position: relative;
+}
+.adonis-pp__cad {
+	background: transparent;
+	border: 1px solid var(--line2);
+	border-radius: 4px;
+	padding: 18px 22px;
+	cursor: pointer;
+	transition: all .2s;
+	display: grid;
+	grid-template-columns: 18px 1fr auto;
+	gap: 16px;
+	align-items: center;
+	color: var(--fg);
+}
+.adonis-pp__cad:hover {
+	border-color: var(--line3);
+}
+.adonis-pp__cad.is-active {
+	border-color: var(--acc);
+	background: var(--acc-soft);
+}
+.adonis-pp__cad .radio {
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	border: 1.5px solid var(--line3);
+	position: relative;
+}
+.adonis-pp__cad.is-active .radio {
+	border-color: var(--acc);
+}
+.adonis-pp__cad.is-active .radio::after {
+	content: "";
+	position: absolute;
+	inset: 3px;
+	background: var(--acc);
+	border-radius: 50%;
+}
+.adonis-pp__cad .info .nm {
+	font-family: var(--display);
+	font-size: 17px;
+	font-weight: 400;
+}
+.adonis-pp__cad .info .nm em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+}
+.adonis-pp__cad .info .sub {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	margin-top: 3px;
+}
+.adonis-pp__cad .price {
+	font-family: var(--display);
+	font-size: 22px;
+	font-weight: 400;
+	text-align: right;
+}
+.adonis-pp__cad .price em {
+	font-family: var(--mono);
+	font-size: 11px;
+	font-style: normal;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	display: block;
+	margin-top: 2px;
+}
+.adonis-pp__cad .price s {
+	color: var(--mute);
+	font-size: 14px;
+	opacity: .65;
+	display: block;
+	margin-top: 2px;
+}
+.adonis-pp__cad-badge {
+	position: absolute;
+	top: -1px;
+	right: 16px;
+	transform: translateY(-50%);
+	background: var(--acc);
+	color: var(--bg);
+	padding: 3px 9px;
+	border-radius: 999px;
+	font-family: var(--mono);
+	font-size: 10px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+
+/* What's included */
+.adonis-pp__included {
+	padding: 18px 0 4px;
+	border-top: 1px solid var(--line);
+}
+.adonis-pp__included h5 {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	color: var(--mute);
+	margin: 0 0 12px;
+	font-weight: 500;
+}
+.adonis-pp__included ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.adonis-pp__included li {
+	display: grid;
+	grid-template-columns: 18px 1fr;
+	gap: 10px;
+	font-size: 14px;
+	line-height: 1.45;
+	align-items: baseline;
+}
+.adonis-pp__included li::before {
+	content: "✓";
+	color: var(--acc);
+	font-family: var(--mono);
+	font-size: 13px;
+}
+
+/* CTA stack — primary (gold/purple solid) + ghost (line2 border).
+   Distinct from the README's .adonis-btn pill primitive: larger padding,
+   full-width, justify-content: space-between so the arrow sits at the end. */
+.adonis-pp__cta-stack {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding-top: 8px;
+}
+.adonis-pp__cta {
+	display: inline-flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 18px 26px;
+	font-family: var(--sans);
+	font-size: 15px;
+	font-weight: 500;
+	letter-spacing: .01em;
+	cursor: pointer;
+	border: 1px solid var(--line2);
+	border-radius: 999px;
+	transition: all .2s;
+	color: var(--fg);
+	background: transparent;
+	text-decoration: none;
+}
+.adonis-pp__cta em {
+	font-family: var(--display);
+	font-style: italic;
+	font-weight: 400;
+	color: var(--acc);
+}
+.adonis-pp__cta .arr {
+	font-family: var(--mono);
+	font-size: 14px;
+	opacity: .72;
+}
+.adonis-pp__cta:hover {
+	border-color: var(--acc);
+	text-decoration: none;
+}
+.adonis-pp__cta--primary {
+	background: var(--acc);
+	color: var(--bg);
+	border-color: var(--acc);
+}
+.adonis-pp__cta--primary em {
+	color: var(--bg);
+}
+.adonis-pp__cta--primary:hover {
+	background: var(--acc-deep);
+	border-color: var(--acc-deep);
+}
+
+.adonis-pp__reassure {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	line-height: 1.7;
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	padding: 14px 18px;
+	background: rgba(236, 230, 216, 0.03);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	margin-top: 4px;
+}
+.adonis-pp__reassure::before {
+	content: "";
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--acc);
+	margin-top: 6px;
+	flex-shrink: 0;
+}
+
+/* ─── Section-head sizing override — product pages are tighter than the
+       homepage, so h2 caps at 56px instead of 96px. */
+.adonis-pp .adonis-panel-head {
+	max-width: 64ch;
+	margin-bottom: 56px;
+}
+.adonis-pp .adonis-panel-head h2 {
+	font-size: clamp(36px, 4.5vw, 56px);
+	line-height: 1.05;
+}
+
+/* Section-level alt background — used for the Credibility section. */
+.adonis-pp__panel-alt {
+	background: linear-gradient(180deg, var(--bg) 0%, #0B0D12 100%);
+}
+
+/* ─── Section 02 · How It Works (5-step horizontal flow) ───────────────── */
+
+.adonis-pp__flow {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 0;
+	border-top: 1px solid var(--line);
+	border-bottom: 1px solid var(--line);
+}
+@media (max-width: 900px) {
+	.adonis-pp__flow { grid-template-columns: 1fr; }
+}
+
+.adonis-pp__flow-step {
+	padding: 32px 28px;
+	border-right: 1px solid var(--line);
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	position: relative;
+	min-width: 0;
+}
+.adonis-pp__flow-step:last-child {
+	border-right: 0;
+}
+@media (max-width: 900px) {
+	.adonis-pp__flow-step {
+		border-right: 0;
+		border-bottom: 1px solid var(--line);
+	}
+	.adonis-pp__flow-step:last-child {
+		border-bottom: 0;
+	}
+}
+
+.adonis-pp__flow-step .n {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .26em;
+	text-transform: uppercase;
+	color: var(--acc);
+}
+
+/* Italic-letter icon (a/b/c/d/e) — 44px circle with --acc-tinted Fraunces */
+.adonis-pp__flow-step .ico {
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	background: var(--bg2);
+	border: 1px solid var(--line2);
+	display: grid;
+	place-items: center;
+	font-family: var(--display);
+	font-style: italic;
+	font-size: 18px;
+	color: var(--acc);
+}
+
+.adonis-pp__flow-step h4 {
+	font-family: var(--display);
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 1.25;
+	margin: 0;
+}
+.adonis-pp__flow-step h4 em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+}
+
+.adonis-pp__flow-step p {
+	font-size: 13.5px;
+	line-height: 1.5;
+	color: var(--mute);
+	max-width: 28ch;
+	margin: 0;
+}
+
+.adonis-pp__flow-step .stamp {
+	margin-top: auto;
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	padding-top: 14px;
+	border-top: 1px dashed var(--line2);
+}
+.adonis-pp__flow-step .stamp b {
+	color: var(--fg);
+	font-weight: 500;
+}
+
+/* ─── Section 03 · Clinical credibility ────────────────────────────────── */
+
+.adonis-pp__cred-grid {
+	display: grid;
+	grid-template-columns: 1.2fr 1fr;
+	gap: 64px;
+	align-items: start;
+}
+@media (max-width: 980px) {
+	.adonis-pp__cred-grid {
+		grid-template-columns: 1fr;
+		gap: 32px;
+	}
+}
+
+/* Single physician card (the protocol lead) */
+.adonis-pp__cred-card {
+	background: var(--bg2);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	padding: 36px;
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+}
+@media (max-width: 720px) {
+	.adonis-pp__cred-card { padding: 24px; }
+}
+
+.adonis-pp__cred-card .top {
+	display: flex;
+	gap: 18px;
+	align-items: flex-start;
+}
+
+/* Avatar — dummy headshot slot, italic Fraunces initials over a bg2→bg3
+   gradient. Same pattern as homepage physicians; swap to <img> in v1.1. */
+.adonis-pp__cred-card .av {
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	border: 1px solid var(--line2);
+	flex-shrink: 0;
+	background: linear-gradient(135deg, var(--bg3), var(--bg2));
+	display: grid;
+	place-items: center;
+	font-family: var(--display);
+	font-style: italic;
+	font-size: 22px;
+	color: var(--acc);
+}
+
+.adonis-pp__cred-card h3 {
+	font-family: var(--display);
+	font-weight: 400;
+	font-size: 22px;
+	line-height: 1.2;
+	margin: 0;
+}
+.adonis-pp__cred-card h3 em {
+	font-style: italic;
+	color: var(--mute);
+	font-weight: 300;
+	font-size: 14px;
+	display: block;
+	margin-top: 4px;
+}
+.adonis-pp__cred-card .role {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .18em;
+	text-transform: uppercase;
+	color: var(--acc);
+	margin-top: 8px;
+}
+
+.adonis-pp__cred-card q {
+	font-family: var(--display);
+	font-style: italic;
+	font-weight: 300;
+	font-size: 17px;
+	line-height: 1.45;
+	color: var(--fg);
+	padding: 18px 0;
+	border-top: 1px solid var(--line);
+	border-bottom: 1px solid var(--line);
+	display: block;
+	quotes: none;
+	text-wrap: pretty;
+	margin: 0;
+}
+.adonis-pp__cred-card q::before,
+.adonis-pp__cred-card q::after {
+	content: "";
+}
+
+.adonis-pp__cred-card .creds {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+.adonis-pp__cred-card .creds span {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	padding: 4px 10px;
+	border: 1px solid var(--line2);
+	border-radius: 3px;
+}
+
+/* 5-row credibility checklist */
+.adonis-pp__cred-list {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	border-top: 1px solid var(--line);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.adonis-pp__cred-list .row {
+	display: grid;
+	grid-template-columns: 36px 1fr auto;
+	gap: 18px;
+	padding: 22px 0;
+	border-bottom: 1px solid var(--line);
+	align-items: center;
+}
+.adonis-pp__cred-list .ic {
+	width: 28px;
+	height: 28px;
+	border: 1px solid var(--acc);
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	color: var(--acc);
+	font-family: var(--mono);
+	font-size: 11px;
+}
+.adonis-pp__cred-list .nm {
+	font-family: var(--display);
+	font-size: 17px;
+	font-weight: 400;
+	line-height: 1.3;
+}
+.adonis-pp__cred-list .nm em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+	font-size: 13px;
+	display: block;
+	margin-top: 3px;
+}
+.adonis-pp__cred-list .v {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	white-space: nowrap;
+}
+
+/* ─── Section 04 · Product education (5-card stack) ────────────────────── */
+
+.adonis-pp__edu-grid {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 0;
+	border-top: 1px solid var(--line);
+}
+@media (max-width: 900px) {
+	.adonis-pp__edu-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+	.adonis-pp__edu-grid { grid-template-columns: 1fr; }
+}
+
+.adonis-pp__edu {
+	padding: 36px 28px;
+	border-right: 1px solid var(--line);
+	border-bottom: 1px solid var(--line);
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	position: relative;
+}
+.adonis-pp__edu:last-child {
+	border-right: 0;
+}
+@media (max-width: 900px) {
+	.adonis-pp__edu:nth-child(2n) { border-right: 0; }
+	.adonis-pp__edu:nth-last-child(-n+2) { border-bottom: 0; }
+	.adonis-pp__edu:last-child { border-right: 0; }
+}
+@media (max-width: 720px) {
+	.adonis-pp__edu {
+		border-right: 0;
+		border-bottom: 1px solid var(--line);
+	}
+	.adonis-pp__edu:last-child { border-bottom: 0; }
+}
+
+.adonis-pp__edu .label {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	color: var(--acc);
+}
+
+.adonis-pp__edu h4 {
+	font-family: var(--display);
+	font-weight: 400;
+	font-size: 22px;
+	line-height: 1.1;
+	max-width: 14ch;
+	margin: 0;
+}
+.adonis-pp__edu h4 em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+}
+
+.adonis-pp__edu p {
+	font-size: 14px;
+	line-height: 1.55;
+	color: var(--mute);
+	margin: 0;
+}
+
+.adonis-pp__edu ul {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	margin: 0;
+	padding: 0;
+}
+.adonis-pp__edu li {
+	font-size: 13.5px;
+	line-height: 1.5;
+	padding-left: 18px;
+	position: relative;
+	color: var(--fg);
+	opacity: .82;
+}
+.adonis-pp__edu li::before {
+	content: "—";
+	position: absolute;
+	left: 0;
+	color: var(--acc);
+	font-family: var(--mono);
+	font-size: 12px;
+}
+
+/* Warn variant — "Decline criteria" card. Tinted bg, --warn color
+   replaces --acc on label and bullets. */
+.adonis-pp__edu--warn {
+	background: linear-gradient(180deg, transparent 0%, rgba(181, 138, 77, 0.04) 100%);
+}
+.adonis-pp__edu--warn .label {
+	color: var(--warn);
+}
+.adonis-pp__edu--warn li::before {
+	color: var(--warn);
+}
+
+/* ─── Section 05 · Express vs Precision upsell ─────────────────────────── */
+
+/* Tighter padding variant for sections that don't need the full 120px. */
+.adonis-panel.adonis-pp__panel-tight {
+	padding: 80px 0;
+}
+@media (max-width: 720px) {
+	.adonis-panel.adonis-pp__panel-tight { padding: 56px 0; }
+}
+
+.adonis-pp__upsell {
+	background: linear-gradient(135deg, #0F1116 0%, #1A2520 100%);
+	border: 1px solid var(--sec);
+	border-radius: var(--r-md);
+	overflow: hidden;
+	display: grid;
+	grid-template-columns: 1.4fr 1fr;
+	color: var(--m-fg);  /* upsell stays dark-themed regardless of body theme */
+}
+@media (max-width: 980px) {
+	.adonis-pp__upsell { grid-template-columns: 1fr; }
+}
+
+.adonis-pp__upsell-l {
+	padding: 56px;
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+	border-right: 1px solid var(--m-line);
+}
+@media (max-width: 980px) {
+	.adonis-pp__upsell-l {
+		border-right: 0;
+		border-bottom: 1px solid var(--m-line);
+	}
+}
+@media (max-width: 720px) {
+	.adonis-pp__upsell-l { padding: 36px 24px; }
+}
+
+.adonis-pp__upsell-l .label {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .26em;
+	text-transform: uppercase;
+	color: var(--m-acc);
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+.adonis-pp__upsell-l .label::before {
+	content: "";
+	width: 24px;
+	height: 1px;
+	background: var(--m-acc);
+}
+.adonis-pp__upsell-l h3 {
+	font-family: var(--display);
+	font-weight: 400;
+	font-size: clamp(28px, 3vw, 40px);
+	line-height: 1.05;
+	max-width: 22ch;
+	text-wrap: balance;
+	margin: 0;
+}
+.adonis-pp__upsell-l h3 em {
+	font-style: italic;
+	color: var(--m-acc);
+	font-weight: 300;
+}
+.adonis-pp__upsell-l p {
+	color: var(--m-fg);
+	opacity: .82;
+	max-width: 50ch;
+	line-height: 1.55;
+	margin: 0;
+}
+.adonis-pp__upsell-l p em {
+	font-style: italic;
+	color: var(--m-acc);
+}
+
+/* "Compare" CTA — outline pill local to the upsell. Uses --m-fg colors so
+   it stays readable against the dark gradient regardless of body theme. */
+.adonis-pp__upsell-cta {
+	display: inline-flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 14px 22px;
+	font-family: var(--sans);
+	font-size: 14px;
+	font-weight: 500;
+	letter-spacing: .01em;
+	border: 1px solid var(--m-line2);
+	border-radius: 999px;
+	background: transparent;
+	color: var(--m-fg);
+	text-decoration: none;
+	transition: border-color .2s;
+	align-self: flex-start;
+	margin-top: 8px;
+}
+.adonis-pp__upsell-cta:hover {
+	border-color: var(--m-acc);
+	text-decoration: none;
+}
+.adonis-pp__upsell-cta em {
+	font-family: var(--display);
+	font-style: italic;
+	font-weight: 400;
+	color: var(--m-acc);
+}
+.adonis-pp__upsell-cta .arr {
+	font-family: var(--mono);
+	font-size: 14px;
+	opacity: .72;
+}
+
+.adonis-pp__upsell-r {
+	padding: 56px;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	justify-content: center;
+}
+@media (max-width: 720px) {
+	.adonis-pp__upsell-r { padding: 36px 24px; }
+}
+
+.adonis-pp__upsell-feat {
+	display: grid;
+	grid-template-columns: 24px 1fr;
+	gap: 14px;
+	align-items: baseline;
+	padding: 12px 0;
+	border-bottom: 1px solid var(--m-line);
+}
+.adonis-pp__upsell-feat:last-child {
+	border-bottom: 0;
+}
+.adonis-pp__upsell-feat::before {
+	content: "+";
+	color: var(--m-acc);
+	font-family: var(--mono);
+	font-size: 16px;
+}
+.adonis-pp__upsell-feat .nm {
+	font-family: var(--display);
+	font-size: 16px;
+	font-weight: 400;
+	color: var(--m-fg);
+}
+.adonis-pp__upsell-feat .nm em {
+	font-style: italic;
+	color: var(--m-mute);
+	font-size: 13px;
+	display: block;
+	margin-top: 2px;
+	font-weight: 300;
+}
+
+/* ─── Section 06 · FAQ ─────────────────────────────────────────────────── */
+
+/* Duplicates the homepage FAQ entry styles (home.css §11). When the FAQ
+   pattern shows up on a third page, promote .adonis-faq* to base.css. */
+
+.adonis-pp__faq-list {
+	border-top: 1px solid var(--line);
+}
+.adonis-pp__faq {
+	border-bottom: 1px solid var(--line);
+	padding: 0;
+}
+.adonis-pp__faq summary {
+	list-style: none;
+	cursor: pointer;
+	padding: 24px 0;
+	display: grid;
+	grid-template-columns: 1fr 24px;
+	gap: 24px;
+	align-items: center;
+	font-family: var(--display);
+	font-weight: 400;
+	font-size: 19px;
+	line-height: 1.3;
+}
+.adonis-pp__faq summary::-webkit-details-marker {
+	display: none;
+}
+.adonis-pp__faq summary em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+}
+
+/* Plus glyph — rotates to × when [open] */
+.adonis-pp__faq summary .plus {
+	width: 24px;
+	height: 24px;
+	position: relative;
+}
+.adonis-pp__faq summary .plus::before,
+.adonis-pp__faq summary .plus::after {
+	content: "";
+	position: absolute;
+	background: var(--fg);
+	transition: transform .3s;
+}
+.adonis-pp__faq summary .plus::before {
+	left: 0; right: 0; top: 50%;
+	height: 1px;
+	transform: translateY(-50%);
+}
+.adonis-pp__faq summary .plus::after {
+	top: 0; bottom: 0; left: 50%;
+	width: 1px;
+	transform: translateX(-50%);
+}
+.adonis-pp__faq[open] summary .plus::after {
+	transform: translateX(-50%) rotate(90deg);
+}
+
+.adonis-pp__faq-a {
+	padding: 0 0 24px 0;
+	max-width: 70ch;
+	color: var(--mute);
+	line-height: 1.65;
+	font-size: 14.5px;
+}
+.adonis-pp__faq-a strong {
+	color: var(--fg);
+	font-weight: 500;
+}
+
+/* ─── Medical disclaimer block ─────────────────────────────────────────── */
+
+/* Sits below FAQ, above the global footer template-part. Distinct from the
+   footer's compliance disclaimer — this one is product-specific and longer.
+   Section padding matches .section.tight (80/56). Background steps darker
+   than --bg to read as "fine print" zone regardless of page bg. */
+.adonis-pp__disclaimer {
+	background: #08090C;
+	border-top: 1px solid var(--line);
+	padding: 56px 0;
+}
+.adonis-pp__disclaimer-wrap {
+	max-width: 900px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 32px;
+	align-items: start;
+	padding-inline: var(--gutter);
+}
+@media (max-width: 720px) {
+	.adonis-pp__disclaimer-wrap {
+		grid-template-columns: 1fr;
+		gap: 20px;
+		padding-inline: var(--gutter-mobile);
+	}
+}
+.adonis-pp__disclaimer .ic {
+	width: 48px;
+	height: 48px;
+	border: 1px solid var(--line2);
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	font-family: var(--mono);
+	font-size: 12px;
+	color: var(--mute);
+	letter-spacing: .14em;
+}
+.adonis-pp__disclaimer p {
+	font-size: 13.5px;
+	line-height: 1.65;
+	color: var(--mute);
+	margin: 0;
+}
+.adonis-pp__disclaimer p + p {
+	margin-top: 12px;
+}
+.adonis-pp__disclaimer .label {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	color: var(--fg);
+	margin: 0 0 8px;
+	display: block;
+}
+.adonis-pp__disclaimer-meta {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	margin-top: 18px;
+}

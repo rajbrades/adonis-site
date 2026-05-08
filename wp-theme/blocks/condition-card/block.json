@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "adonis/condition-card",
+  "title": "Adonis Condition Card",
+  "category": "design",
+  "description": "Two-pillar condition card — image header (gradient + grain + tag chip + faded display label), body with title, best-for callout, checkmark list, Rx list, and CTA.",
+  "icon": "id-alt",
+  "keywords": ["condition", "pillar", "card"],
+  "attributes": {
+    "imageTag":      { "type": "string", "default": "" },
+    "imageLabel":    { "type": "string", "default": "" },
+    "title":         { "type": "string", "default": "" },
+    "bestForLabel":  { "type": "string", "default": "Best for" },
+    "bestFor":       { "type": "string", "default": "" },
+    "checks":        { "type": "array",  "default": [] },
+    "rxList":        { "type": "array",  "default": [] },
+    "ctaLabel":      { "type": "string", "default": "" },
+    "ctaUrl":        { "type": "string", "default": "#" },
+    "ctaItalicWord": { "type": "string", "default": "" }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "spacing": { "margin": true }
+  },
+  "textdomain": "adonis",
+  "render": "file:./render.php",
+  "style": "file:./style.css"
+}

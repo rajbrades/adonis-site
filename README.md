@@ -191,13 +191,23 @@ Buttons are **pills** — Inter Tight 14px, sentence/title case, no uppercase. T
 }
 .btn.accent:hover { background: transparent; color: var(--fg); }
 
-.btn.ghost {             /* secondary */
+.btn.ghost {             /* secondary — low-contrast border */
   background: transparent;
   color: var(--fg);
   border: 1px solid var(--line2);
 }
 .btn.ghost:hover { border-color: var(--fg); }
+
+.btn.outline {           /* tertiary — full-contrast border, inverts on hover */
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--fg);
+}
+.btn.outline:hover     { background: var(--fg); color: var(--bg); }
+.btn.outline:hover em  { color: var(--acc-deep); }   /* readable on light hover fill */
 ```
+
+All three variants share the same 12/24 padding and 14px Inter Tight type — they differ only in fill/border treatment. Pick by emphasis: **accent** for the page's primary action, **ghost** for a paired secondary, **outline** for card-internal CTAs (condition cards, pathway cards, etc.) where the surrounding card already carries a border.
 
 The italicized accent word inside a CTA (e.g. "Get *started*") uses `<em style="color: var(--acc)">` and is part of the brand voice — preserve it. Italics inside a pill stay sentence-case Inter Tight, italicized — not mono.
 
@@ -436,3 +446,4 @@ The previous "open questions" list has been resolved. These are the binding deci
   - `Subscriptions` — already provided by WC Subscriptions
   - `Lab Uploads` — custom (S3 + HIPAA-safe pipeline; see file 05 notes)
   - `Insights` — custom (deterministic insights cache)
+

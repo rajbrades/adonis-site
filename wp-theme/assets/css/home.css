@@ -1,0 +1,1723 @@
+/* Homepage section styles. Loaded only on the front page (see functions.php). */
+
+/* ─── 01 · Hero ─────────────────────────────────────────────────────────── */
+
+.adonis-hero {
+  padding: 88px 0 72px;
+  border-bottom: 1px solid var(--line);
+}
+
+.adonis-hero__h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(56px, 8vw, 128px);
+  line-height: 0.96;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+  max-width: 16ch;
+  margin: 0;
+}
+.adonis-hero__h1 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--acc2);
+}
+
+.adonis-hero__sub {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 56px;
+  margin-top: 48px;
+  align-items: end;
+}
+@media (max-width: 900px) {
+  .adonis-hero__sub { grid-template-columns: 1fr; }
+}
+
+.adonis-hero__lede {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.42;
+  max-width: 46ch;
+  opacity: .92;
+  font-variation-settings: "opsz" 24;
+  margin: 0;
+}
+
+.adonis-hero__ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Chart card — data-as-hero */
+.adonis-hero__chart {
+  margin-top: 72px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 720px) {
+  .adonis-hero__chart { padding: 28px; }
+}
+
+.adonis-hero__chart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.adonis-hero__chart-head h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 30px;
+  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 36;
+  margin: 0;
+}
+.adonis-hero__chart-head h3 em {
+  font-style: italic;
+  color: var(--acc);
+}
+.adonis-hero__chart-meta {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: .14em;
+  color: var(--mute);
+  text-transform: uppercase;
+}
+.adonis-hero__chart-meta b {
+  color: var(--fg);
+  font-weight: 400;
+}
+
+.adonis-hero__chart-box {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .adonis-hero__chart-box { grid-template-columns: 1fr; }
+}
+
+.adonis-hero__chart-svg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+}
+
+.adonis-hero__chart-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.adonis-hero__chart-bullets li {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 14px;
+  align-items: baseline;
+  font-size: 15px;
+  line-height: 1.4;
+}
+.adonis-hero__chart-bullets li::before {
+  content: "✓";
+  color: var(--acc);
+  font-family: var(--mono);
+  font-size: 15px;
+}
+.adonis-hero__chart-bullets li:last-child {
+  border-bottom: 0;
+}
+.adonis-hero__chart-bullets li b {
+  font-weight: 500;
+}
+.adonis-hero__chart-bullets li .d {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .18em;
+  color: var(--mute);
+  text-transform: uppercase;
+  display: block;
+  margin-top: 4px;
+}
+
+/* Badge strip — 4 tiles, hairline-divider trick (1px gap on a --line bg) */
+.adonis-hero__badges {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  margin-top: 72px;
+  border: 1px solid var(--line);
+}
+.adonis-hero__badges > div {
+  background: var(--bg);
+  padding: 24px 28px;
+}
+.adonis-hero__badges .k {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .2em;
+  color: var(--mute);
+  text-transform: uppercase;
+}
+.adonis-hero__badges .v {
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 400;
+  margin-top: 6px;
+  font-variation-settings: "opsz" 36;
+  letter-spacing: -.01em;
+}
+.adonis-hero__badges .v em {
+  font-style: italic;
+  color: var(--acc);
+}
+@media (max-width: 720px) {
+  .adonis-hero__badges { grid-template-columns: 1fr 1fr; }
+}
+
+/* ─── 01b · Pillars (Three things set the practice apart) ──────────────── */
+
+.adonis-pillars {
+  padding: 96px 0 40px;
+  border-bottom: 1px solid var(--line);
+}
+
+.adonis-pillars__lead {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+  align-items: end;
+  justify-items: end;
+}
+.adonis-pillars__sub {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--mute);
+  max-width: 50ch;
+  text-align: right;
+  line-height: 1.3;
+  margin: 0;
+}
+@media (max-width: 720px) {
+  .adonis-pillars__lead { justify-items: start; }
+  .adonis-pillars__sub { text-align: left; }
+}
+
+.adonis-pillars__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .adonis-pillars__grid { grid-template-columns: 1fr; }
+}
+
+.adonis-pillar {
+  border: 1px solid var(--line);
+  background: var(--bg2);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color .25s;
+}
+.adonis-pillar:hover { border-color: var(--acc); }
+
+.adonis-pillar__num {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--mute);
+  padding: 24px 28px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.adonis-pillar__num em {
+  color: var(--acc);
+  font-style: normal;
+}
+
+.adonis-pillar h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.1;
+  margin: 18px 28px 24px;
+}
+.adonis-pillar h3 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--acc);
+}
+
+.adonis-pillar__img {
+  aspect-ratio: 4/3;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.adonis-pillar__img .phold {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--mute);
+  background: color-mix(in oklch, var(--bg) 80%, transparent);
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  z-index: 2;
+}
+.adonis-pillar__img svg.biomarker-chart {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.adonis-pillar__foot {
+  padding: 20px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--mute);
+}
+.adonis-pillar__foot b {
+  color: var(--fg);
+  font-weight: 500;
+}
+.adonis-pillar__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--acc);
+  margin-top: 8px;
+}
+.adonis-pillar__tag::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: var(--acc);
+  border-radius: 50%;
+}
+
+/* ─── 02 · Differentiation ─────────────────────────────────────────────── */
+
+.adonis-diff {
+  text-align: center;
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 720px) {
+  .adonis-diff { padding: 96px 0; }
+}
+
+.adonis-diff .adonis-panel-head {
+  max-width: 100%;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+
+.adonis-diff__chips {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.adonis-diff__chip {
+  display: inline-block;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 13.5px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.adonis-diff__chip em {
+  color: var(--acc);
+  font-style: normal;  /* italic mono uppercase looks broken — color-only emphasis */
+}
+
+.adonis-diff .adonis-btn {
+  margin-top: 44px;
+}
+
+/* ─── 03 · Conditions ──────────────────────────────────────────────────── */
+
+.adonis-conditions__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 900px) {
+  .adonis-conditions__grid { grid-template-columns: 1fr; }
+}
+
+/* ─── 04 · Pathways ────────────────────────────────────────────────────── */
+
+.adonis-pathways__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .adonis-pathways__grid { grid-template-columns: 1fr; }
+}
+
+/* ─── 05 · Lab Intelligence preview ────────────────────────────────────── */
+
+.adonis-prec {
+  background: var(--bg2);
+}
+
+.adonis-prec__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .adonis-prec__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.adonis-prec__copy h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144;
+  text-wrap: balance;
+  max-width: 14ch;
+  margin: 0;
+}
+.adonis-prec__copy h3 em {
+  font-style: italic;
+  color: var(--acc);
+}
+
+.adonis-prec__copy p {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.45;
+  margin: 24px 0 0;
+  max-width: 44ch;
+  opacity: .9;
+  font-variation-settings: "opsz" 24;
+}
+
+.adonis-prec__cta-wrap {
+  margin-top: 32px;
+}
+
+/* Visualization panel — bordered surface with header, biomarker SVG, stats */
+.adonis-prec__vis {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 40px;
+}
+@media (max-width: 720px) {
+  .adonis-prec__vis { padding: 28px; }
+}
+
+.adonis-prec__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 20px;
+}
+.adonis-prec__head-k {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .2em;
+  color: var(--mute);
+  text-transform: uppercase;
+}
+.adonis-prec__head-v {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 22px;
+  color: var(--acc);
+  margin-top: 4px;
+}
+/* Right-side header value (Sample · M · 38 · FL) — non-italic, larger sample
+   data, --fg color rather than --acc */
+.adonis-prec__head-v--alt {
+  font-style: normal;
+  font-size: 18px;
+  color: var(--fg);
+}
+
+.adonis-prec__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.adonis-prec__stats > div {
+  padding: 22px 20px 22px 0;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.adonis-prec__stats > div:nth-child(2n) {
+  padding-right: 0;
+  padding-left: 20px;
+  border-right: 0;
+}
+.adonis-prec__stats > div:nth-last-child(-n+2) {
+  border-bottom: 0;
+}
+.adonis-prec__stats .k {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .2em;
+  color: var(--mute);
+  text-transform: uppercase;
+}
+.adonis-prec__stats .v {
+  font-family: var(--display);
+  font-size: 44px;
+  font-weight: 400;
+  margin-top: 8px;
+  font-variation-settings: "opsz" 72;
+  letter-spacing: -.02em;
+}
+.adonis-prec__stats .v em {
+  font-style: italic;
+  color: var(--acc);
+  font-weight: 300;
+}
+.adonis-prec__stats .v sup {
+  font-size: 0.4em;
+  color: var(--acc);
+  vertical-align: super;
+  font-family: var(--mono);
+  margin-left: 4px;
+}
+
+/* ─── 06 · Featured Products ───────────────────────────────────────────── */
+
+.adonis-products {
+  padding: 100px 0 110px;  /* override .adonis-panel's 120 0 */
+}
+@media (max-width: 720px) {
+  .adonis-products { padding: 80px 0; }
+}
+
+.adonis-products__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 40px;
+  margin-bottom: 48px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 900px) {
+  .adonis-products__head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+  }
+}
+
+.adonis-products__head-l { flex: 1; min-width: 0; }
+.adonis-products__head-l .idx {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--acc);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.adonis-products__head-l .idx::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--acc);
+}
+.adonis-products__head-l h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(36px, 4.5vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 120;
+  text-wrap: balance;
+  margin: 0;
+}
+.adonis-products__head-l h2 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--acc);
+}
+.adonis-products__head-l p {
+  font-family: var(--display);
+  font-size: 19px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--mute);
+  margin: 16px 0 0;
+  max-width: 50ch;
+}
+
+.adonis-products__tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+@media (max-width: 900px) {
+  .adonis-products__tabs { justify-content: flex-start; }
+}
+.adonis-products__tab {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  color: var(--mute);
+  background: transparent;
+  cursor: pointer;
+  transition: all .25s;
+}
+.adonis-products__tab:hover {
+  color: var(--fg);
+  border-color: var(--fg);
+}
+.adonis-products__tab.is-active {
+  color: var(--bg);
+  background: var(--fg);
+  border-color: var(--fg);
+}
+
+.adonis-products__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 900px) {
+  .adonis-products__grid { grid-template-columns: 1fr; }
+}
+
+.adonis-products__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  color: var(--fg);
+  font-family: var(--mono);
+  font-size: 13.5px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+@media (max-width: 720px) {
+  .adonis-products__foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+.adonis-products__foot > div { opacity: .9; }
+.adonis-products__foot a {
+  color: var(--acc);
+  border-bottom: 1px solid var(--acc);
+  padding-bottom: 2px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* ─── 07 · How It Works (5-step timeline) ──────────────────────────────── */
+
+.adonis-how {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+}
+@media (max-width: 900px) {
+  .adonis-how {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* Left column — lede with idx kicker, small h3, paragraph, meta block */
+.adonis-how__lede .adonis-panel-head {
+  max-width: 100%;
+  margin-bottom: 32px;
+}
+.adonis-how__lede h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.05;
+  margin: 12px 0 20px;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+.adonis-how__lede h3 em {
+  font-style: italic;
+  color: var(--acc2);
+  font-weight: 300;
+}
+.adonis-how__lede p {
+  color: var(--mute);
+  max-width: 42ch;
+  margin: 0 0 28px;
+  line-height: 1.55;
+}
+.adonis-how__lede .meta {
+  display: flex;
+  gap: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.adonis-how__lede .meta > div {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.adonis-how__lede .meta b {
+  display: block;
+  font-family: var(--display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 28px;
+  color: var(--fg);
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 4px;
+}
+
+/* Right column — vertical timeline with pseudo-line + circular bullets */
+.adonis-how__line {
+  position: relative;
+  padding-left: 36px;
+}
+.adonis-how__line::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  bottom: 12px;
+  width: 1px;
+  background: var(--line2);
+}
+
+.adonis-how__step {
+  position: relative;
+  padding: 0 0 36px 0;
+}
+.adonis-how__step:last-child {
+  padding-bottom: 0;
+}
+.adonis-how__step::before {
+  content: "";
+  position: absolute;
+  left: -28px;
+  top: 8px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1.5px solid var(--acc);
+}
+.adonis-how__step.is-active::before {
+  background: var(--acc);
+  box-shadow: 0 0 0 5px color-mix(in oklch, var(--acc) 22%, transparent);
+}
+
+.adonis-how__step-h {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.adonis-how__step-n {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--acc);
+}
+.adonis-how__step h4 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 1.2;
+  margin: 0;
+}
+.adonis-how__step h4 em {
+  font-style: italic;
+  color: var(--acc2);
+  font-weight: 300;
+}
+.adonis-how__step p {
+  color: var(--mute);
+  font-size: 14.5px;
+  line-height: 1.55;
+  max-width: 48ch;
+  margin: 0;
+}
+.adonis-how__step-micro {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--mute);
+  flex-wrap: wrap;
+}
+.adonis-how__step-micro span {
+  padding: 4px 9px;
+  border: 1px solid var(--line2);
+  border-radius: 999px;
+}
+
+/* ─── 08 · Before / After Gallery ──────────────────────────────────────── */
+
+.adonis-ba-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+@media (max-width: 900px) {
+  .adonis-ba-grid { grid-template-columns: 1fr; }
+}
+
+.adonis-ba {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.adonis-ba__tag {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--acc);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.adonis-ba__tag::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: var(--acc);
+}
+
+.adonis-ba__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.adonis-ba__photo {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--bg2);
+}
+.adonis-ba__photo::after {
+  content: attr(data-label);
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--fg);
+  background: color-mix(in oklch, var(--bg) 75%, transparent);
+  padding: 6px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--line);
+  z-index: 2;
+}
+.adonis-ba__photo svg,
+.adonis-ba__photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.adonis-ba__photo img {
+  filter: saturate(0.92) contrast(1.02);
+}
+
+/* Skeleton placeholder for v1 — no photos shipped yet (per resolved
+   decisions: "render skeleton boxes with the N-of timeframe label visible").
+   Real images replace .adonis-ba__placeholder in v1.1. */
+.adonis-ba__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+}
+.adonis-ba__placeholder span {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--mute);
+  line-height: 1.6;
+  max-width: 24ch;
+}
+
+.adonis-ba__head {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--fg);
+  letter-spacing: -.005em;
+  margin: 0;
+}
+.adonis-ba__head em {
+  font-style: italic;
+  color: var(--acc);
+}
+
+.adonis-ba__quote {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--mute);
+  padding-left: 14px;
+  border-left: 1px solid var(--line);
+  margin: 0;
+}
+
+.adonis-ba__sig {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  margin-top: auto;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.adonis-ba__sig-n {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .01em;
+}
+.adonis-ba__sig-n small {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-top: 3px;
+  font-weight: 400;
+}
+.adonis-ba__sig-p {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--mute);
+  border: 1px solid var(--line);
+  padding: 7px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.adonis-ba-disclaimer {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--mute);
+  max-width: 80ch;
+}
+
+/* ─── 09 · Physicians (2-card credibility grid) ────────────────────────── */
+
+.adonis-docs__head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: end;
+  margin-bottom: 56px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 900px) {
+  .adonis-docs__head {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.adonis-docs__head-l .adonis-panel-head {
+  max-width: 100%;
+  margin-bottom: 32px;
+}
+.adonis-docs__head-l .adonis-panel-head h2 {
+  font-size: clamp(40px, 4.5vw, 64px);
+  max-width: 14ch;
+}
+
+.adonis-docs__head-r p {
+  color: var(--mute);
+  max-width: 48ch;
+  line-height: 1.55;
+  font-size: 15.5px;
+  margin: 0;
+}
+
+.adonis-docs__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+@media (max-width: 720px) {
+  .adonis-docs__grid { grid-template-columns: 1fr; }
+}
+
+.adonis-doc {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: border-color .3s;
+}
+.adonis-doc:hover {
+  border-color: var(--acc);
+}
+
+.adonis-doc__top {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* Dummy headshot slot for v1 — initials in italic Fraunces stand in for the
+   real photo until launch (per resolved decisions: real photography swaps in
+   before public launch). data-i carries the 2-letter initials. */
+.adonis-doc__av {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--bg), var(--bg2));
+  border: 1px solid var(--line2);
+  position: relative;
+  overflow: hidden;
+}
+.adonis-doc__av::before {
+  content: attr(data-i);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--acc);
+}
+
+.adonis-doc__who h4 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.15;
+  margin: 0;
+}
+.adonis-doc__who h4 em {
+  font-style: italic;
+  color: var(--mute);
+  font-weight: 300;
+  font-size: 14px;
+  display: block;
+  margin-top: 2px;
+}
+.adonis-doc__who-role {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--acc);
+  margin-top: 8px;
+}
+
+.adonis-doc__creds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.adonis-doc__creds span {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--mute);
+  padding: 4px 9px;
+  border: 1px solid var(--line2);
+  border-radius: 3px;
+}
+
+.adonis-doc__quote {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 15.5px;
+  line-height: 1.4;
+  color: var(--fg);
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  margin: 0;
+  text-wrap: pretty;
+  quotes: none;
+  display: block;
+}
+.adonis-doc__quote::before,
+.adonis-doc__quote::after {
+  content: "";
+}
+
+.adonis-doc__lic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.adonis-doc__lic b {
+  color: var(--fg);
+  font-weight: 500;
+  letter-spacing: .04em;
+}
+
+/* ─── 10 · Trust + service area ────────────────────────────────────────── */
+
+.adonis-trust__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: stretch;
+}
+@media (max-width: 900px) {
+  .adonis-trust__grid { grid-template-columns: 1fr; }
+}
+
+.adonis-trust__card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 44px;
+}
+@media (max-width: 720px) {
+  .adonis-trust__card { padding: 28px; }
+}
+
+.adonis-trust__card h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(32px, 4vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 72;
+  margin: 0;
+}
+.adonis-trust__card h3 em {
+  font-style: italic;
+  color: var(--acc);
+}
+
+.adonis-trust__badges {
+  margin-top: 36px;
+  border-top: 1px solid var(--line);
+}
+.adonis-trust__badges .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  gap: 16px;
+}
+.adonis-trust__badges .row:last-child {
+  border-bottom: 0;
+}
+.adonis-trust__badges .k {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .22em;
+  color: var(--mute);
+  text-transform: uppercase;
+}
+.adonis-trust__badges .v {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 400;
+  font-variation-settings: "opsz" 24;
+  letter-spacing: -.005em;
+  text-align: right;
+}
+.adonis-trust__badges .v em {
+  font-style: italic;
+  color: var(--acc);
+}
+
+/* States card — coverage map placeholder, gridded background, FL pin */
+.adonis-trust__states {
+  position: relative;
+  overflow: hidden;
+  padding: 44px;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+@media (max-width: 720px) {
+  .adonis-trust__states { padding: 28px; min-height: 360px; }
+}
+
+.adonis-trust__states-grain {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 40px, var(--line) 40px 41px),
+    repeating-linear-gradient(90deg, transparent 0 40px, var(--line) 40px 41px);
+  opacity: .35;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.adonis-trust__states-hd {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--mute);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.adonis-trust__states-hd b {
+  color: var(--fg);
+  font-weight: 400;
+}
+
+.adonis-trust__states-pin {
+  position: absolute;
+  right: 28%;
+  top: 50%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.adonis-trust__states-pin-d {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--acc);
+  box-shadow:
+    0 0 0 6px color-mix(in oklch, var(--acc) 25%, transparent),
+    0 0 0 18px color-mix(in oklch, var(--acc) 8%, transparent);
+}
+.adonis-trust__states-pin-l {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: .24em;
+  color: var(--acc);
+  text-transform: uppercase;
+}
+
+.adonis-trust__states-big {
+  position: relative;
+  z-index: 2;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(44px, 6vw, 80px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144;
+  max-width: 14ch;
+}
+.adonis-trust__states-big em {
+  font-style: italic;
+  color: var(--acc);
+}
+
+.adonis-trust__states-note {
+  position: relative;
+  z-index: 2;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-top: 16px;
+}
+
+/* ─── 11 · FAQ ─────────────────────────────────────────────────────────── */
+
+.adonis-faq__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 64px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .adonis-faq__grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.adonis-faq__lede .adonis-panel-head {
+  max-width: 100%;
+  margin-bottom: 32px;
+}
+.adonis-faq__lede .adonis-panel-head h2 {
+  font-size: clamp(36px, 4.5vw, 64px);
+  max-width: 12ch;
+}
+.adonis-faq__lede p {
+  color: var(--mute);
+  max-width: 36ch;
+  margin: 18px 0 0;
+  line-height: 1.55;
+}
+.adonis-faq__lede a {
+  display: inline-block;
+  margin-top: 28px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--acc);
+  border-bottom: 1px solid var(--acc);
+  padding-bottom: 4px;
+  text-decoration: none;
+}
+
+.adonis-faq__list {
+  border-top: 1px solid var(--line);
+}
+
+.adonis-faq {
+  border-bottom: 1px solid var(--line);
+  padding: 0;
+}
+.adonis-faq summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 24px 0;
+  display: grid;
+  grid-template-columns: 1fr 24px;
+  gap: 24px;
+  align-items: center;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.3;
+}
+.adonis-faq summary::-webkit-details-marker {
+  display: none;
+}
+.adonis-faq summary em {
+  font-style: italic;
+  color: var(--acc2);
+  font-weight: 300;
+}
+
+/* Plus glyph — built from two pseudo-element bars; rotates to × when open. */
+.adonis-faq summary .plus {
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+.adonis-faq summary .plus::before,
+.adonis-faq summary .plus::after {
+  content: "";
+  position: absolute;
+  background: var(--fg);
+  transition: transform .3s;
+}
+.adonis-faq summary .plus::before {
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+.adonis-faq summary .plus::after {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+}
+.adonis-faq[open] summary .plus::after {
+  transform: translateX(-50%) rotate(90deg);
+}
+
+.adonis-faq__a {
+  padding: 0 0 24px 0;
+  max-width: 60ch;
+  color: var(--mute);
+  line-height: 1.6;
+  font-size: 15px;
+}
+.adonis-faq__a a {
+  color: var(--acc);
+  border-bottom: 1px solid var(--acc);
+}
+.adonis-faq__meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-top: 14px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+/* ─── 12 · Checkout preview ────────────────────────────────────────────── */
+
+.adonis-co__wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .adonis-co__wrap {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.adonis-co__lede .adonis-panel-head {
+  max-width: 100%;
+  margin-bottom: 32px;
+}
+.adonis-co__lede .adonis-panel-head h2 {
+  font-size: clamp(36px, 4.5vw, 56px);
+  max-width: 14ch;
+}
+.adonis-co__lede p {
+  color: var(--mute);
+  margin: 18px 0 0;
+  max-width: 42ch;
+  line-height: 1.6;
+}
+.adonis-co__reasons {
+  margin: 32px 0 0;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.adonis-co__reasons li {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 14px;
+  align-items: baseline;
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+.adonis-co__reasons li::before {
+  content: "✓";
+  color: var(--acc);
+  font-family: var(--mono);
+}
+
+/* Order summary card — split into 3 inner blocks (head/body/totals → CTA →
+   foot) so adonis/button can render between core/html islands. The card
+   visual treatment lives on this wrapping group. */
+.adonis-co__card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+.adonis-co__head {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--mute);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.adonis-co__head-secure {
+  color: var(--acc);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.adonis-co__head-secure::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--acc);
+}
+
+.adonis-co__body {
+  padding: 24px;
+}
+.adonis-co__line {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+}
+.adonis-co__line:last-of-type {
+  border-bottom: 0;
+}
+
+/* Thumb — placeholder Rx/Lab tag block; data-rx renders 2-letter via CSS. */
+.adonis-co__thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+  background: var(--bg);
+  border: 1px solid var(--line2);
+  position: relative;
+}
+.adonis-co__thumb::before {
+  content: attr(data-rx);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .1em;
+  color: var(--acc);
+}
+
+.adonis-co__nm {
+  font-family: var(--display);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.adonis-co__nm em {
+  font-style: italic;
+  color: var(--mute);
+  font-weight: 300;
+  font-size: 13px;
+  display: block;
+  margin-top: 3px;
+}
+.adonis-co__px {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--fg);
+  letter-spacing: .04em;
+  text-align: right;
+}
+/* Inside .px the em flips to non-italic mono uppercase — used for "/month",
+   "/dose", "included · precision" subtext under the price. */
+.adonis-co__px em {
+  font-style: normal;
+  color: var(--mute);
+  font-size: 11px;
+  display: block;
+  margin-top: 2px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.adonis-co__totals {
+  padding: 18px 24px;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+.adonis-co__totals .row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--mute);
+  gap: 12px;
+}
+.adonis-co__totals .row.total {
+  font-family: var(--display);
+  font-size: 22px;
+  color: var(--fg);
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line2);
+}
+
+.adonis-co__cta-wrap {
+  padding: 18px 24px 24px;
+}
+.adonis-co__cta-wrap .adonis-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.adonis-co__foot {
+  padding: 14px 24px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--mute);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ─── 13a · Final CTA ──────────────────────────────────────────────────── */
+
+.adonis-final {
+  padding: 160px 0 180px;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 720px) {
+  .adonis-final { padding: 96px 0 112px; }
+}
+.adonis-final::before {
+  content: "";
+  position: absolute;
+  inset: 20% 10%;
+  background: radial-gradient(ellipse at center,
+              color-mix(in oklch, var(--acc) 18%, transparent) 0%,
+              transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.adonis-final__inner {
+  position: relative;
+  z-index: 1;
+}
+.adonis-final h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(56px, 8vw, 144px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-variation-settings: "opsz" 144;
+  text-wrap: balance;
+  max-width: 16ch;
+  margin: 0 auto;
+}
+.adonis-final h2 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--acc);
+}
+.adonis-final__row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 44px;
+  flex-wrap: wrap;
+}
+.adonis-final__fine {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-top: 36px;
+}
