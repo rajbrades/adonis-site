@@ -1,0 +1,554 @@
+<!-- Adonis · /lab-intelligence landing · DESIGN PREVIEW
+     Static design preview matching prototype 05-lab-intelligence.html.
+     Slug: "lab-intelligence" — assign to a WP Page with that slug.
+
+     COMPLIANCE NOTE (resolved decisions):
+     • All copy on this page must live in ACF fields in production so legal
+       can edit without a deploy. This static template is the v1 visual
+       reference; the dev team migrates each block of text to an ACF field
+       group (`adonis_lab_intelligence`) at integration time.
+     • The "What it does NOT do" card lists the banned framings VERBATIM
+       (AI doctor / AI diagnosis / AI prescription / AI treatment plan /
+       guaranteed optimization) — defensive disclosure, not marketing copy.
+       This file is excluded from the banned-phrase CI lint for this reason.
+     • The CI lint enforces these phrases never appear elsewhere. -->
+
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"adonis-li"} -->
+<main class="wp-block-group adonis-li">
+
+	<!-- 01 · Hero ────────────────────────────────────────────────────────── -->
+	<!-- wp:group {"tagName":"section","className":"adonis-panel"} -->
+	<section class="wp-block-group adonis-panel">
+		<!-- wp:group {"className":"adonis-container"} -->
+		<div class="wp-block-group adonis-container">
+
+			<!-- wp:html -->
+			<div class="adonis-li__hero-grid">
+				<div class="l">
+					<div class="adonis-li__hero-meta">
+						<span><b>Care pathway 03</b></span>
+						<span>Self-directed</span>
+						<span>Educational</span>
+						<span>Upgrade bridge</span>
+					</div>
+
+					<h1 class="adonis-li__hero-h1">Understand your <em>labs</em><br>before you optimize.</h1>
+
+					<p class="adonis-li__hero-lead">Upload existing labs or order testing to better understand your health data, then upgrade to provider-guided care when you are ready for clinical interpretation and treatment planning.</p>
+
+					<div class="adonis-li__ctas">
+						<a class="adonis-li__cta adonis-li__cta--primary adonis-li__cta--lg" href="#paths"><span>Upload <em>my labs</em></span><span class="arr">→</span></a>
+						<a class="adonis-li__cta adonis-li__cta--lg" href="/precision-care"><span>Explore <em>Precision Care</em></span><span class="arr">→</span></a>
+					</div>
+
+					<div class="adonis-li__eduline">
+						<span class="icon" aria-hidden="true">i</span>
+						<span class="t"><b>Educational insights only.</b> Provider review is required for diagnosis, treatment, or prescriptions. Upgrade to Precision Care to meet a Florida-licensed physician.</span>
+					</div>
+				</div>
+
+				<div class="r">
+					<span class="adonis-li__example-tag">Example preview</span>
+					<div class="adonis-li__insights-mock">
+						<div class="adonis-li__im-head">
+							<div class="l">
+								<div class="t">Insights · v0</div>
+								<div class="nm">Your labs, <em>organized</em>.</div>
+							</div>
+							<div class="r">REF · ADX-LI<br><b>Demo file</b></div>
+						</div>
+
+						<div class="adonis-li__im-cats">
+							<div class="adonis-li__im-cat"><div class="nm">Hormones</div><div class="ct">9 <em>markers</em></div><div class="st">Within range</div></div>
+							<div class="adonis-li__im-cat alert"><div class="nm">Thyroid</div><div class="ct">5 <em>markers</em></div><div class="st">2 to review</div></div>
+							<div class="adonis-li__im-cat"><div class="nm">Metabolic</div><div class="ct">8 <em>markers</em></div><div class="st">Within range</div></div>
+							<div class="adonis-li__im-cat"><div class="nm">Inflammation</div><div class="ct">4 <em>markers</em></div><div class="st">Within range</div></div>
+							<div class="adonis-li__im-cat"><div class="nm">Nutrients</div><div class="ct">9 <em>markers</em></div><div class="st">Within range</div></div>
+							<div class="adonis-li__im-cat alert"><div class="nm">Cardiometab.</div><div class="ct">7 <em>markers</em></div><div class="st">1 to review</div></div>
+						</div>
+
+						<div class="adonis-li__im-trend">
+							<div class="top">
+								<span class="nm">Free T3 · <b>last 4 draws</b></span>
+								<span class="v">2.6<em>pg/mL</em></span>
+							</div>
+							<svg viewBox="0 0 320 70" preserveAspectRatio="none" aria-hidden="true">
+								<line x1="0" y1="35" x2="320" y2="35" stroke="rgba(236,230,216,0.10)" stroke-dasharray="2 4"/>
+								<rect x="0" y="22" width="320" height="22" fill="rgba(46,67,56,0.14)"/>
+								<path d="M 0 56 Q 50 40 90 38 T 170 30 T 250 24 T 320 18" fill="none" stroke="var(--acc)" stroke-width="1.5"/>
+								<circle cx="40" cy="48" r="3" fill="var(--acc)"/>
+								<circle cx="120" cy="34" r="3" fill="var(--acc)"/>
+								<circle cx="210" cy="26" r="3" fill="var(--acc)"/>
+								<circle cx="300" cy="20" r="3" fill="var(--acc)"/>
+							</svg>
+						</div>
+
+						<div class="adonis-li__im-foot">
+							<span class="reading">Educational view</span>
+							<span class="label">Not a diagnosis</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /wp:html -->
+
+		</div>
+		<!-- /wp:group -->
+	</section>
+	<!-- /wp:group -->
+
+	<!-- 02 · Three-pathway selection ─────────────────────────────────────── -->
+	<!-- wp:group {"tagName":"section","className":"adonis-panel","anchor":"paths"} -->
+	<section class="wp-block-group adonis-panel" id="paths">
+		<!-- wp:group {"className":"adonis-container"} -->
+		<div class="wp-block-group adonis-container">
+
+			<!-- wp:html -->
+			<div class="adonis-li__head">
+				<div class="l">
+					<span class="adonis-li__eyebrow">02 · Three ways in</span>
+					<h2 class="adonis-li__h2">Bring your data, or <em>start fresh</em>.</h2>
+				</div>
+				<div class="r">
+					<p>Lab Intelligence works whether you've already had bloodwork done, want a fresh panel ordered, or are ready to skip ahead to a physician visit. Pick the door that matches where you are.</p>
+				</div>
+			</div>
+
+			<div class="adonis-li__paths">
+				<article class="adonis-li__path-card">
+					<div class="head">
+						<span class="num">01</span>
+						<span class="pr">From <b>$0</b></span>
+					</div>
+					<svg class="glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true">
+						<path d="M 16 5 V 21"/>
+						<path d="M 11 11 L 16 5 L 21 11"/>
+						<rect x="5" y="22" width="22" height="6" rx="1"/>
+					</svg>
+					<h3>Upload existing <em>labs</em></h3>
+					<p>Have recent bloodwork? Drag a PDF or photo from your last physical, Quest portal, or LabCorp result. We'll organize it across the same six categories your physician would.</p>
+					<ul>
+						<li>PDF · CSV · <b>image OK</b></li>
+						<li>HIPAA-secure <b>document upload</b></li>
+						<li>Educational organization <b>only</b></li>
+					</ul>
+					<a class="cta">Upload <em>my labs</em><span class="arr">→</span></a>
+				</article>
+
+				<article class="adonis-li__path-card">
+					<div class="head">
+						<span class="num">02</span>
+						<span class="pr">From <b>$199</b></span>
+					</div>
+					<svg class="glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true">
+						<circle cx="16" cy="20" r="6"/>
+						<path d="M 16 6 V 14"/>
+						<path d="M 12 14 H 20"/>
+					</svg>
+					<h3>Order a <em>lab panel</em></h3>
+					<p>No labs on hand? Order a panel through Adonis. We send a phlebotomy kit or set up a LabCorp / Quest draw — same partner network your physician would use later.</p>
+					<ul>
+						<li>At-home or <b>LabCorp/Quest</b></li>
+						<li>From <b>$199</b> · panel-dependent</li>
+						<li>Credit applies if you <b>upgrade</b></li>
+					</ul>
+					<a class="cta">Browse <em>panels</em><span class="arr">→</span></a>
+				</article>
+
+				<article class="adonis-li__path-card upgrade">
+					<div class="head">
+						<span class="num">03</span>
+						<span class="pr">Package <b>$499</b></span>
+					</div>
+					<svg class="glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true">
+						<rect x="3" y="8" width="22" height="16" rx="1"/>
+						<path d="M 25 12 L 30 9 V 23 L 25 20 Z"/>
+						<circle cx="14" cy="16" r="3"/>
+					</svg>
+					<h3>Upgrade to <em>Precision Care</em></h3>
+					<p>Skip the self-directed step. A Florida-licensed physician reads your labs and intake, meets you on a 30-min video visit, and delivers a written optimization plan.</p>
+					<ul>
+						<li>Lab + intake + <b>MD video visit</b></li>
+						<li>Personalized <b>written plan</b></li>
+						<li>Clinical <b>Rx if appropriate</b></li>
+					</ul>
+					<a class="cta" href="/precision-care">Upgrade <em>now</em><span class="arr">→</span></a>
+				</article>
+			</div>
+			<!-- /wp:html -->
+
+		</div>
+		<!-- /wp:group -->
+	</section>
+	<!-- /wp:group -->
+
+	<!-- 04 · How It Works ──────────────────────────────────────────────── -->
+	<!-- wp:group {"tagName":"section","className":"adonis-panel"} -->
+	<section class="wp-block-group adonis-panel">
+		<!-- wp:group {"className":"adonis-container"} -->
+		<div class="wp-block-group adonis-container">
+
+			<!-- wp:html -->
+			<div class="adonis-li__head">
+				<div class="l">
+					<span class="adonis-li__eyebrow">04 · How it works</span>
+					<h2 class="adonis-li__h2">Self-directed up front. <em>Provider-led</em> when it matters.</h2>
+				</div>
+				<div class="r">
+					<p>Lab Intelligence is a structured on-ramp. The first three steps are self-directed and educational; the last two are the handoff to provider-guided Precision Care, where any interpretation, diagnosis, or prescription happens.</p>
+				</div>
+			</div>
+
+			<div class="adonis-li__hiw-list">
+				<div class="adonis-li__hiw-row">
+					<div class="num">01</div>
+					<div class="nm">Upload labs <em>or</em> order testing</div>
+					<div class="desc">Drop a PDF / photo from a recent draw, or order a panel through Adonis (at-home phlebotomy or LabCorp / Quest). Stored encrypted at rest.</div>
+					<div class="stamp"><b>Self-directed</b><em>~5 min</em></div>
+				</div>
+				<div class="adonis-li__hiw-row alt">
+					<div class="num">02</div>
+					<div class="nm">Review <em>educational insights</em></div>
+					<div class="desc">Your data, organized across six categories with marker-level context, reference ranges, and trend lines if you have multiple draws. Educational only — not a diagnosis.</div>
+					<div class="stamp"><b>Educational</b><em>at your pace</em></div>
+				</div>
+				<div class="adonis-li__hiw-row">
+					<div class="num">03</div>
+					<div class="nm">Identify areas to <em>discuss with a provider</em></div>
+					<div class="desc">Save flagged markers and questions to a shareable summary. Bring it to your existing PCP, or carry it forward into a Precision Care visit.</div>
+					<div class="stamp"><b>Self-directed</b><em>shareable PDF</em></div>
+				</div>
+				<div class="adonis-li__hiw-row bridge">
+					<div class="num">04</div>
+					<div class="nm">Upgrade to <em>Precision Care</em> if desired</div>
+					<div class="desc">Move from review to plan. A Florida-licensed physician reads your data, conducts a 30-min video visit, and writes a personalized optimization plan. Lab credit applies.</div>
+					<div class="stamp"><b>Provider-led</b><em>+$300 with credit</em></div>
+				</div>
+				<div class="adonis-li__hiw-row alt">
+					<div class="num">05</div>
+					<div class="nm">Receive <em>clinical interpretation</em> through provider-guided care</div>
+					<div class="desc">Diagnosis, treatment, and prescriptions are issued only by a licensed provider, only when clinically appropriate. Lab Intelligence by itself does none of these.</div>
+					<div class="stamp"><b>Licensed Rx</b><em>via Precision Care</em></div>
+				</div>
+			</div>
+			<!-- /wp:html -->
+
+		</div>
+		<!-- /wp:group -->
+	</section>
+	<!-- /wp:group -->
+
+	<!-- 05 · AI Positioning · does / doesn't ─────────────────────────────── -->
+	<!-- wp:group {"tagName":"section","className":"adonis-panel adonis-li__panel-deep"} -->
+	<section class="wp-block-group adonis-panel adonis-li__panel-deep">
+		<!-- wp:group {"className":"adonis-container"} -->
+		<div class="wp-block-group adonis-container">
+
+			<!-- wp:html -->
+			<div class="adonis-li__head">
+				<div class="l">
+					<span class="adonis-li__eyebrow">05 · About the AI</span>
+					<h2 class="adonis-li__h2">Pattern recognition, <em>not a diagnosis</em>.</h2>
+				</div>
+				<div class="r">
+					<p>The intelligence in Lab Intelligence is in how the data is organized, summarized, and made legible — not in any attempt to replace your physician. We're explicit about both sides.</p>
+				</div>
+			</div>
+
+			<!-- WC NOTE: Per resolved decisions, this entire section's copy lives
+			     in ACF fields. The banned-phrase list below is the canonical
+			     defensive disclosure — these strings are NEVER used in marketing,
+			     only listed here as the things we refuse to claim. CI lint
+			     excludes this template. -->
+			<div class="adonis-li__ai">
+				<article class="adonis-li__ai-card does">
+					<div class="top">
+						<span class="lbl">What it does</span>
+						<h3>Organize. <em>Summarize.</em><br>Help you ask better questions.</h3>
+					</div>
+					<ul>
+						<li><b>AI-powered organization</b> of your lab data — sorting markers across hormones, thyroid, metabolic, inflammation, nutrients, and cardiometabolic categories.</li>
+						<li><b>Pattern recognition</b> across panels — flags markers that have moved meaningfully between draws, or that sit outside reference ranges.</li>
+						<li><b>Educational summaries</b> in plain English — what each marker generally indicates, where reference ranges come from, and why a physician might want to look closer.</li>
+						<li>Helps you <b>prepare better questions</b> for your provider. Saves a one-page <em>discussion summary</em> you can share with any physician — yours, ours, or another.</li>
+					</ul>
+					<div class="ftnote"><b>Educational use.</b> Reviewed against published reference ranges. Not personalized medical advice.</div>
+				</article>
+
+				<article class="adonis-li__ai-card doesnt">
+					<div class="top">
+						<span class="lbl">What it does not do</span>
+						<h3>Doesn't <em>diagnose</em>. Doesn't<br><em>prescribe</em>. Doesn't replace.</h3>
+					</div>
+					<ul>
+						<li><span class="ban">Does not diagnose</span> — no condition labels, no "you have X." Reference comparisons only, with the explicit framing that diagnosis requires a licensed provider.</li>
+						<li><span class="ban">Does not prescribe</span> — no medication recommendations, no dosing, no protocols. Prescriptions are issued only by a licensed provider via Precision Care.</li>
+						<li><span class="ban">Does not deliver a treatment plan</span> — pattern flags are educational. A clinical plan requires intake, history, and physician judgment.</li>
+						<li><span class="ban">Does not replace your physician</span> — and we don't market it as one. No "AI doctor", no "AI treatment plan", no guarantees of optimization. Your provider is your provider.</li>
+					</ul>
+					<div class="ftnote"><b>Banned framings.</b> AI doctor · AI diagnosis · AI prescription · AI treatment plan · guaranteed optimization. Not used here, not used in marketing.</div>
+				</article>
+			</div>
+			<!-- /wp:html -->
+
+		</div>
+		<!-- /wp:group -->
+	</section>
+	<!-- /wp:group -->
+
+	<!-- 06 · Upgrade bridge ──────────────────────────────────────────────── -->
+	<!-- wp:group {"tagName":"section","className":"adonis-panel"} -->
+	<section class="wp-block-group adonis-panel">
+		<!-- wp:group {"className":"adonis-container"} -->
+		<div class="wp-block-group adonis-container">
+
+			<!-- wp:html -->
+			<div class="adonis-li__upgrade">
+				<div class="l">
+					<div class="ey">06 · The bridge</div>
+					<h3>Ready for <em>clinical interpretation</em>?</h3>
+					<p>Upgrade to Precision Care for a lab-guided physician visit and personalized optimization plan. Any lab spend on Lab Intelligence credits toward the $499 package.</p>
+				</div>
+				<div class="actions">
+					<div class="price">From <b>$499<em>USD · package</em></b>Lab + intake + visit + plan</div>
+					<a class="adonis-li__cta adonis-li__cta--primary adonis-li__cta--lg adonis-li__cta--full" href="/precision-care"><span>Upgrade to <em>Precision Care</em></span><span class="arr">→</span></a>
+					<a class="adonis-li__cta adonis-li__cta--full" href="#compare"><span>Compare <em>both pathways</em></span><span class="arr">→</span></a>
+				</div>
+			</div>
+			<!-- /wp:html -->
+
+		</div>
+		<!-- /wp:group -->
+	</section>
+	<!-- /wp:group -->
+
+	<!-- 07 · Compare ─────────────────────────────────────────────────────── -->
+	<!-- wp:group {"tagName":"section","className":"adonis-panel adonis-li__panel-alt","anchor":"compare"} -->
+	<section class="wp-block-group adonis-panel adonis-li__panel-alt" id="compare">
+		<!-- wp:group {"className":"adonis-container"} -->
+		<div class="wp-block-group adonis-container">
+
+			<!-- wp:html -->
+			<div class="adonis-li__head">
+				<div class="l">
+					<span class="adonis-li__eyebrow">07 · Compare pathways</span>
+					<h2 class="adonis-li__h2">Self-directed, or <em>physician-led</em>.</h2>
+				</div>
+				<div class="r">
+					<p>Lab Intelligence is the educational on-ramp. Precision Care is where labs become a plan. Most members move from one to the other when they're ready.</p>
+				</div>
+			</div>
+
+			<div class="adonis-li__compare">
+				<article class="adonis-li__cmp-card lab">
+					<div class="tag">
+						<span class="lbl">Pathway 03 · this page</span>
+						<span class="nm">Lab <em>Intelligence</em></span>
+					</div>
+					<div class="price-row">
+						<div class="pr">$0–199<em>start</em></div>
+						<div class="lbl">Free upload<br><b>+ optional panel</b></div>
+					</div>
+					<p class="blurb">A self-directed, educational pathway: upload labs or order a panel, review insights, prepare for a future provider visit.</p>
+					<ul>
+						<li><b>Self-directed</b> · review at your pace</li>
+						<li><b>Educational</b> · organization &amp; summaries</li>
+						<li>Lab organization across 6 categories + trends</li>
+						<li><span style="color: var(--warn)">No diagnosis or prescriptions</span></li>
+						<li>Lab credit applies if you upgrade later</li>
+					</ul>
+					<div class="actions">
+						<a class="adonis-li__cta adonis-li__cta--full" href="#paths"><span>Start <em>Lab Intelligence</em></span><span class="arr">→</span></a>
+					</div>
+				</article>
+
+				<article class="adonis-li__cmp-card pri">
+					<div class="tag">
+						<span class="lbl">Pathway 02</span>
+						<span class="nm">Precision <em>Care</em></span>
+					</div>
+					<div class="price-row">
+						<div class="pr">$499<em>package</em></div>
+						<div class="lbl"><b>Lab + intake + visit + plan</b><br>Treatment quoted separately</div>
+					</div>
+					<p class="blurb">Physician-led: a Florida-licensed MD reads your data, meets you on a 30-minute video visit, and writes a personalized plan.</p>
+					<ul>
+						<li><b>Physician-guided</b> · MD video visit</li>
+						<li><b>Clinical interpretation</b> · 5-page plan</li>
+						<li>Personalized medical plan</li>
+						<li><b>Prescriptions or therapies</b> when clinically appropriate</li>
+						<li>3-month follow-up included</li>
+					</ul>
+					<div class="actions">
+						<a class="adonis-li__cta adonis-li__cta--primary adonis-li__cta--full" href="/precision-care"><span>Start <em>Precision Care</em></span><span class="arr">→</span></a>
+					</div>
+				</article>
+			</div>
+			<!-- /wp:html -->
+
+		</div>
+		<!-- /wp:group -->
+	</section>
+	<!-- /wp:group -->
+
+	<!-- 08 · Trust & compliance ──────────────────────────────────────────── -->
+	<!-- wp:group {"tagName":"section","className":"adonis-panel"} -->
+	<section class="wp-block-group adonis-panel">
+		<!-- wp:group {"className":"adonis-container"} -->
+		<div class="wp-block-group adonis-container">
+
+			<!-- wp:html -->
+			<div class="adonis-li__head">
+				<div class="l">
+					<span class="adonis-li__eyebrow">08 · Trust &amp; compliance</span>
+					<h2 class="adonis-li__h2">Plain rules, <em>plainly stated</em>.</h2>
+				</div>
+				<div class="r">
+					<p>The same standards we apply to Express and Precision Care. Self-directed doesn't mean unsupervised — it means we're explicit about where licensed-provider review begins.</p>
+				</div>
+			</div>
+
+			<div class="adonis-li__trust">
+				<article class="adonis-li__trust-card">
+					<svg class="glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true">
+						<rect x="6" y="11" width="20" height="16" rx="1.5"/>
+						<path d="M 10 11 V 8 a 6 6 0 0 1 12 0 V 11"/>
+					</svg>
+					<div>
+						<div class="nm">Secure document <em>upload</em></div>
+						<div class="desc">Lab uploads are encrypted in transit (TLS 1.3) and at rest (AES-256). Documents are stored in a HIPAA-compliant store with access controls, retention policies, and member-initiated deletion.</div>
+						<div class="stamp"><b>HIPAA</b> · BAA covered · TLS 1.3 · AES-256 at rest</div>
+					</div>
+				</article>
+
+				<article class="adonis-li__trust-card">
+					<svg class="glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true">
+						<path d="M 6 14 L 14 22 L 26 8"/>
+						<circle cx="16" cy="16" r="13" stroke-dasharray="3 3"/>
+					</svg>
+					<div>
+						<div class="nm">Provider-guided <em>upgrade</em> available</div>
+						<div class="desc">Any time you want clinical interpretation, you upgrade to Precision Care. The handoff is explicit — your data carries forward, the physician reads it before your visit, and any lab spend credits toward the package.</div>
+						<div class="stamp"><b>Upgrade-ready</b> · lab credit applies · same data carries forward</div>
+					</div>
+				</article>
+
+				<article class="adonis-li__trust-card">
+					<svg class="glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true">
+						<path d="M 6 8 H 26 V 24 H 6 Z"/>
+						<line x1="10" y1="13" x2="22" y2="13"/>
+						<line x1="10" y1="17" x2="22" y2="17"/>
+					</svg>
+					<div>
+						<div class="nm">Lab data used for <em>educational review</em> unless upgraded</div>
+						<div class="desc">Until you upgrade to Precision Care, your data is reviewed only by you, only for educational organization. We don't auto-share with providers, we don't sell or use your labs for advertising, and we don't generate diagnostic outputs.</div>
+						<div class="stamp"><b>No auto-share</b> · no third-party use · member-controlled deletion</div>
+					</div>
+				</article>
+
+				<article class="adonis-li__trust-card">
+					<svg class="glyph" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true">
+						<rect x="6" y="6" width="20" height="20" rx="1.5"/>
+						<path d="M 11 16 L 14 19 L 21 12"/>
+					</svg>
+					<div>
+						<div class="nm">Prescriptions only through <em>licensed provider review</em></div>
+						<div class="desc">No prescription is issued — and none is implied — by Lab Intelligence. Diagnosis, treatment, and prescriptions are provided only by a Florida-licensed provider after review of your full clinical picture, when medically appropriate.</div>
+						<div class="stamp"><b>FL ME 142008</b> · medical-director reviewed · no Rx via Lab Intelligence</div>
+					</div>
+				</article>
+			</div>
+			<!-- /wp:html -->
+
+		</div>
+		<!-- /wp:group -->
+	</section>
+	<!-- /wp:group -->
+
+	<!-- 09 · FAQ ───────────────────────────────────────────────────────── -->
+	<!-- wp:group {"tagName":"section","className":"adonis-panel adonis-li__panel-deep","anchor":"faq"} -->
+	<section class="wp-block-group adonis-panel adonis-li__panel-deep" id="faq">
+		<!-- wp:group {"className":"adonis-container"} -->
+		<div class="wp-block-group adonis-container">
+
+			<!-- wp:html -->
+			<div class="adonis-li__head">
+				<div class="l">
+					<span class="adonis-li__eyebrow">09 · Common questions</span>
+					<h2 class="adonis-li__h2">Things <em>worth asking</em>.</h2>
+				</div>
+				<div class="r">
+					<p>If you don't see your question here, member services replies the same business day during launch. We answer in plain language.</p>
+				</div>
+			</div>
+
+			<div class="adonis-li__faq-grid">
+				<details>
+					<summary><span class="num">Q · 01</span><span>Can I upload <em>outside labs</em>?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="a"><p><strong>Yes.</strong> PDFs, photos, and CSV exports from Quest, LabCorp, your last physical, or other CLIA-certified labs are all supported. We organize the data; the original file remains yours and is downloadable from your member portal at any time.</p></div>
+				</details>
+				<details>
+					<summary><span class="num">Q · 02</span><span>Can I order labs <em>through Adonis</em>?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="a"><p>Yes — single-category panels start at $199, full panels at $349. We use the same Quest / LabCorp partner network as Precision Care, with at-home phlebotomy as an option. Lab spend credits toward the $499 Precision Care package if you upgrade within 90 days.</p></div>
+				</details>
+				<details>
+					<summary><span class="num">Q · 03</span><span>Is this <em>medical advice</em>?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="a"><p><strong>No.</strong> Lab Intelligence is for educational review and organization of health data. It does not diagnose, treat, or prescribe. For clinical interpretation and personalized medical guidance, upgrade to Precision Care or share your insights summary with your existing provider.</p></div>
+				</details>
+				<details>
+					<summary><span class="num">Q · 04</span><span>Can <em>AI prescribe</em> treatment?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="a"><p><strong>No.</strong> No AI on this platform — or any other reputable platform — can prescribe medications. Prescriptions are issued only by a licensed physician, only after reviewing your intake, history, and current presentation, only when medically appropriate. We're explicit about this throughout the product.</p></div>
+				</details>
+				<details>
+					<summary><span class="num">Q · 05</span><span>When should I upgrade to <em>Precision Care</em>?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="a">
+						<p>Upgrade when you want a physician's interpretation of your data — whether because something on your panel concerns you, because you have symptoms you'd like correlated to your bloodwork, or because you want a written plan. Lab Intelligence is the on-ramp; Precision Care is where labs become a plan.</p>
+						<p>Members commonly upgrade after seeing 1–2 flagged markers, or after a follow-up draw shows movement they'd like to discuss with a clinician.</p>
+					</div>
+				</details>
+				<details>
+					<summary><span class="num">Q · 06</span><span>Are my labs <em>secure</em>?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="a"><p>Documents are encrypted in transit (TLS 1.3) and at rest (AES-256), stored in a HIPAA-compliant environment, accessible only to you. We don't sell, share, or use your data for advertising. You can request deletion of any uploaded document at any time from the member portal.</p></div>
+				</details>
+				<details>
+					<summary><span class="num">Q · 07</span><span>Can I use this for <em>hormones, thyroid, nutrients, and longevity</em>?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="a"><p>Yes — those are exactly the categories Lab Intelligence is built around. The six default categories are hormones, thyroid, metabolic, inflammation, nutrients, and cardiometabolic risk. If your panel includes markers in these areas, they'll be organized and summarized educationally. Clinical interpretation still requires Precision Care.</p></div>
+				</details>
+			</div>
+			<!-- /wp:html -->
+
+		</div>
+		<!-- /wp:group -->
+	</section>
+	<!-- /wp:group -->
+
+	<!-- 10 · Medical disclaimer ──────────────────────────────────────────── -->
+	<!-- wp:group {"tagName":"section","className":"adonis-panel"} -->
+	<section class="wp-block-group adonis-panel">
+		<!-- wp:group {"className":"adonis-container"} -->
+		<div class="wp-block-group adonis-container">
+
+			<!-- wp:html -->
+			<div class="adonis-li__disclaimer">
+				<h3>Medical <em>disclaimer</em></h3>
+				<div class="body">
+					<p><b>Lab Intelligence is designed for educational review and organization of health data. It does not diagnose, treat, prescribe, or replace medical care. Clinical interpretation, diagnosis, treatment, and prescriptions require review by a licensed provider.</b></p>
+					<p>Adonis is not a substitute for emergency care. If you are experiencing a medical emergency, call 911 or your local emergency number. The information on this page is for general educational purposes; it is not personalized medical advice.</p>
+					<div class="legal">
+						Adonis Health LLC · FL Telehealth Provider · Florida Med Board ME 142008 (Medical Director) · CLIA-certified lab partners · HIPAA-compliant document handling · Lab Intelligence is an educational service and does not constitute the practice of medicine
+					</div>
+				</div>
+			</div>
+			<!-- /wp:html -->
+
+		</div>
+		<!-- /wp:group -->
+	</section>
+	<!-- /wp:group -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

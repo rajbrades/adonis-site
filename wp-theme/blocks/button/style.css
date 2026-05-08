@@ -23,6 +23,13 @@
   font-style: italic;
 }
 
+.adonis-btn__arr {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1;
+}
+
 .adonis-btn--accent {
   background: var(--fg);
   color: var(--bg);
@@ -43,4 +50,19 @@
 }
 .adonis-btn--ghost:hover {
   border-color: var(--fg);
+}
+
+/* Outline — full-contrast border, transparent fill. Inverts on hover so
+   italic <em> needs --acc-deep to stay readable on the light fill. */
+.adonis-btn--outline {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--fg);
+}
+.adonis-btn--outline:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+.adonis-btn--outline:hover em {
+  color: var(--acc-deep);
 }

@@ -1,16 +1,37 @@
-<!-- wp:group {"tagName":"header","layout":{"type":"constrained"},"className":"adonis-header"} -->
-<header class="wp-block-group adonis-header">
-  <!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap"}} -->
-  <div class="wp-block-group">
-    <!-- wp:site-title {"level":0} /-->
+<!-- Top notice strip — sits above the nav, full width.
+     Per resolved decisions the locked launch copy is shorter ("FL-Licensed
+     Physicians · Rx review in 24h"); this template uses the prototype's
+     4-item version since that's the design intent the user has expressed.
+     Swap to the 2-item version by reducing the spans below if/when the
+     locked launch-day copy is desired. -->
+<!-- wp:html -->
+<div class="adonis-topbar">
+	HIPAA COMPLIANT <span>·</span> FLORIDA LICENSED PHYSICIANS <span>·</span>
+	FREE DISCREET SHIPPING <span>·</span> <em>24-HR RX REVIEW</em>
+</div>
+<!-- /wp:html -->
 
-    <!-- wp:html -->
-    <div class="adonis-gender-toggle" role="group" aria-label="Choose audience">
-      <button type="button" class="adonis-gender-toggle__btn" data-gender="men" aria-pressed="true">Men</button>
-      <button type="button" class="adonis-gender-toggle__btn" data-gender="women" aria-pressed="false">Women</button>
-    </div>
-    <!-- /wp:html -->
-  </div>
-  <!-- /wp:group -->
+<!-- wp:group {"tagName":"header","className":"adonis-header"} -->
+<header class="wp-block-group adonis-header">
+	<!-- wp:html -->
+	<nav class="adonis-nav">
+		<a class="adonis-nav__brand" href="/" aria-label="Adonis home">ADONIS</a>
+
+		<div class="adonis-nav__mid">
+			<a href="#cond">Treatments</a>
+			<a href="#sci">Science</a>
+			<a href="#trust">Standards</a>
+			<div class="adonis-nav__gender" role="group" aria-label="Choose audience">
+				<button type="button" data-gender="men" aria-pressed="true">Men</button>
+				<button type="button" data-gender="women" aria-pressed="false">Women</button>
+			</div>
+		</div>
+
+		<div class="adonis-nav__r">
+			<a href="/login">Log in</a>
+			<a href="#paths" class="adonis-nav__cta">Get <em>started</em></a>
+		</div>
+	</nav>
+	<!-- /wp:html -->
 </header>
 <!-- /wp:group -->

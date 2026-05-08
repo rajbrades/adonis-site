@@ -5,12 +5,15 @@
   /* Men palette */
   --m-bg:        #0F1116;
   --m-bg2:       #181B22;
+  --m-bg3:       #1F232C;  /* third elevation step — avatar gradients, deep cards */
   --m-fg:        #ECE6D8;
   --m-mute:      #898577;
   --m-line:      rgba(236, 230, 216, 0.10);
   --m-line2:     rgba(236, 230, 216, 0.18);
+  --m-line3:     rgba(236, 230, 216, 0.32);  /* hover/strongest border */
   --m-acc:       #C9A35E;
   --m-acc2:      #C9A35E;
+  --m-acc-soft:  rgba(201, 163, 94, 0.12);   /* selected-state fill */
   --m-acc-deep:  #8E7038;
   --m-secondary: #5A2A2A;
   --m-chart:     #B58A4D;
@@ -18,12 +21,15 @@
   /* Women palette */
   --w-bg:        #FBFAF7;
   --w-bg2:       #F3F1EC;
+  --w-bg3:       #E8E5DD;
   --w-fg:        #1F1D1A;
   --w-mute:      #7A736A;
   --w-line:      rgba(31, 29, 26, 0.12);
   --w-line2:     rgba(31, 29, 26, 0.22);
+  --w-line3:     rgba(31, 29, 26, 0.36);
   --w-acc:       #533673;
   --w-acc2:      #533673;
+  --w-acc-soft:  rgba(83, 54, 115, 0.10);
   --w-acc-deep:  #3C2655;
 
   /* Type */
@@ -37,6 +43,19 @@
   --r-lg:   12px;
   --r-pill: 999px;
 
+  /* Semantic — warning amber (used for .warn variants like product
+     education's "Decline criteria" card). Intentionally theme-invariant
+     so a warning reads as a warning regardless of palette. */
+  --warn:   #B58A4D;
+
+  /* Botanical green — Express/Precision upsell border tint. Theme-invariant;
+     the upsell box keeps its dark-green premium look regardless of palette. */
+  --sec:       #2E4338;
+  --sec-soft:  rgba(46, 67, 56, 0.30);
+
+  /* Success/positive — savings figures, positive deltas. */
+  --good:   #6F8A6A;
+
   /* Layout */
   --container-max: 1400px;
   --gutter:        40px;
@@ -45,12 +64,15 @@
   /* Default to men palette so :root alone renders correctly */
   --bg:        var(--m-bg);
   --bg2:       var(--m-bg2);
+  --bg3:       var(--m-bg3);
   --fg:        var(--m-fg);
   --mute:      var(--m-mute);
   --line:      var(--m-line);
   --line2:     var(--m-line2);
+  --line3:     var(--m-line3);
   --acc:       var(--m-acc);
   --acc2:      var(--m-acc2);
+  --acc-soft:  var(--m-acc-soft);
   --acc-deep:  var(--m-acc-deep);
   --secondary: var(--m-secondary);
   --chart:     var(--m-chart);
@@ -60,12 +82,15 @@ body.men,
 body.neutral {
   --bg:        var(--m-bg);
   --bg2:       var(--m-bg2);
+  --bg3:       var(--m-bg3);
   --fg:        var(--m-fg);
   --mute:      var(--m-mute);
   --line:      var(--m-line);
   --line2:     var(--m-line2);
+  --line3:     var(--m-line3);
   --acc:       var(--m-acc);
   --acc2:      var(--m-acc2);
+  --acc-soft:  var(--m-acc-soft);
   --acc-deep:  var(--m-acc-deep);
   --secondary: var(--m-secondary);
   --chart:     var(--m-chart);
@@ -74,12 +99,15 @@ body.neutral {
 body.women {
   --bg:        var(--w-bg);
   --bg2:       var(--w-bg2);
+  --bg3:       var(--w-bg3);
   --fg:        var(--w-fg);
   --mute:      var(--w-mute);
   --line:      var(--w-line);
   --line2:     var(--w-line2);
+  --line3:     var(--w-line3);
   --acc:       var(--w-acc);
   --acc2:      var(--w-acc2);
+  --acc-soft:  var(--w-acc-soft);
   --acc-deep:  var(--w-acc-deep);
   --secondary: var(--w-acc);
   --chart:     var(--w-acc);

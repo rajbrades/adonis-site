@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "adonis/product-card",
+  "title": "Adonis Product Card",
+  "category": "design",
+  "description": "Product card with tags row, product-still slot (InnerBlocks — pass a core/html block with the SVG), category eyebrow, title, description, specs list, price block, and two action buttons (Details + primary Rx). `wide: true` makes the card span the full grid width with a horizontal still/body+foot layout (used for the Combined bundle).",
+  "icon": "products",
+  "keywords": ["product", "rx", "card"],
+  "attributes": {
+    "tags":         { "type": "array",   "default": [] },
+    "category":     { "type": "string",  "default": "" },
+    "title":        { "type": "string",  "default": "" },
+    "description":  { "type": "string",  "default": "" },
+    "specs":        { "type": "array",   "default": [] },
+    "priceNum":     { "type": "string",  "default": "" },
+    "pricePer":     { "type": "string",  "default": "" },
+    "priceNote":    { "type": "string",  "default": "" },
+    "detailsUrl":   { "type": "string",  "default": "#" },
+    "detailsLabel": { "type": "string",  "default": "Details" },
+    "primaryUrl":   { "type": "string",  "default": "#" },
+    "primaryLabel": { "type": "string",  "default": "" },
+    "wide":         { "type": "boolean", "default": false }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "spacing": { "margin": true }
+  },
+  "textdomain": "adonis",
+  "render": "file:./render.php",
+  "style": "file:./style.css"
+}

@@ -92,9 +92,332 @@ a:hover { text-decoration: underline; text-underline-offset: 4px; }
   color: var(--fg);
 }
 
-/* Gender-conditional copy spans — controlled purely via CSS, not JS rewrites. */
+/* Brand wordmark — Fraunces, spaced caps per the prototype's design intent.
+   v1.1 should swap to inline SVG with explicit width/height for sub-pixel
+   metric consistency across browsers. Color is --fg (theme-swappable). */
+.adonis-wordmark {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fg);
+  display: inline-block;
+  line-height: 1;
+}
+
+/* ─── Top notice strip (above nav) ─────────────────────────────────────── */
+
+.adonis-topbar {
+  background: var(--bg2);
+  color: var(--fg);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 10px 16px;
+}
+.adonis-topbar span {
+  color: var(--mute);
+  margin: 0 12px;
+}
+.adonis-topbar em {
+  color: var(--acc);
+  font-style: normal;
+}
+
+/* ─── Header / nav ──────────────────────────────────────────────────────── */
+
+.adonis-header {
+  border-bottom: 1px solid var(--line);
+}
+.adonis-nav {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: 22px var(--gutter);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+@media (max-width: 720px) {
+  .adonis-nav {
+    padding: 18px var(--gutter-mobile);
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+  }
+}
+
+.adonis-nav__brand {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 28px;
+  letter-spacing: 0.32em;
+  color: var(--fg);
+  text-decoration: none;
+  line-height: 1;
+}
+.adonis-nav__brand:hover {
+  text-decoration: none;
+}
+
+.adonis-nav__mid {
+  display: flex;
+  gap: 36px;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .adonis-nav__mid { display: none; }  /* mobile menu drawer is a follow-up */
+}
+.adonis-nav__mid a {
+  font-size: 14px;
+  color: var(--fg);
+  opacity: .85;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.adonis-nav__mid a:hover {
+  opacity: 1;
+  color: var(--acc);
+  text-decoration: none;
+}
+
+/* Gender toggle inside the nav — vertical bars left + right, wider than
+   regular nav links, becomes the visual centerpiece of the header. */
+.adonis-nav__gender {
+  display: inline-flex;
+  align-items: stretch;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  margin: -22px 0;
+  align-self: stretch;
+}
+.adonis-nav__gender button {
+  background: transparent;
+  border: 0;
+  color: var(--fg);
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  padding: 0 22px;
+  cursor: pointer;
+  opacity: .55;
+  position: relative;
+  transition: opacity .3s, color .3s;
+  font-weight: 500;
+}
+.adonis-nav__gender button:hover { opacity: .85; }
+.adonis-nav__gender button[aria-pressed="true"] {
+  opacity: 1;
+  color: var(--acc);
+}
+.adonis-nav__gender button[aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 18px;
+  height: 1px;
+  background: var(--acc);
+}
+.adonis-nav__gender button + button {
+  border-left: 1px solid var(--line);
+}
+
+/* Suppress the older .adonis-gender-toggle (segmented-pill version) when
+   the in-nav gender buttons are present — the nav version is canonical. */
+.adonis-header .adonis-gender-toggle { display: none; }
+
+.adonis-nav__r {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.adonis-nav__r a {
+  font-size: 13px;
+  opacity: .85;
+  white-space: nowrap;
+  color: var(--fg);
+  text-decoration: none;
+}
+.adonis-nav__r a:hover {
+  opacity: 1;
+  color: var(--acc);
+  text-decoration: none;
+}
+.adonis-nav__cta {
+  background: var(--fg);
+  color: var(--bg) !important;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--fg);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  opacity: 1 !important;
+}
+.adonis-nav__cta em {
+  font-style: italic;
+  color: inherit;
+}
+.adonis-nav__cta:hover {
+  background: #FFFFFF !important;
+  border-color: #FFFFFF;
+  color: var(--bg) !important;
+}
+
+/* Footer — used on every page via template part */
+.adonis-footer {
+  padding: 64px 0 32px;
+}
+
+.adonis-footer__top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 900px) {
+  .adonis-footer__top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  .adonis-footer__top { grid-template-columns: 1fr; gap: 32px; }
+}
+
+.adonis-footer__brand .adonis-wordmark {
+  font-size: 56px;
+}
+.adonis-footer__brand p {
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 300;
+  margin: 18px 0 0;
+  opacity: .8;
+  line-height: 1.45;
+  max-width: 32ch;
+  font-variation-settings: "opsz" 18;
+}
+
+.adonis-footer__col h5 {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+.adonis-footer__col a {
+  display: block;
+  padding: 5px 0;
+  font-size: 14px;
+  opacity: .85;
+  color: inherit;
+  text-decoration: none;
+}
+.adonis-footer__col a:hover {
+  opacity: 1;
+  color: var(--acc);
+  text-decoration: none;
+}
+
+/* Compliance disclaimer — README locks the FDA + physician strings; do not
+   paraphrase. Sits between the link grid and the © bottom strip. */
+.adonis-footer__disclaimer {
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--mute);
+  line-height: 1.7;
+  max-width: 90ch;
+}
+
+.adonis-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 28px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .22em;
+  color: var(--mute);
+  text-transform: uppercase;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Gender-conditional copy spans — controlled purely via CSS, not JS rewrites.
+   Each body class shows exactly one variant. Pages should provide all three
+   (.g-men, .g-women, .g-neutral) wherever gender-aware copy is used; missing
+   .g-neutral spans simply render nothing in body.neutral. */
 .g-men, .g-women, .g-neutral { display: none; }
 body.men     .g-men,
-body.neutral .g-men,
-body.neutral .g-neutral,
-body.women   .g-women { display: inline; }
+body.women   .g-women,
+body.neutral .g-neutral { display: inline; }
+
+/* Section utilities — reused across home + landing pages */
+.adonis-panel {
+  padding: 120px 0;
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 720px) {
+  .adonis-panel { padding: 80px 0; }
+}
+
+.adonis-panel-head {
+  max-width: 70%;
+  margin-bottom: 72px;
+}
+@media (max-width: 720px) {
+  .adonis-panel-head { max-width: 100%; }
+}
+
+.adonis-panel-head h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(44px, 6vw, 96px);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+.adonis-panel-head h2 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--acc);
+}
+
+/* Optional lede paragraph beneath the panel-head h2. */
+.adonis-panel-head p {
+  color: var(--mute);
+  margin: 16px 0 0;
+  max-width: 56ch;
+  line-height: 1.55;
+}
+
+/* Eyebrow idx label inside a panel head ("01 · Hero" style)  */
+.adonis-panel-head__idx {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--acc);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.adonis-panel-head__idx::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--acc);
+}

@@ -1,0 +1,260 @@
+/* Adonis product card — tags row, product still, body, foot. The wide
+   variant spans 3 grid columns and lays out as still | (body / foot). */
+
+.adonis-prod {
+	border: 1px solid var(--line);
+	background: var(--bg2);
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	transition: border-color .3s, transform .3s;
+	border-radius: var(--r-md);
+	overflow: hidden;
+}
+.adonis-prod:hover {
+	border-color: var(--acc);
+}
+
+/* Wide variant — full-width bundle card. Explicit grid-row span on the still
+   so body and foot stack cleanly in column 2 (prototype's auto-flow puts
+   foot under the still, which isn't the visual intent). */
+.adonis-prod--wide {
+	grid-column: span 3;
+	display: grid;
+	grid-template-columns: 1.1fr 1.4fr;
+	grid-template-rows: 1fr auto;
+}
+.adonis-prod--wide .adonis-prod__still {
+	grid-row: 1 / span 2;
+	grid-column: 1;
+	aspect-ratio: auto;
+	min-height: 100%;
+	border-bottom: 0;
+	border-right: 1px solid var(--line);
+}
+.adonis-prod--wide .adonis-prod__still svg {
+	width: 45%;
+}
+.adonis-prod--wide .adonis-prod__body {
+	grid-column: 2;
+	padding: 36px 40px 0;
+}
+.adonis-prod--wide .adonis-prod__title {
+	font-size: 44px;
+	max-width: 14ch;
+}
+.adonis-prod--wide .adonis-prod__foot {
+	grid-column: 2;
+	padding: 26px 40px 30px;
+}
+@media (max-width: 900px) {
+	.adonis-prod--wide {
+		grid-column: span 1;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+	}
+	.adonis-prod--wide .adonis-prod__still {
+		grid-row: auto;
+		grid-column: auto;
+		aspect-ratio: 4/3.2;
+		min-height: 0;
+		border-right: 0;
+		border-bottom: 1px solid var(--line);
+	}
+	.adonis-prod--wide .adonis-prod__body,
+	.adonis-prod--wide .adonis-prod__foot {
+		grid-column: auto;
+	}
+}
+
+/* Tags row — pill labels positioned over the top of the still */
+.adonis-prod__tags {
+	position: absolute;
+	top: 16px;
+	left: 16px;
+	right: 16px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 2;
+	pointer-events: none;
+}
+.adonis-prod__tag {
+	font-family: var(--mono);
+	font-size: 11.5px;
+	letter-spacing: .24em;
+	text-transform: uppercase;
+	padding: 6px 10px;
+	background: var(--bg);
+	color: var(--fg);
+	border: 1px solid var(--line);
+}
+.adonis-prod__tag--hot {
+	background: var(--acc);
+	color: var(--bg);
+	border-color: var(--acc);
+}
+.adonis-prod__tag--idx {
+	background: transparent;
+	color: var(--mute);
+	border: 0;
+	padding-right: 0;
+}
+
+/* Product still — square-ish image area with centered SVG */
+.adonis-prod__still {
+	aspect-ratio: 4/3.2;
+	background: var(--bg);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	border-bottom: 1px solid var(--line);
+	position: relative;
+}
+.adonis-prod__still svg {
+	width: 62%;
+	height: auto;
+}
+
+/* Body */
+.adonis-prod__body {
+	padding: 28px 28px 0;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+.adonis-prod__cat {
+	font-family: var(--mono);
+	font-size: 12px;
+	letter-spacing: .26em;
+	text-transform: uppercase;
+	color: var(--mute);
+	margin-bottom: 14px;
+}
+.adonis-prod__title {
+	font-family: var(--display);
+	font-weight: 400;
+	font-size: 34px;
+	line-height: 1.02;
+	letter-spacing: -0.02em;
+	font-variation-settings: "opsz" 60;
+	text-wrap: balance;
+	margin: 0 0 14px;
+}
+.adonis-prod__title em {
+	font-style: italic;
+	font-weight: 300;
+	color: var(--acc);
+}
+.adonis-prod__desc {
+	font-size: 14px;
+	line-height: 1.55;
+	color: var(--mute);
+	margin: 0 0 20px;
+	max-width: 42ch;
+}
+.adonis-prod__specs {
+	list-style: none;
+	padding: 16px 0 0;
+	margin: 0 0 28px;
+	border-top: 1px dashed var(--line);
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.adonis-prod__specs li {
+	font-family: var(--sans);
+	font-size: 14.5px;
+	line-height: 1.5;
+	color: var(--fg);
+	padding-left: 20px;
+	position: relative;
+	opacity: .88;
+}
+.adonis-prod__specs li::before {
+	content: "→";
+	position: absolute;
+	left: 0;
+	color: var(--acc);
+	font-family: var(--mono);
+	font-size: 13px;
+}
+
+/* Foot — price block + sharp-cornered action buttons. Distinct button
+   language from the README's pill .btn primitive — these are deliberately
+   lower-emphasis card-internal actions. */
+.adonis-prod__foot {
+	padding: 22px 28px 24px;
+	border-top: 1px solid var(--line);
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 16px;
+	align-items: center;
+}
+.adonis-prod__price {
+	display: flex;
+	align-items: baseline;
+	gap: 4px;
+	flex-wrap: wrap;
+}
+.adonis-prod__price-num {
+	font-family: var(--display);
+	font-size: 36px;
+	font-weight: 400;
+	font-variation-settings: "opsz" 72;
+	letter-spacing: -0.02em;
+	line-height: 1;
+}
+.adonis-prod__price-num em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+}
+.adonis-prod__price-per {
+	font-family: var(--mono);
+	font-size: 13px;
+	letter-spacing: .18em;
+	text-transform: uppercase;
+	color: var(--mute);
+}
+.adonis-prod__price-note {
+	flex-basis: 100%;
+	font-family: var(--mono);
+	font-size: 11.5px;
+	letter-spacing: .18em;
+	text-transform: uppercase;
+	color: var(--mute);
+	margin-top: 2px;
+}
+
+.adonis-prod__buys {
+	display: flex;
+	gap: 8px;
+}
+.adonis-prod__btn {
+	font-family: var(--sans);
+	font-size: 12px;
+	letter-spacing: .04em;
+	padding: 11px 16px;
+	border: 1px solid var(--line);
+	color: var(--fg);
+	background: transparent;
+	transition: all .2s;
+	white-space: nowrap;
+	text-decoration: none;
+}
+.adonis-prod__btn:hover {
+	border-color: var(--fg);
+	text-decoration: none;
+}
+.adonis-prod__btn--primary {
+	background: var(--fg);
+	color: var(--bg);
+	border-color: var(--fg);
+}
+.adonis-prod__btn--primary:hover {
+	background: var(--acc);
+	border-color: var(--acc);
+	color: var(--bg);
+}

@@ -1,0 +1,566 @@
+<!-- ╔═══════════════════════════════════════════════════════════════════════╗
+     ║ Adonis · Single Product · DESIGN PREVIEW                              ║
+     ║                                                                       ║
+     ║ This template is a static design preview seeded with the Hair         ║
+     ║ (Finasteride 1mg + Minoxidil 5%) product content. Real WC integration ║
+     ║ replaces hardcoded copy with dynamic blocks at the WC: markers below. ║
+     ║                                                                       ║
+     ║ Two real Woo products will share this template at launch:             ║
+     ║   • Hair · Finasteride 1mg + Minoxidil 5% · SKU AD-FNM-001           ║
+     ║   • ED  · Tadalafil 5mg                  · SKU AD-TAD-005           ║
+     ║                                                                       ║
+     ║ Subscription cadence (one-time / bi-monthly) modeled as WooCommerce   ║
+     ║ Subscriptions variations per resolved decisions in README.            ║
+     ╚═══════════════════════════════════════════════════════════════════════╝ -->
+
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"adonis-pp"} -->
+<main class="wp-block-group adonis-pp">
+
+	<!-- Top notice strip (product-page-only, distinct from global top-bar) -->
+	<!-- wp:html -->
+	<div class="adonis-pp__notice">
+		<span><b>HIPAA</b> compliant</span>
+		<span><b>Florida-licensed</b> physicians</span>
+		<span>Free <b>discreet</b> shipping</span>
+		<span>Cancel <b>anytime</b></span>
+	</div>
+	<!-- /wp:html -->
+
+	<!-- Breadcrumb. WC: replace with `<!-- wp:woocommerce/breadcrumbs /-->` for
+	     auto-generated category trail, or keep this static markup if you'd
+	     rather control the path manually. -->
+	<!-- wp:html -->
+	<div class="adonis-pp__crumbs">
+		<a href="#">Treatments</a>
+		<span class="sep">/</span>
+		<a href="#">Hair Restoration</a>
+		<span class="sep">/</span>
+		<span class="now">Finasteride 1mg + Minoxidil 5%</span>
+	</div>
+	<!-- /wp:html -->
+
+	<!-- 01 · Product hero ──────────────────────────────────────────────────── -->
+	<!-- wp:group {"tagName":"section","className":"adonis-pp__hero"} -->
+	<section class="wp-block-group adonis-pp__hero">
+
+		<!-- Left: media column. WC: replace .adonis-pp__vial with
+		     `<!-- wp:woocommerce/product-image-gallery /-->` and the thumb
+		     strip with that block's built-in thumbnails. The vial illustration
+		     here is the placeholder for v1 launch. -->
+		<!-- wp:html -->
+		<div class="adonis-pp__hero-media">
+			<div class="adonis-pp__hero-grain" aria-hidden="true"></div>
+			<div class="adonis-pp__hero-corner">
+				<span>RX · ORAL + TOPICAL</span>
+				<span>SKU · <b>AD-FNM-001</b></span>
+			</div>
+
+			<div class="adonis-pp__vial">
+				<svg viewBox="0 0 200 320" fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" aria-hidden="true">
+					<rect x="56" y="20" width="88" height="36" rx="3" stroke="rgba(201,163,94,0.42)" fill="rgba(201,163,94,0.06)"></rect>
+					<line x1="56" y1="32" x2="144" y2="32" stroke="rgba(201,163,94,0.32)"></line>
+					<line x1="56" y1="44" x2="144" y2="44" stroke="rgba(201,163,94,0.32)"></line>
+					<path d="M 64 56 L 64 72 L 56 78 L 56 92 L 144 92 L 144 78 L 136 72 L 136 56" stroke="rgba(236,230,216,0.45)" fill="rgba(236,230,216,0.04)"></path>
+					<rect x="40" y="92" width="120" height="200" rx="4" stroke="rgba(236,230,216,0.5)" fill="rgba(236,230,216,0.03)"></rect>
+					<line x1="40" y1="170" x2="160" y2="170" stroke="rgba(201,163,94,0.45)"></line>
+					<line x1="40" y1="172" x2="160" y2="172" stroke="rgba(201,163,94,0.18)"></line>
+					<rect x="48" y="200" width="104" height="80" rx="2" stroke="rgba(236,230,216,0.18)" fill="rgba(236,230,216,0.04)"></rect>
+					<line x1="58" y1="218" x2="142" y2="218" stroke="rgba(236,230,216,0.18)"></line>
+					<line x1="58" y1="232" x2="142" y2="232" stroke="rgba(236,230,216,0.18)"></line>
+					<line x1="58" y1="246" x2="120" y2="246" stroke="rgba(236,230,216,0.18)"></line>
+					<line x1="58" y1="260" x2="142" y2="260" stroke="rgba(236,230,216,0.12)"></line>
+					<line x1="58" y1="270" x2="100" y2="270" stroke="rgba(236,230,216,0.12)"></line>
+					<text x="48" y="92" font-family="JetBrains Mono" font-size="6" fill="rgba(201,163,94,0.6)" letter-spacing=".15em">℞</text>
+				</svg>
+				<div class="adonis-pp__vial-label">
+					<div class="rx">RX · COMPOUNDED</div>
+					<div class="nm">Finasteride<br>+ Minoxidil</div>
+					<div class="ds">1mg / 5%</div>
+				</div>
+			</div>
+
+			<!-- Static thumbnail strip — first is active, rest are placeholders.
+			     Replaced by woocommerce/product-image-gallery thumbs in real WC. -->
+			<div class="adonis-pp__thumbs">
+				<div class="t is-active" data-l="01"></div>
+				<div class="t" data-l="02"></div>
+				<div class="t" data-l="03"></div>
+				<div class="t" data-l="04"></div>
+			</div>
+		</div>
+		<!-- /wp:html -->
+
+		<!-- Right: info column with cat, h1, formula, positioning, meta strip,
+		     selection module (dose + cadence + included + CTAs). -->
+		<!-- wp:html -->
+		<div class="adonis-pp__hero-info">
+
+			<div class="adonis-pp__cat">01 · Hair Restoration</div>
+
+			<!-- WC: replace with `<!-- wp:post-title {"level":1} /-->` once the
+			     real product is created. The italic accent word is part of
+			     the brand voice — preserve via the product's title HTML or a
+			     custom field. -->
+			<h1 class="adonis-pp__h1">Daily <em>protocol</em> for hair restoration.</h1>
+
+			<div class="adonis-pp__formula">C₂₃H₃₆N₂O₂ · C₉H₁₅N₅O · ORAL + TOPICAL</div>
+
+			<!-- WC: this paragraph maps to the product's short description.
+			     `<!-- wp:woocommerce/product-summary /-->` renders post_excerpt;
+			     ensure copy is authored in that field. -->
+			<p class="adonis-pp__positioning">A physician-reviewed combination of <em>finasteride 1mg</em> oral and <em>minoxidil 5%</em> topical solution — the two molecules with the strongest published evidence base for androgenetic alopecia, dispensed and shipped only after a Florida-licensed provider clears your case.</p>
+
+			<div class="adonis-pp__meta">
+				<span>Starts at <b>$39<span class="px-per">/mo</span></b></span>
+				<span><b>30-day</b> supply</span>
+				<span><b>Free</b> shipping</span>
+				<span><b>HSA / FSA</b></span>
+			</div>
+
+			<!-- WC: the selection module wraps Subscription variations. Dose grid
+			     (3 buttons) + cadence radio cards (one-time vs bi-monthly) become
+			     two separate variation attributes. WC's variations form replaces
+			     this static markup; styling re-applies via .adonis-pp__select. -->
+			<div class="adonis-pp__select">
+
+				<!-- Dose row -->
+				<div class="adonis-pp__sm-row">
+					<div class="adonis-pp__sm-label">
+						<span>Formula &amp; dose</span>
+						<span class="adonis-pp__help">Compare options →</span>
+					</div>
+					<div class="adonis-pp__dose-grid">
+						<button type="button" class="adonis-pp__dose is-active">
+							<span class="d">Topical<em>only</em></span>
+							<span class="meta">Minoxidil 5%</span>
+						</button>
+						<button type="button" class="adonis-pp__dose">
+							<span class="d">Oral<em>only</em></span>
+							<span class="meta">Finasteride 1mg</span>
+						</button>
+						<button type="button" class="adonis-pp__dose">
+							<span class="d">Combined<em>protocol</em></span>
+							<span class="meta">Most prescribed</span>
+						</button>
+					</div>
+				</div>
+
+				<!-- Cadence row — radio cards. WC: maps to subscription period
+				     variation; "Save 33%" badge derived from variation pricing. -->
+				<div class="adonis-pp__sm-row">
+					<div class="adonis-pp__sm-label">
+						<span>Purchase cadence</span>
+						<span style="color:var(--mute)">Pause or cancel anytime</span>
+					</div>
+					<div class="adonis-pp__cad-grid">
+						<div class="adonis-pp__cad-wrap">
+							<div class="adonis-pp__cad">
+								<div class="radio"></div>
+								<div class="info">
+									<div class="nm">One-time <em>purchase</em></div>
+									<div class="sub">30-day supply · ships once</div>
+								</div>
+								<div class="price">$59<em>per shipment</em></div>
+							</div>
+						</div>
+						<div class="adonis-pp__cad-wrap">
+							<span class="adonis-pp__cad-badge">Save 33%</span>
+							<div class="adonis-pp__cad is-active">
+								<div class="radio"></div>
+								<div class="info">
+									<div class="nm">Bi-monthly <em>subscription</em></div>
+									<div class="sub">60-day supply · ships every 2 months</div>
+								</div>
+								<div class="price">$39<em>per month</em><s>$59</s></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- What's included. WC: maps to a custom ACF repeater field on
+				     the product, since WC doesn't have a native "included" list. -->
+				<div class="adonis-pp__included">
+					<h5>What's included</h5>
+					<ul>
+						<li>Licensed-physician case review and prescription approval</li>
+						<li>Compounded by an FDA-registered 503A pharmacy partner</li>
+						<li>Discreet, unbranded shipping with tracking</li>
+						<li>Async messaging with your assigned provider, included</li>
+						<li>Quarterly progress check-ins, optional</li>
+					</ul>
+				</div>
+
+				<!-- CTAs. Primary "Start online visit" → links to Prescribery
+				     intake (real link configured at integration time). Ghost
+				     "Compare options" opens a comparison modal/page later. -->
+				<div class="adonis-pp__cta-stack">
+					<a class="adonis-pp__cta adonis-pp__cta--primary" href="#">
+						<span>Start <em>online visit</em></span>
+						<span class="arr">→</span>
+					</a>
+					<a class="adonis-pp__cta" href="#">
+						<span>Compare <em>options</em></span>
+						<span class="arr">→</span>
+					</a>
+					<div class="adonis-pp__reassure">Licensed-provider review required before any prescription is approved. Adonis does not auto-dispense medication.</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- /wp:html -->
+
+	</section>
+	<!-- /wp:group -->
+
+	<!-- 02 · How It Works (5-step flow) ─────────────────────────────────────── -->
+	<!-- wp:group {"tagName":"section","className":"adonis-panel","anchor":"how"} -->
+	<section class="wp-block-group adonis-panel" id="how">
+		<!-- wp:group {"className":"adonis-container"} -->
+		<div class="wp-block-group adonis-container">
+
+			<!-- wp:html -->
+			<div class="adonis-panel-head">
+				<div class="adonis-panel-head__idx">02 · From cart to first shipment</div>
+				<h2>A WordPress checkout, a <em>real</em> physician review.</h2>
+				<p>Your purchase isn't your prescription. The cart starts the case; a licensed provider clears it. Nothing ships until they sign.</p>
+			</div>
+			<!-- /wp:html -->
+
+			<!-- wp:html -->
+			<div class="adonis-pp__flow">
+
+				<div class="adonis-pp__flow-step">
+					<span class="n">Step 01</span>
+					<div class="ico" aria-hidden="true">a</div>
+					<h4>Choose your <em>treatment</em></h4>
+					<p>Select dose, formula, and supply cadence on this page. Add-ons are optional, never auto-checked.</p>
+					<div class="stamp">~ <b>2 min</b> · WooCommerce</div>
+				</div>
+
+				<div class="adonis-pp__flow-step">
+					<span class="n">Step 02</span>
+					<div class="ico" aria-hidden="true">b</div>
+					<h4>Secure <em>checkout</em></h4>
+					<p>HIPAA-compliant Stripe payment with HSA/FSA accepted. You're not charged the full month until approval.</p>
+					<div class="stamp">~ <b>2 min</b> · Stripe + WooCommerce</div>
+				</div>
+
+				<div class="adonis-pp__flow-step">
+					<span class="n">Step 03</span>
+					<div class="ico" aria-hidden="true">c</div>
+					<h4>Medical <em>questionnaire</em></h4>
+					<p>Conditional intake covering history, medications, allergies, and red flags. Built specifically for this protocol.</p>
+					<div class="stamp">~ <b>5 min</b> · Encrypted intake</div>
+				</div>
+
+				<div class="adonis-pp__flow-step">
+					<span class="n">Step 04</span>
+					<div class="ico" aria-hidden="true">d</div>
+					<h4>Provider <em>review</em></h4>
+					<p>A Florida-licensed physician reads the case, asks follow-ups if needed, and approves, modifies, or declines.</p>
+					<div class="stamp">Avg <b>18 hrs</b> · MD signature</div>
+				</div>
+
+				<div class="adonis-pp__flow-step">
+					<span class="n">Step 05</span>
+					<div class="ico" aria-hidden="true">e</div>
+					<h4>Pharmacy <em>ships</em></h4>
+					<p>If approved, an FDA-registered 503A/B partner pharmacy dispenses and ships in unbranded packaging.</p>
+					<div class="stamp">In <b>3–5 days</b> · Tracked</div>
+				</div>
+
+			</div>
+			<!-- /wp:html -->
+
+		</div>
+		<!-- /wp:group -->
+	</section>
+	<!-- /wp:group -->
+
+	<!-- 03 · Clinical credibility ──────────────────────────────────────────── -->
+	<!-- wp:group {"tagName":"section","className":"adonis-panel adonis-pp__panel-alt","anchor":"cred"} -->
+	<section class="wp-block-group adonis-panel adonis-pp__panel-alt" id="cred">
+		<!-- wp:group {"className":"adonis-container"} -->
+		<div class="wp-block-group adonis-container">
+
+			<!-- wp:html -->
+			<div class="adonis-panel-head">
+				<div class="adonis-panel-head__idx">03 · The clinical layer</div>
+				<h2>Doctor-reviewed, on the <em>record</em>.</h2>
+				<p>Hair-restoration protocols on Adonis are reviewed under the oversight of a board-certified dermatologist with hair transplant surgical training. Every case, every prescription.</p>
+			</div>
+			<!-- /wp:html -->
+
+			<!-- wp:html -->
+			<div class="adonis-pp__cred-grid">
+
+				<!-- Protocol-lead physician card (Aisha Robinson — hair lead).
+				     Doesn't appear on the homepage 2-card grid; she's listed
+				     here as the hair-protocol-specific specialist. -->
+				<article class="adonis-pp__cred-card">
+					<div class="top">
+						<div class="av" aria-hidden="true">AR</div>
+						<div>
+							<h3>Aisha Robinson, MD<em>Board-certified dermatology · Hair restoration surgical training</em></h3>
+							<div class="role">Hair Lead · Reviews this protocol</div>
+						</div>
+					</div>
+					<q>The most common mistake I see in retail telehealth is treating androgenetic alopecia as a single phenotype. Two patients with identical questionnaire answers can have very different underlying drivers. Review matters.</q>
+					<div class="creds">
+						<span>FL #ME-179215</span>
+						<span>ABD</span>
+						<span>Penn Derm '15</span>
+						<span>Howard '10</span>
+						<span>ISHRS member</span>
+					</div>
+				</article>
+
+				<!-- 5-row credibility checklist. -->
+				<ul class="adonis-pp__cred-list">
+					<li class="row">
+						<div class="ic" aria-hidden="true">✓</div>
+						<div class="nm">Doctor-reviewed care<em>Every case, every shipment</em></div>
+						<div class="v">Required</div>
+					</li>
+					<li class="row">
+						<div class="ic" aria-hidden="true">✓</div>
+						<div class="nm">Hair-transplant surgical oversight<em>For density, recession, and shedding work</em></div>
+						<div class="v">Adonis-only</div>
+					</li>
+					<li class="row">
+						<div class="ic" aria-hidden="true">✓</div>
+						<div class="nm">Florida-licensed provider network<em>Board-certified MDs &amp; NPs</em></div>
+						<div class="v">FL only</div>
+					</li>
+					<li class="row">
+						<div class="ic" aria-hidden="true">✓</div>
+						<div class="nm">FDA-registered 503A / 503B pharmacy<em>Compounded &amp; generic dispensing</em></div>
+						<div class="v">Partner</div>
+					</li>
+					<li class="row">
+						<div class="ic" aria-hidden="true">✓</div>
+						<div class="nm">Prescribed only when clinically appropriate<em>Approval is not guaranteed</em></div>
+						<div class="v">Standard</div>
+					</li>
+				</ul>
+
+			</div>
+			<!-- /wp:html -->
+
+		</div>
+		<!-- /wp:group -->
+	</section>
+	<!-- /wp:group -->
+
+	<!-- 04 · Product education (5-card stack) ──────────────────────────────── -->
+	<!-- wp:group {"tagName":"section","className":"adonis-panel","anchor":"edu"} -->
+	<section class="wp-block-group adonis-panel" id="edu">
+		<!-- wp:group {"className":"adonis-container"} -->
+		<div class="wp-block-group adonis-container">
+
+			<!-- wp:html -->
+			<div class="adonis-panel-head">
+				<div class="adonis-panel-head__idx">04 · Product education</div>
+				<h2>What this <em>protocol</em> actually does.</h2>
+				<p>Read before you check out — these are the things our physicians want every member to understand before starting.</p>
+			</div>
+			<!-- /wp:html -->
+
+			<!-- wp:html -->
+			<div class="adonis-pp__edu-grid">
+
+				<div class="adonis-pp__edu">
+					<span class="label">Who it's for</span>
+					<h4>Best <em>candidates</em></h4>
+					<p>Men with mild-to-moderate androgenetic alopecia (Norwood I–IV) who have at least 18 months of available follicles.</p>
+					<ul>
+						<li>Visible miniaturization at the crown or temples</li>
+						<li>No history of finasteride sensitivity</li>
+						<li>Realistic expectation of slowed loss + partial regrowth</li>
+					</ul>
+				</div>
+
+				<div class="adonis-pp__edu">
+					<span class="label">How it works</span>
+					<h4>Mechanism, <em>plainly</em></h4>
+					<p>Finasteride blocks DHT conversion at the follicle; minoxidil extends anagen phase and increases follicular blood flow.</p>
+					<ul>
+						<li>5α-reductase type II inhibition (oral)</li>
+						<li>Vasodilation + K+ channel opening (topical)</li>
+						<li>Complementary pathways, additive in trial data</li>
+					</ul>
+				</div>
+
+				<div class="adonis-pp__edu">
+					<span class="label">What to expect</span>
+					<h4>Realistic <em>timeline</em></h4>
+					<p>Initial shedding is common in months 1–3. Visible density changes typically begin around month 6 with continued use.</p>
+					<ul>
+						<li>Months 1–3 — shedding phase, expected</li>
+						<li>Months 4–6 — early density stabilization</li>
+						<li>Months 6–12 — measurable regrowth in responders</li>
+					</ul>
+				</div>
+
+				<div class="adonis-pp__edu">
+					<span class="label">Safety considerations</span>
+					<h4>Known <em>tradeoffs</em></h4>
+					<p>The molecules are well-characterized; their side-effect profile is too. Your physician will discuss these specifically.</p>
+					<ul>
+						<li>Possible sexual side effects (~2–4% in trials)</li>
+						<li>Topical irritation or scalp dryness</li>
+						<li>Not for use during pregnancy or nursing</li>
+					</ul>
+				</div>
+
+				<div class="adonis-pp__edu adonis-pp__edu--warn">
+					<span class="label">When this isn't right</span>
+					<h4>Decline <em>criteria</em></h4>
+					<p>Adonis providers will decline approval when this protocol is not appropriate. We'd rather say no than ship the wrong thing.</p>
+					<ul>
+						<li>Pregnancy, nursing, or planning conception</li>
+						<li>History of finasteride-related side effects</li>
+						<li>Non-androgenic causes (alopecia areata, scarring, telogen)</li>
+					</ul>
+				</div>
+
+			</div>
+			<!-- /wp:html -->
+
+		</div>
+		<!-- /wp:group -->
+	</section>
+	<!-- /wp:group -->
+
+	<!-- 05 · Express vs Precision upsell ───────────────────────────────────── -->
+	<!-- wp:group {"tagName":"section","className":"adonis-panel adonis-pp__panel-tight","anchor":"upsell"} -->
+	<section class="wp-block-group adonis-panel adonis-pp__panel-tight" id="upsell">
+		<!-- wp:group {"className":"adonis-container"} -->
+		<div class="wp-block-group adonis-container">
+
+			<!-- Upsell card stays dark-themed in both body palettes — premium
+			     callout meant to stand out regardless of theme. -->
+			<!-- wp:html -->
+			<div class="adonis-pp__upsell">
+
+				<div class="adonis-pp__upsell-l">
+					<div class="label">A second path</div>
+					<h3>Not sure if <em>Express Care</em> is enough?</h3>
+					<p>Some members want their protocol grounded in their actual biology — not the average response curve. <em>Precision Care</em> adds at-home labs, a comprehensive intake, and a 30-minute physician video visit before any prescription is signed.</p>
+					<a class="adonis-pp__upsell-cta" href="/precision-care">
+						<span>Compare <em>Express vs Precision</em></span>
+						<span class="arr">→</span>
+					</a>
+				</div>
+
+				<div class="adonis-pp__upsell-r">
+					<div class="adonis-pp__upsell-feat">
+						<span class="nm">At-home biomarker panel<em>8 hormone &amp; metabolic markers · DHT included</em></span>
+					</div>
+					<div class="adonis-pp__upsell-feat">
+						<span class="nm">Comprehensive intake<em>Full medical history + medication interactions</em></span>
+					</div>
+					<div class="adonis-pp__upsell-feat">
+						<span class="nm">Physician video visit<em>30 minutes, scheduled with your assigned MD</em></span>
+					</div>
+					<div class="adonis-pp__upsell-feat">
+						<span class="nm">Optional pharmacogenomics<em>CYP genotyping for personalized dosing</em></span>
+					</div>
+				</div>
+
+			</div>
+			<!-- /wp:html -->
+
+		</div>
+		<!-- /wp:group -->
+	</section>
+	<!-- /wp:group -->
+
+	<!-- 06 · FAQ ────────────────────────────────────────────────────────────── -->
+	<!-- wp:group {"tagName":"section","className":"adonis-panel","anchor":"faq"} -->
+	<section class="wp-block-group adonis-panel" id="faq">
+		<!-- wp:group {"className":"adonis-container"} -->
+		<div class="wp-block-group adonis-container">
+
+			<!-- wp:html -->
+			<div class="adonis-panel-head">
+				<div class="adonis-panel-head__idx">05 · Before you check out</div>
+				<h2>Direct <em>answers</em>, before you order.</h2>
+			</div>
+			<!-- /wp:html -->
+
+			<!-- wp:html -->
+			<div class="adonis-pp__faq-list">
+
+				<details class="adonis-pp__faq" open>
+					<summary><span>How does <em>provider review</em> actually work?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="adonis-pp__faq-a">
+						After checkout you'll complete a medical questionnaire built for this specific protocol. A Florida-licensed physician reads your answers, your medication list, and any flags — then either approves, requests follow-ups, modifies the prescription, or declines. <strong>You are never auto-prescribed.</strong> Average review time is 18 hours; expedited review is available.
+					</div>
+				</details>
+
+				<details class="adonis-pp__faq">
+					<summary><span>What happens immediately <em>after checkout</em>?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="adonis-pp__faq-a">
+						You'll receive an email with a link to your medical questionnaire and your member portal. We hold the full charge until your provider has cleared the case. If your case is declined, your card is refunded automatically.
+					</div>
+				</details>
+
+				<details class="adonis-pp__faq">
+					<summary><span>What if I'm <em>not approved</em>?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="adonis-pp__faq-a">
+						If a provider determines the protocol isn't appropriate for you, you'll receive a written explanation and a full refund. In some cases the provider will suggest an alternative protocol or recommend the Precision Care path. There is no charge for a declined case.
+					</div>
+				</details>
+
+				<details class="adonis-pp__faq">
+					<summary><span>How do <em>subscriptions</em> work?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="adonis-pp__faq-a">
+						Subscriptions ship on the cadence you select (monthly or bi-monthly). You can pause, modify dose, or cancel from your member portal — no call, no retention pitch. Subscription members are eligible for quarterly check-ins with their provider, included.
+					</div>
+				</details>
+
+				<details class="adonis-pp__faq">
+					<summary><span>When does the <em>medication ship</em>?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="adonis-pp__faq-a">
+						Medication ships only after provider approval. Typical timeline is 3–5 business days from approval to your door for generics, 5–7 for compounded protocols. All shipments are unbranded with tracking and signature on request.
+					</div>
+				</details>
+
+				<details class="adonis-pp__faq">
+					<summary><span>Are <em>results guaranteed</em>?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="adonis-pp__faq-a">
+						<strong>No.</strong> No reputable medical practice can guarantee a clinical outcome, and we won't either. Response varies based on biology, genetics, baseline severity, and adherence. We track outcomes longitudinally and adjust your protocol when the data calls for it.
+					</div>
+				</details>
+
+			</div>
+			<!-- /wp:html -->
+
+		</div>
+		<!-- /wp:group -->
+	</section>
+	<!-- /wp:group -->
+
+	<!-- Inline medical disclaimer block — product-specific, sits between FAQ
+	     and the global footer. Distinct from the footer's compliance line. -->
+	<!-- wp:html -->
+	<div class="adonis-pp__disclaimer">
+		<div class="adonis-pp__disclaimer-wrap">
+			<div class="ic" aria-hidden="true">℞</div>
+			<div>
+				<span class="label">Medical disclaimer</span>
+				<p>Prescriptions are issued only when medically appropriate after review by a licensed provider. Results vary by individual biology, baseline severity, adherence, and medication interactions. Any references to typical timelines or response rates reflect published clinical-trial averages and are not a guarantee of individual outcome.</p>
+				<p>Adonis does not auto-dispense medication. The purchase of this product initiates a medical case; it does not constitute a prescription. If your provider determines that this treatment is not appropriate, your purchase is refunded in full. Use of compounded medications carries additional considerations your provider will discuss with you.</p>
+				<p class="adonis-pp__disclaimer-meta">Florida #PA-198142 · HIPAA · BAA-covered · 503A pharmacy partner</p>
+			</div>
+		</div>
+	</div>
+	<!-- /wp:html -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

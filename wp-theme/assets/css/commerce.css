@@ -1,0 +1,1179 @@
+/* Cart / checkout / thank-you styles. Loaded on those page templates only.
+   Static design preview — real WC integration replaces hardcoded line items
+   with woocommerce/cart-items, woocommerce/cart-totals, etc. blocks. */
+
+/* ─── Notice + nav (per-page chrome, distinct from global header) ──────── */
+
+.adonis-cc__notice {
+	background: #08090C;
+	border-bottom: 1px solid var(--line);
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	color: var(--mute);
+	display: flex;
+	justify-content: center;
+	gap: 32px;
+	padding: 12px 24px;
+	flex-wrap: wrap;
+}
+.adonis-cc__notice b { color: var(--fg); font-weight: 500; }
+
+.adonis-cc__nav {
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	padding: 22px 48px;
+	border-bottom: 1px solid var(--line);
+	gap: 24px;
+}
+@media (max-width: 720px) {
+	.adonis-cc__nav { padding: 18px 20px; grid-template-columns: 1fr 1fr; }
+	.adonis-cc__nav .c { display: none; }
+}
+.adonis-cc__nav .l {
+	font-family: var(--display);
+	font-size: 26px;
+	letter-spacing: .04em;
+}
+.adonis-cc__nav .c {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	color: var(--mute);
+	display: flex;
+	gap: 24px;
+	justify-content: center;
+}
+.adonis-cc__nav .c span {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.adonis-cc__nav .c .dot {
+	width: 6px; height: 6px;
+	border-radius: 50%;
+	background: var(--acc);
+}
+.adonis-cc__nav .r {
+	display: flex;
+	gap: 14px;
+	justify-content: flex-end;
+	align-items: center;
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .18em;
+	text-transform: uppercase;
+	color: var(--mute);
+}
+.adonis-cc__nav .r b { color: var(--fg); font-weight: 500; }
+
+/* ─── 4-step progress bar (checkout, thank-you) ────────────────────────── */
+
+.adonis-cc__steps {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	border-bottom: 1px solid var(--line);
+}
+@media (max-width: 720px) {
+	.adonis-cc__steps { grid-template-columns: repeat(2, 1fr); }
+}
+.adonis-cc__steps .step {
+	padding: 18px 24px;
+	border-right: 1px solid var(--line);
+	display: flex;
+	gap: 14px;
+	align-items: center;
+	color: var(--mute);
+}
+.adonis-cc__steps .step:last-child { border-right: 0; }
+.adonis-cc__steps .step .n {
+	width: 28px; height: 28px;
+	border: 1px solid var(--line2);
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	font-family: var(--mono);
+	font-size: 12px;
+}
+.adonis-cc__steps .step .t {
+	font-family: var(--display);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.2;
+}
+.adonis-cc__steps .step .t em {
+	font-style: italic;
+	font-size: 12px;
+	color: var(--mute);
+	display: block;
+	margin-top: 2px;
+}
+.adonis-cc__steps .step.is-done .n {
+	border-color: var(--acc);
+	color: var(--acc);
+}
+.adonis-cc__steps .step.is-on {
+	background: rgba(201, 163, 94, 0.05);
+}
+.adonis-cc__steps .step.is-on .n {
+	border-color: var(--acc);
+	color: var(--acc);
+	background: var(--acc-soft);
+}
+.adonis-cc__steps .step.is-on .t em { color: var(--acc); }
+
+/* ─── Shared typography + buttons (commerce-scoped) ────────────────────── */
+
+.adonis-cc__h-display {
+	font-family: var(--display);
+	font-weight: 400;
+	line-height: 1.04;
+	letter-spacing: -.02em;
+	margin: 0;
+}
+.adonis-cc__h-display em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+}
+.adonis-cc__h1 { font-size: clamp(40px, 4vw, 56px); }
+.adonis-cc__h2 { font-size: clamp(30px, 2.6vw, 38px); }
+.adonis-cc__h3 { font-size: 22px; }
+
+.adonis-cc__eyebrow {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .26em;
+	text-transform: uppercase;
+	color: var(--acc);
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+.adonis-cc__eyebrow::before {
+	content: "";
+	width: 24px;
+	height: 1px;
+	background: var(--acc);
+}
+
+/* Commerce button — same pattern as product page (.adonis-pp__cta) but
+   namespaced for cart/checkout/thank-you. */
+.adonis-cc__btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 18px 26px;
+	font-family: var(--sans);
+	font-size: 15px;
+	font-weight: 500;
+	letter-spacing: .01em;
+	border: 1px solid var(--line2);
+	border-radius: 999px;
+	background: transparent;
+	color: var(--fg);
+	text-decoration: none;
+	transition: all .2s;
+}
+.adonis-cc__btn em {
+	font-family: var(--display);
+	font-style: italic;
+	font-weight: 400;
+	color: var(--acc);
+}
+.adonis-cc__btn .arr {
+	font-family: var(--mono);
+	font-size: 14px;
+	opacity: .72;
+}
+.adonis-cc__btn:hover {
+	border-color: var(--acc);
+	text-decoration: none;
+}
+.adonis-cc__btn--primary {
+	background: var(--acc);
+	color: var(--bg);
+	border-color: var(--acc);
+}
+.adonis-cc__btn--primary em { color: var(--bg); }
+.adonis-cc__btn--primary:hover {
+	background: var(--acc-deep);
+	border-color: var(--acc-deep);
+}
+.adonis-cc__btn--lg {
+	padding: 20px 28px;
+	font-size: 16px;
+}
+.adonis-cc__btn--full {
+	width: 100%;
+}
+
+.adonis-cc__reassure {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	line-height: 1.7;
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	padding: 14px 18px;
+	background: rgba(236, 230, 216, 0.03);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+}
+.adonis-cc__reassure::before {
+	content: "";
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--acc);
+	margin-top: 6px;
+	flex-shrink: 0;
+}
+.adonis-cc__reassure--sec {
+	border-color: var(--sec);
+	background: var(--sec-soft);
+}
+.adonis-cc__reassure--sec::before { background: var(--sec); }
+
+.adonis-cc__tertiary-link {
+	font-family: var(--sans);
+	font-size: 13px;
+	color: var(--mute);
+	text-align: center;
+}
+.adonis-cc__tertiary-link a {
+	color: var(--mute);
+	border-bottom: 1px solid var(--line2);
+	text-decoration: none;
+}
+.adonis-cc__tertiary-link a:hover {
+	color: var(--acc);
+	border-color: var(--acc);
+}
+
+/* ─── CART page ─────────────────────────────────────────────────────────── */
+
+.adonis-cc__cart-wrap {
+	display: grid;
+	grid-template-columns: 1.5fr 1fr;
+}
+@media (max-width: 980px) {
+	.adonis-cc__cart-wrap { grid-template-columns: 1fr; }
+}
+.adonis-cc__cart-l {
+	padding: 56px;
+	border-right: 1px solid var(--line);
+}
+.adonis-cc__cart-r {
+	padding: 56px 48px;
+	background: var(--bg2);
+}
+@media (max-width: 980px) {
+	.adonis-cc__cart-l { border-right: 0; border-bottom: 1px solid var(--line); }
+}
+@media (max-width: 720px) {
+	.adonis-cc__cart-l, .adonis-cc__cart-r { padding: 32px 20px; }
+}
+
+.adonis-cc__cart-head { margin-bottom: 40px; }
+.adonis-cc__cart-head h1 { margin-top: 14px; }
+.adonis-cc__cart-head p {
+	color: var(--mute);
+	margin: 14px 0 0;
+	max-width: 50ch;
+	line-height: 1.55;
+}
+
+/* Line items — full row per item; thumb left, info center, price right */
+.adonis-cc__line {
+	display: grid;
+	grid-template-columns: 90px 1fr auto;
+	gap: 24px;
+	padding: 24px 0;
+	border-bottom: 1px solid var(--line);
+}
+.adonis-cc__line:first-of-type { border-top: 1px solid var(--line2); }
+.adonis-cc__line .thumb {
+	width: 90px; height: 90px;
+	background: linear-gradient(165deg, #14171E 0%, #0B0D11 100%);
+	border-radius: 4px;
+	display: grid;
+	place-items: center;
+	position: relative;
+	overflow: hidden;
+}
+.adonis-cc__line .thumb svg {
+	width: 56px;
+	opacity: .9;
+}
+.adonis-cc__line .thumb .rx {
+	position: absolute;
+	bottom: 6px; left: 6px;
+	font-family: var(--mono);
+	font-size: 9px;
+	letter-spacing: .14em;
+	color: var(--acc);
+	text-transform: uppercase;
+}
+.adonis-cc__line .info .top {
+	display: flex;
+	align-items: baseline;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+.adonis-cc__line .info h3 {
+	font-family: var(--display);
+	font-weight: 400;
+	font-size: 21px;
+	line-height: 1.2;
+	margin: 0;
+}
+.adonis-cc__line .info h3 em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+	font-size: 17px;
+}
+.adonis-cc__line .info .formula {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	margin-top: 6px;
+}
+.adonis-cc__line .info .meta-row {
+	display: flex;
+	gap: 16px;
+	margin-top: 10px;
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	flex-wrap: wrap;
+}
+.adonis-cc__line .info .meta-row b {
+	color: var(--fg);
+	font-weight: 500;
+}
+.adonis-cc__line .info .controls {
+	margin-top: 16px;
+	display: flex;
+	gap: 16px;
+	flex-wrap: wrap;
+	font-family: var(--sans);
+	font-size: 13px;
+}
+.adonis-cc__line .info .controls a {
+	color: var(--mute);
+	border-bottom: 1px solid var(--line2);
+	cursor: pointer;
+	padding-bottom: 2px;
+	text-decoration: none;
+}
+.adonis-cc__line .info .controls a:hover {
+	color: var(--acc);
+	border-color: var(--acc);
+}
+.adonis-cc__line .info .controls a.danger:hover {
+	color: var(--warn);
+	border-color: var(--warn);
+}
+.adonis-cc__line .price { text-align: right; }
+.adonis-cc__line .price .amt {
+	font-family: var(--display);
+	font-size: 26px;
+	font-weight: 400;
+}
+.adonis-cc__line .price .per {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	margin-top: 2px;
+}
+.adonis-cc__line .price s {
+	display: block;
+	color: var(--mute);
+	font-size: 14px;
+	opacity: .65;
+	margin-top: 6px;
+}
+
+/* Subscription toggle within a line item */
+.adonis-cc__sub-toggle {
+	margin-top: 18px;
+	padding: 14px 16px;
+	border: 1px solid var(--line2);
+	border-radius: 4px;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 16px;
+	align-items: center;
+}
+.adonis-cc__sub-toggle.is-on {
+	border-color: var(--acc);
+	background: var(--acc-soft);
+}
+.adonis-cc__sub-toggle .info .nm {
+	font-family: var(--display);
+	font-size: 15px;
+	font-weight: 400;
+}
+.adonis-cc__sub-toggle .info .nm em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+}
+.adonis-cc__sub-toggle .info .why {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	color: var(--mute);
+	margin-top: 4px;
+}
+.adonis-cc__sub-toggle .switch {
+	width: 40px; height: 22px;
+	background: var(--bg3);
+	border: 1px solid var(--line2);
+	border-radius: 999px;
+	position: relative;
+	transition: all .25s;
+}
+.adonis-cc__sub-toggle.is-on .switch {
+	background: var(--acc);
+	border-color: var(--acc);
+}
+.adonis-cc__sub-toggle .switch::after {
+	content: "";
+	width: 16px; height: 16px;
+	border-radius: 50%;
+	background: var(--fg);
+	position: absolute;
+	top: 2px; left: 2px;
+	transition: transform .25s;
+}
+.adonis-cc__sub-toggle.is-on .switch::after {
+	transform: translateX(18px);
+	background: var(--bg);
+}
+
+/* Cart-side FAQ (3-entry mini accordion) */
+.adonis-cc__cart-faq {
+	margin-top: 48px;
+	padding-top: 32px;
+	border-top: 1px solid var(--line);
+}
+.adonis-cc__cart-faq .adonis-cc__eyebrow { margin-bottom: 18px; }
+.adonis-cc__cart-faq details { border-bottom: 1px solid var(--line); }
+.adonis-cc__cart-faq summary {
+	list-style: none;
+	cursor: pointer;
+	padding: 18px 0;
+	display: grid;
+	grid-template-columns: 1fr 20px;
+	gap: 24px;
+	align-items: center;
+	font-family: var(--display);
+	font-weight: 400;
+	font-size: 17px;
+	line-height: 1.3;
+}
+.adonis-cc__cart-faq summary::-webkit-details-marker { display: none; }
+.adonis-cc__cart-faq summary em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+}
+.adonis-cc__cart-faq summary .plus { width: 20px; height: 20px; position: relative; }
+.adonis-cc__cart-faq summary .plus::before,
+.adonis-cc__cart-faq summary .plus::after {
+	content: ""; position: absolute;
+	background: var(--fg);
+	transition: transform .3s;
+}
+.adonis-cc__cart-faq summary .plus::before {
+	left: 0; right: 0; top: 50%;
+	height: 1px;
+	transform: translateY(-50%);
+}
+.adonis-cc__cart-faq summary .plus::after {
+	top: 0; bottom: 0; left: 50%;
+	width: 1px;
+	transform: translateX(-50%);
+}
+.adonis-cc__cart-faq details[open] summary .plus::after {
+	transform: translateX(-50%) rotate(90deg);
+}
+.adonis-cc__cart-faq .a {
+	padding: 0 0 18px;
+	max-width: 64ch;
+	color: var(--mute);
+	line-height: 1.6;
+	font-size: 14px;
+}
+.adonis-cc__cart-faq .a strong {
+	color: var(--fg);
+	font-weight: 500;
+}
+
+/* Order summary block (right column on cart, also used on checkout) */
+.adonis-cc__summary {
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+}
+.adonis-cc__summary h3 { margin-bottom: 4px; }
+
+.adonis-cc__sum-rows {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 18px 0;
+	border-top: 1px solid var(--line);
+	border-bottom: 1px solid var(--line);
+}
+.adonis-cc__sum-rows .row {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 12px;
+}
+.adonis-cc__sum-rows .row .l { color: var(--mute); }
+.adonis-cc__sum-rows .row .v {
+	font-family: var(--mono);
+	font-size: 13px;
+	letter-spacing: .04em;
+	color: var(--fg);
+}
+.adonis-cc__sum-rows .row .v.muted { color: var(--mute); }
+.adonis-cc__sum-rows .row .v.savings { color: var(--good); }
+
+.adonis-cc__sum-total {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 16px;
+}
+.adonis-cc__sum-total .l {
+	font-family: var(--display);
+	font-size: 18px;
+}
+.adonis-cc__sum-total .l em {
+	font-family: var(--mono);
+	font-size: 11px;
+	font-style: normal;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	display: block;
+	margin-top: 4px;
+}
+.adonis-cc__sum-total .v {
+	font-family: var(--display);
+	font-size: 36px;
+	font-weight: 400;
+}
+.adonis-cc__sum-total .v em {
+	font-family: var(--mono);
+	font-size: 11px;
+	font-style: normal;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	display: block;
+	margin-top: 2px;
+}
+
+.adonis-cc__cta-stack {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-top: 18px;
+}
+
+/* "After this" 4-step list (cart right rail) */
+.adonis-cc__next-steps { margin-top: 28px; }
+.adonis-cc__next-steps .adonis-cc__eyebrow { margin-bottom: 18px; }
+.adonis-cc__ns-list { display: flex; flex-direction: column; }
+.adonis-cc__ns-item {
+	display: grid;
+	grid-template-columns: 36px 1fr;
+	gap: 16px;
+	padding: 16px 0;
+	border-bottom: 1px solid var(--line);
+}
+.adonis-cc__ns-item:last-child { border-bottom: 0; }
+.adonis-cc__ns-item .n {
+	width: 28px; height: 28px;
+	border: 1px solid var(--line2);
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	font-family: var(--mono);
+	font-size: 12px;
+	color: var(--mute);
+}
+.adonis-cc__ns-item.is-on .n {
+	border-color: var(--acc);
+	color: var(--acc);
+	background: var(--acc-soft);
+}
+.adonis-cc__ns-item .t {
+	font-family: var(--display);
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 1.35;
+}
+.adonis-cc__ns-item .t em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+}
+.adonis-cc__ns-item .d {
+	font-size: 12.5px;
+	color: var(--mute);
+	margin-top: 4px;
+	line-height: 1.5;
+}
+.adonis-cc__ns-item .stamp {
+	font-family: var(--mono);
+	font-size: 10px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	margin-top: 6px;
+}
+
+/* ─── CHECKOUT page ─────────────────────────────────────────────────────── */
+
+.adonis-cc__co-wrap {
+	display: grid;
+	grid-template-columns: 1.4fr 1fr;
+}
+@media (max-width: 980px) {
+	.adonis-cc__co-wrap { grid-template-columns: 1fr; }
+}
+.adonis-cc__co-l {
+	padding: 56px 56px 80px;
+	border-right: 1px solid var(--line);
+}
+.adonis-cc__co-r {
+	padding: 56px 48px;
+	background: var(--bg2);
+	position: relative;
+}
+@media (max-width: 980px) {
+	.adonis-cc__co-l { border-right: 0; border-bottom: 1px solid var(--line); }
+}
+@media (max-width: 720px) {
+	.adonis-cc__co-l, .adonis-cc__co-r { padding: 32px 20px; }
+}
+
+.adonis-cc__co-r .sticky {
+	position: sticky;
+	top: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+}
+
+/* Form fieldsets */
+.adonis-cc__fset { margin-bottom: 48px; }
+.adonis-cc__fset .adonis-cc__eyebrow { margin-bottom: 14px; }
+.adonis-cc__fset h2 {
+	margin: 0 0 8px;
+	font-size: 28px;
+}
+.adonis-cc__fset .lead {
+	color: var(--mute);
+	margin: 0 0 24px;
+	max-width: 56ch;
+	font-size: 14.5px;
+}
+
+.adonis-cc__field-grid {
+	display: grid;
+	gap: 14px;
+}
+.adonis-cc__field-grid--two { grid-template-columns: 1fr 1fr; }
+.adonis-cc__field-grid--three { grid-template-columns: 2fr 1fr 1fr; }
+@media (max-width: 600px) {
+	.adonis-cc__field-grid--two,
+	.adonis-cc__field-grid--three { grid-template-columns: 1fr; }
+}
+
+.adonis-cc__field {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	position: relative;
+}
+.adonis-cc__field label {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .18em;
+	text-transform: uppercase;
+	color: var(--mute);
+}
+.adonis-cc__field label .req {
+	color: var(--acc);
+	margin-left: 4px;
+}
+.adonis-cc__field input,
+.adonis-cc__field select,
+.adonis-cc__field textarea {
+	font-family: var(--sans);
+	font-size: 15px;
+	color: var(--fg);
+	padding: 14px 16px;
+	background: transparent;
+	border: 1px solid var(--line2);
+	border-radius: 4px;
+	transition: border-color .2s;
+	width: 100%;
+}
+.adonis-cc__field input:focus,
+.adonis-cc__field select:focus,
+.adonis-cc__field textarea:focus {
+	outline: none;
+	border-color: var(--acc);
+}
+.adonis-cc__field input::placeholder {
+	color: var(--mute);
+	opacity: .55;
+}
+.adonis-cc__field .help {
+	font-size: 11.5px;
+	color: var(--mute);
+}
+
+/* Custom checkbox row */
+.adonis-cc__field-checkbox {
+	display: grid;
+	grid-template-columns: 18px 1fr;
+	gap: 12px;
+	align-items: flex-start;
+	cursor: pointer;
+}
+.adonis-cc__field-checkbox .box {
+	width: 18px; height: 18px;
+	border: 1.5px solid var(--line3);
+	border-radius: 3px;
+	position: relative;
+	margin-top: 2px;
+}
+.adonis-cc__field-checkbox.is-on .box {
+	border-color: var(--acc);
+	background: var(--acc);
+}
+.adonis-cc__field-checkbox.is-on .box::after {
+	content: "✓";
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	color: var(--bg);
+	font-family: var(--mono);
+	font-size: 12px;
+	font-weight: 600;
+}
+.adonis-cc__field-checkbox .text {
+	font-size: 13.5px;
+	line-height: 1.5;
+	color: var(--fg);
+}
+.adonis-cc__field-checkbox .text em {
+	color: var(--mute);
+	font-style: normal;
+	font-size: 12px;
+	display: block;
+	margin-top: 2px;
+}
+
+/* Payment method selector (3 cards) */
+.adonis-cc__pay-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 8px;
+	margin-bottom: 16px;
+}
+@media (max-width: 600px) {
+	.adonis-cc__pay-grid { grid-template-columns: 1fr; }
+}
+.adonis-cc__pay {
+	padding: 18px 16px;
+	border: 1px solid var(--line2);
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all .2s;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.adonis-cc__pay:hover { border-color: var(--line3); }
+.adonis-cc__pay.is-on {
+	border-color: var(--acc);
+	background: var(--acc-soft);
+}
+.adonis-cc__pay .nm {
+	font-family: var(--display);
+	font-size: 16px;
+	font-weight: 400;
+}
+.adonis-cc__pay .nm em {
+	font-style: italic;
+	color: var(--acc);
+	font-size: 13px;
+	display: block;
+	margin-top: 2px;
+	font-weight: 300;
+}
+.adonis-cc__pay .glyph {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .18em;
+	text-transform: uppercase;
+	color: var(--mute);
+}
+.adonis-cc__pay.is-on .glyph { color: var(--acc); }
+
+.adonis-cc__card-cluster {
+	padding: 22px;
+	border: 1px solid var(--line2);
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+/* Right-rail summary card on checkout (different from cart's .summary) */
+.adonis-cc__summary-card {
+	background: var(--bg);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	padding: 24px;
+}
+.adonis-cc__summary-card .adonis-cc__eyebrow { margin-bottom: 14px; }
+.adonis-cc__summary-card h3 { margin: 0 0 18px; }
+
+.adonis-cc__summary-line {
+	display: grid;
+	grid-template-columns: 56px 1fr auto;
+	gap: 16px;
+	padding: 16px 0;
+	align-items: center;
+	border-top: 1px solid var(--line);
+	border-bottom: 1px solid var(--line);
+}
+.adonis-cc__summary-line .thumb {
+	width: 56px; height: 56px;
+	background: linear-gradient(165deg, #14171E 0%, #0B0D11 100%);
+	border-radius: 4px;
+	display: grid;
+	place-items: center;
+}
+.adonis-cc__summary-line .thumb svg { width: 32px; opacity: .9; }
+.adonis-cc__summary-line .info .nm {
+	font-family: var(--display);
+	font-size: 15px;
+	line-height: 1.2;
+}
+.adonis-cc__summary-line .info .nm em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+	font-size: 12px;
+}
+.adonis-cc__summary-line .info .meta {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	color: var(--mute);
+	margin-top: 4px;
+}
+.adonis-cc__summary-line .price {
+	text-align: right;
+	font-family: var(--display);
+	font-size: 17px;
+}
+.adonis-cc__summary-line .price em {
+	font-family: var(--mono);
+	font-size: 10px;
+	font-style: normal;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	display: block;
+	margin-top: 2px;
+}
+
+/* Prescribery handoff card on checkout sticky rail */
+.adonis-cc__handoff {
+	padding: 24px;
+	background: linear-gradient(135deg, transparent 0%, var(--sec-soft) 100%);
+	border: 1px solid var(--sec);
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+.adonis-cc__handoff .label {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .26em;
+	text-transform: uppercase;
+	color: var(--sec);
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.adonis-cc__handoff .label::before {
+	content: "";
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--sec);
+}
+.adonis-cc__handoff h4 {
+	font-family: var(--display);
+	font-size: 19px;
+	line-height: 1.25;
+	max-width: 24ch;
+	margin: 0;
+	font-weight: 400;
+}
+.adonis-cc__handoff h4 em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+}
+.adonis-cc__handoff p {
+	font-size: 13.5px;
+	line-height: 1.55;
+	color: var(--fg);
+	opacity: .9;
+	margin: 0;
+}
+.adonis-cc__handoff .partner {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+}
+.adonis-cc__handoff .partner b { color: var(--fg); font-weight: 500; }
+
+/* ─── THANK-YOU page ────────────────────────────────────────────────────── */
+
+.adonis-cc__ty-wrap {
+	display: grid;
+	grid-template-columns: 1.1fr 1fr;
+}
+@media (max-width: 980px) {
+	.adonis-cc__ty-wrap { grid-template-columns: 1fr; }
+}
+
+.adonis-cc__ty-l {
+	padding: 80px 64px;
+	border-right: 1px solid var(--line);
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	min-height: 560px;
+}
+.adonis-cc__ty-l::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(ellipse at 30% 30%,
+		color-mix(in oklch, var(--acc) 15%, transparent) 0%,
+		transparent 50%);
+	pointer-events: none;
+	z-index: 0;
+}
+.adonis-cc__ty-l > * { position: relative; z-index: 1; }
+@media (max-width: 980px) {
+	.adonis-cc__ty-l { border-right: 0; border-bottom: 1px solid var(--line); }
+}
+@media (max-width: 720px) {
+	.adonis-cc__ty-l { padding: 48px 24px; }
+}
+
+.adonis-cc__ty-status {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .26em;
+	text-transform: uppercase;
+	color: var(--acc);
+}
+.adonis-cc__ty-status .dot {
+	width: 10px; height: 10px;
+	border-radius: 50%;
+	background: var(--acc);
+	box-shadow: 0 0 0 4px color-mix(in oklch, var(--acc) 25%, transparent);
+}
+
+.adonis-cc__ty-l h1 { margin: 8px 0 0; }
+
+.adonis-cc__ty-order {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 18px 0;
+	border-top: 1px solid var(--line);
+	border-bottom: 1px solid var(--line);
+}
+.adonis-cc__ty-order .lbl {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	color: var(--mute);
+}
+.adonis-cc__ty-order .num {
+	font-family: var(--mono);
+	font-size: 18px;
+	letter-spacing: .14em;
+	color: var(--fg);
+	margin-top: 4px;
+}
+.adonis-cc__ty-order .det {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	margin-top: 6px;
+}
+.adonis-cc__ty-order .det b {
+	color: var(--fg);
+	font-weight: 500;
+}
+
+.adonis-cc__ty-actions {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: auto;
+}
+
+.adonis-cc__ty-r {
+	padding: 80px 56px;
+	background: var(--bg2);
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+@media (max-width: 720px) {
+	.adonis-cc__ty-r { padding: 48px 24px; }
+}
+.adonis-cc__ty-r h2 {
+	margin: 6px 0 0;
+	max-width: 18ch;
+}
+
+.adonis-cc__ty-steps {
+	display: flex;
+	flex-direction: column;
+	border-top: 1px solid var(--line);
+}
+.adonis-cc__ty-step {
+	display: grid;
+	grid-template-columns: 44px 1fr auto;
+	gap: 18px;
+	padding: 22px 0;
+	border-bottom: 1px solid var(--line);
+	align-items: start;
+}
+.adonis-cc__ty-step .n {
+	width: 36px; height: 36px;
+	border: 1px solid var(--line2);
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	font-family: var(--mono);
+	font-size: 14px;
+	color: var(--mute);
+}
+.adonis-cc__ty-step.is-now .n {
+	border-color: var(--acc);
+	color: var(--acc);
+	background: var(--acc-soft);
+}
+.adonis-cc__ty-step .t {
+	font-family: var(--display);
+	font-size: 17px;
+	line-height: 1.3;
+}
+.adonis-cc__ty-step .t em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+}
+.adonis-cc__ty-step .d {
+	font-size: 13px;
+	color: var(--mute);
+	line-height: 1.55;
+	margin-top: 6px;
+}
+.adonis-cc__ty-step .stamp {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	white-space: nowrap;
+}
+
+.adonis-cc__ty-cta-card {
+	background: var(--bg);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	padding: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+.adonis-cc__ty-cta-card h3 {
+	font-family: var(--display);
+	font-size: 22px;
+	font-weight: 400;
+	line-height: 1.2;
+	margin: 0;
+}
+.adonis-cc__ty-cta-card h3 em {
+	font-style: italic;
+	color: var(--acc);
+	font-weight: 300;
+}
+.adonis-cc__ty-cta-card p {
+	font-size: 14px;
+	color: var(--mute);
+	line-height: 1.55;
+	margin: 0;
+}
+.adonis-cc__ty-cta-card .partner {
+	font-family: var(--mono);
+	font-size: 10.5px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--mute);
+	line-height: 1.6;
+}
+.adonis-cc__ty-cta-card .partner b { color: var(--fg); }

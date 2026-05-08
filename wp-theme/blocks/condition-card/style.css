@@ -1,0 +1,154 @@
+/* Adonis condition card — image header + body with checks and Rx list. */
+
+.adonis-cond {
+	background: var(--bg2);
+	border: 1px solid var(--line);
+	border-radius: var(--r-md);
+	overflow: hidden;
+	display: grid;
+	grid-template-rows: auto auto;
+}
+
+/* ── Image header ──────────────────────────────────────────────────────── */
+
+.adonis-cond__img {
+	aspect-ratio: 16/10;
+	position: relative;
+	overflow: hidden;
+	background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%);
+	border-bottom: 1px solid var(--line);
+}
+
+.adonis-cond__grain {
+	position: absolute;
+	inset: 0;
+	background-image: repeating-linear-gradient(135deg, transparent 0 12px, var(--line) 12px 13px);
+	opacity: .5;
+	pointer-events: none;
+}
+
+.adonis-cond__tag {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	font-family: var(--mono);
+	font-size: 12px;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	background: var(--fg);
+	color: var(--bg);
+	padding: 6px 12px;
+	border-radius: 999px;
+	font-weight: 500;
+}
+
+.adonis-cond__lbl {
+	position: absolute;
+	bottom: 20px;
+	left: 24px;
+	font-family: var(--display);
+	font-style: italic;
+	font-weight: 300;
+	font-size: clamp(56px, 8vw, 120px);
+	line-height: 0.85;
+	letter-spacing: -0.03em;
+	opacity: .32;
+	color: var(--fg);
+	font-variation-settings: "opsz" 144;
+}
+
+/* ── Body ───────────────────────────────────────────────────────────────── */
+
+.adonis-cond__body {
+	padding: 40px;
+}
+@media (max-width: 720px) {
+	.adonis-cond__body { padding: 28px; }
+}
+
+.adonis-cond__title {
+	font-family: var(--display);
+	font-weight: 400;
+	font-size: clamp(36px, 4.5vw, 64px);
+	line-height: 0.95;
+	letter-spacing: -0.02em;
+	font-variation-settings: "opsz" 72;
+	margin: 0;
+}
+.adonis-cond__title em {
+	font-style: italic;
+	color: var(--acc);
+}
+
+.adonis-cond__best-for {
+	background: var(--bg);
+	border: 1px solid var(--line);
+	border-radius: 12px;
+	padding: 16px 20px;
+	margin-top: 24px;
+}
+.adonis-cond__best-for-k {
+	font-family: var(--mono);
+	font-size: 12px;
+	letter-spacing: .2em;
+	color: var(--mute);
+	text-transform: uppercase;
+}
+.adonis-cond__best-for-v {
+	font-size: 15px;
+	margin-top: 6px;
+	line-height: 1.4;
+}
+
+.adonis-cond__checks {
+	list-style: none;
+	margin: 28px 0 0;
+	padding: 0;
+}
+.adonis-cond__checks li {
+	display: grid;
+	grid-template-columns: 20px 1fr;
+	gap: 12px;
+	padding: 10px 0;
+	font-size: 15px;
+	line-height: 1.4;
+}
+.adonis-cond__checks li::before {
+	content: "✓";
+	color: var(--acc);
+	font-family: var(--mono);
+	font-size: 15px;
+}
+
+.adonis-cond__rx {
+	list-style: none;
+	margin: 28px 0 0;
+	padding: 0;
+	border-top: 1px solid var(--line);
+}
+.adonis-cond__rx li {
+	padding: 14px 0;
+	border-bottom: 1px solid var(--line);
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 16px;
+}
+.adonis-cond__rx-n {
+	font-weight: 500;
+	font-size: 15px;
+}
+.adonis-cond__rx-f {
+	font-family: var(--mono);
+	font-size: 12px;
+	letter-spacing: .16em;
+	color: var(--mute);
+	text-transform: uppercase;
+}
+
+/* CTA wrap — spacing only. The button itself is rendered by adonis/button
+   (variant=outline) via render_block in render.php, so all pill styling,
+   hover/focus, and italic-em behavior live in the button primitive. */
+.adonis-cond__cta-wrap {
+	margin-top: 28px;
+}

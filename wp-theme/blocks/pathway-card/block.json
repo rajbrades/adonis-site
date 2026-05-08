@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "adonis/pathway-card",
+  "title": "Adonis Pathway Card",
+  "category": "design",
+  "description": "Pathway card — badge chip, Fraunces title, summary, best-for callout, numbered steps (CSS counter), and a CTA delegated to adonis/button. Used for Express / Precision / Lab Intelligence and similar 3-up entry-point grids.",
+  "icon": "list-view",
+  "keywords": ["pathway", "card", "entry"],
+  "attributes": {
+    "badge":         { "type": "string", "default": "" },
+    "title":         { "type": "string", "default": "" },
+    "summary":       { "type": "string", "default": "" },
+    "bestForLabel":  { "type": "string", "default": "Best for" },
+    "bestFor":       { "type": "string", "default": "" },
+    "steps":         { "type": "array",  "default": [] },
+    "ctaLabel":      { "type": "string", "default": "" },
+    "ctaUrl":        { "type": "string", "default": "#" },
+    "ctaItalicWord": { "type": "string", "default": "" },
+    "ctaVariant":    { "type": "string", "default": "outline", "enum": ["accent", "ghost", "outline"] }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "spacing": { "margin": true }
+  },
+  "textdomain": "adonis",
+  "render": "file:./render.php",
+  "style": "file:./style.css"
+}

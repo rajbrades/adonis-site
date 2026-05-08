@@ -1,0 +1,115 @@
+<!-- Adonis Thank-you / Prescribery handoff · DESIGN PREVIEW
+     This is the post-checkout view. Per resolved decisions, it tells the
+     user "your consultation starts in minutes" and links them to Prescribery
+     for the medical questionnaire. The order ID format AD-YYYY-MM-NNNNN
+     is rendered by mu-plugins/adonis-order-id.php in production.
+
+     WC integration: this template overrides woocommerce/order-received.html
+     (or hook into woocommerce_thankyou). Real implementation pulls the
+     order # via $order->get_order_number() (which the order-id mu-plugin
+     filters to AD-YYYY-MM-NNNNN format). -->
+
+<!-- wp:html -->
+<div class="adonis-cc__notice">
+	<span><b>Visit started</b></span>
+	<span>Order #<b>AD-2026-05-00187</b></span>
+	<span>Card authorized · not yet charged</span>
+</div>
+
+<nav class="adonis-cc__nav">
+	<div class="l">A D O N I S</div>
+	<div class="c">
+		<span class="lock">Secure portal</span>
+		<span><span class="dot"></span> Florida-licensed providers</span>
+	</div>
+	<div class="r">Member since <b>today</b></div>
+</nav>
+<!-- /wp:html -->
+
+<!-- wp:group {"tagName":"main","className":"adonis-cc"} -->
+<main class="wp-block-group adonis-cc">
+
+	<!-- wp:html -->
+	<div class="adonis-cc__ty-wrap">
+
+		<!-- LEFT — visit-started status + order ref + primary CTA to Prescribery -->
+		<div class="adonis-cc__ty-l">
+			<div class="adonis-cc__ty-status"><span class="dot"></span> Online visit · started</div>
+
+			<h1 class="adonis-cc__h-display adonis-cc__h1">Your online <em>visit</em><br>has started.</h1>
+
+			<p style="color: var(--fg); opacity: .82; max-width: 44ch; line-height: 1.55; margin: 0;">
+				Thanks, <b style="color:var(--fg);">first name</b>. Your order is in. Now we hand off to the part that actually matters: a Florida-licensed physician reading your case before anything ships.
+			</p>
+
+			<div class="adonis-cc__ty-order">
+				<span class="lbl">Order reference</span>
+				<span class="num">AD–2026–05–00187</span>
+				<span class="det">
+					<b>Finasteride 1mg + Min. 5%</b> ·
+					<b>Bi-monthly</b> ·
+					authorized <b>$83.46</b>
+				</span>
+			</div>
+
+			<div class="adonis-cc__reassure adonis-cc__reassure--sec">
+				Card authorized only. We charge in full only after a licensed provider has approved your case. If declined, your authorization is released — no charge.
+			</div>
+
+			<div class="adonis-cc__ty-actions">
+				<a class="adonis-cc__btn adonis-cc__btn--primary adonis-cc__btn--lg adonis-cc__btn--full" href="https://prescribery.example/intake">
+					<span>Continue to your <em>medical questionnaire</em></span><span class="arr">→</span>
+				</a>
+				<div class="adonis-cc__tertiary-link">A confirmation has been emailed to <b style="color:var(--fg);">you@domain.com</b>.</div>
+			</div>
+		</div>
+
+		<!-- RIGHT — 3-step "what happens next" + final CTA card -->
+		<div class="adonis-cc__ty-r">
+			<div class="adonis-cc__eyebrow">What happens next</div>
+			<h2 class="adonis-cc__h-display adonis-cc__h2">From here, <em>three steps</em>.</h2>
+
+			<div class="adonis-cc__ty-steps">
+				<div class="adonis-cc__ty-step is-now">
+					<div class="n">2</div>
+					<div>
+						<div class="t">Complete your <em>medical questionnaire</em></div>
+						<div class="d">A secure ~5-minute intake covering your history, current medications, and any contraindications. Encrypted in transit and at rest.</div>
+					</div>
+					<div class="stamp">~5 min · now</div>
+				</div>
+				<div class="adonis-cc__ty-step">
+					<div class="n">3</div>
+					<div>
+						<div class="t">A licensed provider <em>reviews</em> your case</div>
+						<div class="d">A Florida-licensed physician reads your answers and either approves, requests follow-ups, modifies, or declines. You'll be notified by email and SMS.</div>
+					</div>
+					<div class="stamp">Avg 18 hrs</div>
+				</div>
+				<div class="adonis-cc__ty-step">
+					<div class="n">4</div>
+					<div>
+						<div class="t">If approved, your <em>prescription</em> ships</div>
+						<div class="d">An FDA-registered partner pharmacy fulfills and ships in unbranded packaging with tracking. We notify you the moment it leaves the door.</div>
+					</div>
+					<div class="stamp">3–5 days</div>
+				</div>
+			</div>
+
+			<div class="adonis-cc__ty-cta-card">
+				<h3>Don't lose your <em>spot in line</em>.</h3>
+				<p>Provider review starts the moment your questionnaire is in. Most members complete it within 10 minutes of placing an order.</p>
+				<a class="adonis-cc__btn adonis-cc__btn--primary adonis-cc__btn--full" href="https://prescribery.example/intake">
+					<span>Start <em>questionnaire</em> now</span><span class="arr">→</span>
+				</a>
+				<div class="partner">Questionnaire and provider workflow powered by <b style="color:var(--fg)">Prescribery</b> — HIPAA-compliant clinical layer.</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- /wp:html -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

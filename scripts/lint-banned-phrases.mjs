@@ -40,7 +40,8 @@ const EXCLUDE_DIRS = new Set([
   'vendor',
   'dist',
   '.git',
-  '.claude',  // Claude Code per-project tooling state, not committed copy
+  '.claude',           // Claude Code per-project tooling state, not committed copy
+  '.wp-now-content',   // wp-now runtime: WordPress core + plugins, not committed
 ]);
 
 // Path-prefix excludes (relative to repo root, forward slashes).
@@ -56,6 +57,7 @@ const EXCLUDE_FILES = new Set([
   SELF_REL,                    // self — script holds the phrase list
   'README.md',                 // spec doc — Compliance section names the bans
   '05-lab-intelligence.html',  // design prototype — "AI doesn't" card names the bans
+  'wp-theme/templates/page-lab-intelligence.html',  // theme template — same defensive disclosure
 ]);
 
 async function walk(dir, out = []) {

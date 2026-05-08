@@ -1,0 +1,179 @@
+<!-- Adonis Cart · DESIGN PREVIEW
+     Static markup with hardcoded line item. WC integration replaces:
+       • <!-- wp:woocommerce/cart-items /--> for the line items column
+       • <!-- wp:woocommerce/cart-totals /--> for the right-rail summary
+     The "next steps" 4-card list and "After this" eyebrow are Adonis-specific
+     content that should live above the WC cart blocks in the real template. -->
+
+<!-- wp:html -->
+<div class="adonis-cc__notice">
+	<span><b>HIPAA</b> compliant</span>
+	<span><b>Florida-licensed</b> physicians</span>
+	<span>Free <b>discreet</b> shipping</span>
+	<span>Cancel <b>anytime</b></span>
+</div>
+
+<nav class="adonis-cc__nav">
+	<div class="l">A D O N I S</div>
+	<div class="c">
+		<span class="lock">Secure cart</span>
+		<span><span class="dot"></span> Encrypted · TLS 1.3</span>
+	</div>
+	<div class="r">Order #<b>—</b> · Held until provider review</div>
+</nav>
+<!-- /wp:html -->
+
+<!-- wp:group {"tagName":"main","className":"adonis-cc"} -->
+<main class="wp-block-group adonis-cc">
+
+	<!-- wp:html -->
+	<div class="adonis-cc__cart-wrap">
+
+		<!-- LEFT — line items + cart-side FAQ -->
+		<div class="adonis-cc__cart-l">
+			<div class="adonis-cc__cart-head">
+				<div class="adonis-cc__eyebrow">01 · Your cart</div>
+				<h1 class="adonis-cc__h-display adonis-cc__h1">Review your <em>protocol</em>.</h1>
+				<p>Subscription is optional. Most members choose bi-monthly delivery to stay consistent and avoid refill gaps — but you can switch at any time from your member portal.</p>
+			</div>
+
+			<div class="adonis-cc__line">
+				<div class="thumb">
+					<svg viewBox="0 0 60 96" fill="none" stroke="currentColor" stroke-width="0.6" stroke-linecap="round" style="color:var(--acc)" aria-hidden="true">
+						<rect x="18" y="6" width="24" height="10" rx="1.5" stroke="rgba(201,163,94,0.5)" fill="rgba(201,163,94,0.06)"/>
+						<path d="M 22 16 V 22 L 18 24 V 28 H 42 V 24 L 38 22 V 16" stroke="rgba(236,230,216,0.5)" fill="rgba(236,230,216,0.04)"/>
+						<rect x="14" y="28" width="32" height="60" rx="1.5" stroke="rgba(236,230,216,0.55)" fill="rgba(236,230,216,0.04)"/>
+						<line x1="14" y1="50" x2="46" y2="50" stroke="rgba(201,163,94,0.5)"/>
+						<rect x="18" y="60" width="24" height="22" rx="1" stroke="rgba(236,230,216,0.2)"/>
+					</svg>
+					<span class="rx">℞ FNM</span>
+				</div>
+				<div class="info">
+					<div class="top">
+						<h3>Finasteride 1mg <em>+</em> Minoxidil 5%</h3>
+					</div>
+					<div class="formula">C₂₃H₃₆N₂O₂ · C₉H₁₅N₅O · ORAL + TOPICAL</div>
+					<div class="meta-row">
+						<span><b>60-day</b> supply</span>
+						<span><b>Ships every 2 months</b></span>
+						<span><b>Combined</b> protocol</span>
+					</div>
+
+					<div class="adonis-cc__sub-toggle is-on">
+						<div class="info">
+							<div class="nm">Bi-monthly <em>subscription</em></div>
+							<div class="why">Most chosen · save vs one-time · pause anytime</div>
+						</div>
+						<div class="switch" aria-hidden="true"></div>
+					</div>
+
+					<div class="controls">
+						<a>Edit dose</a>
+						<a>Switch to one-time</a>
+						<a class="danger">Remove from cart</a>
+					</div>
+				</div>
+				<div class="price">
+					<div class="amt">$78</div>
+					<div class="per">per shipment · $39/mo</div>
+					<s>$118 if one-time</s>
+				</div>
+			</div>
+
+			<!-- Cart-side FAQ — 3 entries, first open -->
+			<div class="adonis-cc__cart-faq">
+				<div class="adonis-cc__eyebrow">Quick answers</div>
+				<details open>
+					<summary><span>What happens <em>after checkout</em>?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="a">You'll be sent to a secure medical questionnaire (~5 minutes). A Florida-licensed physician reads your case and either approves, modifies, or declines your prescription. <strong>Your card is authorized at checkout but not charged in full until provider approval.</strong></div>
+				</details>
+				<details>
+					<summary><span>What if I'm <em>not approved</em>?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="a">If a provider determines this protocol isn't appropriate for you, you'll receive a written explanation and your card is automatically released — there is no charge for a declined case. In some cases the provider may suggest an alternative.</div>
+				</details>
+				<details>
+					<summary><span>When does <em>medication ship</em>?</span><span class="plus" aria-hidden="true"></span></summary>
+					<div class="a">Generic prescriptions typically ship within 3–5 business days of provider approval; compounded protocols 5–7. All shipments are unbranded with tracking, signature on request.</div>
+				</details>
+			</div>
+		</div>
+
+		<!-- RIGHT — order summary + next steps -->
+		<div class="adonis-cc__cart-r">
+			<div class="adonis-cc__summary">
+				<div class="adonis-cc__eyebrow">02 · Order summary</div>
+				<h3 class="adonis-cc__h-display adonis-cc__h3">Today's <em>order</em>.</h3>
+
+				<div class="adonis-cc__sum-rows">
+					<div class="row"><span class="l">Subtotal · 1 protocol</span><span class="v">$78.00</span></div>
+					<div class="row"><span class="l">Subscription savings (33%)</span><span class="v savings">−$40.00</span></div>
+					<div class="row"><span class="l">Estimated shipping</span><span class="v">Free</span></div>
+					<div class="row"><span class="l">Estimated tax</span><span class="v muted">Calculated at checkout</span></div>
+				</div>
+
+				<div class="adonis-cc__sum-total">
+					<div class="l">Total today<em>Authorized · charged on approval</em></div>
+					<div class="v">$78<em>per shipment</em></div>
+				</div>
+
+				<div class="adonis-cc__reassure adonis-cc__reassure--sec">
+					Licensed-provider review is required before any prescription is approved or shipped. If your treatment is not clinically appropriate, your order will not be fulfilled.
+				</div>
+
+				<div class="adonis-cc__cta-stack">
+					<a class="adonis-cc__btn adonis-cc__btn--primary adonis-cc__btn--lg adonis-cc__btn--full" href="/checkout">
+						<span>Continue to <em>checkout</em></span><span class="arr">→</span>
+					</a>
+					<a class="adonis-cc__btn adonis-cc__btn--full" href="/">
+						<span>Keep <em>shopping</em></span><span class="arr">→</span>
+					</a>
+					<div class="adonis-cc__tertiary-link">Have a code? <a>Apply discount</a></div>
+				</div>
+			</div>
+
+			<div class="adonis-cc__next-steps">
+				<div class="adonis-cc__eyebrow">After this</div>
+				<div class="adonis-cc__ns-list">
+					<div class="adonis-cc__ns-item is-on">
+						<div class="n">1</div>
+						<div>
+							<div class="t">Complete <em>checkout</em></div>
+							<div class="d">Contact, shipping, payment. Card authorized only.</div>
+							<div class="stamp">Now · 2 min</div>
+						</div>
+					</div>
+					<div class="adonis-cc__ns-item">
+						<div class="n">2</div>
+						<div>
+							<div class="t">Secure medical <em>questionnaire</em></div>
+							<div class="d">Conditional intake covering history, medications, red flags.</div>
+							<div class="stamp">Right after · ~5 min</div>
+						</div>
+					</div>
+					<div class="adonis-cc__ns-item">
+						<div class="n">3</div>
+						<div>
+							<div class="t">Licensed-provider <em>review</em></div>
+							<div class="d">A Florida-licensed physician reviews your case.</div>
+							<div class="stamp">Avg 18 hrs · MD signature</div>
+						</div>
+					</div>
+					<div class="adonis-cc__ns-item">
+						<div class="n">4</div>
+						<div>
+							<div class="t">Pharmacy <em>fulfillment</em></div>
+							<div class="d">If approved, FDA-registered partner pharmacy dispenses and ships.</div>
+							<div class="stamp">3–5 days · unbranded</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- /wp:html -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

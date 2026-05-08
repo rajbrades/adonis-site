@@ -10,8 +10,9 @@
   "attributes": {
     "label":      { "type": "string", "default": "Get started" },
     "url":        { "type": "string", "default": "#" },
-    "variant":    { "type": "string", "default": "accent", "enum": ["accent", "ghost"] },
-    "italicWord": { "type": "string", "default": "" }
+    "variant":    { "type": "string", "default": "accent", "enum": ["accent", "ghost", "outline"] },
+    "italicWord": { "type": "string", "default": "" },
+    "arrow":      { "type": "boolean", "default": false }
   },
   "supports": {
     "html": false,
